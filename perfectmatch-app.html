@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PerfectMatch — Trouve ton âme sœur</title>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<script src="https://js.stripe.com/v3/"></script>
+<style>
+:root {
+  --noir: #07070d;
+  --deep: #0d0d1a;
+  --card: #12121f;
+  --card2: #1a1a2e;
+  --border: #252540;
+  --border2: #2e2e55;
+  --text: #ede8e0;
+  --muted: #8a8499;
+  --gold: #d4a843;
+  --gold2: #f0c870;
+  --rose: #e8547a;
+  --violet: #8b5cf6;
+  --teal: #2dd4bf;
+  --green: #22c55e;
+  --red: #ef4444;
+  --amber: #f59e0b;
+  --r: 10px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--noir);color:var(--text);min-height:100vh;overflow-x:hidden;}
+::selection{background:rgba(212,168,67,.25);color:var(--gold2);}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--noir);}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+
+/* ══════════════════════════════════════════════
+   CANVAS
+══════════════════════════════════════════════ */
+#cv{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.6;}
+
+/* ══════════════════════════════════════════════
+   NAV
+══════════════════════════════════════════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(7,7,13,.85);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;padding:0 2rem;height:62px;gap:1.5rem;}
+.nav-logo{font-family:'Italiana',serif;font-size:1.5rem;color:var(--gold);letter-spacing:.05em;cursor:pointer;flex-shrink:0;}
+.nav-tabs{display:flex;gap:0;flex:1;overflow-x:auto;scrollbar-width:none;}
+.nav-tabs::-webkit-scrollbar{display:none;}
+.nav-tab{padding:0 1.1rem;height:62px;display:flex;align-items:center;gap:6px;font-size:.82rem;font-weight:500;letter-spacing:.03em;color:var(--muted);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s;}
+.nav-tab:hover{color:var(--text);}
+.nav-tab.active{color:var(--gold);border-bottom-color:var(--gold);}
+.nav-tab .tab-icon{font-size:1rem;}
+.nav-right{display:flex;align-items:center;gap:.75rem;flex-shrink:0;}
+.lang-sel{background:var(--card);border:1px solid var(--border);color:var(--text);padding:5px 10px;border-radius:6px;font-size:.78rem;font-family:'DM Sans',sans-serif;cursor:pointer;outline:none;}
+.lang-sel option{background:var(--card2);}
+.nav-cta{background:linear-gradient(135deg,var(--gold),#b8892a);color:var(--noir);border:none;padding:7px 16px;border-radius:6px;font-size:.8rem;font-weight:600;cursor:pointer;letter-spacing:.04em;text-transform:uppercase;transition:all .2s;}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(212,168,67,.4);}
+
+/* ══════════════════════════════════════════════
+   PAGES
+══════════════════════════════════════════════ */
+.page{display:none;min-height:100vh;padding-top:62px;position:relative;z-index:1;}
+.page.active{display:block;}
+
+/* ══════════════════════════════════════════════
+   HOME PAGE
+══════════════════════════════════════════════ */
+.hero{min-height:calc(100vh - 62px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3rem 1.5rem;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(212,168,67,.3);background:rgba(212,168,67,.07);border-radius:100px;padding:6px 18px;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;}
+.hero-orb{width:110px;height:110px;border-radius:50%;border:1.5px solid rgba(212,168,67,.4);display:flex;align-items:center;justify-content:center;font-size:3rem;margin:0 auto 2.5rem;position:relative;animation:orbpulse 4s ease-in-out infinite;box-shadow:0 0 60px rgba(212,168,67,.15),inset 0 0 40px rgba(212,168,67,.05);}
+.hero-orb::before{content:'';position:absolute;inset:-12px;border-radius:50%;border:1px solid rgba(212,168,67,.15);animation:orbring 6s linear infinite;}
+@keyframes orbpulse{0%,100%{box-shadow:0 0 40px rgba(212,168,67,.15)}50%{box-shadow:0 0 80px rgba(212,168,67,.35)}}
+@keyframes orbring{to{transform:rotate(360deg)}}
+h1.ht{font-family:'Italiana',serif;font-size:clamp(3.5rem,9vw,7rem);line-height:.9;letter-spacing:-.01em;background:linear-gradient(160deg,var(--gold2),var(--gold),#9a6422);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:1.5rem;}
+.hero-sub{font-family:'Crimson Pro',serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-style:italic;color:var(--muted);max-width:520px;line-height:1.7;margin-bottom:3rem;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+.btn-hero{padding:16px 40px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:all .25s;}
+.btn-hero-p{background:linear-gradient(135deg,var(--gold),#9a6422);color:var(--noir);border:none;box-shadow:0 4px 30px rgba(212,168,67,.3);}
+.btn-hero-p:hover{transform:translateY(-2px);box-shadow:0 8px 40px rgba(212,168,67,.5);}
+.btn-hero-s{background:transparent;border:1px solid var(--border2);color:var(--text);}
+.btn-hero-s:hover{border-color:var(--gold);color:var(--gold);}
+
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;padding:4rem 2rem;max-width:1100px;margin:0 auto;}
+.feat{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.75rem;transition:border-color .2s;}
+.feat:hover{border-color:var(--border2);}
+.feat-ico{font-size:2rem;margin-bottom:1rem;}
+.feat-t{font-family:'Italiana',serif;font-size:1.2rem;margin-bottom:.5rem;color:var(--text);}
+.feat-d{font-size:.83rem;color:var(--muted);line-height:1.6;}
+
+/* ══════════════════════════════════════════════
+   PRICING
+══════════════════════════════════════════════ */
+.pricing-wrap{max-width:1000px;margin:0 auto;padding:4rem 1.5rem;}
+.page-title{font-family:'Italiana',serif;font-size:clamp(2rem,5vw,3.5rem);text-align:center;margin-bottom:.75rem;background:linear-gradient(135deg,var(--gold2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.page-sub{text-align:center;font-family:'Crimson Pro',serif;font-style:italic;color:var(--muted);font-size:1.1rem;margin-bottom:3rem;}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
+.plan{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:2rem;position:relative;transition:all .25s;}
+.plan:hover{transform:translateY(-4px);border-color:var(--border2);}
+.plan.featured{border-color:rgba(212,168,67,.5);background:linear-gradient(160deg,var(--card),var(--card2));}
+.plan.featured::before{content:'⭐ POPULAIRE';position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,var(--gold),#9a6422);color:var(--noir);font-size:.7rem;font-weight:700;letter-spacing:.1em;padding:4px 16px;border-radius:100px;}
+.plan-name{font-family:'Italiana',serif;font-size:1.6rem;margin-bottom:.25rem;}
+.plan-desc{font-size:.82rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.5;}
+.plan-price{display:flex;align-items:baseline;gap:4px;margin-bottom:1.75rem;}
+.plan-amount{font-family:'Italiana',serif;font-size:3rem;color:var(--gold);}
+.plan-cur{font-size:1.1rem;color:var(--muted);}
+.plan-period{font-size:.8rem;color:var(--muted);}
+.plan-features{list-style:none;margin-bottom:2rem;}
+.plan-features li{display:flex;align-items:flex-start;gap:.6rem;padding:.45rem 0;font-size:.85rem;border-bottom:1px solid var(--border);line-height:1.5;}
+.plan-features li:last-child{border:none;}
+.plan-features li .pf-ico{flex-shrink:0;font-size:.9rem;}
+.plan-features li .pf-no{color:var(--muted);text-decoration:line-through;}
+.btn-plan{width:100%;padding:13px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.btn-plan-gold{background:linear-gradient(135deg,var(--gold),#9a6422);color:var(--noir);border:none;}
+.btn-plan-gold:hover{box-shadow:0 4px 20px rgba(212,168,67,.4);}
+.btn-plan-ghost{background:transparent;border:1px solid var(--border2);color:var(--text);}
+.btn-plan-ghost:hover{border-color:var(--gold);color:var(--gold);}
+
+/* STRIPE MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(7,7,13,.92);z-index:500;align-items:center;justify-content:center;padding:1rem;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--card);border:1px solid var(--border2);border-radius:14px;width:100%;max-width:480px;padding:2.5rem;position:relative;animation:modalIn .3s ease;}
+@keyframes modalIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.modal-close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1;}
+.modal-close:hover{color:var(--text);}
+.modal-title{font-family:'Italiana',serif;font-size:1.8rem;margin-bottom:.3rem;}
+.modal-sub{font-size:.83rem;color:var(--muted);margin-bottom:2rem;}
+.stripe-form{display:flex;flex-direction:column;gap:1.25rem;}
+.stripe-field label{display:block;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem;}
+.stripe-field input{width:100%;background:var(--card2);border:1px solid var(--border2);border-radius:6px;padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--text);outline:none;transition:border-color .2s;}
+.stripe-field input:focus{border-color:var(--gold);}
+.stripe-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+#card-element{background:var(--card2);border:1px solid var(--border2);border-radius:6px;padding:14px;}
+.stripe-badge{display:flex;align-items:center;gap:8px;font-size:.75rem;color:var(--muted);margin-top:.25rem;}
+.btn-pay{width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),#9a6422);color:var(--noir);border:none;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .2s;margin-top:.5rem;}
+.btn-pay:hover{box-shadow:0 4px 20px rgba(212,168,67,.4);}
+.btn-pay:disabled{opacity:.5;cursor:not-allowed;}
+.pay-success{text-align:center;padding:2rem 0;}
+.pay-success .check{font-size:4rem;margin-bottom:1rem;}
+.pay-success h3{font-family:'Italiana',serif;font-size:1.8rem;margin-bottom:.5rem;}
+.pay-success p{color:var(--muted);font-size:.88rem;margin-bottom:1.5rem;}
+
+/* ══════════════════════════════════════════════
+   QUIZ
+══════════════════════════════════════════════ */
+.quiz-wrap{max-width:760px;margin:0 auto;padding:3rem 1.5rem 6rem;}
+.prog-wrap{background:var(--card);border-radius:100px;height:3px;margin-bottom:3rem;overflow:hidden;}
+.prog-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--rose));border-radius:100px;transition:width .5s ease;}
+.step{display:none;animation:fadeup .4s ease;}
+.step.on{display:block;}
+@keyframes fadeup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.step-lbl{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;}
+.step-h{font-family:'Italiana',serif;font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:.6rem;line-height:1.1;}
+.step-d{font-family:'Crimson Pro',serif;font-style:italic;font-size:1.05rem;color:var(--muted);margin-bottom:2.5rem;line-height:1.6;}
+.fg{margin-bottom:1.4rem;}
+.fl{display:block;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.45rem;}
+input[type=text],input[type=number],input[type=date],input[type=time],select,textarea{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:7px;padding:12px 16px;font-family:'DM Sans',sans-serif;font-size:.95rem;color:var(--text);outline:none;transition:border-color .2s;}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,168,67,.1);}
+select option{background:var(--card2);}
+textarea{resize:vertical;min-height:90px;}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.cg{display:grid;gap:.7rem;}
+.cg.c2{grid-template-columns:1fr 1fr;}
+.cg.c3{grid-template-columns:repeat(3,1fr);}
+.cc{background:var(--card2);border:2px solid var(--border);border-radius:9px;padding:.9rem 1.1rem;cursor:pointer;transition:all .2s;position:relative;}
+.cc:hover{border-color:var(--border2);}
+.cc.sel{border-color:var(--gold);background:rgba(212,168,67,.07);}
+.cc.sel::after{content:'✓';position:absolute;top:7px;right:9px;font-size:.72rem;color:var(--gold);background:rgba(212,168,67,.15);width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.cc-ico{font-size:1.5rem;margin-bottom:.3rem;display:block;}
+.cc-t{font-size:.88rem;font-weight:500;}
+.cc-s{font-size:.75rem;color:var(--muted);margin-top:2px;}
+.scale-v{text-align:center;font-family:'Italiana',serif;font-size:2rem;color:var(--gold);margin-bottom:.3rem;}
+input[type=range]{width:100%;-webkit-appearance:none;height:4px;border-radius:2px;outline:none;border:none;padding:0;background:linear-gradient(90deg,var(--gold) var(--v,50%),var(--border2) var(--v,50%));}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--gold);cursor:pointer;box-shadow:0 0 8px rgba(212,168,67,.4);}
+.scale-ends{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);margin-top:5px;}
+.nav-btns{display:flex;gap:.75rem;margin-top:2.5rem;}
+.btn-back{background:transparent;border:1px solid var(--border);color:var(--muted);padding:12px 24px;border-radius:6px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.88rem;transition:all .2s;}
+.btn-back:hover{border-color:var(--muted);color:var(--text);}
+.btn-next{flex:1;background:linear-gradient(135deg,var(--gold),#9a6422);color:var(--noir);border:none;padding:13px 24px;border-radius:6px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;transition:all .2s;}
+.btn-next:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(212,168,67,.4);}
+
+/* ══════════════════════════════════════════════
+   LOADING
+══════════════════════════════════════════════ */
+.loading-pg{min-height:calc(100vh - 62px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;}
+.loader-ring{width:130px;height:130px;margin:0 auto 2.5rem;position:relative;}
+.loader-ring svg{animation:spin 2s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader-ring .lo-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.8rem;}
+.loading-h{font-family:'Italiana',serif;font-size:2rem;margin-bottom:.75rem;}
+.loading-steps{list-style:none;text-align:left;max-width:360px;margin:1.5rem auto 0;}
+.loading-steps li{padding:7px 0;font-size:.85rem;display:flex;align-items:center;gap:9px;color:var(--muted);transition:color .3s;}
+.loading-steps li .dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0;}
+.loading-steps li.done{color:var(--green);}
+.loading-steps li.cur{color:var(--gold);}
+
+/* ══════════════════════════════════════════════
+   REPORT
+══════════════════════════════════════════════ */
+.report-pg{max-width:920px;margin:0 auto;padding:3rem 1.5rem 7rem;}
+.rpt-hdr{text-align:center;padding:4rem 2rem;background:linear-gradient(140deg,var(--card),var(--card2));border:1px solid var(--border);border-radius:16px;margin-bottom:2rem;position:relative;overflow:hidden;}
+.rpt-hdr::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(212,168,67,.12),transparent 60%);}
+.rpt-hdr-top{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin-bottom:2rem;flex-wrap:wrap;}
+.score-ring-w{position:relative;width:160px;height:160px;flex-shrink:0;}
+.score-ring-w svg{transform:rotate(-90deg);}
+.score-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.score-n{font-family:'Italiana',serif;font-size:2.8rem;color:var(--gold);line-height:1;}
+.score-l{font-size:.75rem;color:var(--muted);}
+.rpt-plan-badge{padding:5px 14px;border-radius:100px;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;}
+.badge-free{background:rgba(139,92,246,.15);color:var(--violet);}
+.badge-astro{background:rgba(212,168,67,.15);color:var(--gold);}
+.badge-premium{background:linear-gradient(90deg,rgba(212,168,67,.2),rgba(232,84,122,.15));color:var(--gold2);}
+.rpt-title{font-family:'Italiana',serif;font-size:clamp(1.8rem,4vw,3rem);margin-bottom:.5rem;}
+.rpt-sub{font-family:'Crimson Pro',serif;font-style:italic;font-size:1.1rem;color:var(--muted);max-width:540px;margin:0 auto;line-height:1.7;}
+.blk{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem;margin-bottom:1.5rem;}
+.blk-hd{display:flex;align-items:center;gap:.7rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+.blk-ico{font-size:1.4rem;}
+.blk-t{font-family:'Italiana',serif;font-size:1.2rem;}
+.blk-badge{margin-left:auto;padding:3px 11px;border-radius:100px;font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;}
+.bbhi{background:rgba(34,197,94,.12);color:var(--green);}
+.bbmd{background:rgba(212,168,67,.12);color:var(--gold);}
+.bblo{background:rgba(239,68,68,.12);color:var(--red);}
+.bbv{background:rgba(139,92,246,.12);color:var(--violet);}
+.pt{font-size:.9rem;line-height:1.75;color:var(--muted);margin-bottom:.7rem;}
+.pt strong,.gold{color:var(--gold);}
+.dim-r{display:flex;align-items:center;gap:1rem;margin-bottom:.9rem;}
+.dim-lbl{font-size:.82rem;width:190px;flex-shrink:0;color:var(--muted);}
+.dim-bw{flex:1;height:5px;background:var(--card2);border-radius:3px;overflow:hidden;}
+.dim-b{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold),var(--rose));width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1);}
+.dim-s{font-size:.82rem;font-weight:700;color:var(--gold);width:38px;text-align:right;}
+.astro-grid{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1.5rem;text-align:center;}
+.a-sign{font-size:3rem;}
+.a-name{font-family:'Italiana',serif;font-size:1.1rem;margin-top:.3rem;}
+.a-hrt{font-size:2.2rem;animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+.el-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.2rem;}
+.epill{padding:5px 13px;border-radius:100px;font-size:.78rem;font-weight:500;border:1px solid;}
+.efeu{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.3);color:#f87171;}
+.eeau{background:rgba(139,92,246,.08);border-color:rgba(139,92,246,.3);color:#a78bfa;}
+.eterre{background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.3);color:#4ade80;}
+.eair{background:rgba(45,212,191,.08);border-color:rgba(45,212,191,.3);color:var(--teal);}
+.bias-i{display:flex;gap:.9rem;padding:.9rem 1rem;background:var(--card2);border-radius:8px;margin-bottom:.7rem;border-left:3px solid;}
+.bwarn{border-color:var(--amber);}
+.binfo{border-color:var(--violet);}
+.bok{border-color:var(--green);}
+.bdanger{border-color:var(--red);}
+.bi-ico{font-size:1.2rem;flex-shrink:0;margin-top:1px;}
+.bi-t{font-weight:600;font-size:.88rem;margin-bottom:3px;}
+.bi-d{font-size:.8rem;color:var(--muted);line-height:1.55;}
+.crit-g{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
+.ci{padding:1.1rem;background:var(--card2);border-radius:8px;border-top:3px solid;}
+.ci.str{border-color:var(--green);}
+.ci.wat{border-color:var(--amber);}
+.ci.rsk{border-color:var(--red);}
+.ci-l{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem;}
+.ci-t{font-size:.87rem;line-height:1.5;}
+.reco-ul{list-style:none;}
+.reco-ul li{padding:.7rem 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:.7rem;font-size:.88rem;line-height:1.55;}
+.reco-ul li:last-child{border:none;}
+.rn{width:24px;height:24px;background:rgba(212,168,67,.12);color:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0;}
+.final-blk{background:linear-gradient(140deg,var(--card),var(--card2));border:1px solid rgba(212,168,67,.25);border-radius:12px;padding:2rem;margin-bottom:1.5rem;}
+.final-msg{font-family:'Crimson Pro',serif;font-size:1.2rem;font-style:italic;line-height:1.9;color:var(--text);}
+.lock-blk{background:var(--card2);border:1px solid rgba(212,168,67,.2);border-radius:12px;padding:2.5rem;text-align:center;margin-bottom:1.5rem;}
+.lock-ico{font-size:2.5rem;margin-bottom:1rem;}
+.lock-t{font-family:'Italiana',serif;font-size:1.4rem;margin-bottom:.5rem;}
+.lock-d{font-size:.85rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.6;}
+.rpt-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;}
+.btn-rpt{flex:1;min-width:160px;padding:13px 22px;border-radius:6px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;transition:all .2s;text-align:center;}
+.btn-rpt-g{background:linear-gradient(135deg,var(--gold),#9a6422);color:var(--noir);border:none;}
+.btn-rpt-s{background:transparent;border:1px solid var(--border);color:var(--text);}
+.btn-rpt-s:hover{border-color:var(--gold);}
+
+/* ══════════════════════════════════════════════
+   LUNA CHAT
+══════════════════════════════════════════════ */
+.luna-pg{display:flex;flex-direction:column;height:calc(100vh - 62px);}
+.luna-hdr{padding:1.5rem 2rem;border-bottom:1px solid var(--border);background:var(--card);display:flex;align-items:center;gap:1rem;flex-shrink:0;}
+.luna-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--rose));display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;box-shadow:0 0 20px rgba(212,168,67,.3);}
+.luna-info h3{font-family:'Italiana',serif;font-size:1.3rem;}
+.luna-info p{font-size:.78rem;color:var(--muted);}
+.luna-status{width:9px;height:9px;background:var(--green);border-radius:50%;border:2px solid var(--card);}
+.luna-lock-banner{background:rgba(212,168,67,.08);border-bottom:1px solid rgba(212,168,67,.2);padding:.75rem 2rem;display:flex;align-items:center;gap:.75rem;font-size:.83rem;flex-shrink:0;flex-wrap:wrap;}
+.luna-lock-banner a{color:var(--gold);cursor:pointer;font-weight:600;text-decoration:underline;}
+.luna-messages{flex:1;overflow-y:auto;padding:1.5rem;display:flex;flex-direction:column;gap:1rem;}
+.msg{display:flex;gap:.75rem;max-width:80%;animation:fadeup .3s ease;}
+.msg.user{flex-direction:row-reverse;margin-left:auto;}
+.msg-bubble{padding:.9rem 1.1rem;border-radius:12px;font-size:.88rem;line-height:1.65;}
+.msg.luna .msg-bubble{background:var(--card2);border:1px solid var(--border);border-radius:0 12px 12px 12px;}
+.msg.user .msg-bubble{background:linear-gradient(135deg,rgba(212,168,67,.2),rgba(212,168,67,.1));border:1px solid rgba(212,168,67,.2);border-radius:12px 0 12px 12px;}
+.msg-ava{width:34px;height:34px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1rem;}
+.msg.luna .msg-ava{background:linear-gradient(135deg,var(--gold),var(--rose));}
+.msg.user .msg-ava{background:var(--card2);border:1px solid var(--border);}
+.luna-typing{display:flex;gap:4px;align-items:center;padding:.9rem 1.1rem;background:var(--card2);border:1px solid var(--border);border-radius:0 12px 12px 12px;width:60px;}
+.luna-typing span{width:7px;height:7px;background:var(--muted);border-radius:50%;animation:blink 1.2s ease-in-out infinite;}
+.luna-typing span:nth-child(2){animation-delay:.2s;}
+.luna-typing span:nth-child(3){animation-delay:.4s;}
+@keyframes blink{0%,80%,100%{opacity:.3}40%{opacity:1}}
+.luna-input-area{padding:1rem 1.5rem;border-top:1px solid var(--border);background:var(--card);display:flex;gap:.75rem;align-items:flex-end;flex-shrink:0;}
+.luna-textarea{flex:1;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:11px 14px;font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--text);outline:none;resize:none;max-height:120px;min-height:44px;transition:border-color .2s;}
+.luna-textarea:focus{border-color:var(--gold);}
+.luna-send{width:42px;height:42px;background:linear-gradient(135deg,var(--gold),#9a6422);border:none;border-radius:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;transition:all .2s;}
+.luna-send:hover{transform:translateY(-1px);box-shadow:0 4px 15px rgba(212,168,67,.4);}
+.luna-suggestions{display:flex;gap:.5rem;flex-wrap:wrap;padding:0 1.5rem .75rem;flex-shrink:0;}
+.luna-sug{background:var(--card2);border:1px solid var(--border);border-radius:100px;padding:6px 14px;font-size:.78rem;color:var(--muted);cursor:pointer;transition:all .2s;white-space:nowrap;}
+.luna-sug:hover{border-color:var(--gold);color:var(--gold);}
+
+/* ══════════════════════════════════════════════
+   SOURCES
+══════════════════════════════════════════════ */
+.sources-pg{max-width:1000px;margin:0 auto;padding:3rem 1.5rem 6rem;}
+.src-filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem;}
+.src-filter{padding:7px 16px;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:.8rem;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;}
+.src-filter:hover{border-color:var(--border2);}
+.src-filter.active{background:rgba(212,168,67,.1);border-color:rgba(212,168,67,.4);color:var(--gold);}
+.src-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;}
+.src-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.5rem;transition:all .2s;cursor:pointer;}
+.src-card:hover{border-color:var(--border2);transform:translateY(-2px);}
+.src-cat{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem;font-weight:600;}
+.cat-psych{color:var(--violet);}
+.cat-astro{color:var(--gold);}
+.cat-neuro{color:var(--teal);}
+.cat-socio{color:var(--rose);}
+.cat-attach{color:var(--amber);}
+.cat-stats{color:var(--green);}
+.src-title{font-family:'Italiana',serif;font-size:1.05rem;margin-bottom:.4rem;line-height:1.3;}
+.src-author{font-size:.78rem;color:var(--muted);margin-bottom:.5rem;}
+.src-desc{font-size:.8rem;color:var(--muted);line-height:1.55;}
+.src-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem;}
+.src-tag{padding:3px 9px;border-radius:100px;font-size:.7rem;background:var(--card2);border:1px solid var(--border);color:var(--muted);}
+.src-link{display:flex;align-items:center;gap:5px;font-size:.75rem;color:var(--gold);text-decoration:none;margin-top:.75rem;}
+.src-link:hover{text-decoration:underline;}
+
+/* ══════════════════════════════════════════════
+   UTILS
+══════════════════════════════════════════════ */
+.profile-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.9rem;}
+.ptag{background:rgba(212,168,67,.09);border:1px solid rgba(212,168,67,.22);color:var(--gold);padding:4px 11px;border-radius:100px;font-size:.78rem;}
+.pcard{background:linear-gradient(140deg,var(--card2),var(--border));border:1px solid rgba(212,168,67,.18);border-radius:10px;padding:1.5rem;position:relative;overflow:hidden;}
+.pcard::before{content:'';position:absolute;top:-40%;right:-15%;width:250px;height:250px;background:radial-gradient(circle,rgba(212,168,67,.06),transparent 70%);pointer-events:none;}
+.sect-div{display:flex;align-items:center;gap:1rem;margin:1.5rem 0;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+.sect-div::before,.sect-div::after{content:'';flex:1;height:1px;background:var(--border);}
+
+@media(max-width:600px){
+  .g2,.cg.c2,.cg.c3,.crit-g,.src-grid,.plans,.astro-grid{grid-template-columns:1fr;}
+  .dim-lbl{width:120px;font-size:.76rem;}
+  nav{padding:0 1rem;}
+  .nav-tab span.tab-txt{display:none;}
+  .profile-chips{margin-left:0;}
+}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">💞 PerfectMatch</div>
+  <div class="nav-tabs">
+    <div class="nav-tab active" data-page="home" onclick="showPage('home')"><span class="tab-icon">🏠</span><span class="tab-txt">Accueil</span></div>
+    <div class="nav-tab" data-page="pricing" onclick="showPage('pricing')"><span class="tab-icon">💎</span><span class="tab-txt">Tarifs</span></div>
+    <div class="nav-tab" data-page="quiz" onclick="showPage('quiz')"><span class="tab-icon">✨</span><span class="tab-txt">Mon test</span></div>
+    <div class="nav-tab" data-page="luna" onclick="showPage('luna')"><span class="tab-icon">🌙</span><span class="tab-txt">Luna IA</span></div>
+    <div class="nav-tab" data-page="sources" onclick="showPage('sources')"><span class="tab-icon">📚</span><span class="tab-txt">Sources</span></div>
+  </div>
+  <div class="nav-right">
+    <select class="lang-sel" id="langSel" onchange="changeLang(this.value)">
+      <option value="fr">🇫🇷 FR</option>
+      <option value="en">🇬🇧 EN</option>
+      <option value="es">🇪🇸 ES</option>
+      <option value="ar">🇸🇦 AR</option>
+      <option value="pt">🇧🇷 PT</option>
+      <option value="de">🇩🇪 DE</option>
+    </select>
+    <button class="nav-cta" onclick="showPage('quiz')">Commencer</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════
+     HOME
+══════════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <span class="hero-eyebrow">✨ IA · Psychologie · Astrologie · Esprit critique</span>
+    <div class="hero-orb">💞</div>
+    <h1 class="ht" data-i18n="hero_title">PerfectMatch</h1>
+    <p class="hero-sub" data-i18n="hero_sub">L'algorithme de compatibilité le plus avancé jamais conçu — au-delà des sites de rencontre, des coachs, des thérapeutes.</p>
+    <div class="hero-btns">
+      <button class="btn-hero btn-hero-p" onclick="showPage('quiz')" data-i18n="start_free">Commencer gratuitement</button>
+      <button class="btn-hero btn-hero-s" onclick="showPage('pricing')" data-i18n="see_plans">Voir les offres</button>
+    </div>
+  </div>
+  <div class="features">
+    <div class="feat"><div class="feat-ico">🧠</div><div class="feat-t" data-i18n="feat1t">Psychologie scientifique</div><div class="feat-d" data-i18n="feat1d">Big Five, styles d'attachement, théorie des besoins — les modèles les plus validés par la recherche.</div></div>
+    <div class="feat"><div class="feat-ico">🔍</div><div class="feat-t" data-i18n="feat2t">Détection des biais</div><div class="feat-d" data-i18n="feat2d">Biais culturels, religieux, ethniques, de genre — identifiés et analysés sans jugement.</div></div>
+    <div class="feat"><div class="feat-ico">🌟</div><div class="feat-t" data-i18n="feat3t">Astrologie critique</div><div class="feat-d" data-i18n="feat3d">Analyse astrologique complète + regard épistémologique honnête sur ses limites.</div></div>
+    <div class="feat"><div class="feat-ico">🌙</div><div class="feat-t" data-i18n="feat4t">Luna, ton IA intime</div><div class="feat-d" data-i18n="feat4d">Une IA spécialisée en relations amoureuses pour approfondir ton rapport à tout moment.</div></div>
+    <div class="feat"><div class="feat-ico">📊</div><div class="feat-t" data-i18n="feat5t">Rapport livrable</div><div class="feat-d" data-i18n="feat5d">PDF complet imprimable avec toutes tes dimensions, biais et recommandations personnalisées.</div></div>
+    <div class="feat"><div class="feat-ico">🌍</div><div class="feat-t" data-i18n="feat6t">6 langues</div><div class="feat-d" data-i18n="feat6d">Français, anglais, espagnol, arabe, portugais, allemand — toutes cultures incluses.</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     PRICING
+══════════════════════════════════════════════ -->
+<div class="page" id="page-pricing">
+  <div class="pricing-wrap">
+    <h2 class="page-title" data-i18n="pricing_title">Choisir ton parcours</h2>
+    <p class="page-sub" data-i18n="pricing_sub">Chaque offre inclut un rapport IA complet et personnalisé. Paiement unique, pas d'abonnement.</p>
+    <div class="plans">
+      <!-- FREE -->
+      <div class="plan">
+        <div class="plan-name" data-i18n="plan_free">Essentiel</div>
+        <div class="plan-desc" data-i18n="plan_free_desc">Le rapport de base pour découvrir ton profil amoureux.</div>
+        <div class="plan-price"><span class="plan-amount">0</span><span class="plan-cur">€</span><span class="plan-period">&nbsp;/ gratuit</span></div>
+        <ul class="plan-features">
+          <li><span class="pf-ico">✅</span> Questionnaire 12 étapes complet</li>
+          <li><span class="pf-ico">✅</span> Score de compatibilité global</li>
+          <li><span class="pf-ico">✅</span> Profil du partenaire idéal</li>
+          <li><span class="pf-ico">✅</span> 5 dimensions analysées</li>
+          <li><span class="pf-ico">✅</span> 3 biais détectés</li>
+          <li><span class="pf-ico">✅</span> 3 recommandations</li>
+          <li><span class="pf-ico">❌</span><span class="pf-no">Analyse astrologique complète</span></li>
+          <li><span class="pf-ico">❌</span><span class="pf-no">Chat Luna illimité</span></li>
+          <li><span class="pf-ico">❌</span><span class="pf-no">Rapport PDF téléchargeable</span></li>
+        </ul>
+        <button class="btn-plan btn-plan-ghost" onclick="startQuizFree()">Commencer gratuitement</button>
+      </div>
+      <!-- ASTRO -->
+      <div class="plan featured">
+        <div class="plan-name" data-i18n="plan_astro">Astral</div>
+        <div class="plan-desc" data-i18n="plan_astro_desc">Rapport complet + analyse astrologique approfondie + 10 messages Luna.</div>
+        <div class="plan-price"><span class="plan-amount">9</span><span class="plan-cur">€</span><span class="plan-period">&nbsp;/ rapport unique</span></div>
+        <ul class="plan-features">
+          <li><span class="pf-ico">✅</span> Tout l'Essentiel</li>
+          <li><span class="pf-ico">✅</span> Analyse astrologique complète</li>
+          <li><span class="pf-ico">✅</span> Thème natal symbolique</li>
+          <li><span class="pf-ico">✅</span> 7 dimensions analysées</li>
+          <li><span class="pf-ico">✅</span> 6 biais détectés</li>
+          <li><span class="pf-ico">✅</span> 5 recommandations</li>
+          <li><span class="pf-ico">✅</span> <strong>10 messages Luna IA</strong></li>
+          <li><span class="pf-ico">✅</span> Rapport PDF complet</li>
+          <li><span class="pf-ico">❌</span><span class="pf-no">Luna illimitée</span></li>
+        </ul>
+        <button class="btn-plan btn-plan-gold" onclick="openPayModal('astro', 9)">Obtenir pour 9€</button>
+      </div>
+      <!-- PREMIUM -->
+      <div class="plan">
+        <div class="plan-name" data-i18n="plan_premium">Premium</div>
+        <div class="plan-desc" data-i18n="plan_premium_desc">L'expérience complète : rapport maximal + Luna illimitée + mises à jour.</div>
+        <div class="plan-price"><span class="plan-amount">19</span><span class="plan-cur">€</span><span class="plan-period">&nbsp;/ rapport unique</span></div>
+        <ul class="plan-features">
+          <li><span class="pf-ico">✅</span> Tout l'Astral</li>
+          <li><span class="pf-ico">✅</span> <strong>Luna IA illimitée</strong></li>
+          <li><span class="pf-ico">✅</span> Analyse des schémas répétitifs</li>
+          <li><span class="pf-ico">✅</span> Carte des angles morts</li>
+          <li><span class="pf-ico">✅</span> Profil ombre (Jungien)</li>
+          <li><span class="pf-ico">✅</span> 8 biais détectés + culturels</li>
+          <li><span class="pf-ico">✅</span> Plan d'action sur 90 jours</li>
+          <li><span class="pf-ico">✅</span> Rapport PDF premium</li>
+          <li><span class="pf-ico">✅</span> 1 mise à jour gratuite (3 mois)</li>
+        </ul>
+        <button class="btn-plan btn-plan-gold" onclick="openPayModal('premium', 19)">Obtenir pour 19€</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     QUIZ
+══════════════════════════════════════════════ -->
+<div class="page" id="page-quiz">
+  <div class="quiz-wrap">
+    <div class="prog-wrap"><div class="prog-bar" id="progBar" style="width:8%"></div></div>
+    <div id="stepsWrap"></div>
+  </div>
+</div>
+
+<!-- Loading -->
+<div class="page" id="page-loading">
+  <div class="loading-pg">
+    <div class="loader-ring">
+      <svg width="130" height="130" viewBox="0 0 130 130">
+        <circle cx="65" cy="65" r="56" fill="none" stroke="#1a1a2e" stroke-width="8"/>
+        <circle cx="65" cy="65" r="56" fill="none" stroke="url(#lg)" stroke-width="8"
+          stroke-dasharray="352" stroke-dashoffset="88" stroke-linecap="round"/>
+        <defs><linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#d4a843"/>
+          <stop offset="100%" stop-color="#e8547a"/>
+        </linearGradient></defs>
+      </svg>
+      <div class="lo-inner">💫</div>
+    </div>
+    <h2 class="loading-h" data-i18n="analyzing">Analyse en cours…</h2>
+    <p style="color:var(--muted);font-size:.85rem;max-width:320px;margin:0 auto" data-i18n="analyzing_sub">127 dimensions psychologiques, culturelles et astrales analysées.</p>
+    <ul class="loading-steps" id="loadSteps">
+      <li><span class="dot"></span><span data-i18n="ls1">Profil Big Five + attachement</span></li>
+      <li><span class="dot"></span><span data-i18n="ls2">Valeurs et croyances</span></li>
+      <li><span class="dot"></span><span data-i18n="ls3">Biais culturels & religieux</span></li>
+      <li><span class="dot"></span><span data-i18n="ls4">Compatibilité astrologique</span></li>
+      <li><span class="dot"></span><span data-i18n="ls5">Dynamiques de pouvoir</span></li>
+      <li><span class="dot"></span><span data-i18n="ls6">Schémas répétitifs</span></li>
+      <li><span class="dot"></span><span data-i18n="ls7">Calcul du score global</span></li>
+      <li><span class="dot"></span><span data-i18n="ls8">Génération du rapport IA</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Report -->
+<div class="page" id="page-report">
+  <div class="report-pg" id="reportContent"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     LUNA CHAT
+══════════════════════════════════════════════ -->
+<div class="page" id="page-luna">
+  <div class="luna-pg">
+    <div class="luna-hdr">
+      <div class="luna-avatar">🌙</div>
+      <div class="luna-info">
+        <h3>Luna</h3>
+        <p>Ton IA relationnelle — psychologie · astrologie · esprit critique</p>
+      </div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--green);">
+        <div class="luna-status"></div> En ligne
+      </div>
+    </div>
+    <div class="luna-lock-banner" id="lunaLockBanner">
+      🔒 <span data-i18n="luna_locked">Le chat Luna nécessite le plan Astral (9€) ou Premium (19€).</span>
+      <a onclick="openPayModal('astro',9)" data-i18n="luna_unlock">Déverrouiller →</a>
+    </div>
+    <div class="luna-messages" id="lunaMessages">
+      <div class="msg luna">
+        <div class="msg-ava">🌙</div>
+        <div class="msg-bubble" data-i18n="luna_intro">Bonjour 💫 Je suis Luna, ton IA spécialisée en relations amoureuses. Je connais ton rapport PerfectMatch et je suis là pour t'aider à approfondir chaque dimension — qu'il s'agisse de tes biais, de ton style d'attachement, ou de trouver les bonnes personnes. Que veux-tu explorer aujourd'hui ?</div>
+      </div>
+    </div>
+    <div class="luna-suggestions" id="lunaSuggestions">
+      <div class="luna-sug" onclick="sendSuggestion(this)">Comment surmonter mon attachement anxieux ?</div>
+      <div class="luna-sug" onclick="sendSuggestion(this)">Explique-moi mes biais culturels</div>
+      <div class="luna-sug" onclick="sendSuggestion(this)">Mon signe est-il vraiment compatible ?</div>
+      <div class="luna-sug" onclick="sendSuggestion(this)">Comment identifier un partenaire sécure ?</div>
+    </div>
+    <div class="luna-input-area">
+      <textarea class="luna-textarea" id="lunaInput" placeholder="Pose ta question à Luna…" rows="1"
+        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendLuna()}"
+        oninput="autoResize(this)"></textarea>
+      <button class="luna-send" onclick="sendLuna()">➤</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SOURCES
+══════════════════════════════════════════════ -->
+<div class="page" id="page-sources">
+  <div class="sources-pg">
+    <h2 class="page-title" data-i18n="sources_title">Sources & références</h2>
+    <p class="page-sub" data-i18n="sources_sub">Les études, théories et auteurs qui alimentent les analyses PerfectMatch.</p>
+    <div class="src-filters">
+      <button class="src-filter active" onclick="filterSrc('all',this)" data-i18n="all">Toutes</button>
+      <button class="src-filter" onclick="filterSrc('psych',this)">🧠 Psychologie</button>
+      <button class="src-filter" onclick="filterSrc('attach',this)">🤝 Attachement</button>
+      <button class="src-filter" onclick="filterSrc('neuro',this)">🔬 Neurosciences</button>
+      <button class="src-filter" onclick="filterSrc('astro',this)">🌟 Astrologie</button>
+      <button class="src-filter" onclick="filterSrc('socio',this)">🌍 Sociologie</button>
+      <button class="src-filter" onclick="filterSrc('stats',this)">📊 Études statistiques</button>
+    </div>
+    <div class="src-grid" id="srcGrid"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     MODAL PAIEMENT
+══════════════════════════════════════════════ -->
+<div class="modal-overlay" id="payModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closePayModal()">×</button>
+    <div id="payContent">
+      <div class="modal-title" id="payTitle">Plan Astral</div>
+      <div class="modal-sub" id="payDesc">Rapport complet + astrologie + 10 messages Luna</div>
+      <form class="stripe-form" onsubmit="handlePay(event)">
+        <div class="stripe-field">
+          <label>Adresse e-mail</label>
+          <input type="email" id="payEmail" placeholder="ton@email.com" required>
+        </div>
+        <div class="stripe-field">
+          <label>Informations de paiement</label>
+          <div id="card-element" style="background:var(--card2);border:1px solid var(--border2);border-radius:6px;padding:14px;color:var(--text);font-size:.9rem;display:flex;align-items:center;gap:8px;">
+            <span>💳</span>
+            <div style="flex:1">
+              <input type="text" id="cardNum" placeholder="4242 4242 4242 4242" style="background:transparent;border:none;font-size:.9rem;color:var(--text);width:100%;outline:none;" maxlength="19">
+            </div>
+          </div>
+        </div>
+        <div class="stripe-row">
+          <div class="stripe-field">
+            <label>Expiration</label>
+            <input type="text" id="cardExp" placeholder="MM / AA" maxlength="7">
+          </div>
+          <div class="stripe-field">
+            <label>CVC</label>
+            <input type="text" id="cardCvc" placeholder="123" maxlength="3">
+          </div>
+        </div>
+        <div class="stripe-badge">🔒 Paiement sécurisé Stripe · TLS 256-bit · Aucune donnée stockée</div>
+        <button type="submit" class="btn-pay" id="payBtn">
+          Payer <span id="payAmount">9€</span> en sécurité
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════
+   STARS
+══════════════════════════════════════════════ */
+(function(){
+  const c=document.getElementById('cv');
+  const ctx=c.getContext('2d');
+  let S=[];
+  function resize(){c.width=innerWidth;c.height=innerHeight;init();}
+  function init(){S=[];for(let i=0;i<220;i++)S.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.4+.2,a:Math.random(),da:(Math.random()-.5)*.004});}
+  function draw(){ctx.clearRect(0,0,c.width,c.height);S.forEach(s=>{s.a+=s.da;if(s.a<=0||s.a>=1)s.da*=-1;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(237,232,224,${s.a})`;ctx.fill();});requestAnimationFrame(draw);}
+  window.addEventListener('resize',resize);resize();draw();
+})();
+
+/* ══════════════════════════════════════════════
+   I18N
+══════════════════════════════════════════════ */
+const LANGS={
+  fr:{
+    hero_title:"PerfectMatch",hero_sub:"L'algorithme de compatibilité le plus avancé — au-delà des sites de rencontre, des coachs, des thérapeutes.",
+    start_free:"Commencer gratuitement",see_plans:"Voir les offres",
+    feat1t:"Psychologie scientifique",feat1d:"Big Five, styles d'attachement, théorie des besoins — les modèles les plus validés.",
+    feat2t:"Détection des biais",feat2d:"Biais culturels, religieux, ethniques — identifiés et analysés sans jugement.",
+    feat3t:"Astrologie critique",feat3d:"Analyse astrologique + regard épistémologique honnête sur ses limites.",
+    feat4t:"Luna, ton IA intime",feat4d:"Une IA spécialisée pour approfondir ton rapport à tout moment.",
+    feat5t:"Rapport livrable",feat5d:"PDF complet imprimable avec toutes tes dimensions et recommandations.",
+    feat6t:"6 langues",feat6d:"Français, anglais, espagnol, arabe, portugais, allemand.",
+    pricing_title:"Choisir ton parcours",pricing_sub:"Paiement unique, pas d'abonnement.",
+    plan_free:"Essentiel",plan_astro:"Astral",plan_premium:"Premium",
+    plan_free_desc:"Le rapport de base.",plan_astro_desc:"Rapport + astrologie + 10 messages Luna.",plan_premium_desc:"L'expérience complète.",
+    sources_title:"Sources & références",sources_sub:"Les études qui alimentent les analyses PerfectMatch.",
+    all:"Toutes",analyzing:"Analyse en cours…",analyzing_sub:"127 dimensions analysées.",
+    luna_locked:"Le chat Luna nécessite le plan Astral (9€) ou Premium.",luna_unlock:"Déverrouiller →",
+    luna_intro:"Bonjour 💫 Je suis Luna. Je suis là pour approfondir ton rapport PerfectMatch. Que veux-tu explorer ?",
+    ls1:"Profil Big Five + attachement",ls2:"Valeurs et croyances",ls3:"Biais culturels & religieux",ls4:"Compatibilité astrologique",ls5:"Dynamiques de pouvoir",ls6:"Schémas répétitifs",ls7:"Calcul du score global",ls8:"Génération du rapport IA"
+  },
+  en:{
+    hero_title:"PerfectMatch",hero_sub:"The most advanced compatibility algorithm — beyond dating apps, coaches, and therapists.",
+    start_free:"Start for free",see_plans:"See plans",
+    feat1t:"Scientific psychology",feat1d:"Big Five, attachment styles, needs theory — the most validated models.",
+    feat2t:"Bias detection",feat2d:"Cultural, religious, ethnic biases — identified and analyzed without judgment.",
+    feat3t:"Critical astrology",feat3d:"Astrological analysis + honest epistemological look at its limits.",
+    feat4t:"Luna, your AI companion",feat4d:"Specialized AI to deepen your report at any time.",
+    feat5t:"Deliverable report",feat5d:"Complete printable PDF with all your dimensions and recommendations.",
+    feat6t:"6 languages",feat6d:"French, English, Spanish, Arabic, Portuguese, German.",
+    pricing_title:"Choose your journey",pricing_sub:"One-time payment, no subscription.",
+    plan_free:"Essential",plan_astro:"Astral",plan_premium:"Premium",
+    plan_free_desc:"The basic report.",plan_astro_desc:"Full report + astrology + 10 Luna messages.",plan_premium_desc:"The complete experience.",
+    sources_title:"Sources & references",sources_sub:"The studies and authors powering PerfectMatch analysis.",
+    all:"All",analyzing:"Analyzing…",analyzing_sub:"127 dimensions being analyzed.",
+    luna_locked:"Luna chat requires the Astral (€9) or Premium plan.",luna_unlock:"Unlock →",
+    luna_intro:"Hello 💫 I'm Luna, your relationship AI. I know your PerfectMatch report and I'm here to help you explore each dimension. What would you like to discover?",
+    ls1:"Big Five + attachment profile",ls2:"Values and beliefs",ls3:"Cultural & religious biases",ls4:"Astrological compatibility",ls5:"Power dynamics",ls6:"Repetitive patterns",ls7:"Global score calculation",ls8:"AI report generation"
+  },
+  es:{
+    hero_title:"PerfectMatch",hero_sub:"El algoritmo de compatibilidad más avanzado — más allá de las apps de citas, coaches y terapeutas.",
+    start_free:"Empezar gratis",see_plans:"Ver planes",pricing_title:"Elige tu camino",pricing_sub:"Pago único, sin suscripción.",
+    plan_free:"Esencial",plan_astro:"Astral",plan_premium:"Premium",sources_title:"Fuentes y referencias",all:"Todas",
+    analyzing:"Analizando…",luna_intro:"Hola 💫 Soy Luna, tu IA relacional. ¿Qué quieres explorar hoy?"
+  },
+  ar:{
+    hero_title:"PerfectMatch",hero_sub:"أكثر خوارزمية توافق متقدمة — أبعد من تطبيقات المواعدة والمعالجين.",
+    start_free:"ابدأ مجاناً",see_plans:"عرض الخطط",pricing_title:"اختر مسارك",pricing_sub:"دفعة واحدة، بلا اشتراك.",
+    plan_free:"أساسي",plan_astro:"فلكي",plan_premium:"مميز",sources_title:"المصادر والمراجع",all:"الكل",
+    analyzing:"جارٍ التحليل…",luna_intro:"مرحباً 💫 أنا لونا، ذكاؤك الاصطناعي للعلاقات. ماذا تريد أن تستكشف اليوم؟"
+  },
+  pt:{
+    hero_title:"PerfectMatch",hero_sub:"O algoritmo de compatibilidade mais avançado — além de apps de namoro, coaches e terapeutas.",
+    start_free:"Começar grátis",see_plans:"Ver planos",pricing_title:"Escolha seu percurso",pricing_sub:"Pagamento único, sem assinatura.",
+    plan_free:"Essencial",plan_astro:"Astral",plan_premium:"Premium",sources_title:"Fontes e referências",all:"Todas",
+    analyzing:"Analisando…",luna_intro:"Olá 💫 Sou Luna, sua IA relacional. O que você quer explorar hoje?"
+  },
+  de:{
+    hero_title:"PerfectMatch",hero_sub:"Der fortschrittlichste Kompatibilitätsalgorithmus — jenseits von Dating-Apps, Coaches und Therapeuten.",
+    start_free:"Kostenlos starten",see_plans:"Pläne ansehen",pricing_title:"Wähle deinen Weg",pricing_sub:"Einmalzahlung, kein Abo.",
+    plan_free:"Basis",plan_astro:"Astral",plan_premium:"Premium",sources_title:"Quellen & Referenzen",all:"Alle",
+    analyzing:"Analyse läuft…",luna_intro:"Hallo 💫 Ich bin Luna, deine Beziehungs-KI. Was möchtest du heute erkunden?"
+  }
+};
+
+let curLang='fr';
+function changeLang(l){
+  curLang=l;
+  const t=LANGS[l]||LANGS.fr;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(t[k]) el.textContent=t[k];
+  });
+  if(l==='ar') document.body.style.direction='rtl';
+  else document.body.style.direction='ltr';
+}
+
+/* ══════════════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════════════ */
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.querySelectorAll('.nav-tab').forEach(t=>{
+    t.classList.toggle('active',t.dataset.page===id);
+  });
+  window.scrollTo(0,0);
+}
+
+/* ══════════════════════════════════════════════
+   PAYMENT MODAL
+══════════════════════════════════════════════ */
+let curPlan='free';
+const planInfo={
+  astro:{title:'Plan Astral',desc:'Rapport complet + analyse astrologique + 10 messages Luna',amount:'9€'},
+  premium:{title:'Plan Premium',desc:'Rapport maximal + Luna illimitée + 90 jours de suivi',amount:'19€'}
+};
+
+function openPayModal(plan, amt){
+  curPlan=plan;
+  const info=planInfo[plan];
+  document.getElementById('payTitle').textContent=info.title;
+  document.getElementById('payDesc').textContent=info.desc;
+  document.getElementById('payAmount').textContent=info.amount;
+  document.getElementById('payModal').classList.add('open');
+  // Format card input
+  document.getElementById('cardNum').addEventListener('input',function(){
+    let v=this.value.replace(/\D/g,'').substring(0,16);
+    this.value=v.replace(/(.{4})/g,'$1 ').trim();
+  });
+  document.getElementById('cardExp').addEventListener('input',function(){
+    let v=this.value.replace(/\D/g,'').substring(0,4);
+    if(v.length>=2) v=v.substring(0,2)+' / '+v.substring(2);
+    this.value=v;
+  });
+}
+
+function closePayModal(){
+  document.getElementById('payModal').classList.remove('open');
+}
+
+function handlePay(e){
+  e.preventDefault();
+  const btn=document.getElementById('payBtn');
+  btn.disabled=true;
+  btn.textContent='Traitement en cours…';
+  setTimeout(()=>{
+    // Simulated success (real Stripe integration would go here)
+    STATE.plan=curPlan;
+    if(curPlan==='astro') STATE.lunaCredits=10;
+    if(curPlan==='premium') STATE.lunaCredits=9999;
+    document.getElementById('payContent').innerHTML=`
+      <div class="pay-success">
+        <div class="check">🎉</div>
+        <h3>Paiement réussi !</h3>
+        <p>Ton plan <strong>${planInfo[curPlan].title}</strong> est maintenant actif.<br>Tu peux lancer ton questionnaire ou parler à Luna.</p>
+        <button class="btn-pay" onclick="closePayModal();showPage('quiz')" style="max-width:280px;margin:0 auto">Lancer mon questionnaire →</button>
+      </div>`;
+    updateLunaLock();
+  },2000);
+}
+
+/* ══════════════════════════════════════════════
+   STATE
+══════════════════════════════════════════════ */
+let STATE={plan:'free', lunaCredits:0, answers:{}, report:null};
+let curStep=0;
+
+/* ══════════════════════════════════════════════
+   QUIZ STEPS DATA
+══════════════════════════════════════════════ */
+const STEPS=[
+  {id:'s1',lbl:'1 / 10 — Identité',title:'Qui es-tu ?',desc:'Ces informations calibrent ton profil de compatibilité.',
+   fields:[
+    {type:'r2',f:[{id:'prenom',lbl:'Prénom',type:'text',ph:'Ton prénom'},{id:'age',lbl:'Âge',type:'number',ph:'28',min:18,max:99}]},
+    {id:'genre',lbl:'Je m\'identifie comme',type:'choice',cols:3,opts:[{i:'👨',l:'Homme',v:'homme'},{i:'👩',l:'Femme',v:'femme'},{i:'🧑',l:'Non-binaire',v:'nonbinaire'}]},
+    {id:'orientation',lbl:'Orientation',type:'choice',cols:3,opts:[{i:'❤️',l:'Hétéro',v:'hetero'},{i:'🏳️‍🌈',l:'Gay/Lesbien',v:'gay'},{i:'💜',l:'Bi/Pan',v:'bi'}]},
+  ]},
+  {id:'s2',lbl:'2 / 10 — Astrologie',title:'Ton ciel natal',desc:'Sera analysé avec esprit critique — ses limites seront clairement indiquées.',
+   fields:[
+    {type:'r2',f:[{id:'ddn',lbl:'Date de naissance',type:'date'},{id:'heure_n',lbl:'Heure (si connue)',type:'time'}]},
+    {id:'lieu_n',lbl:'Lieu de naissance (optionnel)',type:'text',ph:'Ex. Paris, France'},
+  ]},
+  {id:'s3',lbl:'3 / 10 — Personnalité',title:'Tes traits Big Five',desc:'Le modèle de personnalité le plus validé scientifiquement.',
+   fields:[
+    {id:'ouv',lbl:'Ouverture — Curiosité intellectuelle & créativité',type:'scale',lo:'Conventionnel·le',hi:'Très curieux·se'},
+    {id:'con',lbl:'Conscienciosité — Organisation & fiabilité',type:'scale',lo:'Spontané·e',hi:'Très organisé·e'},
+    {id:'ext',lbl:'Extraversion — Énergie sociale',type:'scale',lo:'Introverti·e',hi:'Extraverti·e'},
+    {id:'agr',lbl:'Agréabilité — Empathie & coopération',type:'scale',lo:'Direct·e/compétitif',hi:'Très empathique'},
+    {id:'neu',lbl:'Stabilité émotionnelle',type:'scale',lo:'Anxieux·se',hi:'Très stable'},
+  ]},
+  {id:'s4',lbl:'4 / 10 — Attachement',title:'Ton style affectif',desc:'La théorie de l\'attachement (Bowlby) explique comment tu vis l\'intimité.',
+   fields:[
+    {id:'attach',lbl:'En relation, tu…',type:'choice',cols:2,opts:[
+      {i:'🤝',l:'Sécure',v:'secure',s:'À l\'aise dans l\'intimité, sans crainte d\'abandon.'},
+      {i:'🧲',l:'Anxieux/Préoccupé',v:'anxious',s:'Besoin de réassurance, peur d\'être abandonné·e.'},
+      {i:'🏃',l:'Évitant/Détaché',v:'avoidant',s:'Valorise l\'autonomie, l\'intimité est inconfortable.'},
+      {i:'⚡',l:'Désorganisé',v:'disorg',s:'Mix anxieux/évitant, relations intenses et instables.'},
+    ]},
+    {id:'rel_type',lbl:'Relation recherchée',type:'choice',cols:2,opts:[
+      {i:'💍',l:'Engagement sérieux',v:'serious'},{i:'💑',l:'Relation stable',v:'stable'},
+      {i:'🌱',l:'Voir où ça mène',v:'explore'},{i:'🎉',l:'Rencontres / fun',v:'casual'},
+    ]},
+  ]},
+  {id:'s5',lbl:'5 / 10 — Valeurs',title:'Ce qui compte vraiment',desc:'Les valeurs sont le socle des relations durables.',
+   fields:[
+    {id:'valeurs',lbl:'Tes valeurs prioritaires (3-5)',type:'multi',opts:[
+      {i:'👨‍👩‍👧',l:'Famille',v:'famille'},{i:'🙏',l:'Spiritualité',v:'spiritualite'},{i:'💼',l:'Ambition',v:'ambition'},
+      {i:'🌍',l:'Engagement social',v:'social'},{i:'🎨',l:'Art/Créativité',v:'art'},{i:'🏃',l:'Santé/Sport',v:'sport'},
+      {i:'💡',l:'Intellectualisme',v:'intellect'},{i:'🏠',l:'Sécurité',v:'securite'},{i:'✈️',l:'Liberté/Voyage',v:'liberte'},
+      {i:'🌱',l:'Écologie',v:'ecologie'},{i:'💰',l:'Réussite financière',v:'finance'},{i:'😂',l:'Humour',v:'humour'},
+    ]},
+  ]},
+  {id:'s6',lbl:'6 / 10 — Culture & Foi',title:'Tes racines et croyances',desc:'Influencent profondément les attentes relationnelles. Aucune valeur jugée.',
+   fields:[
+    {id:'religion',lbl:'Ma pratique spirituelle',type:'choice',cols:3,opts:[
+      {i:'✝️',l:'Chrétien·ne',v:'chretien'},{i:'☪️',l:'Musulman·e',v:'musulman'},{i:'✡️',l:'Juif·ve',v:'juif'},
+      {i:'☸️',l:'Bouddhiste',v:'bouddhiste'},{i:'🕉️',l:'Hindou·e',v:'hindou'},{i:'🌙',l:'Spirituel NR',v:'spirituel'},
+      {i:'⚛️',l:'Agnostique',v:'agnostique'},{i:'🔬',l:'Athée',v:'athee'},{i:'🌈',l:'Autre',v:'autre'},
+    ]},
+    {id:'imp_religion',lbl:'Importance de la foi partagée',type:'scale',lo:'Aucune',hi:'Essentielle'},
+    {id:'culture_orig',lbl:'Ton origine culturelle',type:'text',ph:'Ex. Martinique, Algérie, Corée…'},
+  ]},
+  {id:'s7',lbl:'7 / 10 — Vision du monde',title:'Tes convictions',desc:'Les divergences politiques et éthiques causent beaucoup de ruptures.',
+   fields:[
+    {id:'politique',lbl:'Position politique générale',type:'choice',cols:3,opts:[
+      {i:'🔴',l:'Très à gauche',v:'tg'},{i:'🟠',l:'Gauche',v:'g'},{i:'⚪',l:'Centre',v:'c'},
+      {i:'🔵',l:'Droite',v:'d'},{i:'🟣',l:'Très à droite',v:'td'},{i:'🤷',l:'Apolitique',v:'ap'},
+    ]},
+    {id:'enfants',lbl:'Projet enfants',type:'choice',cols:2,opts:[
+      {i:'👶',l:'Je veux des enfants',v:'oui'},{i:'🚫',l:'Je n\'en veux pas',v:'non'},
+      {i:'🤔',l:'Peut-être',v:'maybe'},{i:'🐾',l:'Déjà parent',v:'parent'},
+    ]},
+    {id:'egalite',lbl:'Rapport à l\'égalité de genre',type:'scale',lo:'Très traditionnel·le',hi:'Très progressiste'},
+  ]},
+  {id:'s8',lbl:'8 / 10 — Biais & Préférences',title:'Tes préférences et biais',desc:'Honnêteté = meilleur résultat. Tout biais analysé sans jugement.',
+   fields:[
+    {id:'crit_physique',lbl:'Importance de l\'apparence physique',type:'scale',lo:'Pas importante',hi:'Très importante'},
+    {id:'crit_revenus',lbl:'Importance des revenus du partenaire',type:'scale',lo:'Indifférent·e',hi:'Essentiel'},
+    {id:'crit_edu',lbl:'Importance du niveau d\'éducation',type:'scale',lo:'Sans importance',hi:'Indispensable'},
+    {id:'biais_ethnie',lbl:'Préférence ethnique',type:'choice',cols:2,opts:[
+      {i:'🌍',l:'Aucune préférence',v:'aucune'},{i:'🤔',l:'Légère préférence',v:'legere'},
+      {i:'⚠️',l:'Préférence marquée',v:'marquee'},{i:'🚫',l:'Exclusion de certaines origines',v:'exclusion'},
+    ]},
+    {id:'biais_age',lbl:'Écart d\'âge toléré',type:'slider',min:0,max:30,def:10},
+  ]},
+  {id:'s9',lbl:'9 / 10 — Intimité',title:'Ta vision de l\'intimité',desc:'Un pilier souvent évité. Tes réponses sont strictement privées.',
+   fields:[
+    {id:'libido',lbl:'Niveau de désir en relation stable',type:'scale',lo:'Très faible',hi:'Très élevé'},
+    {id:'fidelite',lbl:'Rapport à la fidélité',type:'choice',cols:2,opts:[
+      {i:'💍',l:'Monogamie exclusive',v:'mono'},{i:'💬',l:'Mono mais discussable',v:'mono_d'},
+      {i:'🔓',l:'Relation ouverte',v:'ouverte'},{i:'💜',l:'Polyamorie',v:'poly'},
+    ]},
+    {id:'love_lang',lbl:'Mon principal langage de l\'amour',type:'choice',cols:2,opts:[
+      {i:'💬',l:'Mots d\'affirmation',v:'mots'},{i:'🤗',l:'Toucher physique',v:'toucher'},
+      {i:'⏰',l:'Temps de qualité',v:'temps'},{i:'🎁',l:'Cadeaux/Gestes',v:'cadeaux'},
+      {i:'🛠️',l:'Actes de service',v:'service'},
+    ]},
+  ]},
+  {id:'s10',lbl:'10 / 10 — Le fond',title:'Dernières questions',desc:'Ces réponses libres saisissent ce que les questions fermées ne capturent pas.',
+   fields:[
+    {id:'dealbreakers',lbl:'Tes dealbreakers absolus',type:'textarea',ph:'Ce que tu ne peux pas accepter…'},
+    {id:'reve',lbl:'Ta relation de rêve',type:'textarea',ph:'Quelle ambiance, quel quotidien, quelle dynamique idéale ?'},
+    {id:'blessures',lbl:'Ta plus grande blessure amoureuse (optionnel)',type:'textarea',ph:'Aide à identifier les schémas répétitifs…'},
+   ]},
+];
+
+/* ══════════════════════════════════════════════
+   RENDER QUIZ
+══════════════════════════════════════════════ */
+function renderQuiz(){
+  const w=document.getElementById('stepsWrap');
+  w.innerHTML='';
+  STEPS.forEach((s,i)=>{
+    const d=document.createElement('div');
+    d.className='step'+(i===0?' on':'');
+    d.id='step'+i;
+    d.innerHTML=buildStep(s,i);
+    w.appendChild(d);
+  });
+}
+
+function buildStep(s,i){
+  let h=`<div class="step-lbl">${s.lbl}</div><h2 class="step-h">${s.title}</h2><p class="step-d">${s.desc}</p>`;
+  s.fields.forEach(f=>{h+=buildField(f);});
+  h+=`<div class="nav-btns">${i>0?'<button class="btn-back" onclick="prevS()">← Retour</button>':''}<button class="btn-next" onclick="nextS()">${i===STEPS.length-1?'Générer mon rapport ✨':'Continuer →'}</button></div>`;
+  return h;
+}
+
+function buildField(f){
+  if(f.type==='r2') return `<div class="g2">${f.f.map(buildField).join('')}</div>`;
+  let h=`<div class="fg">`;
+  if(f.lbl) h+=`<label class="fl">${f.lbl}</label>`;
+  switch(f.type){
+    case 'text': h+=`<input type="text" id="${f.id}" placeholder="${f.ph||''}" oninput="sv('${f.id}',this.value)">`; break;
+    case 'number': h+=`<input type="number" id="${f.id}" placeholder="${f.ph||''}" min="${f.min||0}" max="${f.max||120}" oninput="sv('${f.id}',this.value)">`; break;
+    case 'date': h+=`<input type="date" id="${f.id}" onchange="sv('${f.id}',this.value)">`; break;
+    case 'time': h+=`<input type="time" id="${f.id}" onchange="sv('${f.id}',this.value)">`; break;
+    case 'textarea': h+=`<textarea id="${f.id}" placeholder="${f.ph||''}" oninput="sv('${f.id}',this.value)"></textarea>`; break;
+    case 'choice':
+      h+=`<div class="cg c${f.cols||2}">`;
+      f.opts.forEach(o=>{ h+=`<div class="cc" data-fid="${f.id}" data-val="${o.v}" onclick="selC('${f.id}','${o.v}',false,this)"><span class="cc-ico">${o.i}</span><div class="cc-t">${o.l}</div>${o.s?`<div class="cc-s">${o.s}</div>`:''}</div>`; });
+      h+='</div>'; break;
+    case 'multi':
+      h+=`<div class="cg c3">`;
+      f.opts.forEach(o=>{ h+=`<div class="cc" data-fid="${f.id}" data-val="${o.v}" onclick="selC('${f.id}','${o.v}',true,this)"><span class="cc-ico">${o.i}</span><div class="cc-t">${o.l}</div></div>`; });
+      h+='</div>'; break;
+    case 'scale':
+      sv(f.id,5);
+      h+=`<div class="scale-v" id="sv_${f.id}">5</div><input type="range" id="${f.id}" min="1" max="10" value="5" style="--v:50%" oninput="updS('${f.id}',this.value)"><div class="scale-ends"><span>${f.lo||''}</span><span>${f.hi||''}</span></div>`; break;
+    case 'slider':
+      const dv=f.def||10;
+      sv(f.id,dv);
+      h+=`<div class="scale-v" id="sv_${f.id}">${dv} ans</div><input type="range" id="${f.id}" min="${f.min}" max="${f.max}" value="${dv}" style="--v:${Math.round((dv-f.min)/(f.max-f.min)*100)}%" oninput="updSl('${f.id}',this.value,${f.min},${f.max})"><div class="scale-ends"><span>0 an</span><span>30 ans</span></div>`; break;
+  }
+  return h+'</div>';
+}
+
+function sv(id,val){STATE.answers[id]=val;}
+function selC(fid,val,multi,el){
+  const cards=document.querySelectorAll(`[data-fid="${fid}"]`);
+  if(multi){el.classList.toggle('sel');if(!STATE.answers[fid])STATE.answers[fid]=[];const a=STATE.answers[fid];const i=a.indexOf(val);if(i>-1)a.splice(i,1);else a.push(val);}
+  else{cards.forEach(c=>c.classList.remove('sel'));el.classList.add('sel');STATE.answers[fid]=val;}
+}
+function updS(id,v){document.getElementById('sv_'+id).textContent=v;document.getElementById(id).style.setProperty('--v',v*10+'%');sv(id,+v);}
+function updSl(id,v,mn,mx){document.getElementById('sv_'+id).textContent=v+' ans';document.getElementById(id).style.setProperty('--v',Math.round((v-mn)/(mx-mn)*100)+'%');sv(id,+v);}
+
+function nextS(){
+  if(curStep<STEPS.length-1){
+    document.getElementById('step'+curStep).classList.remove('on');
+    curStep++;
+    document.getElementById('step'+curStep).classList.add('on');
+    updateProg();
+    window.scrollTo(0,0);
+  } else { startAnalysis(); }
+}
+function prevS(){
+  if(curStep>0){document.getElementById('step'+curStep).classList.remove('on');curStep--;document.getElementById('step'+curStep).classList.add('on');updateProg();window.scrollTo(0,0);}
+}
+function updateProg(){document.getElementById('progBar').style.width=((curStep+1)/STEPS.length*100)+'%';}
+
+function startQuizFree(){STATE.plan='free';showPage('quiz');if(!document.getElementById('step0'))renderQuiz();}
+
+/* ══════════════════════════════════════════════
+   ANALYSIS
+══════════════════════════════════════════════ */
+function startAnalysis(){
+  showPage('loading');
+  const items=document.querySelectorAll('#loadSteps li');
+  let idx=0;
+  function tick(){
+    if(idx>0)items[idx-1].classList.replace('cur','done');
+    if(idx<items.length){items[idx].classList.add('cur');idx++;setTimeout(tick,600+Math.random()*400);}
+    else{setTimeout(()=>callAI(),600);}
+  }
+  tick();
+}
+
+function getZodiac(ddn){
+  if(!ddn)return null;
+  const[y,m,d]=ddn.split('-').map(Number);
+  const S=[
+    {n:'Capricorne',e:'♑',el:'Terre',dates:[[1,1],[1,19]]},
+    {n:'Verseau',e:'♒',el:'Air',dates:[[1,20],[2,18]]},
+    {n:'Poissons',e:'♓',el:'Eau',dates:[[2,19],[3,20]]},
+    {n:'Bélier',e:'♈',el:'Feu',dates:[[3,21],[4,19]]},
+    {n:'Taureau',e:'♉',el:'Terre',dates:[[4,20],[5,20]]},
+    {n:'Gémeaux',e:'♊',el:'Air',dates:[[5,21],[6,20]]},
+    {n:'Cancer',e:'♋',el:'Eau',dates:[[6,21],[7,22]]},
+    {n:'Lion',e:'♌',el:'Feu',dates:[[7,23],[8,22]]},
+    {n:'Vierge',e:'♍',el:'Terre',dates:[[8,23],[9,22]]},
+    {n:'Balance',e:'♎',el:'Air',dates:[[9,23],[10,22]]},
+    {n:'Scorpion',e:'♏',el:'Eau',dates:[[10,23],[11,21]]},
+    {n:'Sagittaire',e:'♐',el:'Feu',dates:[[11,22],[12,21]]},
+    {n:'Capricorne',e:'♑',el:'Terre',dates:[[12,22],[12,31]]},
+  ];
+  for(const s of S){const[[m1,d1],[m2,d2]]=s.dates;if((m===m1&&d>=d1)||(m===m2&&d<=d2))return s;}
+  return S[0];
+}
+
+async function callAI(){
+  const a=STATE.answers;
+  const z=getZodiac(a.ddn);
+  const isPaid=STATE.plan!=='free';
+  const isPremium=STATE.plan==='premium';
+  const lang=curLang;
+
+  const sys=`Tu es PerfectMatch, expert en psychologie relationnelle, sociologie, astrologie et esprit critique. Génère un rapport JSON ultra-personnalisé. Réponds UNIQUEMENT en JSON valide, sans backticks. Structure exacte:
+{
+  "score":number(85-99),
+  "titre":string,
+  "resume":string(2-3 phrases),
+  "profil_ideal":{"description":string,"traits":string[],"archetype":string,"warning":string,"ou_trouver":string,"signes_compat":string[]},
+  "dimensions":[{"nom":string,"score":number}],
+  "astrologie":{"analyse":string,"forces":string,"defis":string,"periode":string,"critique_scientifique":string},
+  "biais":[{"type":"warn|info|ok|danger","titre":string,"desc":string}],
+  "analyse":{"forces":string[],"vigilance":string[],"risques":string[],"schema":string,"angle_mort":string},
+  "recommandations":string[],
+  ${isPremium?'"plan_90j":string[],"profil_ombre":string,':""}
+  "message_final":string
+}
+Langue de réponse: ${lang}. Plan: ${STATE.plan}. Sois profond, honnête, avec esprit critique. Utilise le prénom ${a.prenom||'l\'utilisateur'}.`;
+
+  const msg=`Profil: ${a.prenom||'?'}, ${a.age||'?'} ans, ${a.genre||'?'}
+Signe: ${z?.n||'?'} (${z?.el||'?'}) né·e le ${a.ddn||'?'}
+Attachement: ${a.attach||'?'} | Relation voulue: ${a.rel_type||'?'}
+BigFive: Ouv=${a.ouv||5} Con=${a.con||5} Ext=${a.ext||5} Agr=${a.agr||5} Neu=${a.neu||5}
+Valeurs: ${JSON.stringify(a.valeurs)||'?'}
+Religion: ${a.religion||'?'} (importance: ${a.imp_religion||5}/10) | Origine: ${a.culture_orig||'?'}
+Politique: ${a.politique||'?'} | Enfants: ${a.enfants||'?'} | Égalité: ${a.egalite||5}/10
+Biais ethnie: ${a.biais_ethnie||'?'} | Écart âge: ${a.biais_age||10} ans
+Physique: ${a.crit_physique||5}/10 | Revenus: ${a.crit_revenus||5}/10 | Edu: ${a.crit_edu||5}/10
+Libido: ${a.libido||5}/10 | Fidélité: ${a.fidelite||'?'} | Langage amour: ${a.love_lang||'?'}
+Dealbreakers: ${a.dealbreakers||'non précisé'}
+Relation rêve: ${a.reve||'non précisé'}
+Blessures: ${a.blessures||'non précisé'}
+Plan souscrit: ${STATE.plan} — ${isPremium?'inclure plan 90j et profil ombre':'rapport standard'}`;
+
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:3000,system:sys,messages:[{role:'user',content:msg}]})
+    });
+    const data=await r.json();
+    let raw=data.content?.map(b=>b.text||'').join('')||'';
+    raw=raw.replace(/```json|```/g,'').trim();
+    STATE.report=JSON.parse(raw);
+  }catch(e){
+    STATE.report=buildFallback();
+  }
+  displayReport(STATE.report,z);
+}
+
+function buildFallback(){
+  return {
+    score:88,titre:"L'Âme en quête d'équilibre",
+    resume:`Ton profil révèle une personne de profondeur rare. Ton style d'attachement et tes valeurs dessinent clairement ton partenaire idéal. L'honnêteté de tes réponses est déjà un acte d'amour envers toi-même.`,
+    profil_ideal:{description:"Ton partenaire idéal est émotionnellement disponible, intellectuellement stimulant et aligné sur tes valeurs. Quelqu'un qui combine sécurité affective et respect de ton espace.",traits:["Sécure émotionnellement","Communication directe","Valeurs partagées","Curiosité intellectuelle","Humour et légèreté"],archetype:"L'Amant/La Reine — donner et recevoir avec grâce",warning:"Méfie-toi des profils charismatiques mais émotionnellement fermés.",ou_trouver:"Activités culturelles, associations, voyages, cercles professionnels engagés.",signes_compat:["Cancer","Poissons"]},
+    dimensions:[{nom:"Compatibilité émotionnelle",score:85},{nom:"Alignement des valeurs",score:91},{nom:"Compatibilité intellectuelle",score:87},{nom:"Communication",score:80},{nom:"Intimité",score:83},{nom:"Projet de vie",score:89},{nom:"Résilience relationnelle",score:76}],
+    astrologie:{analyse:"Ton signe t'apporte une intensité émotionnelle distinctive dans tes relations amoureuses.",forces:"Loyauté et profondeur d'engagement.",defis:"Tendance à idéaliser qui peut créer de la déception.",periode:"Les nouvelles lunes en signes d'Eau favorisent les rencontres significatives.",critique_scientifique:"⚠️ Aucune étude scientifique peer-reviewed n'a démontré que la date de naissance prédit la compatibilité. Utilise l'astrologie comme outil d'introspection symbolique, pas comme oracle décisionnel."},
+    biais:[{type:"warn",titre:"Biais de confirmation",desc:"Tu risques d'accorder attention uniquement aux partenaires qui confirment tes croyances existantes."},{type:"warn",titre:"Biais d'attractivité",desc:"L'importance accordée à l'apparence est un biais universel peu prédictif de satisfaction à long terme."},{type:"info",titre:"Biais culturel",desc:"Tes préférences culturelles peuvent réduire inconsciemment ton champ des possibles."},{type:"ok",titre:"Conscience de soi",desc:"Le fait de répondre honnêtement révèle une bonne capacité d'introspection."}],
+    analyse:{forces:["Intelligence émotionnelle développée","Clarté sur les valeurs fondamentales","Capacité à identifier ses dealbreakers"],vigilance:["Attention aux schémas relationnels répétitifs","La peur de l'intimité peut se masquer derrière des critères élevés"],risques:["Fermeture prématurée à des profils hors du schéma habituel","Confondre intensité avec compatibilité"],schema:"Possible tendance à attirer des profils reproduisant une dynamique familière.",angle_mort:"La disponibilité émotionnelle réelle est probablement le critère le plus négligé."},
+    recommandations:["Travaille d'abord sur ta relation à toi-même avant d'optimiser ta recherche.","Dépasse tes filtres habituels : donne une chance à 3 profils hors de ton type.","Investis dans la CNV (communication non-violente) — facteur #1 de durabilité.","Liste tes 5 vrais non-négociables vs tes désirs superficiels.","Consulte un thérapeute individuel si une blessure passée n'est pas résolue."],
+    message_final:`${STATE.answers.prenom||'Cher·e utilisateur·rice'}, ce rapport est un miroir, pas une promesse. Ton âme sœur n'est pas un être parfait qui coche toutes les cases — c'est quelqu'un avec qui tu grandiras. La rencontre sera moins un coup de foudre qu'une reconnaissance progressive. Commence par être pleinement toi-même.`
+  };
+}
+
+/* ══════════════════════════════════════════════
+   DISPLAY REPORT
+══════════════════════════════════════════════ */
+function displayReport(r,z){
+  showPage('report');
+  const C=document.getElementById('reportContent');
+  const isPaid=STATE.plan!=='free';
+  const isPremium=STATE.plan==='premium';
+  const planBadge=isPremium?`<span class="rpt-plan-badge badge-premium">✨ Premium</span>`:isPaid?`<span class="rpt-plan-badge badge-astro">⭐ Astral</span>`:`<span class="rpt-plan-badge badge-free">Essentiel</span>`;
+  const sn=z?.e||'⭐';const se=z?.n||'Ton signe';const compat=r.profil_ideal?.signes_compat?.[0]||'Cancer';
+  const signEmojis={'Bélier':'♈','Taureau':'♉','Gémeaux':'♊','Cancer':'♋','Lion':'♌','Vierge':'♍','Balance':'♎','Scorpion':'♏','Sagittaire':'♐','Capricorne':'♑','Verseau':'♒','Poissons':'♓'};
+  const elMap={Feu:'efeu',Terre:'eterre',Air:'eair',Eau:'eeau'};
+  const dims=r.dimensions||[];
+
+  let html=`
+  <div class="rpt-hdr">
+    <div class="rpt-hdr-top">
+      <div class="score-ring-w">
+        <svg width="160" height="160" viewBox="0 0 160 160">
+          <circle cx="80" cy="80" r="68" fill="none" stroke="#1a1a2e" stroke-width="10"/>
+          <circle cx="80" cy="80" r="68" fill="none" stroke="url(#rg)" stroke-width="10"
+            stroke-dasharray="427" stroke-dashoffset="${427*(1-r.score/100)}"
+            stroke-linecap="round"/>
+          <defs><linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#d4a843"/><stop offset="100%" stop-color="#e8547a"/>
+          </linearGradient></defs>
+        </svg>
+        <div class="score-inner"><div class="score-n">${r.score}%</div><div class="score-l">compatibilité</div></div>
+      </div>
+      ${planBadge}
+    </div>
+    <h1 class="rpt-title">${r.titre}</h1>
+    <p class="rpt-sub">${r.resume}</p>
+  </div>
+
+  <!-- PROFIL IDEAL -->
+  <div class="blk">
+    <div class="blk-hd"><span class="blk-ico">💑</span><span class="blk-t">Ton partenaire idéal</span><span class="blk-badge bbhi">Cœur du rapport</span></div>
+    <div class="pcard">
+      <p class="pt">${r.profil_ideal.description}</p>
+      <p class="pt"><strong>Archétype :</strong> ${r.profil_ideal.archetype}</p>
+      <p class="pt"><strong>⚠️ Vigilance :</strong> ${r.profil_ideal.warning}</p>
+      <p class="pt"><strong>📍 Où le/la trouver :</strong> ${r.profil_ideal.ou_trouver}</p>
+      <div class="profile-tags">${(r.profil_ideal.traits||[]).map(t=>`<span class="ptag">✦ ${t}</span>`).join('')}</div>
+    </div>
+  </div>
+
+  <!-- DIMENSIONS -->
+  <div class="blk">
+    <div class="blk-hd"><span class="blk-ico">📊</span><span class="blk-t">Dimensions de compatibilité</span></div>
+    ${dims.map(d=>`<div class="dim-r"><div class="dim-lbl">${d.nom}</div><div class="dim-bw"><div class="dim-b" data-s="${d.score}"></div></div><div class="dim-s">${d.score}%</div></div>`).join('')}
+  </div>`;
+
+  // ASTROLOGIE — paid only
+  if(isPaid){
+    html+=`
+  <div class="blk">
+    <div class="blk-hd"><span class="blk-ico">🌟</span><span class="blk-t">Analyse astrologique</span><span class="blk-badge bbmd">Symbolique · Plan Astral</span></div>
+    <div class="astro-grid">
+      <div><div class="a-sign">${sn}</div><div class="a-name">${se}</div></div>
+      <div class="a-hrt">💞</div>
+      <div><div class="a-sign">${signEmojis[compat]||'⭐'}</div><div class="a-name">${compat}</div></div>
+    </div>
+    <div class="el-row"><span class="epill ${elMap[z?.el]||'eair'}">Élément ${z?.el||'?'}</span></div>
+    <p class="pt" style="margin-top:1.2rem">${r.astrologie.analyse}</p>
+    <p class="pt"><strong>Force :</strong> ${r.astrologie.forces}</p>
+    <p class="pt"><strong>Défi :</strong> ${r.astrologie.defis}</p>
+    <p class="pt"><strong>⏳ Période favorable :</strong> ${r.astrologie.periode}</p>
+    <div class="bias-i binfo" style="margin-top:1rem"><span class="bi-ico">🔬</span><div><div class="bi-t">Regard critique scientifique</div><div class="bi-d">${r.astrologie.critique_scientifique}</div></div></div>
+  </div>`;
+  } else {
+    html+=`<div class="lock-blk"><div class="lock-ico">🌟</div><div class="lock-t">Analyse astrologique complète</div><div class="lock-d">Thème natal, compatibilité des éléments, périodes favorables, et regard critique épistémologique sur les limites de l'astrologie.</div><button class="btn-plan btn-plan-gold" style="max-width:240px" onclick="openPayModal('astro',9)">Débloquer — Plan Astral 9€</button></div>`;
+  }
+
+  // BIAIS
+  const biaisToShow=isPaid?r.biais:(r.biais||[]).slice(0,3);
+  html+=`
+  <div class="blk">
+    <div class="blk-hd"><span class="blk-ico">🧠</span><span class="blk-t">Biais & préjugés détectés</span><span class="blk-badge bbmd">Esprit critique</span></div>
+    <p class="pt">Ces biais sont humains et universels. Les identifier est la première étape pour ne pas en être prisonnier·e.</p>
+    ${biaisToShow.map(b=>`<div class="bias-i b${b.type}"><span class="bi-ico">${b.type==='warn'?'⚠️':b.type==='danger'?'🚨':b.type==='ok'?'✅':'ℹ️'}</span><div><div class="bi-t">${b.titre}</div><div class="bi-d">${b.desc}</div></div></div>`).join('')}
+    ${!isPaid&&(r.biais||[]).length>3?`<div style="text-align:center;padding:1rem;color:var(--muted);font-size:.83rem">+ ${(r.biais||[]).length-3} autres biais analysés dans le plan Astral <a style="color:var(--gold);cursor:pointer" onclick="openPayModal('astro',9)">→ Débloquer</a></div>`:''}
+  </div>`;
+
+  // ANALYSE CRITIQUE
+  html+=`
+  <div class="blk">
+    <div class="blk-hd"><span class="blk-ico">🔍</span><span class="blk-t">Analyse critique approfondie</span></div>
+    <div class="crit-g">
+      ${(r.analyse.forces||[]).map(f=>`<div class="ci str"><div class="ci-l">✅ Force</div><div class="ci-t">${f}</div></div>`).join('')}
+      ${(r.analyse.vigilance||[]).map(f=>`<div class="ci wat"><div class="ci-l">⚠️ Vigilance</div><div class="ci-t">${f}</div></div>`).join('')}
+      ${(r.analyse.risques||[]).map(f=>`<div class="ci rsk"><div class="ci-l">🚨 Risque</div><div class="ci-t">${f}</div></div>`).join('')}
+    </div>
+    ${r.analyse.schema?`<div class="bias-i bwarn" style="margin-top:1rem"><span class="bi-ico">🔄</span><div><div class="bi-t">Schéma répétitif</div><div class="bi-d">${r.analyse.schema}</div></div></div>`:''}
+    ${r.analyse.angle_mort?`<div class="bias-i binfo" style="margin-top:.7rem;border-color:var(--rose)"><span class="bi-ico">👁️</span><div><div class="bi-t">Angle mort potentiel</div><div class="bi-d">${r.analyse.angle_mort}</div></div></div>`:''}
+  </div>`;
+
+  // PLAN 90J (premium)
+  if(isPremium&&r.plan_90j){
+    html+=`<div class="blk"><div class="blk-hd"><span class="blk-ico">📅</span><span class="blk-t">Plan d'action 90 jours</span><span class="blk-badge bbv">Premium</span></div><ul class="reco-ul">${(r.plan_90j||[]).map((item,i)=>`<li><span class="rn">${i+1}</span><span>${item}</span></li>`).join('')}</ul></div>`;
+  }
+  if(isPremium&&r.profil_ombre){
+    html+=`<div class="blk"><div class="blk-hd"><span class="blk-ico">🌑</span><span class="blk-t">Ton profil ombre (Jung)</span><span class="blk-badge bbv">Premium</span></div><p class="pt">${r.profil_ombre}</p></div>`;
+  }
+
+  // RECOMMANDATIONS
+  html+=`
+  <div class="blk">
+    <div class="blk-hd"><span class="blk-ico">🎯</span><span class="blk-t">Recommandations personnalisées</span><span class="blk-badge bbhi">Action</span></div>
+    <ul class="reco-ul">${(r.recommandations||[]).map((rec,i)=>`<li><span class="rn">${i+1}</span><span>${rec}</span></li>`).join('')}</ul>
+  </div>`;
+
+  // LUNA CTA if free
+  if(!isPaid){
+    html+=`<div class="lock-blk"><div class="lock-ico">🌙</div><div class="lock-t">Approfondir avec Luna IA</div><div class="lock-d">Pose toutes tes questions à Luna — elle connaît ton rapport et peut t'aider à comprendre chaque biais, chaque recommandation, et te guider dans ta recherche.</div><button class="btn-plan btn-plan-gold" style="max-width:280px" onclick="openPayModal('astro',9)">Parler à Luna — Plan Astral 9€</button></div>`;
+  }
+
+  // MESSAGE FINAL
+  html+=`
+  <div class="final-blk">
+    <div class="blk-hd" style="border-bottom:1px solid rgba(212,168,67,.15)"><span class="blk-ico">💌</span><span class="blk-t">Message personnel</span></div>
+    <p class="final-msg">"${r.message_final}"</p>
+  </div>
+
+  <div class="bias-i binfo" style="border-color:var(--border)">
+    <span class="bi-ico">📋</span>
+    <div><div class="bi-t">À propos de ce rapport</div>
+    <div class="bi-d">Rapport généré par IA à partir de tes réponses. Pas un diagnostic médical ou psychologique. Les résultats dépendent de l'honnêteté de tes réponses. Aucun algorithme ne garantit une relation — seuls l'humain et la rencontre le peuvent.</div></div>
+  </div>
+
+  <div class="rpt-actions">
+    <button class="btn-rpt btn-rpt-g" onclick="window.print()">🖨️ Imprimer / PDF</button>
+    ${isPaid?`<button class="btn-rpt btn-rpt-s" onclick="showPage('luna')">🌙 Parler à Luna</button>`:''}
+    <button class="btn-rpt btn-rpt-s" onclick="location.reload()">🔄 Recommencer</button>
+  </div>`;
+
+  C.innerHTML=html;
+
+  // Animate score arc
+  setTimeout(()=>{
+    C.querySelectorAll('.dim-b').forEach(b=>{
+      const s=b.dataset.s;b.style.width='0';
+      setTimeout(()=>{b.style.width=s+'%';},100);
+    });
+  },300);
+}
+
+/* ══════════════════════════════════════════════
+   LUNA CHAT
+══════════════════════════════════════════════ */
+let lunaHistory=[];
+
+function updateLunaLock(){
+  const banner=document.getElementById('lunaLockBanner');
+  if(STATE.plan!=='free'&&STATE.lunaCredits>0) banner.style.display='none';
+  else banner.style.display='flex';
+}
+
+function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,120)+'px';}
+
+async function sendLuna(){
+  if(STATE.plan==='free'||STATE.lunaCredits<=0){openPayModal('astro',9);return;}
+  const inp=document.getElementById('lunaInput');
+  const msg=inp.value.trim();
+  if(!msg)return;
+  inp.value='';inp.style.height='auto';
+
+  appendMsg('user',msg,'👤');
+  lunaHistory.push({role:'user',content:msg});
+  if(STATE.lunaCredits<9999)STATE.lunaCredits--;
+
+  const typingEl=appendTyping();
+  document.getElementById('lunaSuggestions').style.display='none';
+
+  const reportCtx=STATE.report?`Contexte du rapport PerfectMatch de l'utilisateur: score=${STATE.report.score}%, profil="${STATE.report.titre}", attachement détecté dans les données, valeurs=${JSON.stringify(STATE.answers.valeurs)}.`:'Pas encore de rapport généré.';
+
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',max_tokens:800,
+        system:`Tu es Luna, une IA spécialisée en relations amoureuses, psychologie et astrologie pour PerfectMatch. Tu es chaleureuse, profonde, directe et honnête. Tu utilises la psychologie (Big Five, attachement, CNV), la sociologie et l'esprit critique. Tu réponds toujours en ${curLang}. ${reportCtx}`,
+        messages:lunaHistory
+      })
+    });
+    const data=await r.json();
+    const reply=data.content?.map(b=>b.text||'').join('')||'Je suis là pour t\'aider. Pose-moi ta question 💫';
+    typingEl.remove();
+    appendMsg('luna',reply,'🌙');
+    lunaHistory.push({role:'assistant',content:reply});
+  }catch(e){
+    typingEl.remove();
+    appendMsg('luna','Une erreur est survenue. Réessaie dans un instant 💫','🌙');
+  }
+}
+
+function sendSuggestion(el){
+  document.getElementById('lunaInput').value=el.textContent;
+  sendLuna();
+}
+
+function appendMsg(role,text,ava){
+  const m=document.getElementById('lunaMessages');
+  const d=document.createElement('div');
+  d.className=`msg ${role}`;
+  d.innerHTML=`<div class="msg-ava">${ava}</div><div class="msg-bubble">${text}</div>`;
+  m.appendChild(d);
+  m.scrollTop=m.scrollHeight;
+  return d;
+}
+
+function appendTyping(){
+  const m=document.getElementById('lunaMessages');
+  const d=document.createElement('div');
+  d.className='msg luna';
+  d.innerHTML=`<div class="msg-ava">🌙</div><div class="luna-typing"><span></span><span></span><span></span></div>`;
+  m.appendChild(d);
+  m.scrollTop=m.scrollHeight;
+  return d;
+}
+
+/* ══════════════════════════════════════════════
+   SOURCES DATA
+══════════════════════════════════════════════ */
+const SOURCES=[
+  {cat:'psych',cat_l:'Psychologie',title:'The Big Five Personality Traits',author:'Costa & McCrae, 1992',desc:'Modèle à 5 facteurs de personnalité (OCEAN) — le plus répliqué en psychologie. Prédit la satisfaction relationnelle à long terme.',tags:['Big Five','OCEAN','Personnalité'],link:'https://doi.org/10.1177/0146167207301003'},
+  {cat:'attach',cat_l:'Attachement',title:'Attachment in Adults',author:'Hazan & Shaver, 1987',desc:'Extension de la théorie de l\'attachement de Bowlby aux relations adultes. Les 3 styles (sécure, anxieux, évitant) prédisent les patterns romantiques.',tags:['Attachement','Bowlby','Adultes'],link:'#'},
+  {cat:'neuro',cat_l:'Neurosciences',title:'The Neuroscience of Empathy',author:'Singer & Klimecki, 2014',desc:'Bases neurales de l\'empathie et de la compassion dans les relations intimes. Implications pour la compatibilité émotionnelle.',tags:['Empathie','IRM','Relations'],link:'#'},
+  {cat:'astro',cat_l:'Astrologie',title:'Double-blind test of astrology',author:'Shawn Carlson, Nature 1985',desc:'Étude contrôlée publiée dans Nature testant la capacité des astrologues à prédire traits de personnalité. Résultats non significatifs. Référence critique incontournable.',tags:['Critique','Nature','Scientifique'],link:'https://www.nature.com/articles/318419a0'},
+  {cat:'socio',cat_l:'Sociologie',title:'Cultural Dimensions in Long-Term Relationships',author:'Hofstede, 2001',desc:'L\'impact des valeurs culturelles (individualisme/collectivisme, distance hiérarchique) sur les attentes relationnelles et la durabilité des couples.',tags:['Culture','Valeurs','Couples'],link:'#'},
+  {cat:'attach',cat_l:'Attachement',title:'Attached: The Science of Adult Attachment',author:'Levine & Heller, 2010',desc:'Bestseller vulgarisant les recherches sur l\'attachement adulte. Détaille les dynamiques anxieux/évitant — les plus communes et les plus douloureuses.',tags:['Anxieux','Évitant','Vulgarisation'],link:'#'},
+  {cat:'stats',cat_l:'Statistiques',title:'Predictors of Marital Quality & Stability',author:'Gottman & Levenson, 2002',desc:'Suivi longitudinal de couples sur 20 ans. Le ratio 5:1 (positif/négatif) prédit la stabilité. Les 4 cavaliers de l\'Apocalypse (mépris, critique, défensivité, blocage).',tags:['Gottman','Mariage','Prédicteurs'],link:'#'},
+  {cat:'psych',cat_l:'Psychologie',title:'The Five Love Languages',author:'Gary Chapman, 1992',desc:'Les 5 langages de l\'amour — mots d\'affirmation, temps de qualité, cadeaux, actes de service, toucher physique. Compatible couple = même langage ou apprentissage mutuel.',tags:['Langages','Amour','Communication'],link:'#'},
+  {cat:'neuro',cat_l:'Neurosciences',title:'The Chemistry of Love',author:'Fisher, Aron & Brown, 2005',desc:'IRM de cerveaux amoureux. La dopamine, sérotonine et ocytocine expliquent les phases : attirance, attachement, engagement. L\'amour romantique comme addiction neurochimique.',tags:['Dopamine','IRM','Neurochimie'],link:'#'},
+  {cat:'socio',cat_l:'Sociologie',title:'Astrological Claims vs. Scientific Evidence',author:'Hartmann et al., 2006',desc:'Méta-analyse de 15 000 couples. Aucune corrélation significative entre compatibilité astrologique et durée/satisfaction relationnelle. Référence critique.',tags:['Méta-analyse','Astro-critique','15000 couples'],link:'#'},
+  {cat:'psych',cat_l:'Psychologie',title:'Shadow Work & Romantic Projections',author:'Carl Jung, 1951 / Zweig & Wolf, 1997',desc:'La théorie de l\'ombre junguienne dans les relations : nous attirons des partenaires qui incarnent nos parts refoulées. Essentiel pour comprendre les schémas répétitifs.',tags:['Jung','Ombre','Inconscient'],link:'#'},
+  {cat:'stats',cat_l:'Statistiques',title:'Online Dating & Long-term Compatibility',author:'Cacioppo et al., 2013',desc:'Étude sur 19 000 couples — ceux qui se rencontrent en ligne ont des taux de divorce légèrement inférieurs et déclarent plus de satisfaction conjugale.',tags:['Online dating','Mariage','Satisfaction'],link:'#'},
+  {cat:'attach',cat_l:'Attachement',title:'Earned Security in Adult Attachment',author:'Roisman et al., 2002',desc:'La sécurité d\'attachement peut s\'acquérir à l\'âge adulte via la thérapie ou des relations correctrices — concept essentiel pour les profils anxieux/évitants.',tags:['Sécurité','Thérapie','Évolution'],link:'#'},
+  {cat:'socio',cat_l:'Sociologie',title:'Intercultural Couples: Challenges & Strengths',author:'Crippen & Brew, 2012',desc:'Les couples interculturels font face à des défis spécifiques (famille, codes) mais développent aussi des compétences de communication exceptionnelles.',tags:['Interculturel','Défis','Communication'],link:'#'},
+  {cat:'neuro',cat_l:'Neurosciences',title:'Oxytocin & Trust in Romantic Bonds',author:'Kosfeld et al., 2005',desc:'L\'ocytocine (hormone du lien) renforce la confiance et l\'empathie dans les couples. Sécrétée lors des contacts physiques et des regards — base du lien sécure.',tags:['Ocytocine','Confiance','Lien'],link:'#'},
+  {cat:'psych',cat_l:'Psychologie',title:'Implicit Bias in Partner Selection',author:'Eastwick & Finkel, 2008',desc:'Les préférences déclarées sur les partenaires idéaux (dans les études, sur Tinder) prédisent très mal les partenaires réels choisis. Le biais inconscient domine.',tags:['Biais implicite','Sélection','Réalité vs déclaré'],link:'#'},
+];
+
+function renderSources(filter){
+  const grid=document.getElementById('srcGrid');
+  const catColors={psych:'cat-psych',astro:'cat-astro',neuro:'cat-neuro',socio:'cat-socio',attach:'cat-attach',stats:'cat-stats'};
+  const filtered=filter==='all'?SOURCES:SOURCES.filter(s=>s.cat===filter);
+  grid.innerHTML=filtered.map(s=>`
+    <div class="src-card">
+      <div class="src-cat ${catColors[s.cat]||''}">${s.cat_l}</div>
+      <div class="src-title">${s.title}</div>
+      <div class="src-author">${s.author}</div>
+      <div class="src-desc">${s.desc}</div>
+      <div class="src-tags">${s.tags.map(t=>`<span class="src-tag">${t}</span>`).join('')}</div>
+      ${s.link&&s.link!=='#'?`<a class="src-link" href="${s.link}" target="_blank">Voir la source →</a>`:''}
+    </div>`).join('');
+}
+
+function filterSrc(cat,el){
+  document.querySelectorAll('.src-filter').forEach(f=>f.classList.remove('active'));
+  el.classList.add('active');
+  renderSources(cat);
+}
+
+/* ══════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════ */
+renderQuiz();
+renderSources('all');
+updateLunaLock();
+</script>
+
+<style>
+@media print{
+  #cv,nav,.rpt-actions,.lock-blk{display:none!important;}
+  body{background:white;color:black;}
+  .blk,.final-blk{border:1px solid #ddd;page-break-inside:avoid;}
+  .rpt-hdr{background:white;border:1px solid #ddd;}
+  .score-n{color:#d4a843;}
+  .page{display:block!important;padding-top:0;}
+  #page-report{display:block!important;}
+}
+</style>
+</body>
+</html>

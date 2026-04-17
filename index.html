@@ -443,7 +443,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
           <li><span class="pf-ico">✅</span> Rapport PDF complet</li>
           <li><span class="pf-ico">❌</span><span class="pf-no">Luna illimitée</span></li>
         </ul>
-        <button class="btn-plan btn-plan-gold" onclick="openPayModal('astro', 9)">Obtenir pour 27€</button>
+        <button class="btn-plan btn-plan-gold" onclick="openPayModal('astro', 27)">Obtenir pour 27€</button>
       </div>
       <!-- PREMIUM -->
       <div class="plan">
@@ -461,7 +461,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
           <li><span class="pf-ico">✅</span> Rapport PDF premium</li>
           <li><span class="pf-ico">✅</span> 1 mise à jour gratuite (3 mois)</li>
         </ul>
-        <button class="btn-plan btn-plan-gold" onclick="openPayModal('premium', 19)">Obtenir pour 47€</button>
+        <button class="btn-plan btn-plan-gold" onclick="openPayModal('premium', 47)">Obtenir pour 47€</button>
       </div>
     </div>
   </div>
@@ -528,8 +528,8 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
       </div>
     </div>
     <div class="luna-lock-banner" id="lunaLockBanner">
-      🔒 <span data-i18n="luna_locked">Le chat Luna nécessite le plan Astral (9€) ou Premium (19€).</span>
-      <a onclick="openPayModal('astro',9)" data-i18n="luna_unlock">Déverrouiller →</a>
+      🔒 <span data-i18n="luna_locked">Le chat Luna nécessite le plan Astral (27€) ou Premium (47€).</span>
+      <a onclick="openPayModal('astro',27)" data-i18n="luna_unlock">Déverrouiller →</a>
     </div>
     <div class="luna-messages" id="lunaMessages">
       <div class="msg luna">
@@ -607,7 +607,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
         </div>
         <div class="stripe-badge">🔒 Paiement sécurisé Stripe · TLS 256-bit · Aucune donnée stockée</div>
         <button type="submit" class="btn-pay" id="payBtn">
-          Payer <span id="payAmount">9€</span> en sécurité
+          Payer <span id="payAmount">27€</span> en sécurité
         </button>
       </form>
     </div>
@@ -646,7 +646,7 @@ const LANGS={
     plan_free_desc:"Le rapport de base.",plan_astro_desc:"Rapport + astrologie + 10 messages Luna.",plan_premium_desc:"L'expérience complète.",
     sources_title:"Sources & références",sources_sub:"Les études qui alimentent les analyses PerfectMatch.",
     all:"Toutes",analyzing:"Analyse en cours…",analyzing_sub:"127 dimensions analysées.",
-    luna_locked:"Le chat Luna nécessite le plan Astral (9€) ou Premium.",luna_unlock:"Déverrouiller →",
+    luna_locked:"Le chat Luna nécessite le plan Astral (27€) ou Premium.",luna_unlock:"Déverrouiller →",
     luna_intro:"Bonjour 💫 Je suis Luna. Je suis là pour approfondir ton rapport PerfectMatch. Que veux-tu explorer ?",
     ls1:"Profil Big Five + attachement",ls2:"Valeurs et croyances",ls3:"Biais culturels & religieux",ls4:"Compatibilité astrologique",ls5:"Dynamiques de pouvoir",ls6:"Schémas répétitifs",ls7:"Calcul du score global",ls8:"Génération du rapport IA"
   },
@@ -723,8 +723,8 @@ function showPage(id){
 ══════════════════════════════════════════════ */
 let curPlan='free';
 const planInfo={
-  astro:{title:'Plan Astral',desc:'Rapport complet + analyse astrologique + 10 messages Luna',amount:'9€'},
-  premium:{title:'Plan Premium',desc:'Rapport maximal + Luna illimitée + 90 jours de suivi',amount:'19€'}
+  astro:{title:'Plan Astral',desc:'Rapport complet + analyse astrologique + 10 messages Luna',amount:'27€'},
+  premium:{title:'Plan Premium',desc:'Rapport maximal + Luna illimitée + 90 jours de suivi',amount:"27€"
 };
 
 function openPayModal(plan, amt){
@@ -1128,7 +1128,7 @@ function displayReport(r,z){
     <div class="bias-i binfo" style="margin-top:1rem"><span class="bi-ico">🔬</span><div><div class="bi-t">Regard critique scientifique</div><div class="bi-d">${r.astrologie.critique_scientifique}</div></div></div>
   </div>`;
   } else {
-    html+=`<div class="lock-blk"><div class="lock-ico">🌟</div><div class="lock-t">Analyse astrologique complète</div><div class="lock-d">Thème natal, compatibilité des éléments, périodes favorables, et regard critique épistémologique sur les limites de l'astrologie.</div><button class="btn-plan btn-plan-gold" style="max-width:240px" onclick="openPayModal('astro',9)">Débloquer — Plan Astral 9€</button></div>`;
+    html+=`<div class="lock-blk"><div class="lock-ico">🌟</div><div class="lock-t">Analyse astrologique complète</div><div class="lock-d">Thème natal, compatibilité des éléments, périodes favorables, et regard critique épistémologique sur les limites de l'astrologie.</div><button class="btn-plan btn-plan-gold" style="max-width:240px" onclick="openPayModal('astro',27)">Débloquer — Plan Astral 27€</button></div>`;
   }
 
   // BIAIS
@@ -1138,7 +1138,7 @@ function displayReport(r,z){
     <div class="blk-hd"><span class="blk-ico">🧠</span><span class="blk-t">Biais & préjugés détectés</span><span class="blk-badge bbmd">Esprit critique</span></div>
     <p class="pt">Ces biais sont humains et universels. Les identifier est la première étape pour ne pas en être prisonnier·e.</p>
     ${biaisToShow.map(b=>`<div class="bias-i b${b.type}"><span class="bi-ico">${b.type==='warn'?'⚠️':b.type==='danger'?'🚨':b.type==='ok'?'✅':'ℹ️'}</span><div><div class="bi-t">${b.titre}</div><div class="bi-d">${b.desc}</div></div></div>`).join('')}
-    ${!isPaid&&(r.biais||[]).length>3?`<div style="text-align:center;padding:1rem;color:var(--muted);font-size:.83rem">+ ${(r.biais||[]).length-3} autres biais analysés dans le plan Astral <a style="color:var(--gold);cursor:pointer" onclick="openPayModal('astro',9)">→ Débloquer</a></div>`:''}
+    ${!isPaid&&(r.biais||[]).length>3?`<div style="text-align:center;padding:1rem;color:var(--muted);font-size:.83rem">+ ${(r.biais||[]).length-3} autres biais analysés dans le plan Astral <a style="color:var(--gold);cursor:pointer" onclick="openPayModal('astro',27)">→ Débloquer</a></div>`:''}
   </div>`;
 
   // ANALYSE CRITIQUE
@@ -1171,7 +1171,7 @@ function displayReport(r,z){
 
   // LUNA CTA if free
   if(!isPaid){
-    html+=`<div class="lock-blk"><div class="lock-ico">🌙</div><div class="lock-t">Approfondir avec Luna IA</div><div class="lock-d">Pose toutes tes questions à Luna — elle connaît ton rapport et peut t'aider à comprendre chaque biais, chaque recommandation, et te guider dans ta recherche.</div><button class="btn-plan btn-plan-gold" style="max-width:280px" onclick="openPayModal('astro',9)">Parler à Luna — Plan Astral 9€</button></div>`;
+    html+=`<div class="lock-blk"><div class="lock-ico">🌙</div><div class="lock-t">Approfondir avec Luna IA</div><div class="lock-d">Pose toutes tes questions à Luna — elle connaît ton rapport et peut t'aider à comprendre chaque biais, chaque recommandation, et te guider dans ta recherche.</div><button class="btn-plan btn-plan-gold" style="max-width:280px" onclick="openPayModal('astro',27)">Parler à Luna — Plan Astral 27€</button></div>`;
   }
 
   // MESSAGE FINAL
@@ -1218,7 +1218,7 @@ function updateLunaLock(){
 function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,120)+'px';}
 
 async function sendLuna(){
-  if(STATE.plan==='free'||STATE.lunaCredits<=0){openPayModal('astro',9);return;}
+  if(STATE.plan==='free'||STATE.lunaCredits<=0){openPayModal('astro',27);return;}
   const inp=document.getElementById('lunaInput');
   const msg=inp.value.trim();
   if(!msg)return;

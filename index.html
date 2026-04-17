@@ -572,9 +572,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     MODAL PAIEMENT
-══════════════════════════════════════════════ -->
+  <!-- ══ MODAL PAIEMENT ══ -->
 <div class="modal-overlay" id="payModal">
   <div class="modal">
     <button class="modal-close" onclick="closePayModal()">×</button>
@@ -587,25 +585,12 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
           <input type="email" id="payEmail" placeholder="ton@email.com" required>
         </div>
         <div class="stripe-field">
-          <label>Informations de paiement</label>
-          <div id="card-element" style="background:var(--card2);border:1px solid var(--border2);border-radius:6px;padding:14px;color:var(--text);font-size:.9rem;display:flex;align-items:center;gap:8px;">
-            <span>💳</span>
-            <div style="flex:1">
-              <input type="text" id="cardNum" placeholder="4242 4242 4242 4242" style="background:transparent;border:none;font-size:.9rem;color:var(--text);width:100%;outline:none;" maxlength="19">
-            </div>
+          <label>Paiement sécurisé</label>
+          <div id="stripe-payment-element" style="padding:4px 0">
+            <div style="color:var(--muted);font-size:.82rem;padding:1rem;text-align:center">⏳ Chargement…</div>
           </div>
         </div>
-        <div class="stripe-row">
-          <div class="stripe-field">
-            <label>Expiration</label>
-            <input type="text" id="cardExp" placeholder="MM / AA" maxlength="7">
-          </div>
-          <div class="stripe-field">
-            <label>CVC</label>
-            <input type="text" id="cardCvc" placeholder="123" maxlength="3">
-          </div>
-        </div>
-        <div class="stripe-badge">🔒 Paiement sécurisé Stripe · TLS 256-bit · Aucune donnée stockée</div>
+        <div class="stripe-badge">🔒 Chiffrement TLS 256-bit · Stripe · Aucune donnée stockée</div>
         <button type="submit" class="btn-pay" id="payBtn">
           Payer <span id="payAmount">9€</span> en sécurité
         </button>
@@ -727,49 +712,193 @@ const planInfo={
   premium:{title:'Plan Premium',desc:'Rapport maximal + Luna illimitée + 90 jours de suivi',amount:'19€'}
 };
 
-function openPayModal(plan, amt){
-  curPlan=plan;
-  const info=planInfo[plan];
-  document.getElementById('payTitle').textContent=info.title;
-  document.getElementById('payDesc').textContent=info.desc;
-  document.getElementById('payAmount').textContent=info.amount;
+// ── STRIPE REAL INTEGRATION ──────────────────────────────────────────────────
+// La clé publique est lue depuis la meta tag injectée par Vercel (jamais dans le code)
+// En local/dev, on utilise la clé test depuis window.STRIPE_PK_TEST
+const STRIPE_PK = document.querySelector('meta[name="stripe-pk"]')?.content
+  || 'pk_test_51_REPLACE_WITH_YOUR_TEST_KEY'; // remplace uniquement pour test local
+
+let stripeInstance = null;
+let stripeElements = null;
+let paymentElement = null;
+
+async function openPayModal(plan, amt) {
+  curPlan = plan;
+  const info = planInfo[plan];
+  document.getElementById('payTitle').textContent = info.title;
+  document.getElementById('payDesc').textContent = info.desc;
+  document.getElementById('payAmount').textContent = info.amount;
+
+  // Reset modal to form state
+  document.getElementById('payContent').innerHTML = getPayFormHTML(info);
   document.getElementById('payModal').classList.add('open');
-  // Format card input
-  document.getElementById('cardNum').addEventListener('input',function(){
-    let v=this.value.replace(/\D/g,'').substring(0,16);
-    this.value=v.replace(/(.{4})/g,'$1 ').trim();
-  });
-  document.getElementById('cardExp').addEventListener('input',function(){
-    let v=this.value.replace(/\D/g,'').substring(0,4);
-    if(v.length>=2) v=v.substring(0,2)+' / '+v.substring(2);
-    this.value=v;
-  });
+
+  // Init Stripe Elements
+  try {
+    stripeInstance = Stripe(STRIPE_PK);
+
+    // Créer PaymentIntent côté serveur
+    const res = await fetch('/api/create-payment-intent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        plan,
+        email: document.getElementById('payEmail')?.value || ''
+      })
+    });
+
+    const { clientSecret, error } = await res.json();
+    if (error) throw new Error(error);
+
+    stripeElements = stripeInstance.elements({
+      clientSecret,
+      appearance: {
+        theme: 'night',
+        variables: {
+          colorPrimary: '#d4a843',
+          colorBackground: '#1a1a2e',
+          colorText: '#ede8e0',
+          colorDanger: '#ef4444',
+          fontFamily: 'DM Sans, sans-serif',
+          borderRadius: '6px',
+        }
+      }
+    });
+
+    paymentElement = stripeElements.create('payment');
+    paymentElement.mount('#stripe-payment-element');
+
+    // Bind email field change to recreate intent with email
+    document.getElementById('payEmail').addEventListener('blur', async function() {
+      // optionally update intent with email for receipt
+    });
+
+  } catch (err) {
+    console.warn('Stripe init warning:', err.message);
+    // Fallback: show simulated form if API not yet deployed
+    showFallbackPayForm(info);
+  }
 }
 
-function closePayModal(){
+function getPayFormHTML(info) {
+  return `
+    <div class="modal-title">${info.title}</div>
+    <div class="modal-sub">${info.desc}</div>
+    <form class="stripe-form" onsubmit="handlePay(event)">
+      <div class="stripe-field">
+        <label>Adresse e-mail</label>
+        <input type="email" id="payEmail" placeholder="ton@email.com" required>
+      </div>
+      <div class="stripe-field">
+        <label>Paiement sécurisé</label>
+        <div id="stripe-payment-element" style="padding:4px 0">
+          <div style="color:var(--muted);font-size:.82rem;padding:1rem;text-align:center">⏳ Chargement du formulaire…</div>
+        </div>
+      </div>
+      <div class="stripe-badge">🔒 Chiffrement TLS 256-bit · Stripe · Aucune donnée stockée</div>
+      <button type="submit" class="btn-pay" id="payBtn">
+        Payer <span id="payAmount2">${info.amount}</span> en sécurité
+      </button>
+    </form>`;
+}
+
+function showFallbackPayForm(info) {
+  // Mode démo / dev local sans backend déployé
+  document.getElementById('stripe-payment-element').innerHTML = `
+    <div style="background:var(--card2);border:1px solid var(--border2);border-radius:6px;padding:14px;font-size:.82rem;color:var(--muted)">
+      🛠️ Mode démonstration — Backend Vercel non encore déployé.<br>
+      <span style="color:var(--gold)">Déploie sur Vercel pour activer les vrais paiements.</span>
+    </div>`;
+  document.getElementById('payBtn').onclick = (e) => {
+    e.preventDefault();
+    activatePlan(curPlan);
+  };
+}
+
+function closePayModal() {
   document.getElementById('payModal').classList.remove('open');
+  if (paymentElement) { try { paymentElement.unmount(); } catch(e){} }
 }
 
-function handlePay(e){
+async function handlePay(e) {
   e.preventDefault();
-  const btn=document.getElementById('payBtn');
-  btn.disabled=true;
-  btn.textContent='Traitement en cours…';
-  setTimeout(()=>{
-    // Simulated success (real Stripe integration would go here)
-    STATE.plan=curPlan;
-    if(curPlan==='astro') STATE.lunaCredits=10;
-    if(curPlan==='premium') STATE.lunaCredits=9999;
-    document.getElementById('payContent').innerHTML=`
-      <div class="pay-success">
-        <div class="check">🎉</div>
-        <h3>Paiement réussi !</h3>
-        <p>Ton plan <strong>${planInfo[curPlan].title}</strong> est maintenant actif.<br>Tu peux lancer ton questionnaire ou parler à Luna.</p>
-        <button class="btn-pay" onclick="closePayModal();showPage('quiz')" style="max-width:280px;margin:0 auto">Lancer mon questionnaire →</button>
-      </div>`;
-    updateLunaLock();
-  },2000);
+  const btn = document.getElementById('payBtn');
+  btn.disabled = true;
+  btn.textContent = 'Traitement en cours…';
+
+  if (!stripeInstance || !stripeElements) {
+    // Fallback demo mode
+    setTimeout(() => activatePlan(curPlan), 1500);
+    return;
+  }
+
+  try {
+    const email = document.getElementById('payEmail').value;
+
+    const { error, paymentIntent } = await stripeInstance.confirmPayment({
+      elements: stripeElements,
+      confirmParams: {
+        return_url: `https://perfectmatch-ai.com/?payment=success&plan=${curPlan}`,
+        receipt_email: email,
+      },
+      redirect: 'if_required', // reste sur la page si possible
+    });
+
+    if (error) {
+      btn.disabled = false;
+      btn.textContent = `Payer ${planInfo[curPlan].amount} en sécurité`;
+      showPayError(error.message);
+      return;
+    }
+
+    if (paymentIntent && paymentIntent.status === 'succeeded') {
+      activatePlan(curPlan);
+    }
+
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = `Payer ${planInfo[curPlan].amount} en sécurité`;
+    showPayError('Une erreur est survenue. Réessaie.');
+  }
 }
+
+function showPayError(msg) {
+  let err = document.getElementById('pay-error');
+  if (!err) {
+    err = document.createElement('div');
+    err.id = 'pay-error';
+    err.style.cssText = 'color:#ef4444;font-size:.82rem;padding:.5rem;text-align:center;';
+    document.getElementById('payBtn').before(err);
+  }
+  err.textContent = '⚠️ ' + msg;
+}
+
+function activatePlan(plan) {
+  STATE.plan = plan;
+  if (plan === 'astro') STATE.lunaCredits = 10;
+  if (plan === 'premium') STATE.lunaCredits = 9999;
+  updateLunaLock();
+  document.getElementById('payContent').innerHTML = `
+    <div class="pay-success">
+      <div class="check">🎉</div>
+      <h3>Paiement réussi !</h3>
+      <p>Ton plan <strong>${planInfo[plan].title}</strong> est maintenant actif.<br>
+      Un reçu a été envoyé à ton adresse e-mail.</p>
+      <button class="btn-pay" onclick="closePayModal();showPage('quiz')" style="max-width:280px;margin:0 auto">
+        Lancer mon questionnaire →
+      </button>
+    </div>`;
+}
+
+// Lire param URL après redirect Stripe
+(function checkPaymentReturn() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('payment') === 'success') {
+    const plan = params.get('plan') || 'astro';
+    activatePlan(plan);
+    window.history.replaceState({}, '', '/'); // nettoie l'URL
+  }
+})();
 
 /* ══════════════════════════════════════════════
    STATE

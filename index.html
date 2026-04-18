@@ -586,7 +586,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
       ✦ Les 7 piliers Gottman<br>
       ✦ Plan d'action 90 jours + 30 sources académiques
     </div>
-    <a href="/perfectmatch-guide.pdf" download="PerfectMatch-Guide-Complet.pdf" style="text-decoration:none;display:block;margin-bottom:.75rem">
+    <a href="https://perfectmatch-ai.vercel.app/perfectmatch-guide.pdf" download="PerfectMatch-Guide-Complet.pdf" style="text-decoration:none;display:block;margin-bottom:.75rem">
       <button class="btn-pay" style="width:100%">⬇️ Télécharger le guide PDF gratuit</button>
     </a>
     <button class="btn-rpt btn-rpt-s" style="width:100%" onclick="document.getElementById('guideModal').classList.remove('open')">Fermer</button>
@@ -1321,6 +1321,13 @@ function buildFallback(){
    DISPLAY REPORT
 ══════════════════════════════════════════════ */
 function displayReport(r,z){
+  // Show guide after 8s for paid users
+  if(STATE.plan !== 'free'){
+    setTimeout(()=>{
+      showToast('📖 Ton guide gratuit est disponible !');
+      setTimeout(()=>showGuideModal(), 2000);
+    }, 8000);
+  }
   showPage('report');
   const C=document.getElementById('reportContent');
   const isPaid=STATE.plan!=='free';
@@ -1617,26 +1624,7 @@ function submitEmailCapture(){
   startAnalysis();
 }
 
-// Override next button on last step to show email capture
-const origNextS = window.nextS;
-function nextS(){
-  if(curStep === STEPS.length - 1){
-    // Last step — show email capture before analysis
-    if(!STATE.emailCollected){
-      showEmailCapture();
-    } else {
-      startAnalysis();
-    }
-  } else {
-    if(curStep < STEPS.length - 1){
-      document.getElementById('step'+curStep).classList.remove('on');
-      curStep++;
-      document.getElementById('step'+curStep).classList.add('on');
-      updateProg();
-      window.scrollTo(0,0);
-    }
-  }
-}
+// Email capture handled in original nextS
 
 /* ══════════════════════════════════════════════
    REVIEW SYSTEM
@@ -1691,18 +1679,7 @@ function showGuideModal(){
   document.getElementById('guideModal').classList.add('open');
 }
 
-// Show review + guide after report for paid users
-const origDisplayReport = displayReport;
-function displayReport(r, z){
-  origDisplayReport(r, z);
-  // After 8 seconds on report page, show review prompt for paid users
-  if(STATE.plan !== 'free'){
-    setTimeout(()=>{
-      showToast('📖 Ton guide gratuit est disponible !');
-      setTimeout(()=> showGuideModal(), 2000);
-    }, 8000);
-  }
-}
+// Guide shown via activatePlan
 
 /* ══════════════════════════════════════════════
    REVIEWS DISPLAY ON HOME
@@ -1719,7 +1696,7 @@ function renderHomeReviews(){
   if(!container) return;
   container.innerHTML = all.map(r=>`
     <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.25rem">
-      <div style="color:var(--gold);font-size:1rem;margin-bottom:.5rem">${('★').repeat(r.rating)}${('☆').repeat(5-r.rating)}</div>
+      <div style="color:var(--gold);font-size:1rem;margin-bottom:.5rem">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
       <p style="font-size:.85rem;color:var(--text);line-height:1.6;margin-bottom:.75rem;font-style:italic">"${r.text}"</p>
       <div style="font-size:.75rem;color:var(--muted)">${r.name} · ${r.date}</div>
     </div>`).join('');

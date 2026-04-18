@@ -1192,7 +1192,9 @@ function prevS(){
 }
 function updateProg(){document.getElementById('progBar').style.width=((curStep+1)/STEPS.length*100)+'%';}
 
-function startQuizFree(){STATE.plan='free';showPage('quiz');if(!document.getElementById('step0'))/* ══════════════════════════════════════════════
+function startQuizFree(){STATE.plan='free';showPage('quiz');if(!document.getElementById('step0'))renderQuiz();}
+
+/* ══════════════════════════════════════════════
    ACCORDION
 ══════════════════════════════════════════════ */
 function toggleAcc(hd){

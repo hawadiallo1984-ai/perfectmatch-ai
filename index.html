@@ -1719,7 +1719,7 @@ function renderHomeReviews(){
   if(!container) return;
   container.innerHTML = all.map(r=>`
     <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.25rem">
-      <div style="color:var(--gold);font-size:1rem;margin-bottom:.5rem">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+      <div style="color:var(--gold);font-size:1rem;margin-bottom:.5rem">${('★').repeat(r.rating)}${('☆').repeat(5-r.rating)}</div>
       <p style="font-size:.85rem;color:var(--text);line-height:1.6;margin-bottom:.75rem;font-style:italic">"${r.text}"</p>
       <div style="font-size:.75rem;color:var(--muted)">${r.name} · ${r.date}</div>
     </div>`).join('');

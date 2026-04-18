@@ -1185,7 +1185,7 @@ function nextS(){
     document.getElementById('step'+curStep).classList.add('on');
     updateProg();
     window.scrollTo(0,0);
-  } else { startAnalysis(); }
+  } else { if(!STATE.emailCollected){showEmailCapture();}else{startAnalysis();} }
 }
 function prevS(){
   if(curStep>0){document.getElementById('step'+curStep).classList.remove('on');curStep--;document.getElementById('step'+curStep).classList.add('on');updateProg();window.scrollTo(0,0);}

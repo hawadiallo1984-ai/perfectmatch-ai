@@ -64,7 +64,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;
 /* ══════════════════════════════════════════════
    PAGES
 ══════════════════════════════════════════════ */
-.page{display:none;min-height:100vh;padding-top:62px;position:relative;z-index:1;}
+.page{display:none;min-height:100vh;padding-top:62px;position:relative;z-index:0;isolation:auto;}
 .page.active{display:block;}
 
 /* ══════════════════════════════════════════════
@@ -121,9 +121,9 @@ h1.ht{font-family:'Italiana',serif;font-size:clamp(3.5rem,9vw,7rem);line-height:
 .btn-plan-ghost:hover{border-color:var(--gold);color:var(--gold);}
 
 /* STRIPE MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(7,7,13,.92);z-index:500;align-items:center;justify-content:center;padding:1rem;}
-.modal-overlay.open{display:flex;}
-.modal{background:var(--card);border:1px solid var(--border2);border-radius:14px;width:100%;max-width:480px;padding:2.5rem;position:relative;animation:modalIn .3s ease;}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(7,7,13,.92);z-index:9999;align-items:center;justify-content:center;padding:1rem;}
+.modal-overlay.open{display:flex!important;position:fixed!important;inset:0!important;z-index:999999!important;background:rgba(7,7,13,.92)!important;align-items:center!important;justify-content:center!important;padding:1rem!important;}
+.modal{background:var(--card);border:1px solid var(--border2);border-radius:14px;width:100%;max-width:480px;padding:2.5rem;position:relative;animation:modalIn .3s ease;z-index:10000;}
 @keyframes modalIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 .modal-close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;line-height:1;}
 .modal-close:hover{color:var(--text);}
@@ -344,36 +344,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 .sect-div{display:flex;align-items:center;gap:1rem;margin:1.5rem 0;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
 .sect-div::before,.sect-div::after{content:'';flex:1;height:1px;background:var(--border);}
 
-/* RELATION PAGE */
-.relation-pg{max-width:800px;margin:0 auto;padding:3rem 1.5rem 6rem;}
-.rel-mode-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:2.5rem;}
-.rel-mode-card{background:var(--card);border:2px solid var(--border);border-radius:12px;padding:1.5rem;text-align:center;cursor:pointer;transition:all .2s;}
-.rel-mode-card:hover{border-color:var(--border2);}
-.rel-mode-card.selected{border-color:var(--gold);background:rgba(212,168,67,.07);}
-.rel-mode-card .rm-ico{font-size:2.5rem;margin-bottom:.75rem;}
-.rel-mode-card .rm-t{font-family:"Italiana",serif;font-size:1.1rem;margin-bottom:.4rem;}
-.rel-mode-card .rm-d{font-size:.78rem;color:var(--muted);line-height:1.5;}
-.rel-section{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.75rem;margin-bottom:1.25rem;}
-.rel-section-hd{display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
-.rel-section-ico{font-size:1.4rem;}
-.rel-section-t{font-family:"Italiana",serif;font-size:1.2rem;}
-.rel-score-wrap{background:linear-gradient(140deg,var(--card),var(--card2));border:1px solid rgba(212,168,67,.3);border-radius:16px;padding:3rem 2rem;text-align:center;margin-bottom:2rem;position:relative;overflow:hidden;}
-.rel-score-wrap::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(212,168,67,.1),transparent 60%);}
-.rel-score-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem;}
-.rel-score-item{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:1.25rem;}
-.rel-score-item .rsi-label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem;}
-.rel-score-item .rsi-val{font-family:"Italiana",serif;font-size:2rem;color:var(--gold);line-height:1;}
-.rel-score-item .rsi-bar{height:4px;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--rose));margin-top:.5rem;}
-.rel-alert{display:flex;gap:.9rem;padding:1rem;background:var(--card2);border-radius:8px;margin-bottom:.75rem;border-left:3px solid;}
-.rel-alert.green{border-color:var(--green);}
-.rel-alert.amber{border-color:var(--amber);}
-.rel-alert.red{border-color:var(--red);}
-.rel-alert.violet{border-color:var(--violet);}
-.rel-alert-ico{font-size:1.2rem;flex-shrink:0;}
-.rel-alert-t{font-weight:600;font-size:.88rem;margin-bottom:3px;}
-.rel-alert-d{font-size:.8rem;color:var(--muted);line-height:1.55;}
-@media(max-width:600px){.rel-mode-cards{grid-template-columns:1fr;}.rel-score-grid{grid-template-columns:1fr;}}
-
 /* GUIDE PAGE */
 .guide-pg{max-width:860px;margin:0 auto;padding:3rem 1.5rem 6rem;}
 .guide-hero{text-align:center;padding:3rem 1rem 2rem;}
@@ -432,7 +402,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
     <div class="nav-tab" data-page="luna" onclick="showPage('luna')"><span class="tab-icon">🌙</span><span class="tab-txt">Luna IA</span></div>
     <div class="nav-tab" data-page="sources" onclick="showPage('sources')"><span class="tab-icon">📚</span><span class="tab-txt">Sources</span></div>
     <div class="nav-tab" data-page="guide" onclick="showPage('guide')"><span class="tab-icon">🎓</span><span class="tab-txt">Comprendre</span></div>
-    <div class="nav-tab" data-page="relation" onclick="showPage('relation')"><span class="tab-icon">💑</span><span class="tab-txt">Ma relation</span></div>
   </div>
   <div class="nav-right">
     <select class="lang-sel" id="langSel" onchange="changeLang(this.value)">
@@ -501,7 +470,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
       <div class="plan featured">
         <div class="plan-name" data-i18n="plan_astro">Astral</div>
         <div class="plan-desc" data-i18n="plan_astro_desc">Rapport complet + analyse astrologique approfondie + 10 messages Luna.</div>
-        <div class="plan-price"><span class="plan-amount">27/span><span class="plan-cur">€</span><span class="plan-period">&nbsp;/ rapport unique</span></div>
+        <div class="plan-price"><span class="plan-amount">27</span><span class="plan-cur">€</span><span class="plan-period">&nbsp;/ rapport unique</span></div>
         <ul class="plan-features">
           <li><span class="pf-ico">✅</span> Tout l'Essentiel</li>
           <li><span class="pf-ico">✅</span> Analyse astrologique complète</li>
@@ -519,7 +488,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
       <div class="plan">
         <div class="plan-name" data-i18n="plan_premium">Premium</div>
         <div class="plan-desc" data-i18n="plan_premium_desc">L'expérience complète : rapport maximal + Luna illimitée + mises à jour.</div>
-        <div class="plan-price"><span class="plan-amount">47/span><span class="plan-cur">€</span><span class="plan-period">&nbsp;/ rapport unique</span></div>
+        <div class="plan-price"><span class="plan-amount">47</span><span class="plan-cur">€</span><span class="plan-period">&nbsp;/ rapport unique</span></div>
         <ul class="plan-features">
           <li><span class="pf-ico">✅</span> Tout l'Astral</li>
           <li><span class="pf-ico">✅</span> <strong>Luna IA illimitée</strong></li>
@@ -548,7 +517,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
 </div>
 
 <!-- ══ EMAIL CAPTURE MODAL ══ -->
-<div class="modal-overlay" id="emailModal">
+<div class="modal-overlay" id="emailModal" style="display:none">
   <div class="modal" style="max-width:440px">
     <div style="text-align:center;margin-bottom:1.5rem">
       <div style="font-size:2.5rem;margin-bottom:.75rem">📧</div>
@@ -925,18 +894,25 @@ async function openPayModal(plan, amt) {
 }
 
 function getPayFormHTML(info) {
-  return '<div class="modal-title">'+info.title+'</div>'
-    +'<div class="modal-sub">'+info.desc+'</div>'
-    +'<form class="stripe-form" onsubmit="handlePay(event)">'
-    +'<div class="stripe-field"><label>Adresse e-mail</label>'
-    +'<input type="email" id="payEmail" placeholder="ton@email.com" required></div>'
-    +'<div class="stripe-field"><label>Paiement s&#233;curis&#233;</label>'
-    +'<div id="stripe-payment-element" style="padding:4px 0">'
-    +'<div style="color:var(--muted);font-size:.82rem;padding:1rem;text-align:center">&#9203; Chargement...</div>'
-    +'</div></div>'
-    +'<div class="stripe-badge">&#128274; Chiffrement TLS 256-bit &middot; Stripe</div>'
-    +'<button type="submit" class="btn-pay" id="payBtn">Payer '+info.amount+' en s&#233;curit&#233;</button>'
-    +'</form>';
+  return `
+    <div class="modal-title">${info.title}</div>
+    <div class="modal-sub">${info.desc}</div>
+    <form class="stripe-form" onsubmit="handlePay(event)">
+      <div class="stripe-field">
+        <label>Adresse e-mail</label>
+        <input type="email" id="payEmail" placeholder="ton@email.com" required>
+      </div>
+      <div class="stripe-field">
+        <label>Paiement sécurisé</label>
+        <div id="stripe-payment-element" style="padding:4px 0">
+          <div style="color:var(--muted);font-size:.82rem;padding:1rem;text-align:center">⏳ Chargement du formulaire…</div>
+        </div>
+      </div>
+      <div class="stripe-badge">🔒 Chiffrement TLS 256-bit · Stripe · Aucune donnée stockée</div>
+      <button type="submit" class="btn-pay" id="payBtn">
+        Payer <span id="payAmount2">${info.amount}</span> en sécurité
+      </button>
+    </form>`;
 }
 
 function showFallbackPayForm(info) {
@@ -1040,7 +1016,7 @@ function activatePlan(plan) {
 /* ══════════════════════════════════════════════
    STATE
 ══════════════════════════════════════════════ */
-let STATE={plan:'free', lunaCredits:0, answers:{}, report:null};
+let STATE={plan:'free', lunaCredits:0, answers:{}, report:null, emailCollected:false};
 let curStep=0;
 
 /* ══════════════════════════════════════════════
@@ -1209,14 +1185,16 @@ function nextS(){
     document.getElementById('step'+curStep).classList.add('on');
     updateProg();
     window.scrollTo(0,0);
-  } else { startAnalysis(); }
+  } else { if(!STATE.emailCollected){showEmailCapture();}else{startAnalysis();} }
 }
 function prevS(){
   if(curStep>0){document.getElementById('step'+curStep).classList.remove('on');curStep--;document.getElementById('step'+curStep).classList.add('on');updateProg();window.scrollTo(0,0);}
 }
 function updateProg(){document.getElementById('progBar').style.width=((curStep+1)/STEPS.length*100)+'%';}
 
-function startQuizFree(){STATE.plan='free';showPage('quiz');if(!document.getElementById('step0'))/* ══════════════════════════════════════════════
+function startQuizFree(){STATE.plan='free';showPage('quiz');if(!document.getElementById('step0'))renderQuiz();}
+
+/* ══════════════════════════════════════════════
    ACCORDION
 ══════════════════════════════════════════════ */
 function toggleAcc(hd){
@@ -1312,7 +1290,7 @@ Blessures: ${a.blessures||'non précisé'}
 Plan souscrit: ${STATE.plan} — ${isPremium?'inclure plan 90j et profil ombre':'rapport standard'}`;
 
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{
+    const r=await fetch('/api/claude',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:3000,system:sys,messages:[{role:'user',content:msg}]})
@@ -1525,7 +1503,7 @@ async function sendLuna(){
   const reportCtx=STATE.report?`Contexte du rapport PerfectMatch de l'utilisateur: score=${STATE.report.score}%, profil="${STATE.report.titre}", attachement détecté dans les données, valeurs=${JSON.stringify(STATE.answers.valeurs)}.`:'Pas encore de rapport généré.';
 
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{
+    const r=await fetch('/api/claude',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
@@ -1624,7 +1602,7 @@ updateLunaLock();
    EMAIL CAPTURE
 ══════════════════════════════════════════════ */
 function showEmailCapture(){
-  document.getElementById('emailModal').classList.add('open');
+  var m=document.getElementById('emailModal');m.style.cssText='display:flex;position:fixed;inset:0;z-index:999999;background:rgba(7,7,13,.92);align-items:center;justify-content:center;padding:1rem;';
 }
 
 function submitEmailCapture(){
@@ -1645,6 +1623,9 @@ function submitEmailCapture(){
     headers:{'Content-Type':'application/json'},
     body: JSON.stringify({ email, consent, plan: STATE.plan })
   }).catch(()=>{}); // Silently fail if not deployed yet
+  document.getElementById('emailModal').style.display='none';
+  var hasAnswers = STATE.answers.prenom || STATE.answers.age || STATE.answers.ddn;
+  if(!hasAnswers){ showPage('quiz'); alert('Merci de remplir le questionnaire.'); return; }
   startAnalysis();
 }
 
@@ -1709,249 +1690,54 @@ function showGuideModal(){
    REVIEWS DISPLAY ON HOME
 ══════════════════════════════════════════════ */
 function renderHomeReviews(){
-  var stored = JSON.parse(localStorage.getItem(REVIEWS_KEY)||'[]');
-  var defaultReviews = [
-    {name:"Yasmine M.", rating:5, text:"Incroyable, ce rapport m'a aidée a comprendre mes schemas relationnels.", date:"15/04/2026"},
-    {name:"Thomas L.", rating:5, text:"PerfectMatch m'a appris plus en 20 minutes que 6 mois de coaching.", date:"12/04/2026"},
-    {name:"Amira K.", rating:4, text:"Les biais detectes m'ont vraiment surprise et eclairee.", date:"08/04/2026"}
+  const stored = JSON.parse(localStorage.getItem(REVIEWS_KEY)||'[]');
+  const defaultReviews = [
+    {name:'Yasmine M.', rating:5, text:'Incroyable ! Ce rapport m\'a aidé à comprendre mon schéma répétitif avec les hommes évitants. Le regard critique sur l\'astrologie est vraiment honnête.', date:'15/04/2026'},
+    {name:'Thomas L.', rating:5, text:'J\'ai essayé 3 coachs amoureux avant ça. PerfectMatch m\'a donné plus en 20 minutes qu\'en 6 mois de coaching.', date:'12/04/2026'},
+    {name:'Amira K.', rating:4, text:'Les biais culturels détectés m\'ont vraiment surprise. Je ne réalisais pas à quel point mes critères éliminaient des gens compatibles.', date:'08/04/2026'},
   ];
-  var all = stored.concat(defaultReviews).slice(0, 6);
-  var container = document.getElementById('homeReviews');
+  const all = [...stored, ...defaultReviews].slice(0, 6);
+  const container = document.getElementById('homeReviews');
   if(!container) return;
-  container.innerHTML = '';
-  all.forEach(function(r){
-    var card = document.createElement('div');
-    card.style.cssText = 'background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.25rem';
-    var stars = document.createElement('div');
-    stars.style.cssText = 'color:var(--gold);font-size:1rem;margin-bottom:.5rem';
-    stars.textContent = Array(r.rating+1).join('\u2605') + Array(6-r.rating).join('\u2606');
-    var txt = document.createElement('p');
-    txt.style.cssText = 'font-size:.85rem;color:var(--text);line-height:1.6;margin-bottom:.75rem;font-style:italic';
-    txt.textContent = '\u201c' + r.text + '\u201d';
-    var meta = document.createElement('div');
-    meta.style.cssText = 'font-size:.75rem;color:var(--muted)';
-    meta.textContent = r.name + ' · ' + r.date;
-    card.appendChild(stars);
-    card.appendChild(txt);
-    card.appendChild(meta);
-    container.appendChild(card);
-  });
+  container.innerHTML = all.map(r=>`
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.25rem">
+      <div style="color:var(--gold);font-size:1rem;margin-bottom:.5rem">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+      <p style="font-size:.85rem;color:var(--text);line-height:1.6;margin-bottom:.75rem;font-style:italic">"${r.text}"</p>
+      <div style="font-size:.75rem;color:var(--muted)">${r.name} · ${r.date}</div>
+    </div>`).join('');
 }
 
 // Add reviews section to home page
-document.addEventListener('DOMContentLoaded', function(){
-  var featuresSection = document.querySelector('.features');
+document.addEventListener('DOMContentLoaded', ()=>{
+  const featuresSection = document.querySelector('.features');
   if(featuresSection){
-    var reviewsSection = document.createElement('div');
-    reviewsSection.style.maxWidth='1100px';reviewsSection.style.margin='0 auto';reviewsSection.style.padding='0 2rem 4rem';
-    
-    var h2 = document.createElement('h2');
-    h2.style.cssText = 'font-family:Italiana,serif;font-size:2rem;text-align:center;color:var(--gold);margin-bottom:.5rem';
-    h2.textContent = "Ce qu'ils disent";
-    
-    var p = document.createElement('p');
-    p.style.cssText = 'text-align:center;font-style:italic;color:var(--muted);margin-bottom:2rem';
-    p.textContent = "Témoignages de nos utilisateurs";
-    
-    var grid = document.createElement('div');
-    grid.id = 'homeReviews';
-    grid.style.display='grid';grid.style.gridTemplateColumns='repeat(auto-fit,minmax(280px,1fr))';grid.style.gap='1rem';
-    
-    var btnWrap = document.createElement('div');
-    btnWrap.style.cssText = 'text-align:center;margin-top:2rem';
-    var btn = document.createElement('button');
-    btn.textContent = '+ Laisser mon avis';
-    btn.style.cssText = 'background:transparent;border:1px solid var(--border2);color:var(--muted);padding:10px 24px;border-radius:100px;cursor:pointer;font-size:.83rem;font-family:DM Sans,sans-serif;transition:all .2s';
-    btn.onclick = function(){ openReviewModal(); };
-    btnWrap.appendChild(btn);
-    
-    reviewsSection.appendChild(h2);
-    reviewsSection.appendChild(p);
-    reviewsSection.appendChild(grid);
-    reviewsSection.appendChild(btnWrap);
+    const reviewsSection = document.createElement('div');
+    reviewsSection.style.cssText = 'max-width:1100px;margin:0 auto;padding:0 2rem 4rem';
+    reviewsSection.innerHTML = `
+      <h2 style="font-family:'Italiana',serif;font-size:2rem;text-align:center;color:var(--gold);margin-bottom:.5rem">Ce qu'ils disent</h2>
+      <p style="text-align:center;font-family:'Crimson Pro',serif;font-style:italic;color:var(--muted);margin-bottom:2rem">Témoignages de nos utilisateurs</p>
+      <div id="homeReviews" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem"></div>
+      <div style="text-align:center;margin-top:2rem">
+        <button onclick="openReviewModal()" style="background:transparent;border:1px solid var(--border2);color:var(--muted);padding:10px 24px;border-radius:100px;cursor:pointer;font-size:.83rem;font-family:'DM Sans',sans-serif;transition:all .2s" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--muted)'">
+          + Laisser mon avis
+        </button>
+      </div>`;
     featuresSection.after(reviewsSection);
     renderHomeReviews();
   }
 });
-
-/* ══════════════════════════════════════════════
-   RELATION EVALUATOR
-══════════════════════════════════════════════ */
-var REL = { mode: null, prenom: '', age: '', signe: '', coherence: 5, projet: 5 };
-
-function selectRelMode(mode, el) {
-  REL.mode = mode;
-  document.querySelectorAll('.rel-mode-card').forEach(function(c){ c.classList.remove('selected'); });
-  el.classList.add('selected');
-  document.getElementById('relForm').style.display = 'block';
-  document.getElementById('relResult').style.display = 'none';
-  document.getElementById('relForm').scrollIntoView({ behavior: 'smooth' });
-}
-
-async function analyzeRelation() {
-  var a = STATE.answers;
-  var r = REL;
-  var greenFlags = Array.from(document.querySelectorAll('[data-fid="rel_green"].sel')).map(function(e){ return e.dataset.val; });
-  var redFlags = Array.from(document.querySelectorAll('[data-fid="rel_red"].sel')).map(function(e){ return e.dataset.val; });
-  var dispo = (document.querySelector('[data-fid="rel_dispo"].sel') || {}).dataset.val || '?';
-  var feeling = (document.querySelector('[data-fid="rel_feeling"].sel') || {}).dataset.val || '?';
-  var comm = (document.querySelector('[data-fid="rel_comm"].sel') || {}).dataset.val || '?';
-  var valeurs = Array.from(document.querySelectorAll('[data-fid="rel_valeurs"].sel')).map(function(e){ return e.dataset.val; });
-
-  document.getElementById('relResult').style.display = 'none';
-  var btn = document.querySelector('#relForm .btn-next');
-  btn.textContent = 'Analyse en cours... ✨';
-  btn.disabled = true;
-
-  var userProfile = "Mon profil: " + (a.prenom||'moi') + ", " + (a.age||'?') + " ans, attachement=" + (a.attach||'?') + ", valeurs=" + JSON.stringify(a.valeurs) + ", love_lang=" + (a.love_lang||'?');
-  var partnerProfile = "Partenaire: " + (r.prenom||'?') + ", " + (r.age||'?') + " ans, signe=" + r.signe + ", disponibilite=" + dispo + ", coherence=" + r.coherence + "/10, feeling=" + feeling + ", communication=" + comm + ", valeurs_percues=" + JSON.stringify(valeurs) + ", projet_vie=" + r.projet + "/10, green_flags=" + JSON.stringify(greenFlags) + ", red_flags=" + JSON.stringify(redFlags) + ", concern=" + (document.getElementById('rel_concern').value||'aucun') + ", mode=" + r.mode;
-
-  var sys = 'Tu es PerfectMatch, expert en compatibilite relationnelle. Reponds UNIQUEMENT en JSON valide sans backticks:
-{"score_global":number(0-100),"verdict":string,"resume":string(2-3 phrases),"dimensions":[{"nom":string,"score":number,"analyse":string}],"green_flags_analyse":[{"flag":string,"signification":string}],"red_flags_analyse":[{"flag":string,"signification":string,"urgence":"faible|modere|eleve"}],"dynamique":string,"pronostic":{"court_terme":string,"long_terme":string},"conseil_cle":string,"message":string}
-Sois honnete, nuance, sans complaisance. Si red flags serieux, dis-le clairement. Langue: ' + curLang;
-
-  try {
-    var resp = await fetch('/api/claude', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 2000,
-        system: sys,
-        messages: [{ role: 'user', content: userProfile + '
-' + partnerProfile }]
-      })
-    });
-    var data = await resp.json();
-    var raw = (data.content || []).map(function(b){ return b.text || ''; }).join('').replace(/```json|```/g,'').trim();
-    var result = JSON.parse(raw);
-    showRelResult(result, r, greenFlags, redFlags);
-  } catch(e) {
-    showRelResult(buildRelFallback(r, greenFlags, redFlags), r, greenFlags, redFlags);
-  }
-
-  btn.textContent = 'Analyser notre compatibilite ✨';
-  btn.disabled = false;
-}
-
-function buildRelFallback(r, green, red) {
-  var score = Math.max(20, Math.min(95, 60 + green.length * 5 - red.length * 8 + (r.coherence - 5) * 3));
-  return {
-    score_global: score,
-    verdict: score > 75 ? "Compatibilite prometteuse" : score > 50 ? "Relation a potentiel, points a surveiller" : "Signaux d'alerte importants",
-    resume: "L'analyse croisee de vos profils revele " + (score > 70 ? "une bonne base de compatibilite avec des zones de croissance mutuelle." : "des points de friction significatifs qui meritent attention avant de s'engager davantage."),
-    dimensions: [
-      { nom: "Disponibilite emotionnelle", score: r.coherence * 10, analyse: "Evaluee a partir de tes observations comportementales." },
-      { nom: "Alignement des valeurs", score: Math.min(95, 50 + green.length * 8), analyse: "Base sur les valeurs percues et les green flags observes." },
-      { nom: "Projet de vie commun", score: r.projet * 10, analyse: "Selon ton evaluation de l'alignement sur les projets de vie." },
-      { nom: "Securite relationnelle", score: Math.max(10, 80 - red.length * 15), analyse: red.length > 2 ? "Les red flags detectes impactent significativement ce score." : "Peu de signaux negatifs observes." }
-    ],
-    green_flags_analyse: green.map(function(f){ return { flag: f, signification: "Signal positif observe dans la relation." }; }),
-    red_flags_analyse: red.map(function(f){ return { flag: f, signification: "Point d'attention a surveiller.", urgence: red.length > 3 ? "eleve" : "modere" }; }),
-    dynamique: "La dynamique entre vous semble " + (r.coherence > 6 ? "relativement stable" : "parfois imprévisible") + ".",
-    pronostic: {
-      court_terme: green.length > red.length ? "Les prochaines semaines peuvent etre positives si la communication reste ouverte." : "Des tensions pourraient emerger si les red flags ne sont pas adresses.",
-      long_terme: score > 70 ? "Potentiel de relation durable si les bases sont consolidees." : "Une conversation honnete sur les attentes respectives est necessaire."
-    },
-    conseil_cle: red.length > 2 ? "Prends du recul et observe si ces comportements persistent. Ne minimise pas tes observations." : "Continue d'observer la coherence entre les actes et les paroles.",
-    message: "Cet analyse est base sur ce que tu observes — pas sur la realite complete de l'autre personne. Fais confiance a tes ressentis tout en restant ouvert·e a la decouverte."
-  };
-}
-
-function showRelResult(r, rel, green, red) {
-  var res = document.getElementById('relResult');
-  res.style.display = 'block';
-
-  var scoreColor = r.score_global > 75 ? 'var(--green)' : r.score_global > 50 ? 'var(--gold)' : 'var(--red)';
-  var urgenceColor = { faible: 'var(--amber)', modere: 'var(--rose)', eleve: 'var(--red)' };
-
-  var html = '<div class="rel-score-wrap">';
-  html += '<div style="font-family:Italiana,serif;font-size:3.5rem;color:' + scoreColor + ';line-height:1">' + r.score_global + '%</div>';
-  html += '<div style="font-size:.8rem;color:var(--muted);margin-bottom:.5rem">score de compatibilite</div>';
-  html += '<div style="font-family:Italiana,serif;font-size:1.6rem;margin-bottom:.5rem">' + r.verdict + '</div>';
-  html += '<p class="pt" style="max-width:540px;margin:0 auto">' + r.resume + '</p>';
-  html += '</div>';
-
-  // Dimensions
-  html += '<div class="blk"><div class="blk-hd"><span class="blk-ico">📊</span><span class="blk-t">Dimensions analysees</span></div>';
-  (r.dimensions || []).forEach(function(d) {
-    html += '<div class="dim-r"><div class="dim-lbl">' + d.nom + '</div><div class="dim-bw"><div class="dim-b" data-s="' + d.score + '"></div></div><div class="dim-s">' + d.score + '%</div></div>';
-    html += '<p style="font-size:.78rem;color:var(--muted);margin-bottom:.75rem;padding-left:0">' + d.analyse + '</p>';
-  });
-  html += '</div>';
-
-  // Green flags
-  if (r.green_flags_analyse && r.green_flags_analyse.length > 0) {
-    html += '<div class="blk"><div class="blk-hd"><span class="blk-ico">✅</span><span class="blk-t">Green flags analyses</span></div>';
-    r.green_flags_analyse.forEach(function(g) {
-      html += '<div class="rel-alert green"><span class="rel-alert-ico">✅</span><div><div class="rel-alert-t">' + g.flag + '</div><div class="rel-alert-d">' + g.signification + '</div></div></div>';
-    });
-    html += '</div>';
-  }
-
-  // Red flags
-  if (r.red_flags_analyse && r.red_flags_analyse.length > 0) {
-    html += '<div class="blk"><div class="blk-hd"><span class="blk-ico">🚨</span><span class="blk-t">Red flags analyses</span></div>';
-    r.red_flags_analyse.forEach(function(rf) {
-      var urg = rf.urgence || 'modere';
-      var ico = urg === 'eleve' ? '🚨' : urg === 'modere' ? '⚠️' : 'ℹ️';
-      html += '<div class="rel-alert ' + (urg === 'eleve' ? 'red' : 'amber') + '"><span class="rel-alert-ico">' + ico + '</span><div><div class="rel-alert-t">' + rf.flag + ' <span style="font-size:.7rem;opacity:.7">[' + urg + ']</span></div><div class="rel-alert-d">' + rf.signification + '</div></div></div>';
-    });
-    html += '</div>';
-  }
-
-  // Dynamique + Pronostic
-  html += '<div class="blk"><div class="blk-hd"><span class="blk-ico">🔮</span><span class="blk-t">Dynamique et pronostic</span></div>';
-  html += '<p class="pt"><strong style="color:var(--gold)">Dynamique actuelle :</strong> ' + r.dynamique + '</p>';
-  if (r.pronostic) {
-    html += '<p class="pt"><strong style="color:var(--gold)">Court terme :</strong> ' + r.pronostic.court_terme + '</p>';
-    html += '<p class="pt"><strong style="color:var(--gold)">Long terme :</strong> ' + r.pronostic.long_terme + '</p>';
-  }
-  html += '</div>';
-
-  // Conseil cle
-  html += '<div class="blk" style="border-color:rgba(212,168,67,.3)"><div class="blk-hd"><span class="blk-ico">🎯</span><span class="blk-t">Conseil cle</span></div>';
-  html += '<p class="pt" style="font-size:1rem">' + r.conseil_cle + '</p></div>';
-
-  // Message final
-  html += '<div class="final-blk"><div class="blk-hd" style="border-bottom:1px solid rgba(212,168,67,.15)"><span class="blk-ico">💌</span><span class="blk-t">Message pour toi</span></div>';
-  html += '<p class="final-msg">"' + r.message + '"</p></div>';
-
-  // Disclaimer
-  html += '<div class="bias-i binfo" style="border-color:var(--border)"><span class="bi-ico">📋</span><div><div class="bi-t">Limite importante</div><div class="bi-d">Cette analyse est basee sur ta perception de l'autre personne — pas sur son profil reel. Elle peut contenir des biais de projection ou d'idealisation. Utilise-la comme outil de reflexion, pas comme verdict definitif.</div></div></div>';
-
-  // Reset button
-  html += '<div class="rpt-actions" style="margin-top:1.5rem"><button class="btn-rpt btn-rpt-s" onclick="resetRelation()">🔄 Evaluer une autre relation</button><button class="btn-rpt btn-rpt-g" onclick="window.print()">🖨️ Imprimer</button></div>';
-
-  res.innerHTML = html;
-  res.scrollIntoView({ behavior: 'smooth' });
-
-  setTimeout(function() {
-    res.querySelectorAll('.dim-b').forEach(function(b) {
-      var s = b.dataset.s; b.style.width = '0';
-      setTimeout(function(){ b.style.width = s + '%'; }, 100);
-    });
-  }, 300);
-}
-
-function resetRelation() {
-  REL = { mode: null, prenom: '', age: '', signe: '', coherence: 5, projet: 5 };
-  document.querySelectorAll('.rel-mode-card').forEach(function(c){ c.classList.remove('selected'); });
-  document.querySelectorAll('[data-fid]').forEach(function(c){ if(c.dataset.fid && c.dataset.fid.indexOf('rel_')===0) c.classList.remove('sel'); });
-  document.getElementById('relForm').style.display = 'none';
-  document.getElementById('relResult').style.display = 'none';
-  window.scrollTo(0, 0);
-}
 </script>
 
 <style>
 @media print{
+  .pcard, .blk, .final-blk { overflow: visible !important; word-wrap: break-word !important; }
+  .report-pg { max-width: 100% !important; padding: 0 1rem !important; }
   #cv,nav,.rpt-actions,.lock-blk{display:none!important;}
   body{background:white;color:black;}
   .blk,.final-blk{border:1px solid #ddd;page-break-inside:avoid;}
   .rpt-hdr{background:white;border:1px solid #ddd;}
   .score-n{color:#d4a843;}
-  .page{display:block!important;padding-top:0;}
+  .page{display:none!important;padding-top:0;}
   #page-report{display:block!important;}
 }
 </style>
@@ -2510,64 +2296,6 @@ function resetRelation() {
     </div>
   </div>
 
-
-  <!-- FAQ 13 - Reconnaitre son PerfectMatch -->
-  <div class="accordion">
-    <div class="accordion-hd" onclick="toggleAcc(this)">
-      <span class="acc-ico">💫</span>
-      <span class="acc-title">"Comment reconnaître mon PerfectMatch quand je le rencontre ?"</span>
-      <span class="acc-badge bbhi">Terrain</span>
-      <span class="acc-arrow">&#9660;</span>
-    </div>
-    <div class="accordion-body">
-      <p class="pt">C'est probablement la question la plus importante — et la plus mal répondue par la culture populaire. Le coup de foudre n'est pas un indicateur fiable. Voici ce que la science et la psychologie disent vraiment.</p>
-
-      <div class="ex-box">
-        <div class="ex-label gold">&#128269; Ce que tu NE cherches PAS</div>
-        <strong>Le coup de foudre intense</strong> n'est pas un signe de compatibilité — c'est souvent un signe d'activation de ton style d'attachement. Si tu ressens une intensité immédiate et une obsession précoce, ton système nerveux reconnaît un pattern familier, pas nécessairement sain. La recherche montre que les relations qui commencent "fort" ont des taux de rupture plus élevés à 2 ans.
-      </div>
-
-      <div class="ex-box rose">
-        <div class="ex-label rose">&#128214; Exemple concret en app de rencontre</div>
-        <strong>Kévin fait du Hinge.</strong> Il matche avec deux profils. Avec Laure, il ressent une attirance immédiate, elle est mystérieuse, répond en décalé. Avec Sophie, c'est agréable, fluide, elle est disponible et directe. Son instinct dit Laure. La psychologie dit : teste Sophie. L'attirance pour Laure est probablement une réponse dopaminergique à l'incertitude. La fluidité avec Sophie est un signal de sécurité — souvent confondu avec le manque d'intérêt.
-      </div>
-
-      <div class="ex-box">
-        <div class="ex-label gold">&#10024; Les vrais signaux à chercher</div>
-        <strong>1. La cohérence</strong> — ce qu'il/elle dit et ce qu'il/elle fait sont alignés. Pas de "je t'appellerai" sans appel. Pas de "je suis très occupé" combiné à des stories Instagram actives.<br><br>
-        <strong>2. La facilité à être soi</strong> — tu n'as pas besoin de te surveiller, de performer, de minimiser des parties de toi. Tu peux dire une chose stupide sans craindre le jugement.<br><br>
-        <strong>3. La réciprocité naturelle</strong> — l'effort est partagé sans que tu aies besoin de le demander ou de compter les points.<br><br>
-        <strong>4. La curiosité mutuelle</strong> — il/elle pose des questions sur ta vie réelle, pas seulement sur tes photos. Il/elle se souvient de ce que tu as dit la semaine d'avant.<br><br>
-        <strong>5. Le confort dans le silence</strong> — vous pouvez être ensemble sans remplir chaque seconde. Un signe d'intimité authentique, pas de peur du vide.
-      </div>
-
-      <div class="ex-box violet">
-        <div class="ex-label violet">&#128218; Exemple en IRL (vie réelle)</div>
-        <strong>Fatou rencontre Marc</strong> lors d'un atelier photo. Pas de coup de foudre. Une conversation fluide de 2h dont elle sort énergisée, pas épuisée. Il la contacte 3 jours après — pas le soir même (pas trop eager), pas 2 semaines après (pas de jeux). Il propose une activité précise, pas un vague "on se voit ?". À leur deuxième rencontre, il se souvient qu'elle avait mentionné son frère. Ce ne sont pas des red flags ou des green flags spectaculaires — c'est de la <em>régularité douce</em>. C'est exactement ce que ton rapport PerfectMatch essaie de te préparer à reconnaître.
-      </div>
-
-      <div class="ex-box green">
-        <div class="ex-label green">&#9989; Les questions à te poser après un premier rendez-vous</div>
-        Au lieu de "est-ce que je le/la trouve beau/belle ?" ou "est-ce que j'ai des papillons ?" — pose-toi ces questions :<br><br>
-        &#10143; <strong>Est-ce que je me suis senti·e libre d'être moi-même ?</strong><br>
-        &#10143; <strong>Est-ce qu'il/elle a posé des questions et écouté les réponses ?</strong><br>
-        &#10143; <strong>Est-ce que je ressens de la curiosité ou de l'anxiété en attendant le prochain message ?</strong> (curiosité = bon signe / anxiété = signal d'attachement anxieux activé)<br>
-        &#10143; <strong>Est-ce que j'ai eu envie de lui raconter quelque chose de vrai sur moi ?</strong><br>
-        &#10143; <strong>Est-ce que je me sens mieux ou plus stressé·e depuis qu'on se parle ?</strong>
-      </div>
-
-      <div class="ex-box rose">
-        <div class="ex-label rose">&#9888;&#65039; Le piège du "potentiel"</div>
-        "Il a tellement de potentiel" ou "elle pourrait être incroyable si elle travaillait sur elle-même" — ce sont des phrases qui signalent que tu n'es pas avec la personne telle qu'elle est, mais avec l'idée que tu te fais d'elle. Ton PerfectMatch n'est pas un projet de rénovation. Il/elle est déjà, maintenant, quelqu'un avec qui tu te sens bien — sans travaux.
-      </div>
-
-      <div class="ex-box green">
-        <div class="ex-label green">&#128161; La règle des 3 rencontres</div>
-        Première rencontre : observe. Deuxième rencontre : est-ce que la cohérence tient ? Troisième rencontre : est-ce que tu te sens encore plus à l'aise ou moins ? Si à la troisième rencontre tu te sens <em>plus</em> à l'aise qu'à la première — c'est un excellent signe. Si tu te sens <em>moins</em> à l'aise — tu essaies probablement de te convaincre.
-      </div>
-    </div>
-  </div>
-
   <!-- CTA LUNA -->
   <div style="background:linear-gradient(140deg,rgba(139,92,246,.1),rgba(232,84,122,.08));border:1px solid rgba(139,92,246,.25);border-radius:12px;padding:2rem;text-align:center;margin-top:2rem;margin-bottom:1rem">
     <div style="font-size:2rem;margin-bottom:.75rem">🌙</div>
@@ -2583,166 +2311,6 @@ function resetRelation() {
     <p class="pt" style="max-width:480px;margin:0 auto 1.5rem">30 pages · Big Five · Attachement · Astrologie critique · Plan 90 jours · 30+ sources</p>
     <button class="btn-plan btn-plan-gold" style="max-width:280px" onclick="showGuideModal()">⬇️ Télécharger le guide gratuit</button>
   </div>
-
-</div>
-</div>
-
-<!-- ══ RELATION PAGE ══ -->
-<div class="page" id="page-relation" style="position:relative;z-index:2">
-<div class="relation-pg">
-
-  <div style="text-align:center;padding:2rem 1rem 2rem">
-    <span style="font-size:2.5rem">💑</span>
-    <h2 class="page-title" style="margin-top:.75rem">Évalue ta relation</h2>
-    <p class="page-sub">Tu as quelqu'un en tête — attraction, début de relation, ou couple établi ?<br>Obtiens un score de compatibilité honnête et des insights concrets.</p>
-  </div>
-
-  <!-- MODE SELECTION -->
-  <div class="rel-mode-cards" id="relModeCards">
-    <div class="rel-mode-card" onclick="selectRelMode('attraction',this)">
-      <div class="rm-ico">🔥</div>
-      <div class="rm-t">Attraction</div>
-      <div class="rm-d">Tu es attiré·e par quelqu'un mais vous n'êtes pas encore ensemble</div>
-    </div>
-    <div class="rel-mode-card" onclick="selectRelMode('debut',this)">
-      <div class="rm-ico">🌱</div>
-      <div class="rm-t">Début de relation</div>
-      <div class="rm-d">Vous sortez ensemble depuis peu, tu veux savoir si ça peut durer</div>
-    </div>
-    <div class="rel-mode-card" onclick="selectRelMode('couple',this)">
-      <div class="rm-ico">💍</div>
-      <div class="rm-t">En couple</div>
-      <div class="rm-d">Relation établie — tu veux comprendre vos dynamiques et points de friction</div>
-    </div>
-  </div>
-
-  <!-- QUESTIONNAIRE -->
-  <div id="relForm" style="display:none">
-
-    <!-- SECTION 1 : LA PERSONNE -->
-    <div class="rel-section">
-      <div class="rel-section-hd">
-        <span class="rel-section-ico">👤</span>
-        <span class="rel-section-t">La personne que tu évalues</span>
-      </div>
-      <div class="g2">
-        <div class="fg"><label class="fl">Son prénom</label>
-          <input type="text" id="rel_prenom" placeholder="Ex. Thomas" oninput="REL.prenom=this.value"></div>
-        <div class="fg"><label class="fl">Son âge</label>
-          <input type="number" id="rel_age" placeholder="Ex. 32" min="18" max="99" oninput="REL.age=this.value"></div>
-      </div>
-      <div class="fg"><label class="fl">Son signe astrologique (si connu)</label>
-        <select id="rel_signe" onchange="REL.signe=this.value">
-          <option value="">-- Sélectionner --</option>
-          <option>Bélier ♈</option><option>Taureau ♉</option><option>Gémeaux ♊</option>
-          <option>Cancer ♋</option><option>Lion ♌</option><option>Vierge ♍</option>
-          <option>Balance ♎</option><option>Scorpion ♏</option><option>Sagittaire ♐</option>
-          <option>Capricorne ♑</option><option>Verseau ♒</option><option>Poissons ♓</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- SECTION 2 : COMPORTEMENTS OBSERVÉS -->
-    <div class="rel-section">
-      <div class="rel-section-hd">
-        <span class="rel-section-ico">👁️</span>
-        <span class="rel-section-t">Comportements que tu observes</span>
-      </div>
-      <div class="fg"><label class="fl">Sa disponibilité émotionnelle</label>
-        <div class="cg c2">
-          <div class="cc" data-fid="rel_dispo" data-val="haute" onclick="selC('rel_dispo','haute',false,this)"><span class="cc-ico">🤗</span><div class="cc-t">Très disponible</div><div class="cc-s">Présent·e, attentif·ve, répond rapidement</div></div>
-          <div class="cc" data-fid="rel_dispo" data-val="moyenne" onclick="selC('rel_dispo','moyenne',false,this)"><span class="cc-ico">😐</span><div class="cc-t">Moyennement disponible</div><div class="cc-s">Parfois présent·e, parfois distant·e</div></div>
-          <div class="cc" data-fid="rel_dispo" data-val="faible" onclick="selC('rel_dispo','faible',false,this)"><span class="cc-ico">🚪</span><div class="cc-t">Peu disponible</div><div class="cc-s">Souvent absent·e, ferme, fuit l'intimité</div></div>
-          <div class="cc" data-fid="rel_dispo" data-val="inconnue" onclick="selC('rel_dispo','inconnue',false,this)"><span class="cc-ico">🤷</span><div class="cc-t">Difficile à évaluer</div><div class="cc-s">Comportement imprévisible, chaud/froid</div></div>
-        </div>
-      </div>
-      <div class="fg"><label class="fl">Sa cohérence (dit = fait ?)</label>
-        <div class="scale-v" id="sv_rel_coherence">5</div>
-        <input type="range" id="rel_coherence" min="1" max="10" value="5" style="--v:50%"
-          oninput="updS('rel_coherence',this.value);REL.coherence=+this.value">
-        <div class="scale-ends"><span>Très incohérent·e</span><span>Très cohérent·e</span></div>
-      </div>
-      <div class="fg"><label class="fl">Comment tu te sens avec lui/elle</label>
-        <div class="cg c2">
-          <div class="cc" data-fid="rel_feeling" data-val="libre" onclick="selC('rel_feeling','libre',false,this)"><span class="cc-ico">🕊️</span><div class="cc-t">Libre et moi-même</div></div>
-          <div class="cc" data-fid="rel_feeling" data-val="anxieux" onclick="selC('rel_feeling','anxieux',false,this)"><span class="cc-ico">😰</span><div class="cc-t">Anxieux·se / sur mes gardes</div></div>
-          <div class="cc" data-fid="rel_feeling" data-val="energise" onclick="selC('rel_feeling','energise',false,this)"><span class="cc-ico">⚡</span><div class="cc-t">Énergisé·e / inspiré·e</div></div>
-          <div class="cc" data-fid="rel_feeling" data-val="epuise" onclick="selC('rel_feeling','epuise',false,this)"><span class="cc-ico">😔</span><div class="cc-t">Épuisé·e / drainé·e</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECTION 3 : VALEURS ET TRAITS PERÇUS -->
-    <div class="rel-section">
-      <div class="rel-section-hd">
-        <span class="rel-section-ico">🧩</span>
-        <span class="rel-section-t">Ses valeurs et traits tels que tu les perçois</span>
-      </div>
-      <div class="fg"><label class="fl">Ses valeurs principales (ce que tu observes)</label>
-        <div class="cg c3">
-          <div class="cc" data-fid="rel_valeurs" data-val="famille" onclick="selC('rel_valeurs','famille',true,this)"><span class="cc-ico">👨‍👩‍👧</span><div class="cc-t">Famille</div></div>
-          <div class="cc" data-fid="rel_valeurs" data-val="ambition" onclick="selC('rel_valeurs','ambition',true,this)"><span class="cc-ico">💼</span><div class="cc-t">Ambition</div></div>
-          <div class="cc" data-fid="rel_valeurs" data-val="liberte" onclick="selC('rel_valeurs','liberte',true,this)"><span class="cc-ico">✈️</span><div class="cc-t">Liberté</div></div>
-          <div class="cc" data-fid="rel_valeurs" data-val="securite" onclick="selC('rel_valeurs','securite',true,this)"><span class="cc-ico">🏠</span><div class="cc-t">Sécurité</div></div>
-          <div class="cc" data-fid="rel_valeurs" data-val="plaisir" onclick="selC('rel_valeurs','plaisir',true,this)"><span class="cc-ico">🎉</span><div class="cc-t">Plaisir / fun</div></div>
-          <div class="cc" data-fid="rel_valeurs" data-val="spiritualite" onclick="selC('rel_valeurs','spiritualite',true,this)"><span class="cc-ico">🙏</span><div class="cc-t">Spiritualité</div></div>
-        </div>
-      </div>
-      <div class="fg"><label class="fl">Son style de communication</label>
-        <div class="cg c2">
-          <div class="cc" data-fid="rel_comm" data-val="direct" onclick="selC('rel_comm','direct',false,this)"><span class="cc-ico">🗣️</span><div class="cc-t">Direct·e et clair·e</div></div>
-          <div class="cc" data-fid="rel_comm" data-val="indirect" onclick="selC('rel_comm','indirect',false,this)"><span class="cc-ico">🌀</span><div class="cc-t">Indirect·e / sous-entendus</div></div>
-          <div class="cc" data-fid="rel_comm" data-val="ferme" onclick="selC('rel_comm','ferme',false,this)"><span class="cc-ico">🔒</span><div class="cc-t">Se ferme dans les conflits</div></div>
-          <div class="cc" data-fid="rel_comm" data-val="expressif" onclick="selC('rel_comm','expressif',false,this)"><span class="cc-ico">💬</span><div class="cc-t">Très expressif·ve / émotionnel·le</div></div>
-        </div>
-      </div>
-      <div class="fg"><label class="fl">Alignement sur les projets de vie (enfants, lieu de vie, style de vie)</label>
-        <div class="scale-v" id="sv_rel_projet">5</div>
-        <input type="range" id="rel_projet" min="1" max="10" value="5" style="--v:50%"
-          oninput="updS('rel_projet',this.value);REL.projet=+this.value">
-        <div class="scale-ends"><span>Très divergents</span><span>Très alignés</span></div>
-      </div>
-    </div>
-
-    <!-- SECTION 4 : RED/GREEN FLAGS -->
-    <div class="rel-section">
-      <div class="rel-section-hd">
-        <span class="rel-section-ico">🚦</span>
-        <span class="rel-section-t">Signaux que tu observes</span>
-      </div>
-      <div class="fg"><label class="fl">Green flags observés (coche tout ce qui s'applique)</label>
-        <div class="cg c2">
-          <div class="cc" data-fid="rel_green" data-val="coherent" onclick="selC('rel_green','coherent',true,this)"><span class="cc-ico">✅</span><div class="cc-t">Dit ce qu'il/elle fait</div></div>
-          <div class="cc" data-fid="rel_green" data-val="ecoute" onclick="selC('rel_green','ecoute',true,this)"><span class="cc-ico">👂</span><div class="cc-t">Écoute vraiment</div></div>
-          <div class="cc" data-fid="rel_green" data-val="respect" onclick="selC('rel_green','respect',true,this)"><span class="cc-ico">🤝</span><div class="cc-t">Respecte mes limites</div></div>
-          <div class="cc" data-fid="rel_green" data-val="curiosite" onclick="selC('rel_green','curiosite',true,this)"><span class="cc-ico">🔍</span><div class="cc-t">Curieux·se de ma vie réelle</div></div>
-          <div class="cc" data-fid="rel_green" data-val="effort" onclick="selC('rel_green','effort',true,this)"><span class="cc-ico">⚖️</span><div class="cc-t">Effort réciproque</div></div>
-          <div class="cc" data-fid="rel_green" data-val="confiance" onclick="selC('rel_green','confiance',true,this)"><span class="cc-ico">🔓</span><div class="cc-t">Je me sens en confiance</div></div>
-        </div>
-      </div>
-      <div class="fg" style="margin-top:1rem"><label class="fl">Red flags observés (coche tout ce qui s'applique)</label>
-        <div class="cg c2">
-          <div class="cc" data-fid="rel_red" data-val="incoherent" onclick="selC('rel_red','incoherent',true,this)"><span class="cc-ico">⚠️</span><div class="cc-t">Dit une chose, fait l'autre</div></div>
-          <div class="cc" data-fid="rel_red" data-val="chaud_froid" onclick="selC('rel_red','chaud_froid',true,this)"><span class="cc-ico">🌡️</span><div class="cc-t">Chaud/froid imprévisible</div></div>
-          <div class="cc" data-fid="rel_red" data-val="controle" onclick="selC('rel_red','controle',true,this)"><span class="cc-ico">🔗</span><div class="cc-t">Comportement contrôlant</div></div>
-          <div class="cc" data-fid="rel_red" data-val="minimise" onclick="selC('rel_red','minimise',true,this)"><span class="cc-ico">😶</span><div class="cc-t">Minimise mes émotions</div></div>
-          <div class="cc" data-fid="rel_red" data-val="isole" onclick="selC('rel_red','isole',true,this)"><span class="cc-ico">🚫</span><div class="cc-t">M'éloigne de mes proches</div></div>
-          <div class="cc" data-fid="rel_red" data-val="mensonge" onclick="selC('rel_red','mensonge',true,this)"><span class="cc-ico">🎭</span><div class="cc-t">Mensonges / cachotteries</div></div>
-        </div>
-      </div>
-      <div class="fg" style="margin-top:1rem">
-        <label class="fl">Ce qui te préoccupe le plus dans cette relation (optionnel)</label>
-        <textarea id="rel_concern" placeholder="Ex. Il/elle ne parle jamais de ses sentiments, je ne sais jamais où j'en suis..." oninput="REL.concern=this.value"></textarea>
-      </div>
-    </div>
-
-    <button class="btn-next" onclick="analyzeRelation()" style="width:100%;margin-top:1rem">
-      Analyser notre compatibilité ✨
-    </button>
-  </div>
-
-  <!-- RÉSULTAT -->
-  <div id="relResult" style="display:none"></div>
 
 </div>
 </div>

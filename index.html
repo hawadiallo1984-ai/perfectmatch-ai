@@ -1730,6 +1730,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 <style>
 @media print{
+  .pcard, .blk, .final-blk { overflow: visible !important; word-wrap: break-word !important; }
+  .report-pg { max-width: 100% !important; padding: 0 1rem !important; }
   #cv,nav,.rpt-actions,.lock-blk{display:none!important;}
   body{background:white;color:black;}
   .blk,.final-blk{border:1px solid #ddd;page-break-inside:avoid;}

@@ -1290,7 +1290,7 @@ Blessures: ${a.blessures||'non précisé'}
 Plan souscrit: ${STATE.plan} — ${isPremium?'inclure plan 90j et profil ombre':'rapport standard'}`;
 
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{
+    const r=await fetch('/api/claude',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:3000,system:sys,messages:[{role:'user',content:msg}]})
@@ -1503,7 +1503,7 @@ async function sendLuna(){
   const reportCtx=STATE.report?`Contexte du rapport PerfectMatch de l'utilisateur: score=${STATE.report.score}%, profil="${STATE.report.titre}", attachement détecté dans les données, valeurs=${JSON.stringify(STATE.answers.valeurs)}.`:'Pas encore de rapport généré.';
 
   try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{
+    const r=await fetch('/api/claude',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({

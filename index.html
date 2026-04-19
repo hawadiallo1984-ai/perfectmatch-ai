@@ -1623,6 +1623,7 @@ function submitEmailCapture(){
     headers:{'Content-Type':'application/json'},
     body: JSON.stringify({ email, consent, plan: STATE.plan })
   }).catch(()=>{}); // Silently fail if not deployed yet
+  document.getElementById('emailModal').style.display='none';
   startAnalysis();
 }
 

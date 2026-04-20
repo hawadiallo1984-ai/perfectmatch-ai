@@ -46,3 +46,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  var matchBtn = document.getElementById("matchBtn");
+  if (matchBtn) matchBtn.addEventListener("click", showMatchModal);
+});
+document.addEventListener("DOMContentLoaded", function() { var b=document.getElementById("matchBtn"); if(b) b.addEventListener("click", showMatchModal); });

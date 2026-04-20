@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // Analyser button
+  var mb=document.getElementById("matchBtn"); if(mb) mb.addEventListener("click",showMatchModal);
   var btn = document.getElementById("relBtn");
   if (btn) {
     btn.addEventListener("click", function() {
@@ -47,8 +48,3 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-  var matchBtn = document.getElementById("matchBtn");
-  if (matchBtn) matchBtn.addEventListener("click", showMatchModal);
-});
-document.addEventListener("DOMContentLoaded", function() { var b=document.getElementById("matchBtn"); if(b) b.addEventListener("click", showMatchModal); });

@@ -502,7 +502,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;heigh
           <li><span class="pf-ico">✅</span> 1 mise à jour gratuite (3 mois)</li>
         </ul>
         <button class="btn-plan btn-plan-gold" onclick="openPayModal('premium', 47)">Obtenir pour 47€</button>
-    </div><div class="plan" style="border:2px solid #e8547a"><div class="plan-name" style="color:#e8547a">Match</div><div class="plan-desc">3 profils psycho-compatibles par semaine.</div><div class="plan-price"><span class="plan-amount">67</span><span class="plan-cur">&#x20AC;</span><span class="plan-period">&nbsp;/ mois</span></div><ul class="plan-features"><li>&#x2705; 3 profils / semaine</li><li>&#x2705; Score psycho avant chaque profil</li><li>&#x2705; Anonymat total</li><li>&#x2705; Zero photo obligatoire</li><li>&#x2705; Mise en relation si interet mutuel</li></ul><button class="btn-plan" style="background:#e8547a;border:none;color:#fff;width:100%;padding:14px;border-radius:8px;cursor:pointer" id="matchBtn">Rejoindre la liste</button></div>
+    </div><div class="plan" style="border:2px solid #7c3aed;position:relative"><div style="position:absolute;top:12px;right:12px;background:#7c3aed;color:#fff;font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:100px">NOUVEAU</div><div class="plan-name" style="color:#7c3aed">Analyse Toxique</div><div class="plan-desc">Analyse approfondie d un profil preoccupant — 10 dimensions psychologiques.</div><div class="plan-price"><span class="plan-amount">9</span><span class="plan-cur">&#x20AC;</span><span class="plan-period">&nbsp;/ rapport unique</span></div><ul class="plan-features"><li><span class="pf-ico">&#x2705;</span> 10 dimensions analysees</li><li><span class="pf-ico">&#x2705;</span> Triade noire + coercition + gaslighting</li><li><span class="pf-ico">&#x2705;</span> Niveau d alerte personnalise</li><li><span class="pf-ico">&#x2705;</span> Conseils de protection concrets</li><li><span class="pf-ico">&#x2705;</span> Ressources d aide incluses</li></ul><button class="btn-plan" style="background:#7c3aed;border:none;color:#fff;width:100%;padding:14px;border-radius:8px;cursor:pointer" onclick="openPayModal('toxic',9)">Obtenir pour 9&#x20AC;</button></div><div class="plan" style="border:2px solid #e8547a"><div class="plan-name" style="color:#e8547a">Match</div><div class="plan-desc">3 profils psycho-compatibles par semaine.</div><div class="plan-price"><span class="plan-amount">67</span><span class="plan-cur">&#x20AC;</span><span class="plan-period">&nbsp;/ mois</span></div><ul class="plan-features"><li>&#x2705; 3 profils / semaine</li><li>&#x2705; Score psycho avant chaque profil</li><li>&#x2705; Anonymat total</li><li>&#x2705; Zero photo obligatoire</li><li>&#x2705; Mise en relation si interet mutuel</li></ul><button class="btn-plan" style="background:#e8547a;border:none;color:#fff;width:100%;padding:14px;border-radius:8px;cursor:pointer" id="matchBtn">Rejoindre la liste</button></div>
     </div>
   </div>
 </div>
@@ -826,7 +826,8 @@ function showPage(id){
 let curPlan='free';
 const planInfo={
   astro:{title:'Plan Astral',desc:'Rapport complet + analyse astrologique + 10 messages Luna',amount:'27€'},
-  premium:{title:'Plan Premium',desc:'Rapport maximal + Luna illimitée + 90 jours de suivi',amount:'47€'}
+  premium:{title:'Plan Premium',desc:'Rapport maximal + Luna illimitée + 90 jours de suivi',amount:'47€'},
+  toxic:{title:'Analyse Toxique',desc:'Analyse 10 dimensions psychologiques',amount:'9€'}
 };
 
 // ── STRIPE REAL INTEGRATION ──────────────────────────────────────────────────

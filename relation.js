@@ -87,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
       document.getElementById("relResult").scrollIntoView({behavior: "smooth"});
     });
   }
+  var rm4=document.getElementById("rMode4");if(rm4){rm4.addEventListener("click",function(){["rMode1","rMode2","rMode3","rMode4"].forEach(function(x){var e=document.getElementById(x);if(e){e.style.borderColor="";e.style.background="";}});rm4.style.borderColor="var(--red)";rm4.style.background="rgba(239,68,68,.07)";toxicAnswers={};showToxicAssessment();});}
 });
 // PerfectMatch - Toxic Profile Assessment Module
 // Based on: Dark Triad (Paulhus & Williams 2002), DSM-5, ICD-11, Johnson 2008
@@ -376,19 +377,3 @@ function showToxicResult(r, dimScores, globalScore) {
   res.scrollIntoView({behavior: "smooth"});
 }
 
-// Add rMode4 toxic mode listener
-document.addEventListener("DOMContentLoaded", function() {
-  var rm4 = document.getElementById("rMode4");
-  if (rm4) {
-    rm4.addEventListener("click", function() {
-      ["rMode1","rMode2","rMode3","rMode4"].forEach(function(x) {
-        var e = document.getElementById(x);
-        if (e) { e.style.borderColor = ""; e.style.background = ""; }
-      });
-      rm4.style.borderColor = "var(--red)";
-      rm4.style.background = "rgba(239,68,68,.07)";
-      toxicAnswers = {};
-      showToxicAssessment();
-    });
-  }
-});

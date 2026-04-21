@@ -40,7 +40,6 @@ function showMatchModal() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  var relFormEl=document.getElementById("relForm"); if(relFormEl) relFormEl.dataset.orig=relFormEl.innerHTML;
   // Match button
   var mb = document.getElementById("matchBtn");
   if (mb) mb.addEventListener("click", showMatchModal);
@@ -58,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
       });
       el.style.borderColor = "var(--gold)";
       el.style.background = "rgba(212,168,67,.07)";
-      var rff=document.getElementById("relForm"); if(rff.dataset.orig) rff.innerHTML=rff.dataset.orig;
+      var rff=document.getElementById("relForm"); if(rff.dataset.orig){rff.innerHTML=rff.dataset.orig;} else {rff.dataset.orig=rff.innerHTML;}
       document.getElementById("relForm").style.display = "block";
       document.getElementById("relResult").style.display = "none";
       document.getElementById("relForm").scrollIntoView({behavior: "smooth"});
@@ -69,6 +68,13 @@ document.addEventListener("DOMContentLoaded", function() {
   var btn = document.getElementById("relBtn");
   if (btn) {
     btn.addEventListener("click", function() {
+      // Check payment
+      var plan = (typeof STATE !== "undefined") ? STATE.plan : "free";
+      var hasPaid = plan === "relation_report" || plan === "pack_relation" || plan === "astro" || plan === "premium";
+      if (!hasPaid) {
+        if (typeof openPayModal === "function") openPayModal("relation_report", 7);
+        return;
+      }
       var green = [];
       var red = [];
       document.querySelectorAll(".cc.sel").forEach(function(e) {
@@ -225,6 +231,13 @@ function showToxicAssessment() {
 }
 
 async function analyzeToxicProfile() {
+  // Check payment
+  var plan = (typeof STATE !== "undefined") ? STATE.plan : "free";
+  var hasPaid = plan === "toxic" || plan === "pack_relation" || plan === "premium";
+  if (!hasPaid) {
+    if (typeof openPayModal === "function") openPayModal("toxic", 9);
+    return;
+  }
   var btn = document.querySelector("#toxicForm .btn-next");
   if (btn) { btn.textContent = "Analyse en cours..."; btn.disabled = true; }
 

@@ -40,6 +40,7 @@ function showMatchModal() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+  var relFormEl=document.getElementById("relForm"); if(relFormEl) relFormEl.dataset.orig=relFormEl.innerHTML;
   // Match button
   var mb = document.getElementById("matchBtn");
   if (mb) mb.addEventListener("click", showMatchModal);
@@ -57,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
       });
       el.style.borderColor = "var(--gold)";
       el.style.background = "rgba(212,168,67,.07)";
-      var rff=document.getElementById("relForm"); if(rff.dataset.orig){rff.innerHTML=rff.dataset.orig;} else {rff.dataset.orig=rff.innerHTML;}
+      var rff=document.getElementById("relForm"); if(rff.dataset.orig) rff.innerHTML=rff.dataset.orig;
       document.getElementById("relForm").style.display = "block";
       document.getElementById("relResult").style.display = "none";
       document.getElementById("relForm").scrollIntoView({behavior: "smooth"});

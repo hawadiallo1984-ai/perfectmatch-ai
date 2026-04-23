@@ -2,6 +2,118 @@
 var relMode = null;
 
 // showMatchModal doit etre definie AVANT DOMContentLoaded
+
+var GREEN_LABELS = {
+  c1: "Dit ce qu il fait / coherence verbale",
+  c2: "Ecoute vraiment / presence emotionnelle",
+  c3: "Respecte tes limites / securite",
+  c4: "Tu te sens libre / pas de pression"
+};
+var RED_LABELS = {
+  r1: "Incoherent / dit une chose fait autre",
+  r2: "Chaud/froid / inconsistance emotionnelle",
+  r3: "Controlant / surveille ou impose",
+  r4: "Mensonges / opacite"
+};
+var MODE_LABELS = {
+  attraction: "phase d attraction initiale",
+  debut: "debut de relation",
+  couple: "relation etablie en couple"
+};
+
+async function analyzeRelationWithAI(mode, green, red, sc) {
+  var res = document.getElementById("relResult");
+  var greenDesc = green.map(function(g) { return GREEN_LABELS[g] || g; }).join(", ");
+  var redDesc = red.map(function(r) { return RED_LABELS[r] || r; }).join(", ");
+  var modeLabel = MODE_LABELS[mode] || mode;
+
+  var sys = "Tu es PerfectMatch, psychologue specialise en relations amoureuses. Reponds UNIQUEMENT en JSON sans backticks: {score:number,verdict:string,niveau:string('prometteuse'|'potentiel'|'alerte'),resume:string(2-3 phrases),analyse_green:{titre:string,contenu:string},analyse_red:{titre:string,contenu:string,gravite:string},dynamique:string,style_attachement_probable:string,conseils:[string],message:string}. Utilise un langage chaleureux, empatique et non clinique. Max 150 mots par champ.";
+
+  var prompt = "Mode: " + modeLabel + ". Score calcule: " + sc + "%. Green flags observes: " + (greenDesc || "aucun") + ". Red flags observes: " + (redDesc || "aucun") + ". Genere une analyse relationnelle complete et personnalisee.";
+
+  try {
+    var resp = await fetch("/api/claude", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1500,
+        system: sys,
+        messages: [{role: "user", content: prompt}]
+      })
+    });
+    var data = await resp.json();
+    var raw = (data.content || []).map(function(b) { return b.text || ""; }).join("").replace(/```json|```/g, "").trim();
+    showRelationReport(JSON.parse(raw));
+  } catch(e) {
+    showRelationFallback(sc, green, red, mode);
+  }
+}
+
+function showRelationReport(r) {
+  var res = document.getElementById("relResult");
+  if (!res) return;
+  var cols = {prometteuse: "var(--green)", potentiel: "var(--gold)", alerte: "var(--red)"};
+  var col = cols[r.niveau] || "var(--gold)";
+  var h = "<div style='background:linear-gradient(135deg,var(--card),rgba(212,168,67,.05));border:2px solid " + col + ";border-radius:16px;padding:2.5rem;text-align:center;margin-bottom:1.5rem'>";
+  h += "<div style='font-family:Italiana,serif;font-size:3.5rem;color:" + col + ";margin-bottom:.5rem'>" + (r.score || 0) + "%</div>";
+  h += "<div style='font-family:Italiana,serif;font-size:1.8rem;margin-bottom:.75rem'>" + (r.verdict || "") + "</div>";
+  h += "<p style='color:var(--muted);font-size:.9rem;max-width:520px;margin:0 auto'>" + (r.resume || "") + "</p></div>";
+
+  if (r.analyse_green && r.analyse_green.contenu) {
+    h += "<div class='blk'><div class='blk-hd'><span class='blk-ico'>&#x2705;</span><span class='blk-t'>" + (r.analyse_green.titre || "Signaux positifs") + "</span></div>";
+    h += "<p class='pt'>" + r.analyse_green.contenu + "</p></div>";
+  }
+  if (r.analyse_red && r.analyse_red.contenu) {
+    var redCol = r.analyse_red.gravite === "eleve" ? "rgba(239,68,68,.2)" : "rgba(245,158,11,.15)";
+    h += "<div class='blk' style='border-color:" + redCol + "'><div class='blk-hd'><span class='blk-ico'>&#x26A0;</span><span class='blk-t'>" + (r.analyse_red.titre || "Points d attention") + "</span></div>";
+    h += "<p class='pt'>" + r.analyse_red.contenu + "</p></div>";
+  }
+  if (r.dynamique) {
+    h += "<div class='blk'><div class='blk-hd'><span class='blk-ico'>&#x1F504;</span><span class='blk-t'>Dynamique relationnelle</span></div>";
+    h += "<p class='pt'>" + r.dynamique + "</p>";
+    if (r.style_attachement_probable) h += "<p class='pt' style='color:var(--muted);font-size:.85rem'>Style d attachement probable : " + r.style_attachement_probable + "</p>";
+    h += "</div>";
+  }
+  if (r.conseils && r.conseils.length > 0) {
+    h += "<div class='blk'><div class='blk-hd'><span class='blk-ico'>&#x1F4A1;</span><span class='blk-t'>Conseils personnalises</span></div>";
+    r.conseils.forEach(function(conseil, i) {
+      h += "<div style='display:flex;gap:.75rem;padding:.5rem 0;border-bottom:1px solid var(--border)'><span style='color:var(--gold);font-weight:700;min-width:20px'>" + (i+1) + "</span><span style='font-size:.88rem'>" + conseil + "</span></div>";
+    });
+    h += "</div>";
+  }
+  h += "<div class='final-blk'><p class='final-msg'>" + (r.message || "") + "</p></div>";
+  h += "<div class='rpt-actions' style='margin-top:1.5rem'>";
+  h += "<button class=btn-rpt onclick=doResetRelForm()>&#x1F504; Nouvelle analyse</button>";
+  h += "<button class='btn-rpt btn-rpt-g' onclick='window.print()'>&#x1F5A8; Imprimer</button>";
+  h += "</div>";
+  res.innerHTML = h;
+  res.scrollIntoView({behavior: "smooth"});
+}
+
+function showRelationFallback(sc, green, red, mode) {
+  var res = document.getElementById("relResult");
+  var col = sc > 75 ? "var(--green)" : sc > 50 ? "var(--gold)" : "var(--red)";
+  var v = sc > 75 ? "Relation prometteuse" : sc > 50 ? "Potentiel avec vigilance" : "Signaux d alerte";
+  var h = "<div style='text-align:center;padding:2rem'>";
+  h += "<div style='font-family:Italiana,serif;font-size:3.5rem;color:" + col + "'>" + sc + "%</div>";
+  h += "<div style='font-family:Italiana,serif;font-size:1.5rem;margin:.5rem 0'>" + v + "</div>";
+  h += "<p style='color:var(--muted)'>Green flags: " + green.length + " | Red flags: " + red.length + "</p>";
+  h += "<p style='color:var(--muted);font-size:.85rem;margin-top:1rem'>Mode : " + (MODE_LABELS[mode] || mode) + "</p>";
+  h += "<button class=btn-rpt onclick=doResetRelForm()>&#x1F504; Nouvelle analyse</button>";
+  h += "</div>";
+  res.innerHTML = h;
+  res.scrollIntoView({behavior: "smooth"});
+}
+
+
+function doResetRelForm() {
+  var rr = document.getElementById('relResult');
+  var rf = document.getElementById('relForm');
+  if (rr) rr.style.display = 'none';
+  if (rf) rf.style.display = 'none';
+}
+
 function showMatchModal() {
   var existing = document.getElementById("matchModal");
   if (existing) { existing.style.display = "flex"; return; }
@@ -82,17 +194,11 @@ document.addEventListener("DOMContentLoaded", function() {
         if (e.dataset.fid === "rel_red") red.push(e.dataset.val);
       });
       var sc = Math.max(20, Math.min(95, 60 + green.length * 5 - red.length * 8));
-      var v = sc > 75 ? "Relation prometteuse" : sc > 50 ? "Potentiel avec vigilance" : "Signaux alerte";
-      var col = sc > 75 ? "var(--green)" : sc > 50 ? "var(--gold)" : "var(--red)";
-      var h = "<div style='padding:2rem;text-align:center'>";
-      h += "<div style='font-family:Italiana,serif;font-size:3.5rem;color:" + col + "'>" + sc + "%</div>";
-      h += "<div style='font-family:Italiana,serif;font-size:1.5rem;margin:.5rem 0'>" + v + "</div>";
-      h += "<p style='color:var(--muted)'>Green: " + green.length + " | Red: " + red.length + "</p>";
-      h += "<button onclick=\"document.getElementById('relResult').style.display='none'\" style='margin-top:1.5rem;border:1px solid var(--border2);background:transparent;color:var(--text);padding:10px 24px;border-radius:6px;cursor:pointer'>Evaluer une autre</button>";
-      h += "</div>";
-      document.getElementById("relResult").innerHTML = h;
-      document.getElementById("relResult").style.display = "block";
-      document.getElementById("relResult").scrollIntoView({behavior: "smooth"});
+      var res = document.getElementById("relResult");
+      res.style.display = "block";
+      res.innerHTML = "<div style='text-align:center;padding:3rem'><div style='font-family:Italiana,serif;font-size:1.2rem;color:var(--gold)'>Analyse en cours...</div><p style='color:var(--muted);margin-top:.5rem'>Luna analyse ta situation...</p></div>";
+      res.scrollIntoView({behavior: "smooth"});
+      analyzeRelationWithAI(relMode, green, red, sc);
     });
   }
 });
@@ -381,10 +487,10 @@ function showToxicResult(r, dimScores, globalScore) {
   // Disclaimer obligatoire
   h += "<div class='bias-i binfo'><span class='bi-ico'>&#x1F4CB;</span><div>";
   h += "<div class='bi-t'>Limite importante</div>";
-  h += "<div class='bi-d'>Cette analyse est basee sur tes observations et ne constitue pas un diagnostic clinique. Si tu te sens en danger, contacte le <strong>3919</strong> (violences conjugales, gratuit 24h/24) ou les services d'urgence.</div></div></div>";
+  h += "<div class=bi-d>Outil de reflexion. En cas de danger, contacte le 3919 (gratuit 24h/24).</div></div></div>";
 
-  h += "<div class='rpt-actions' style='margin-top:1.5rem'>";
-  h += "<button class='btn-rpt btn-rpt-s' onclick=\"document.getElementById('relResult').style.display='none';document.getElementById('relForm').style.display='none'\">&#x1F504; Nouvelle analyse</button>";
+  h += "<div class=rpt-actions style=margin-top:1.5rem>";
+  h += "<button class=btn-rpt onclick=doResetRelForm()>Nouvelle analyse</button>";
   h += "</div>";
 
   res.innerHTML = h;

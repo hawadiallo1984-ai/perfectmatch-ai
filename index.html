@@ -999,7 +999,7 @@ function activatePlan(plan) {
       <h3>Paiement réussi !</h3>
       <p>Ton plan <strong>${planInfo[plan].title}</strong> est maintenant actif.<br>
       Un reçu a été envoyé à ton adresse e-mail.</p>
-      <button class="btn-pay" onclick="closePayModal();showPage('quiz')" style="max-width:280px;margin:0 auto">
+      <button class="btn-pay" onclick="closePayModal();showPage(plan==='relation_report'||plan==='pack_relation'?'relation':'quiz')" style="max-width:280px;margin:0 auto">
         Lancer mon questionnaire →
       </button>
     </div>`;

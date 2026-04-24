@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-export default function RapportPage() {
+function RapportContent() {
   const params = useSearchParams();
   const sessionId = params.get('session_id');
   const [report, setReport] = useState<any>(null);
@@ -48,7 +48,6 @@ export default function RapportPage() {
         </h1>
       </header>
 
-      {/* Score */}
       <section style={{ marginBottom: 100 }}>
         <div style={{ padding: 60, border: '1px solid var(--line-strong)', background: 'linear-gradient(180deg, rgba(201,162,75,0.06), rgba(28,24,51,0.8))', textAlign: 'center' }}>
           <div style={{ fontSize: 12, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 24 }}>Score de clarté</div>
@@ -58,39 +57,6 @@ export default function RapportPage() {
         </div>
       </section>
 
-      {/* Big Five */}
-      {report.big_five && (
-        <section style={{ marginBottom: 100 }}>
-          <h2 style={{ fontFamily: 'Fraunces, serif', fontSize: 40, fontWeight: 300, marginBottom: 40, letterSpacing: '-0.02em' }}>
-            Tes <em style={{ fontStyle: 'italic', color: 'var(--gold-soft)' }}>cinq dimensions</em>.
-          </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 20 }}>
-            {Object.entries(report.big_five).map(([key, val]: [string, any]) => (
-              <div key={key} style={{ padding: 28, border: '1px solid var(--line)', background: 'rgba(28,24,51,0.4)' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 14 }}>
-                  <div style={{ fontFamily: 'Fraunces, serif', fontSize: 20, textTransform: 'capitalize' }}>{key.replace('_', ' ')}</div>
-                  <div style={{ fontFamily: 'Fraunces, serif', fontSize: 28, color: 'var(--gold-soft)', fontWeight: 300 }}>{val.score}</div>
-                </div>
-                <div style={{ height: 3, background: 'var(--line)', borderRadius: 100, marginBottom: 14, overflow: 'hidden' }}>
-                  <div style={{ height: '100%', width: `${val.score}%`, background: 'linear-gradient(90deg, var(--gold), var(--gold-soft))', borderRadius: 100 }} />
-                </div>
-                <p style={{ fontSize: 14, opacity: 0.7, fontWeight: 300, lineHeight: 1.6 }}>{val.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Attachment */}
-      {report.attachment && (
-        <section style={{ marginBottom: 100, padding: 50, border: '1px solid var(--line-strong)', background: 'linear-gradient(135deg, rgba(142,122,181,0.08), rgba(28,24,51,0.6))' }}>
-          <div style={{ fontFamily: 'Fraunces, serif', fontStyle: 'italic', color: 'var(--gold)', marginBottom: 12 }}>✦ Ton style d'attachement</div>
-          <h3 style={{ fontFamily: 'Fraunces, serif', fontSize: 38, fontWeight: 400, marginBottom: 20, letterSpacing: '-0.02em' }}>{report.attachment.style}</h3>
-          <p style={{ opacity: 0.85, lineHeight: 1.75, fontWeight: 300, marginBottom: 30 }}>{report.attachment.description}</p>
-        </section>
-      )}
-
-      {/* Final message */}
       {report.final_message && (
         <section style={{ padding: '80px 60px', border: '1px solid var(--line-strong)', textAlign: 'center', background: 'radial-gradient(ellipse at center, rgba(201,162,75,0.08), transparent 70%), rgba(28,24,51,0.8)' }}>
           <div style={{ fontFamily: 'Fraunces, serif', fontSize: 32, color: 'var(--gold)', marginBottom: 28, letterSpacing: '0.3em' }}>✦ · ✦ · ✦</div>
@@ -100,7 +66,6 @@ export default function RapportPage() {
         </section>
       )}
 
-      {/* Luna CTA */}
       <div style={{ marginTop: 60, padding: 48, border: '1px dashed var(--line-strong)', textAlign: 'center', background: 'rgba(142,122,181,0.04)' }}>
         <div style={{ fontSize: 36, marginBottom: 18 }}>🌙</div>
         <h3 style={{ fontFamily: 'Fraunces, serif', fontSize: 28, fontWeight: 400, marginBottom: 12 }}>
@@ -117,5 +82,17 @@ export default function RapportPage() {
         }}>Parler à Luna →</a>
       </div>
     </main>
+  );
+}
+
+export default function RapportPage() {
+  return (
+    <Suspense fallback={
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', zIndex: 2 }}>
+        <div style={{ fontFamily: 'Fraunces, serif', fontSize: 32, fontStyle: 'italic', color: 'var(--gold-soft)' }}>Chargement…</div>
+      </div>
+    }>
+      <RapportContent />
+    </Suspense>
   );
 }

@@ -863,7 +863,7 @@ async function openPayModal(plan, amt) {
     const res = await fetch('/api/create-payment-intent', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ plan, email: '' })
+      body: JSON.stringify({ plan, amount: planInfo[plan]?parseFloat(planInfo[plan].amount):27, email: ''})
     });
 
     if (!res.ok) throw new Error('API error ' + res.status);

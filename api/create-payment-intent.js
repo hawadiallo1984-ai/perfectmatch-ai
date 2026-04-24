@@ -7,7 +7,6 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
 
   const STRIPE_SECRET = process.env.STRIPE_SECRET_KEY;
-console.log("STRIPE_KEY:", !!process.env.STRIPE_SECRET_KEY);
   if (!STRIPE_SECRET) {
     return res.status(500).json({ error: "Stripe non configure", key_exists: !!process.env.STRIPE_SECRET_KEY, key_prefix: (process.env.STRIPE_SECRET_KEY||"").substring(0,8) });
   }

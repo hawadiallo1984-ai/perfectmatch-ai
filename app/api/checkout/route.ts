@@ -31,8 +31,8 @@ export async function POST(req: NextRequest) {
             quantity: 1,
           },
         ],
-        success_url: `${process.env.NEXT_PUBLIC_APP_URL}/rapport?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/apercu`,
+        success_url: `https://perfectmatch-ai.vercel.app/rapport?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `https://perfectmatch-ai.vercel.app/apercu`,
         metadata: {
           offerId,
           // Store user answers hash to retrieve them post-payment if needed
@@ -46,8 +46,8 @@ export async function POST(req: NextRequest) {
       mode: 'payment',
       payment_method_types: ['card'],
       line_items: [{ price: priceId, quantity: 1 }],
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/rapport?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/apercu`,
+      success_url: `https://perfectmatch-ai.vercel.app/rapport?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `https://perfectmatch-ai.vercel.app/apercu`,
       metadata: {
         offerId,
         answers_snapshot: answers ? JSON.stringify(answers).slice(0, 500) : '',

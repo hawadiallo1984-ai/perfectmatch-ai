@@ -1,4 +1,8 @@
-'use client';
+const handleCheckout = (offerId: string) => {
+  // Stocke l'offre choisie et envoie vers le questionnaire
+  sessionStorage.setItem('pm_offer', offerId);
+  window.location.href = '/questionnaire';
+};'use client';
 
 import { useEffect } from 'react';
 import { OFFERS, OFFERS_ORDER } from '@/lib/offers';

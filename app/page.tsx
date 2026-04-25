@@ -1,12 +1,4 @@
-const handleCheckout = (offerId: string) => {
-  // Stocke l'offre choisie et envoie vers le questionnaire
-  sessionStorage.setItem('pm_offer', offerId);
-  window.location.href = '/questionnaire';
-};const handleCheckout = (offerId: string) => {
-  // Stocke l'offre choisie et envoie vers le questionnaire
-  sessionStorage.setItem('pm_offer', offerId);
-  window.location.href = '/questionnaire';
-};'use client';
+'use client';
 
 import { useEffect } from 'react';
 import { OFFERS, OFFERS_ORDER } from '@/lib/offers';
@@ -29,17 +21,11 @@ export default function HomePage() {
     return () => observer.disconnect();
   }, []);
 
-  const handleCheckout = async (offerId: string) => {
-    const res = await fetch('/api/checkout', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ offerId }),
-    });
-    const data = await res.json();
-    if (data.url) window.location.href = data.url;
+  const handleCheckout = (offerId: string) => {
+    sessionStorage.setItem('pm_offer', offerId);
+    window.location.href = '/questionnaire';
   };
 
-  // Helper for markdown-style bold in features
   const renderFeature = (text: string) => {
     const parts = text.split(/(\*\*.*?\*\*)/g);
     return parts.map((part, i) =>
@@ -53,21 +39,19 @@ export default function HomePage() {
 
   return (
     <>
-      {/* NAV */}
       <nav className={styles.nav}>
         <div className={styles.logo}>
           <span className={styles.logoMark}></span>
           PerfectMatch
         </div>
         <div className={styles.navLinks}>
-          <a href="#pillars">Méthode</a>
+          <a href="#pillars">Methode</a>
           <a href="#offres">Tarifs</a>
           <a href="#methode">Processus</a>
           <a href="#offres" className={styles.navCta}>Commencer</a>
         </div>
       </nav>
 
-      {/* HERO */}
       <section className={styles.hero}>
         <svg className={styles.zodiacRing} viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -77,58 +61,53 @@ export default function HomePage() {
           <circle cx="450" cy="450" r="340" fill="none" stroke="#C9A24B" strokeWidth="0.3" opacity="0.4" />
           <circle cx="450" cy="450" r="420" fill="none" stroke="#C9A24B" strokeWidth="0.3" opacity="0.4" strokeDasharray="3 8" />
           <text fontFamily="Fraunces, serif" fontSize="28" fill="#C9A24B" opacity="0.8" letterSpacing="8">
-            <textPath href="#circle-path">♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑ ♒ ♓ ♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑ ♒ ♓</textPath>
+            <textPath href="#circle-path">Aries Taurus Gemini Cancer Leo Virgo Libra Scorpio Sagittarius Capricorn Aquarius Pisces</textPath>
           </text>
         </svg>
 
         <div className={styles.eyebrow}>IA · Psychologie · Astrologie</div>
         <h1 className={styles.heroTitle}>
-          Trouve la clarté<br />
-          <em>avant</em> de trouver l'amour
+          Trouve la clarte<br />
+          <em>avant</em> de trouver l&apos;amour
         </h1>
         <p className={styles.heroSub}>
-          L'algorithme de compatibilité le plus avancé jamais conçu. Trois parcours pour explorer ton <strong>profil psychologique</strong>, ton thème <strong>astral</strong> et la dynamique de ton <strong>couple</strong> — avec la profondeur d'un vrai thérapeute.
+          L&apos;algorithme de compatibilite le plus avance jamais concu. Trois parcours pour explorer ton <strong>profil psychologique</strong>, ton theme <strong>astral</strong> et la dynamique de ton <strong>couple</strong>.
         </p>
         <div className={styles.heroCtaGroup}>
-          <a href="#offres" className={styles.btnPrimary}>Voir les 3 offres →</a>
+          <a href="#offres" className={styles.btnPrimary}>Voir les 3 offres</a>
           <a href="/questionnaire" className={styles.btnGhost}>Commencer le test</a>
         </div>
       </section>
 
-      {/* PILLARS */}
       <section id="pillars" className={styles.section}>
         <div className={styles.sectionLabel}>Les fondations</div>
-        <h2 className={`${styles.sectionTitle} reveal`}>Une méthode <em>triple</em> — unique au monde.</h2>
-        <p className={`${styles.sectionLead} reveal`}>Chaque analyse repose sur trois piliers rigoureusement validés. La psychologie pour comprendre, l'astrologie pour symboliser, la clinique pour soigner.</p>
+        <h2 className={`${styles.sectionTitle} reveal`}>Une methode <em>triple</em> - unique au monde.</h2>
+        <p className={`${styles.sectionLead} reveal`}>Chaque analyse repose sur trois piliers rigoureusement valides.</p>
 
         <div className={styles.pillars}>
           <div className={`${styles.pillar} reveal`}>
             <div className={styles.pillarNum}>i.</div>
-            <span className={styles.pillarIcon}>🧠</span>
             <h3>Psychologie scientifique</h3>
-            <p>Big Five, styles d'attachement, théorie des besoins de Maslow, Gottman, Chapman. Les modèles les plus validés par la recherche académique contemporaine.</p>
+            <p>Big Five, styles d&apos;attachement, Gottman, Chapman. Les modeles les plus valides par la recherche academique contemporaine.</p>
           </div>
           <div className={`${styles.pillar} reveal`}>
             <div className={styles.pillarNum}>ii.</div>
-            <span className={styles.pillarIcon}>🌙</span>
             <h3>Astrologie symbolique</h3>
-            <p>Thème natal, maisons, aspects, synastrie de couple. Une lecture symbolique sérieuse, doublée d'un regard épistémologique honnête sur ses limites.</p>
+            <p>Theme natal, maisons, aspects, synastrie de couple. Une lecture symbolique serieuse.</p>
           </div>
           <div className={`${styles.pillar} reveal`}>
             <div className={styles.pillarNum}>iii.</div>
-            <span className={styles.pillarIcon}>🩺</span>
             <h3>Grille clinique</h3>
-            <p>Analyse de la triade noire, dépistage des schémas dysfonctionnels, grille diagnostique inspirée du DSM-5. Une rigueur thérapeutique, pas du coaching.</p>
+            <p>Analyse de la triade noire, depistage des schemas dysfonctionnels, grille diagnostique inspiree du DSM-5.</p>
           </div>
         </div>
       </section>
 
-      {/* OFFERS */}
       <section id="offres" className={`${styles.section} ${styles.offersSection}`}>
         <div className={styles.offersHeader}>
           <div className={styles.sectionLabel}>Choisir ton parcours</div>
-          <h2 className={`${styles.sectionTitle} reveal`}>Trois chemins. <em>Un seul</em> objectif : la clarté.</h2>
-          <p className={`${styles.sectionLead} reveal`}>Paiement unique, rapport IA complet, aucun abonnement. Chaque offre inclut une analyse astrologique approfondie et l'accès à Luna, ton IA relationnelle.</p>
+          <h2 className={`${styles.sectionTitle} reveal`}>Trois chemins. <em>Un seul</em> objectif : la clarte.</h2>
+          <p className={`${styles.sectionLead} reveal`}>Paiement unique, rapport IA complet, aucun abonnement.</p>
         </div>
 
         <div className={styles.offersGrid}>
@@ -164,49 +143,53 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* METHOD */}
       <section id="methode" className={styles.section}>
         <div className={styles.methodGrid}>
           <div>
             <div className={styles.sectionLabel}>Le processus</div>
-            <h2 className={`${styles.sectionTitle} reveal`}>De la question<br />à la <em>clarté</em>.</h2>
-            <p className={`${styles.sectionLead} reveal`}>Un parcours en quatre temps, conçu pour délivrer un rapport d'une précision rare — en moins de 15 minutes.</p>
+            <h2 className={`${styles.sectionTitle} reveal`}>De la question<br />a la <em>clarte</em>.</h2>
           </div>
 
           <ul className={`${styles.methodList} reveal`}>
-            {[
-              { n: '01.', t: 'Tu choisis ton parcours', d: 'Célibataire, psycho complète avec clinique, ou couple. Chaque offre est pensée pour un moment précis de ta vie amoureuse.' },
-              { n: '02.', t: 'Tu réponds en profondeur', d: 'Entre 10 et 20 minutes selon l\'offre. Les questions sont intimes — c\'est voulu. Plus tu es honnête, plus le rapport est précis.' },
-              { n: '03.', t: 'L\'IA génère ton rapport', d: 'Claude d\'Anthropic analyse tes 127 variables selon nos modèles cliniques. Le rapport est unique, jamais recopié.' },
-              { n: '04.', t: 'Tu approfondis avec Luna', d: 'Luna, ton IA relationnelle, connaît tes résultats. Tu peux lui poser toutes tes questions — sans jugement, à toute heure.' },
-            ].map((item) => (
-              <li key={item.n}>
-                <div className={styles.methodNum}>{item.n}</div>
-                <div>
-                  <h4>{item.t}</h4>
-                  <p>{item.d}</p>
-                </div>
-              </li>
-            ))}
+            <li>
+              <div className={styles.methodNum}>01.</div>
+              <div>
+                <h4>Tu choisis ton parcours</h4>
+                <p>Celibataire, psycho complete avec clinique, ou couple.</p>
+              </div>
+            </li>
+            <li>
+              <div className={styles.methodNum}>02.</div>
+              <div>
+                <h4>Tu reponds en profondeur</h4>
+                <p>Entre 10 et 20 minutes selon l&apos;offre.</p>
+              </div>
+            </li>
+            <li>
+              <div className={styles.methodNum}>03.</div>
+              <div>
+                <h4>L&apos;IA genere ton rapport</h4>
+                <p>Claude analyse tes 127 variables selon nos modeles cliniques.</p>
+              </div>
+            </li>
+            <li>
+              <div className={styles.methodNum}>04.</div>
+              <div>
+                <h4>Tu approfondis avec Luna</h4>
+                <p>Luna, ton IA relationnelle, connait tes resultats.</p>
+              </div>
+            </li>
           </ul>
         </div>
       </section>
 
-      {/* FOOTER */}
       <footer className={styles.footer}>
         <div className={styles.logo} style={{ justifyContent: 'center', marginBottom: 20 }}>
           <span className={styles.logoMark}></span>
           PerfectMatch
         </div>
-        <p className={styles.footerTagline}>« La santé mentale est un droit, pas un luxe. Nous veillons à le rendre accessible au plus grand nombre. »</p>
-        <div className={styles.footerLinks}>
-          <a href="/mentions">Mentions légales</a>
-          <a href="/rgpd">Politique RGPD</a>
-          <a href="/conditions">Conditions</a>
-          <a href="/contact">Contact</a>
-          <a href="/sources">Sources académiques</a>
-        </div>
-        <p className={styles.copyright}>© 2026 PerfectMatch · Chiffrement TLS · Paiement Stripe · Données non revendues</p>
+        <p className={styles.footerTagline}>« La sante mentale est un droit, pas un luxe. Nous veillons a le rendre accessible au plus grand nombre. »</p>
+        <p className={styles.copyright}>© 2026 PerfectMatch</p>
       </footer>
     </>
   );

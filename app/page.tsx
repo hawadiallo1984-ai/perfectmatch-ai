@@ -1,10 +1,13 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { OFFERS, OFFERS_ORDER } from '@/lib/offers';
 import styles from './page.module.css';
 
 export default function HomePage() {
+  const [waitlistEmail, setWaitlistEmail] = useState('');
+  const [waitlistStatus, setWaitlistStatus] = useState<'idle' | 'sent'>('idle');
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -24,6 +27,20 @@ export default function HomePage() {
   const handleCheckout = (offerId: string) => {
     sessionStorage.setItem('pm_offer', offerId);
     window.location.href = '/questionnaire';
+  };
+
+  const handleWaitlist = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!waitlistEmail) return;
+    // Pour l'instant on stocke en local, on connectera Resend plus tard
+    const existing = JSON.parse(localStorage.getItem('pm_couple_waitlist') || '[]');
+    existing.push({ email: waitlistEmail, date: new Date().toISOString() });
+    localStorage.setItem('pm_couple_waitlist', JSON.stringify(existing));
+    setWaitlistStatus('sent');
+    setTimeout(() => {
+      setWaitlistStatus('idle');
+      setWaitlistEmail('');
+    }, 4000);
   };
 
   const renderFeature = (text: string) => {
@@ -113,9 +130,34 @@ export default function HomePage() {
         <div className={styles.offersGrid}>
           {OFFERS_ORDER.map((id) => {
             const offer = OFFERS[id];
+            const isComingSoon = offer.comingSoon === true;
             return (
-              <div key={id} className={`${styles.offer} ${offer.featured ? styles.offerFeatured : ''} reveal`}>
-                {offer.badge && <div className={styles.offerBadge}>{offer.badge}</div>}
+              <div
+                key={id}
+                className={`${styles.offer} ${offer.featured ? styles.offerFeatured : ''} reveal`}
+                style={isComingSoon ? { opacity: 0.78, position: 'relative' } : {}}
+              >
+                {isComingSoon && (
+                  <div style={{
+                    position: 'absolute',
+                    top: -12,
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    background: 'rgba(142, 122, 181, 0.95)',
+                    color: '#0B0A14',
+                    fontSize: 11,
+                    letterSpacing: '0.2em',
+                    textTransform: 'uppercase',
+                    fontWeight: 600,
+                    padding: '6px 16px',
+                    borderRadius: 100,
+                    zIndex: 5,
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {offer.comingSoonNote || 'Bientot disponible'}
+                  </div>
+                )}
+                {offer.badge && !isComingSoon && <div className={styles.offerBadge}>{offer.badge}</div>}
                 <div className={styles.offerCategory}>{offer.category}</div>
                 <h3 className={styles.offerName}>
                   {offer.name}{' '}<em>{offer.nameEmphasis}</em>
@@ -134,9 +176,69 @@ export default function HomePage() {
                   ))}
                 </ul>
 
-                <button onClick={() => handleCheckout(offer.id)} className={styles.offerCta}>
-                  Obtenir pour {offer.price}€
-                </button>
+                {isComingSoon ? (
+                  <div style={{ marginTop: 'auto' }}>
+                    {waitlistStatus === 'sent' ? (
+                      <div style={{
+                        padding: '18px 12px',
+                        textAlign: 'center',
+                        border: '1px dashed rgba(142, 122, 181, 0.5)',
+                        background: 'rgba(142, 122, 181, 0.08)',
+                        fontFamily: 'Fraunces, serif',
+                        fontStyle: 'italic',
+                        color: '#A995C7',
+                        fontSize: 14,
+                      }}>
+                        ✦ Tu seras prevenu·e en premier
+                      </div>
+                    ) : (
+                      <form onSubmit={handleWaitlist} style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                        <input
+                          type="email"
+                          required
+                          placeholder="Ton email pour etre prevenu·e"
+                          value={waitlistEmail}
+                          onChange={(e) => setWaitlistEmail(e.target.value)}
+                          style={{
+                            width: '100%',
+                            padding: '14px 16px',
+                            border: '1px solid rgba(142, 122, 181, 0.4)',
+                            background: 'rgba(28, 24, 51, 0.5)',
+                            color: '#F5EFE3',
+                            fontFamily: 'inherit',
+                            fontSize: 14,
+                            outline: 'none',
+                            borderRadius: 2,
+                          }}
+                        />
+                        <button
+                          type="submit"
+                          style={{
+                            width: '100%',
+                            padding: 16,
+                            border: '1px solid rgba(142, 122, 181, 0.6)',
+                            background: 'linear-gradient(135deg, rgba(142, 122, 181, 0.2), rgba(142, 122, 181, 0.05))',
+                            color: '#F5EFE3',
+                            fontFamily: 'inherit',
+                            fontSize: 13,
+                            letterSpacing: '0.15em',
+                            textTransform: 'uppercase',
+                            fontWeight: 500,
+                            cursor: 'pointer',
+                            transition: 'all 0.3s',
+                            borderRadius: 2,
+                          }}
+                        >
+                          Me prevenir au lancement
+                        </button>
+                      </form>
+                    )}
+                  </div>
+                ) : (
+                  <button onClick={() => handleCheckout(offer.id)} className={styles.offerCta}>
+                    Obtenir pour {offer.price}€
+                  </button>
+                )}
               </div>
             );
           })}

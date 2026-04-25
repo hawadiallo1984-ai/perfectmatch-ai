@@ -7,12 +7,14 @@ export interface Offer {
   id: OfferId;
   category: string;
   name: string;
-  nameEmphasis: string; // Mot mis en italique doré
+  nameEmphasis: string;
   description: string;
   price: number;
   unit: string;
   badge?: string;
   featured?: boolean;
+  comingSoon?: boolean;
+  comingSoonNote?: string;
   features: string[];
   stripePriceEnvKey: string;
 }
@@ -20,22 +22,22 @@ export interface Offer {
 export const OFFERS: Record<OfferId, Offer> = {
   celibataire: {
     id: 'celibataire',
-    category: 'Pour célibataire',
+    category: 'Pour celibataire',
     name: 'Analyse',
-    nameEmphasis: 'Célibataire',
-    description: "Le rapport psychologique complet pour comprendre ton profil amoureux, tes schémas, et ton partenaire idéal — avec analyse astrologique incluse.",
+    nameEmphasis: 'Celibataire',
+    description: "Le rapport psychologique complet pour comprendre ton profil amoureux, tes schemas, et ton partenaire ideal — avec analyse astrologique incluse.",
     price: 47,
     unit: 'rapport unique',
     features: [
       'Questionnaire psychologique approfondi',
       "Big Five + styles d'attachement complets",
-      'Profil du partenaire idéal sur-mesure',
-      '**Analyse astrologique complète** (thème natal)',
-      'Détection des biais cognitifs et culturels',
-      'Schémas répétitifs identifiés',
+      'Profil du partenaire ideal sur-mesure',
+      '**Analyse astrologique complete** (theme natal)',
+      'Detection des biais cognitifs et culturels',
+      'Schemas repetitifs identifies',
       "Plan d'action concret sur 90 jours",
-      'Rapport PDF premium téléchargeable',
-      'Accès à Luna IA (10 messages)',
+      'Rapport PDF premium telechargeable',
+      'Acces a Luna IA (10 messages)',
     ],
     stripePriceEnvKey: 'STRIPE_PRICE_CELIBATAIRE',
   },
@@ -43,45 +45,47 @@ export const OFFERS: Record<OfferId, Offer> = {
     id: 'complete',
     category: 'Psycho + clinique',
     name: 'Analyse Psycho',
-    nameEmphasis: 'Complète',
+    nameEmphasis: 'Complete',
     description: "Le rapport ultime : psychologie + astrologie + grille clinique approfondie. Pour celles et ceux qui veulent comprendre tout, en profondeur.",
     price: 99,
     unit: 'rapport unique',
     badge: 'Le plus complet',
     featured: true,
     features: [
-      'Tout le rapport Analyse Célibataire',
-      '**Grille clinique approfondie** (inspirée DSM-5)',
-      'Dépistage triade noire + gaslighting',
+      'Tout le rapport Analyse Celibataire',
+      '**Grille clinique approfondie** (inspiree DSM-5)',
+      'Depistage triade noire + gaslighting',
       'Profil ombre (approche jungienne)',
-      'Analyse transgénérationnelle',
-      'Carte complète de tes angles morts',
-      'Astrologie avancée + progressions',
-      '**Luna IA illimitée** pendant 3 mois',
-      '1 mise à jour gratuite (6 mois)',
-      'Ressources thérapeutiques personnalisées',
+      'Analyse transgenerationnelle',
+      'Carte complete de tes angles morts',
+      'Astrologie avancee + progressions',
+      '**Luna IA illimitee** pendant 3 mois',
+      '1 mise a jour gratuite (6 mois)',
+      'Ressources therapeutiques personnalisees',
     ],
     stripePriceEnvKey: 'STRIPE_PRICE_COMPLETE',
   },
   couple: {
     id: 'couple',
-    category: 'À faire à deux',
+    category: 'A faire a deux',
     name: 'Analyse',
     nameEmphasis: 'de Couple',
-    description: "Le rapport complet pour comprendre la dynamique de votre couple — avec synastrie astrologique et diagnostic relationnel à deux voix.",
+    description: "Le rapport complet pour comprendre la dynamique de votre couple — avec synastrie astrologique et diagnostic relationnel a deux voix.",
     price: 67,
     unit: 'pour 2',
+    comingSoon: true,
+    comingSoonNote: 'Lancement prochain',
     features: [
       'Double questionnaire (un par partenaire)',
-      'Score de compatibilité multi-dimensions',
+      'Score de compatibilite multi-dimensions',
       "Croisement des styles d'attachement",
-      '**Synastrie astrologique complète**',
+      '**Synastrie astrologique complete**',
       'Analyse des 4 cavaliers (Gottman)',
-      'Dynamiques de pouvoir identifiées',
+      'Dynamiques de pouvoir identifiees',
       'Green flags et red flags mutuels',
-      'Plan de réparation sur 90 jours',
+      'Plan de reparation sur 90 jours',
       'Rapport commun + rapports individuels',
-      'Accès Luna partagé (20 messages)',
+      'Acces Luna partage (20 messages)',
     ],
     stripePriceEnvKey: 'STRIPE_PRICE_COUPLE',
   },

@@ -90,7 +90,7 @@ export const OFFERS: Record<OfferId, Offer> = {
       'Acces Luna partage (20 messages)',
     ],
     stripePriceEnvKey: 'STRIPE_PRICE_COUPLE',
-  },,
+  },
   emotiflex: {
     id: 'emotiflex',
     category: 'Intelligence emotionnelle',

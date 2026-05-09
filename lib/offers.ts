@@ -18,6 +18,7 @@ export interface Offer {
   features: string[];
   stripePriceEnvKey?: string;
   isAmazon?: boolean;
+  isDigitalSubscription?: boolean;
   amazonUrl?: string;
 }
 

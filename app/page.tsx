@@ -1,4 +1,12 @@
-'use client';
+{offer.isAmazon ? (
+  <a href={offer.amazonUrl} target="_blank" rel="noopener noreferrer" className={styles.offerCta} style={{display:'block',textAlign:'center',textDecoration:'none'}}>
+    Commander sur Amazon — {offer.price}€
+  </a>
+) : (
+  <button onClick={() => handleCheckout(offer.id)} className={styles.offerCta}>
+    Obtenir pour {offer.price}€
+  </button>
+)}'use client';
 
 import { useEffect, useState } from 'react';
 import { OFFERS, OFFERS_ORDER } from '@/lib/offers';

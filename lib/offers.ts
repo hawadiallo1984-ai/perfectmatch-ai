@@ -91,7 +91,6 @@ export const OFFERS: Record<OfferId, Offer> = {
     ],
     stripePriceEnvKey: 'STRIPE_PRICE_COUPLE',
   },
-,
   emotiflex_digital: {
     id: 'emotiflex_digital',
     category: 'Intelligence emotionnelle',

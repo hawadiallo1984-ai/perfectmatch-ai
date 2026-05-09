@@ -235,7 +235,7 @@ export default function HomePage() {
                     )}
                   </div>
                 ) : (
-                  {offer.isAmazon ? (<a href={offer.amazonUrl as string} target="_blank" rel="noopener noreferrer" className={styles.offerCta} style={{display:"block",textAlign:"center",textDecoration:"none"}}>Commander sur Amazon</a>) : (<button onClick={() => handleCheckout(offer.id)} className={styles.offerCta}>Obtenir pour {offer.price}€</button>)}
+                  offer.isAmazon ? (<a href={offer.amazonUrl as string} target="_blank" rel="noopener noreferrer" className={styles.offerCta} style={{display:"block",textAlign:"center",textDecoration:"none"}}>Commander sur Amazon</a>) : (<button onClick={() => handleCheckout(offer.id)} className={styles.offerCta}>Obtenir pour {offer.price}€</button>)
                 )}
               </div>
             );

@@ -13,6 +13,7 @@ const PROMPT_BY_OFFER: Record<OfferId, string> = {
   complete: REPORT_COMPLETE_SYSTEM_PROMPT,
   couple: REPORT_COUPLE_SYSTEM_PROMPT,
   emotiflex: '',
+  emotiflex_digital: '',
 };
 
 export async function POST(req: NextRequest) {

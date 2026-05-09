@@ -1,7 +1,7 @@
 // Configuration centrale des 3 offres PerfectMatch
 // Modifie ce fichier pour ajuster prix, features, badges
 
-export type OfferId = 'celibataire' | 'complete' | 'couple' | 'emotiflex';
+export type OfferId = 'celibataire' | 'complete' | 'couple' | 'emotiflex' | 'emotiflex_digital';
 
 export interface Offer {
   id: OfferId;
@@ -91,6 +91,29 @@ export const OFFERS: Record<OfferId, Offer> = {
     ],
     stripePriceEnvKey: 'STRIPE_PRICE_COUPLE',
   },
+,
+  emotiflex_digital: {
+    id: 'emotiflex_digital',
+    category: 'Intelligence emotionnelle',
+    name: 'Emotiflex',
+    nameEmphasis: 'Digital',
+    description: "La version interactive du jeu de cartes Emotiflex. Cartes digitales, check-in quotidien, journal emotionnel et exercices de communication — partout, tout le temps.",
+    price: 12,
+    unit: 'par mois',
+    badge: 'Nouveau',
+    featured: false,
+    isDigitalSubscription: true,
+    features: [
+      '**Cartes emotionnelles digitales** (50+ cartes)',
+      'Check-in emotionnel quotidien guide',
+      'Journal emotionnel personnel',
+      'Exercices de communication en couple',
+      'IA de reformulation emotionnelle',
+      'Parcours : peur du rejet, jalousie, confiance...',
+      'Compatible avec le jeu physique Emotiflex',
+    ],
+    stripePriceEnvKey: 'STRIPE_PRICE_EMOTIFLEX_DIGITAL',
+  },
   emotiflex: {
     id: 'emotiflex',
     category: 'Intelligence emotionnelle',
@@ -115,4 +138,4 @@ export const OFFERS: Record<OfferId, Offer> = {
   }
 };
 
-export const OFFERS_ORDER: OfferId[] = ['celibataire', 'complete', 'couple', 'emotiflex'];
+export const OFFERS_ORDER: OfferId[] = ['celibataire', 'complete', 'couple', 'emotiflex_digital', 'emotiflex'];

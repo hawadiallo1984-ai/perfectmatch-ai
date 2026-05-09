@@ -1,7 +1,7 @@
 // Configuration centrale des 3 offres PerfectMatch
 // Modifie ce fichier pour ajuster prix, features, badges
 
-export type OfferId = 'celibataire' | 'complete' | 'couple';
+export type OfferId = 'celibataire' | 'complete' | 'couple' | 'emotiflex';
 
 export interface Offer {
   id: OfferId;
@@ -16,7 +16,9 @@ export interface Offer {
   comingSoon?: boolean;
   comingSoonNote?: string;
   features: string[];
-  stripePriceEnvKey: string;
+  stripePriceEnvKey?: string;
+  isAmazon?: boolean;
+  amazonUrl?: string;
 }
 
 export const OFFERS: Record<OfferId, Offer> = {

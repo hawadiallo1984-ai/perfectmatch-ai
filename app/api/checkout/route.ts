@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
     }
 
     const offer = OFFERS[offerId as OfferId];
-    const priceId = process.env[offer.stripePriceEnvKey];
+    const priceId = offer.stripePriceEnvKey ? process.env[offer.stripePriceEnvKey] : undefined;
 
     if (!priceId) {
       // Fallback if user hasn't configured Stripe Price IDs yet

@@ -153,8 +153,6 @@ export const OFFERS: Record<OfferId, Offer> = {
     features: [
       '**7 jours gratuits** sans engagement',
       'Profil nutritionnel emotionnel complet',
-      'Recettes personnalisees chaque semaine',
-      'Menus anti-stress et anti-fatigue',
       'Routines anti-grignotage guidees',
       'Encouragements emotionnels quotidiens',
       'Suivi energie et humeur',

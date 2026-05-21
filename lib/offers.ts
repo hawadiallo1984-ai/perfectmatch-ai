@@ -1,7 +1,7 @@
 // Configuration centrale des 3 offres PerfectMatch
 // Modifie ce fichier pour ajuster prix, features, badges
 
-export type OfferId = 'celibataire' | 'complete' | 'couple' | 'emotiflex' | 'emotiflex_digital';
+export type OfferId = 'celibataire' | 'complete' | 'couple' | 'emotiflex' | 'emotiflex_digital' | 'nutrition';
 
 export interface Offer {
   id: OfferId;
@@ -16,7 +16,10 @@ export interface Offer {
   comingSoon?: boolean;
   comingSoonNote?: string;
   features: string[];
-  stripePriceEnvKey?: string;
+  isNutrition?: boolean;
+  trialDays?: number;
+  nutritionUrl?: string;
+    stripePriceEnvKey?: string;
   isAmazon?: boolean;
   isDigitalSubscription?: boolean;
   amazonUrl?: string;
@@ -135,7 +138,30 @@ export const OFFERS: Record<OfferId, Offer> = {
       'Cree par PerfectMatch',
     ],
     stripePriceEnvKey: 'STRIPE_PRICE_EMOTIFLEX',
+  },
+  nutrition: {
+    id: 'nutrition',
+    category: 'Nutrition emotionnelle',
+    name: 'Perfect Match',
+    nameEmphasis: 'Nutrition',
+    description: "La nutrition adaptee a ton profil emotionnel. Recettes, menus et routines anti-grignotage personnalises selon tes emotions et ton energie.",
+    price: 19,
+    unit: 'par mois',
+    badge: 'Nouveau',
+    trialDays: 7,
+    isNutrition: true,
+    features: [
+      '**7 jours gratuits** sans engagement',
+      'Profil nutritionnel emotionnel complet',
+      'Recettes personnalisees chaque semaine',
+      'Menus anti-stress et anti-fatigue',
+      'Routines anti-grignotage guidees',
+      'Encouragements emotionnels quotidiens',
+      'Suivi energie et humeur',
+    ],
+    nutritionUrl: '/nutrition',
+    stripePriceEnvKey: 'STRIPE_PRICE_NUTRITION',
   }
 };
 
-export const OFFERS_ORDER: OfferId[] = ['celibataire', 'complete', 'couple', 'emotiflex_digital', 'emotiflex'];
+export const OFFERS_ORDER: OfferId[] = ['celibataire', 'complete', 'couple', 'emotiflex_digital', 'emotiflex', 'nutrition'];

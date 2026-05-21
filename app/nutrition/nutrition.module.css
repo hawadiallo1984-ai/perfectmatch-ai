@@ -1,0 +1,259 @@
+.page {
+  background: #0B0A14;
+  color: #F5EFE3;
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+}
+.hero {
+  text-align: center;
+  padding: 8rem 1.5rem 5rem;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.badge {
+  display: inline-block;
+  background: rgba(34,197,94,0.15);
+  border: 1px solid rgba(34,197,94,0.3);
+  color: #22c55e;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 1.5rem;
+}
+.title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+}
+.green { color: #22c55e; }
+.subtitle {
+  font-size: 1.1rem;
+  color: #A9A3B8;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+.muted { color: #7A7490; }
+.pillsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+.pill {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  color: #C5BFD4;
+}
+.btnPrimary {
+  display: inline-block;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 14px 36px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  font-family: inherit;
+}
+.btnPrimary:hover { opacity: 0.88; }
+.section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+.h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 2rem 0 1rem;
+}
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+.stepCard {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+.stepNum {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #22c55e;
+  margin-bottom: 0.75rem;
+}
+.stepTitle { font-weight: 600; margin-bottom: 0.4rem; }
+.stepDesc { color: #A9A3B8; font-size: 0.85rem; line-height: 1.5; }
+
+/* QUIZ */
+.quizSection {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 6rem 1.5rem 4rem;
+}
+.progressBar {
+  background: rgba(255,255,255,0.08);
+  border-radius: 100px;
+  height: 4px;
+  margin-bottom: 2rem;
+}
+.progressFill {
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+  height: 100%;
+  border-radius: 100px;
+  transition: width 0.4s ease;
+}
+.stepCount {
+  color: #7A7490;
+  font-size: 0.82rem;
+  margin-bottom: 1rem;
+}
+.quizTitle {
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.quizSubtitle {
+  color: #A9A3B8;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+.optionsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.optionBtn {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #F5EFE3;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.92rem;
+  text-align: left;
+  font-family: inherit;
+  transition: all 0.2s;
+  line-height: 1.4;
+}
+.optionBtn:hover {
+  border-color: #22c55e;
+  background: rgba(34,197,94,0.08);
+  color: #22c55e;
+}
+
+/* RESULTAT */
+.resultatSection {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 6rem 1.5rem 4rem;
+  text-align: center;
+}
+.messageCard {
+  background: rgba(34,197,94,0.08);
+  border: 1px solid rgba(34,197,94,0.25);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  text-align: left;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #C5BFD4;
+}
+.recettesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.recetteCard {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 10px;
+  padding: 1.25rem;
+  text-align: center;
+}
+.recetteIcon { font-size: 2rem; margin-bottom: 0.5rem; }
+.recetteTitle { font-size: 0.85rem; font-weight: 600; line-height: 1.4; }
+.routineCard {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+.routineItem {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.9rem;
+  color: #C5BFD4;
+}
+.routineItem:last-child { border-bottom: none; }
+.ctaBlock {
+  background: rgba(34,197,94,0.06);
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin-top: 2rem;
+}
+
+/* OFFRE */
+.offreSection {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.offreBadge {
+  display: inline-block;
+  background: rgba(34,197,94,0.1);
+  border: 1px solid rgba(34,197,94,0.3);
+  color: #22c55e;
+  font-size: 0.78rem;
+  padding: 5px 14px;
+  border-radius: 100px;
+  margin-bottom: 1.25rem;
+}
+.price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+  margin: 1.25rem 0;
+}
+.priceAmount { font-size: 4rem; font-weight: 700; color: #22c55e; }
+.priceCur { font-size: 1.5rem; color: #22c55e; }
+.priceUnit { color: #7A7490; font-size: 1rem; }
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 2rem auto;
+  max-width: 360px;
+  text-align: left;
+}
+.featureList li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.9rem;
+  color: #C5BFD4;
+}

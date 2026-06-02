@@ -82,9 +82,15 @@ export default function ResiliencePage() {
           <h1 className={`${styles.sectionTitle} reveal`} style={{ textAlign: 'center', margin: '0 auto 28px' }}>
             Racisme & misogynoir : <em>protéger ta santé mentale</em>
           </h1>
-          <p className={`${styles.sectionLead} reveal`} style={{ textAlign: 'center', margin: '0 auto' }}>
+          <p className={`${styles.sectionLead} reveal`} style={{ textAlign: 'center', margin: '0 auto 16px' }}>
             Ici, des outils issus de la TCC culturellement adaptés pour valider ton vécu,
             protéger ta santé mentale et reprendre ton pouvoir.
+          </p>
+          <p className="reveal" style={{
+            textAlign: 'center', fontSize: 13.5, color: 'var(--violet-soft)',
+            fontStyle: 'italic', fontFamily: 'Fraunces, serif', opacity: 0.85,
+          }}>
+            Ces parcours arrivent progressivement — rejoins la liste d&apos;accès anticipé pour être prévenu·e en premier.
           </p>
         </div>
       </section>
@@ -93,7 +99,7 @@ export default function ResiliencePage() {
       <section className={`${styles.section} ${styles.offersSection}`}>
         <div
           className={styles.offersGrid}
-          style={{ gridTemplateColumns: 'repeat(2, 1fr)', maxWidth: 900, margin: '0 auto' }}
+          style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}
         >
           {RESILIENCE_ORDER.map((id) => {
             const offer = OFFERS[id];

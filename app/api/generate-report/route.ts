@@ -17,6 +17,14 @@ const PROMPT_BY_OFFER: Record<OfferId, string> = {
   nutrition: '',
   misogynoir: '',
   racisme: '',
+  premiers_outils: '',
+  dating_femme_noire: '',
+  couples_interraciaux: '',
+  colorisme: '',
+  imposteur: '',
+  charge_raciale: '',
+  parentalite_noire: '',
+  espace_resilience: '',
 };
 
 export async function POST(req: NextRequest) {

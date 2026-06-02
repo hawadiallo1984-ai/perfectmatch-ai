@@ -1,7 +1,11 @@
 // Configuration centrale des 3 offres PerfectMatch
 // Modifie ce fichier pour ajuster prix, features, badges
 
-export type OfferId = 'celibataire' | 'complete' | 'couple' | 'emotiflex' | 'emotiflex_digital' | 'nutrition' | 'misogynoir' | 'racisme';
+export type OfferId =
+  | 'celibataire' | 'complete' | 'couple' | 'emotiflex' | 'emotiflex_digital' | 'nutrition'
+  | 'misogynoir' | 'racisme'
+  | 'premiers_outils' | 'dating_femme_noire' | 'couples_interraciaux' | 'colorisme'
+  | 'imposteur' | 'charge_raciale' | 'parentalite_noire' | 'espace_resilience';
 
 export interface Offer {
   id: OfferId;
@@ -182,7 +186,7 @@ export const OFFERS: Record<OfferId, Offer> = {
     description: "Un parcours pensé pour les femmes noires qui portent le poids spécifique de la misogynoir — à la croisée du racisme et du sexisme. On valide ton vécu, puis on te donne des outils TCC concrets pour protéger ta santé mentale et reprendre ton pouvoir.",
     price: 29,
     unit: 'parcours unique',
-    badge: 'Nouveau',
+    badge: 'Accès anticipé',
     features: [
       "Un espace qui **valide ton vécu** — le problème, c'est la misogynoir, pas toi",
       "Comprendre l'impact psychologique de l'intersection racisme + sexisme",
@@ -203,7 +207,7 @@ export const OFFERS: Record<OfferId, Offer> = {
     description: "Un parcours pour traverser l'impact psychologique de la négrophobie et du racisme. Le racisme est le problème — pas toi. Une TCC culturellement adaptée pour gérer le stress, apaiser la rumination et restaurer ton estime.",
     price: 29,
     unit: 'parcours unique',
-    badge: 'Nouveau',
+    badge: 'Accès anticipé',
     features: [
       "Reconnaître le **traumatisme racial** (stress traumatique lié à la race)",
       "Outils **TCC** pour gérer le stress et l'hypervigilance liés aux discriminations",
@@ -216,8 +220,165 @@ export const OFFERS: Record<OfferId, Offer> = {
     ],
     stripePriceEnvKey: 'STRIPE_PRICE_RACISME',
   },
+  premiers_outils: {
+    id: 'premiers_outils',
+    category: 'Pour commencer · Gratuit',
+    name: 'Tes premiers',
+    nameEmphasis: 'outils',
+    description: "Une porte d'entrée gratuite : des outils TCC concrets pour commencer à protéger ta santé mentale dès aujourd'hui. Parce que le prix ne doit jamais être le frein.",
+    price: 0,
+    unit: 'gratuit',
+    badge: 'Gratuit',
+    features: [
+      "3 outils **TCC** essentiels, expliqués simplement",
+      "Un premier **carnet de pensées** guidé",
+      "Repérer une distorsion, apaiser une rumination",
+      "Pensé pour les vécus de racisme et de misogynoir",
+      "100% gratuit, sans engagement",
+      "Un aperçu de l'accompagnement complet",
+    ],
+    stripePriceEnvKey: 'STRIPE_PRICE_PREMIERS_OUTILS',
+  },
+  dating_femme_noire: {
+    id: 'dating_femme_noire',
+    category: 'Pour les femmes noires · Amour',
+    name: 'Parcours',
+    nameEmphasis: 'Dating · Femme noire',
+    description: "Rencontrer, aimer et se choisir quand on est une femme noire — face à la fétichisation, l'hypersexualisation et le rejet racialisé. On valide ce que tu vis, puis on reconstruit ton estime.",
+    price: 29,
+    unit: 'parcours unique',
+    badge: 'Accès anticipé',
+    features: [
+      "Repérer **fétichisation et hypersexualisation** — et poser tes limites",
+      "Désamorcer les messages intériorisés sur ta désirabilité",
+      "Outils **TCC** pour la rumination après un rejet racialisé",
+      "Une estime qui ne dépend pas du regard des autres",
+      "Choisir des relations qui te respectent pleinement",
+      "Accès à Luna, posture validante et consciente",
+    ],
+    stripePriceEnvKey: 'STRIPE_PRICE_DATING_FEMME_NOIRE',
+  },
+  couples_interraciaux: {
+    id: 'couples_interraciaux',
+    category: 'Couples interraciaux',
+    name: 'Parcours',
+    nameEmphasis: 'Couples interraciaux',
+    description: "Aimer à travers les différences, quand le racisme s'invite dans le couple ou la famille. Des outils pour nommer ce qui se joue et protéger votre lien.",
+    price: 29,
+    unit: 'parcours unique',
+    badge: 'Accès anticipé',
+    features: [
+      "Nommer le racisme et les micro-agressions dans le couple",
+      "Quand ta famille ou la sienne désapprouve : poser un cadre",
+      "Outils **TCC** de communication face aux écarts culturels",
+      "Distinguer conflit de couple et **charge raciale**",
+      "Construire des accords clairs et un soutien mutuel",
+      "Accès à Luna, en mode couple et culturellement conscient",
+    ],
+    stripePriceEnvKey: 'STRIPE_PRICE_COUPLES_INTERRACIAUX',
+  },
+  colorisme: {
+    id: 'colorisme',
+    category: 'Estime & rapport à soi',
+    name: 'Parcours',
+    nameEmphasis: 'Colorisme & estime',
+    description: "Cheveux, peau, standards de beauté : déconstruire le colorisme intériorisé et reconstruire une image de soi qui t'appartient.",
+    price: 29,
+    unit: 'parcours unique',
+    badge: 'Accès anticipé',
+    features: [
+      "Comprendre le **colorisme et le texturisme** intériorisés",
+      "Désamorcer les messages reçus sur ta peau et tes cheveux",
+      "Outils **TCC** + auto-compassion pour l'image de soi",
+      "Sortir de la comparaison et des standards imposés",
+      "Reconstruire une estime ancrée et durable",
+      "Accès à Luna, posture bienveillante et consciente",
+    ],
+    stripePriceEnvKey: 'STRIPE_PRICE_COLORISME',
+  },
+  imposteur: {
+    id: 'imposteur',
+    category: 'Vie professionnelle',
+    name: 'Parcours',
+    nameEmphasis: 'Imposteur · Milieu pro blanc',
+    description: "Quand être « la seule » nourrit le doute permanent. On distingue ce qui vient de toi de ce que le biais projette — et on reconstruit ta légitimité.",
+    price: 29,
+    unit: 'parcours unique',
+    badge: 'Accès anticipé',
+    features: [
+      "Comprendre comment le racisme amplifie le **syndrome de l'imposteur**",
+      "Restructurer l'auto-dévalorisation — sans nier le biais réel",
+      "Gérer la charge du **code-switching**",
+      "Outils **TCC** pour réunions, présentations, évaluations",
+      "Affirmer ta valeur et tes réussites",
+      "Accès à Luna pour préparer tes moments à enjeu",
+    ],
+    stripePriceEnvKey: 'STRIPE_PRICE_IMPOSTEUR',
+  },
+  charge_raciale: {
+    id: 'charge_raciale',
+    category: 'Épuisement & charge raciale',
+    name: 'Parcours',
+    nameEmphasis: 'Charge raciale & épuisement',
+    description: "L'exposition continue aux micro-agressions épuise. Un parcours pour récupérer de la fatigue raciale et protéger ton énergie.",
+    price: 29,
+    unit: 'parcours unique',
+    badge: 'Accès anticipé',
+    features: [
+      "Reconnaître l'épuisement lié à l'**hypervigilance** permanente",
+      "Outils **TCC** pour réduire la rumination et le ressassement",
+      "Récupérer : repos, limites, mise à distance",
+      "Choisir tes combats, protéger ton énergie",
+      "Reconstruire des espaces de ressourcement",
+      "Accès à Luna, pour décharger sans te justifier",
+    ],
+    stripePriceEnvKey: 'STRIPE_PRICE_CHARGE_RACIALE',
+  },
+  parentalite_noire: {
+    id: 'parentalite_noire',
+    category: "Parents d'enfants noirs",
+    name: 'Parcours',
+    nameEmphasis: 'Parentalité noire',
+    description: "Élever un enfant noir dans un monde qui ne le protège pas toujours. Des outils pour le préparer sans l'alourdir, et gérer ta propre anxiété de parent.",
+    price: 29,
+    unit: 'parcours unique',
+    badge: 'Accès anticipé',
+    features: [
+      "Aborder le racisme avec ton enfant, à son âge",
+      "Protéger et nourrir son **estime de soi**",
+      "Gérer ta propre anxiété et hypervigilance de parent",
+      "Outils **TCC** pour les moments difficiles (école, incidents)",
+      "Construire un foyer où il/elle se sent fier·e et en sécurité",
+      "Accès à Luna pour préparer les conversations délicates",
+    ],
+    stripePriceEnvKey: 'STRIPE_PRICE_PARENTALITE_NOIRE',
+  },
+  espace_resilience: {
+    id: 'espace_resilience',
+    category: 'Abonnement',
+    name: 'Espace',
+    nameEmphasis: 'Résilience',
+    description: "Ton espace mensuel pour tenir dans la durée : exercices TCC chaque semaine, ton carnet, Luna, et une communauté qui te comprend.",
+    price: 14,
+    unit: '/mois',
+    badge: 'Abonnement',
+    isDigitalSubscription: true,
+    features: [
+      "Nouveaux exercices **TCC** chaque semaine",
+      "Ton **carnet de pensées** illimité",
+      "Luna en accès étendu, posture consciente",
+      "Une communauté qui partage les mêmes vécus",
+      "Thèmes : racisme, misogynoir, charge raciale, estime",
+      "Sans engagement, résiliable à tout moment",
+    ],
+    stripePriceEnvKey: 'STRIPE_PRICE_ESPACE_RESILIENCE',
+  },
 };
 
 export const OFFERS_ORDER: OfferId[] = ['celibataire', 'complete', 'couple', 'emotiflex_digital', 'emotiflex', 'nutrition'];
 
-export const RESILIENCE_ORDER: OfferId[] = ['misogynoir', 'racisme'];
+export const RESILIENCE_ORDER: OfferId[] = [
+  'premiers_outils', 'misogynoir', 'racisme', 'dating_femme_noire',
+  'couples_interraciaux', 'colorisme', 'imposteur', 'charge_raciale',
+  'parentalite_noire', 'espace_resilience',
+];

@@ -1,12 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { OFFERS, RESILIENCE_ORDER } from '@/lib/offers';
+import { OFFERS, RESILIENCE_ORDER, type OfferId } from '@/lib/offers';
 import styles from '@/app/page.module.css';
 
 export default function ResiliencePage() {
   const [email, setEmail] = useState('');
   const [sentOffer, setSentOffer] = useState<string | null>(null);
+  const [loadingOffer, setLoadingOffer] = useState<string | null>(null);
+  const [errorOffer, setErrorOffer] = useState<string | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -24,17 +26,25 @@ export default function ResiliencePage() {
     return () => observer.disconnect();
   }, []);
 
-  const handleWaitlist = (e: React.FormEvent, offerId: string) => {
+  const handleWaitlist = async (e: React.FormEvent, offerId: OfferId) => {
     e.preventDefault();
-    if (!email) return;
-    const existing = JSON.parse(localStorage.getItem('pm_resilience_waitlist') || '[]');
-    existing.push({ email, offerId, date: new Date().toISOString() });
-    localStorage.setItem('pm_resilience_waitlist', JSON.stringify(existing));
-    setSentOffer(offerId);
-    setTimeout(() => {
-      setSentOffer(null);
+    if (!email || loadingOffer) return;
+    setLoadingOffer(offerId);
+    setErrorOffer(null);
+    try {
+      const res = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, parcours: OFFERS[offerId].nameEmphasis }),
+      });
+      if (!res.ok) throw new Error('Erreur serveur');
+      setSentOffer(offerId);
       setEmail('');
-    }, 4000);
+      setTimeout(() => setSentOffer(null), 6000);
+    } catch {
+      setErrorOffer(offerId);
+    }
+    setLoadingOffer(null);
   };
 
   const renderFeature = (text: string) => {
@@ -88,6 +98,8 @@ export default function ResiliencePage() {
           {RESILIENCE_ORDER.map((id) => {
             const offer = OFFERS[id];
             const isSent = sentOffer === id;
+            const isLoading = loadingOffer === id;
+            const hasError = errorOffer === id;
             return (
               <div key={id} className={`${styles.offer} reveal`}>
                 {offer.badge && <div className={styles.offerBadge}>{offer.badge}</div>}
@@ -147,9 +159,19 @@ export default function ResiliencePage() {
                           boxSizing: 'border-box',
                         }}
                       />
-                      <button type="submit" className={styles.offerCta}>
-                        Rejoindre la liste d&apos;accès
+                      <button
+                        type="submit"
+                        className={styles.offerCta}
+                        disabled={isLoading}
+                        style={{ opacity: isLoading ? 0.6 : 1 }}
+                      >
+                        {isLoading ? 'Envoi en cours…' : 'Rejoindre la liste d\'accès'}
                       </button>
+                      {hasError && (
+                        <p style={{ fontSize: 13, color: 'var(--danger)', textAlign: 'center', margin: 0 }}>
+                          Une erreur est survenue — réessaie dans un instant.
+                        </p>
+                      )}
                     </form>
                   )}
                 </div>

@@ -32,13 +32,18 @@ export default function HomePage() {
     window.location.href = '/questionnaire';
   };
 
-  const handleWaitlist = (e: React.FormEvent) => {
+  const handleWaitlist = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!waitlistEmail) return;
-    // Pour l'instant on stocke en local, on connectera Resend plus tard
-    const existing = JSON.parse(localStorage.getItem('pm_couple_waitlist') || '[]');
-    existing.push({ email: waitlistEmail, date: new Date().toISOString() });
-    localStorage.setItem('pm_couple_waitlist', JSON.stringify(existing));
+    try {
+      await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: waitlistEmail, parcours: 'Couple' }),
+      });
+    } catch {
+      // best-effort : on affiche quand même la confirmation
+    }
     setWaitlistStatus('sent');
     setTimeout(() => {
       setWaitlistStatus('idle');

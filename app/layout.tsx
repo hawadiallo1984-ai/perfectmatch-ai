@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'PerfectMatch — Trouve la clarté avant de trouver l\'amour',
+  title: "PerfectMatch — Sortir de l'anxiété amoureuse et des schémas répétitifs",
   description:
-    "L'algorithme de compatibilité le plus avancé jamais conçu — au-delà des sites de rencontre, des coachs, des thérapeutes.",
+    "Anxiété, pensées négatives, distorsions cognitives, schémas qui se répètent ? PerfectMatch combine psychologie, astrologie et outils de TCC pour comprendre tes blocages et les transformer — en amour comme au travail.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

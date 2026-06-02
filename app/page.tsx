@@ -82,24 +82,70 @@ export default function HomePage() {
           </text>
         </svg>
 
-        <div className={styles.eyebrow}>IA · Psychologie · Astrologie</div>
+        <div className={styles.eyebrow}>IA · Psychologie · Astrologie · TCC</div>
         <h1 className={styles.heroTitle}>
-          Trouve la clarte<br />
-          <em>avant</em> de trouver l&apos;amour
+          Comprends ce qui se rejoue.<br />
+          <em>Puis transforme-le.</em>
         </h1>
         <p className={styles.heroSub}>
-          L&apos;algorithme de compatibilite le plus avance jamais concu. Trois parcours pour explorer ton <strong>profil psychologique</strong>, ton theme <strong>astral</strong> et la dynamique de ton <strong>couple</strong>.
+          Anxiété amoureuse, pensées qui tournent en boucle, mêmes scénarios qui se répètent — en couple, au travail, dans ta vie. PerfectMatch croise <strong>psychologie</strong>, <strong>astrologie</strong> et outils de <strong>TCC&nbsp;(thérapie cognitivo-comportementale)</strong> pour identifier tes <strong>pensées automatiques</strong>, tes <strong>distorsions cognitives</strong> et tes <strong>schémas répétitifs</strong> — et t&apos;aider à les dénouer, concrètement.
         </p>
         <div className={styles.heroCtaGroup}>
           <a href="#offres" className={styles.btnPrimary}>Voir les 3 offres</a>
           <a href="/questionnaire" className={styles.btnGhost}>Commencer le test</a>
         </div>
+        <div className={styles.painBand}>
+          <span className={styles.painLabel}>Ce que PerfectMatch t&apos;aide à dénouer&nbsp;:</span>
+          <ul>
+            <li>Anxiété et peur du rejet</li>
+            <li>Pensées négatives et automatiques</li>
+            <li>Schémas amoureux répétitifs</li>
+            <li>Blocages en couple, au travail, dans la vie</li>
+            <li>Manque de confiance</li>
+            <li>Distorsions cognitives</li>
+            <li>Mal-être et baisse de moral</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="distorsions" className={styles.distSection}>
+        <div className={styles.sectionLabel}>Les pièges de pensée</div>
+        <h2 className={`${styles.sectionTitle} reveal`}>Tu reconnais une de ces <em>voix</em>&nbsp;?</h2>
+        <div className={styles.distGrid}>
+          <div className={`${styles.distCard} reveal`}>
+            <strong>La lecture de pensée</strong>
+            <span>« Il a mis trois heures à répondre : il se désintéresse de moi. »</span>
+          </div>
+          <div className={`${styles.distCard} reveal`}>
+            <strong>Le catastrophisme</strong>
+            <span>« Ce rendez-vous va forcément mal se passer. »</span>
+          </div>
+          <div className={`${styles.distCard} reveal`}>
+            <strong>Le tout-ou-rien</strong>
+            <span>« Si ce n&apos;est pas parfait, c&apos;est un échec. »</span>
+          </div>
+          <div className={`${styles.distCard} reveal`}>
+            <strong>La surgénéralisation</strong>
+            <span>« Je tombe toujours sur les mauvaises personnes. »</span>
+          </div>
+          <div className={`${styles.distCard} reveal`}>
+            <strong>L&apos;étiquetage</strong>
+            <span>« Je suis nul·le en couple. »</span>
+          </div>
+          <div className={`${styles.distCard} reveal`}>
+            <strong>Le raisonnement émotionnel</strong>
+            <span>« Je me sens rejetée, donc je le suis. »</span>
+          </div>
+        </div>
+        <p className={`${styles.distFoot} reveal`}>
+          Ces pièges de pensée se repèrent, se questionnent et se remplacent. C&apos;est précisément le travail que tu fais avec PerfectMatch.
+        </p>
       </section>
 
       <section id="pillars" className={styles.section}>
         <div className={styles.sectionLabel}>Les fondations</div>
-        <h2 className={`${styles.sectionTitle} reveal`}>Une methode <em>triple</em> - unique au monde.</h2>
-        <p className={`${styles.sectionLead} reveal`}>Chaque analyse repose sur trois piliers rigoureusement valides.</p>
+        <h2 className={`${styles.sectionTitle} reveal`}>Une methode <em>quadruple</em> - unique au monde.</h2>
+        <p className={`${styles.sectionLead} reveal`}>Chaque analyse repose sur quatre piliers : trois pour comprendre, un pour transformer.</p>
 
         <div className={styles.pillars}>
           <div className={`${styles.pillar} reveal`}>
@@ -115,7 +161,12 @@ export default function HomePage() {
           <div className={`${styles.pillar} reveal`}>
             <div className={styles.pillarNum}>iii.</div>
             <h3>Grille clinique</h3>
-            <p>Analyse de la triade noire, depistage des schemas dysfonctionnels, grille diagnostique inspiree du DSM-5.</p>
+            <p>Triade noire, schémas dysfonctionnels, grille inspirée du DSM-5. <em>Pour comprendre ce qui se rejoue.</em></p>
+          </div>
+          <div className={`${styles.pillar} reveal`}>
+            <div className={styles.pillarNum}>iv.</div>
+            <h3>Boîte à outils TCC</h3>
+            <p>Carnet de pensées, restructuration cognitive, exercices d&apos;exposition et défis comportementaux. <em>Pour transformer.</em></p>
           </div>
         </div>
       </section>
@@ -300,6 +351,13 @@ export default function HomePage() {
               <div>
                 <h4>Tu approfondis avec Luna</h4>
                 <p>Luna, ton IA relationnelle, connait tes resultats.</p>
+              </div>
+            </li>
+            <li>
+              <div className={styles.methodNum}>05.</div>
+              <div>
+                <h4>Tu passes à l&apos;action</h4>
+                <p>Carnet de pensées, exercices TCC et micro-défis : tu transformes ce que tu as compris en habitudes concrètes.</p>
               </div>
             </li>
           </ul>

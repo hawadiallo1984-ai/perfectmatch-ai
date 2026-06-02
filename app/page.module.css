@@ -222,7 +222,7 @@
 /* PILLARS */
 .pillars {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 0;
   margin-top: 100px;
   border-top: 1px solid var(--line);
@@ -264,6 +264,12 @@
   opacity: 0.65;
   line-height: 1.65;
   font-weight: 300;
+}
+
+.pillar p em {
+  font-style: italic;
+  color: var(--gold-soft);
+  opacity: 0.95;
 }
 
 /* OFFERS */
@@ -569,7 +575,7 @@
   .navLinks a:not(.navCta) { display: none; }
   .section { padding: 90px 24px; }
   .hero { padding: 100px 24px 60px; }
-  .pillars { grid-template-columns: 1fr; }
+  .pillars { grid-template-columns: repeat(2, 1fr); }
   .pillar { border-right: none; }
   .offersGrid { grid-template-columns: 1fr; }
   .methodGrid { grid-template-columns: 1fr; gap: 50px; }
@@ -577,6 +583,7 @@
 }
 
 @media (max-width: 560px) {
+  .pillars { grid-template-columns: 1fr; }
   .eyebrow { font-size: 10px; letter-spacing: 0.3em; }
   .eyebrow::before, .eyebrow::after { width: 20px; }
   .heroCtaGroup { flex-direction: column; align-items: stretch; }
@@ -584,4 +591,108 @@
   .offer { padding: 40px 28px 32px; }
   .amount { font-size: 52px; }
   .footer { padding: 60px 24px 30px; }
+}
+
+/* ============================================
+   Bande problématiques (hero) + Distorsions TCC
+   ============================================ */
+
+.painBand {
+  margin: 56px auto 0;
+  max-width: 760px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+  animation: fadeUp 1s 1.1s backwards;
+}
+
+.painLabel {
+  display: block;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--gold-soft);
+  margin-bottom: 18px;
+}
+
+.painBand ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.painBand li {
+  font-size: 13px;
+  color: var(--cream);
+  background: rgba(245, 239, 227, 0.04);
+  border: 1px solid var(--line);
+  padding: 8px 16px;
+  border-radius: 100px;
+}
+
+.distSection {
+  position: relative;
+  z-index: 2;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 96px 24px;
+  text-align: center;
+}
+
+.distGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 48px;
+  text-align: left;
+}
+
+.distCard {
+  background: linear-gradient(180deg, rgba(142, 122, 181, 0.08), rgba(11, 10, 20, 0.2));
+  border: 1px solid var(--violet-line);
+  border-radius: 18px;
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.distCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--line-strong);
+}
+
+.distCard strong {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 19px;
+  color: var(--gold-soft);
+}
+
+.distCard span {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--cream);
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.distFoot {
+  margin: 44px auto 0;
+  max-width: 60ch;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--cream);
+  opacity: 0.9;
+}
+
+@media (max-width: 640px) {
+  .distSection { padding: 64px 20px; }
+  .painBand ul { gap: 8px; }
 }

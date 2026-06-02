@@ -25,6 +25,15 @@ const PROMPT_BY_OFFER: Record<OfferId, string> = {
   charge_raciale: '',
   parentalite_noire: '',
   espace_resilience: '',
+  argent_premiers_outils: '',
+  black_tax: '',
+  croyances_argent: '',
+  scarcity: '',
+  honte_classe: '',
+  valeur_tarifs: '',
+  business_mindset: '',
+  anxiete_financiere: '',
+  argent_couple: '',
 };
 
 export async function POST(req: NextRequest) {

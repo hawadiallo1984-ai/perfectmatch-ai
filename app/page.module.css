@@ -561,6 +561,15 @@
 
 .footerLinks a:hover { opacity: 1; }
 
+.footerByline {
+  font-size: 11px;
+  color: var(--gold-soft);
+  letter-spacing: 0.12em;
+  text-align: center;
+  margin: 0 auto 24px;
+  opacity: 0.75;
+}
+
 .copyright {
   font-size: 12px;
   color: var(--cream);

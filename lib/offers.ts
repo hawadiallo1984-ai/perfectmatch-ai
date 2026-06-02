@@ -176,7 +176,7 @@ export const OFFERS: Record<OfferId, Offer> = {
   },
   misogynoir: {
     id: 'misogynoir',
-    category: 'Résilience & bien-être',
+    category: 'Pour les femmes noires',
     name: 'Parcours',
     nameEmphasis: 'Misogynoir',
     description: "Un parcours pensé pour les femmes noires qui portent le poids spécifique de la misogynoir — à la croisée du racisme et du sexisme. On valide ton vécu, puis on te donne des outils TCC concrets pour protéger ta santé mentale et reprendre ton pouvoir.",
@@ -197,7 +197,7 @@ export const OFFERS: Record<OfferId, Offer> = {
   },
   racisme: {
     id: 'racisme',
-    category: 'Résilience & bien-être',
+    category: 'Face au racisme & à la négrophobie',
     name: 'Parcours',
     nameEmphasis: 'Négrophobie & Racisme',
     description: "Un parcours pour traverser l'impact psychologique de la négrophobie et du racisme. Le racisme est le problème — pas toi. Une TCC culturellement adaptée pour gérer le stress, apaiser la rumination et restaurer ton estime.",

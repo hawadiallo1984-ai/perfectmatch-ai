@@ -70,7 +70,7 @@ export default function ResiliencePage() {
             Résilience & bien-être
           </div>
           <h1 className={`${styles.sectionTitle} reveal`} style={{ textAlign: 'center', margin: '0 auto 28px' }}>
-            Le racisme et la misogynoir <em>sont le problème</em> — pas toi.
+            Racisme & misogynoir : <em>protéger ta santé mentale</em>
           </h1>
           <p className={`${styles.sectionLead} reveal`} style={{ textAlign: 'center', margin: '0 auto' }}>
             Ici, des outils issus de la TCC culturellement adaptés pour valider ton vécu,

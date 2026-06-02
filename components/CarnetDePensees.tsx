@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import { track } from '@vercel/analytics';
 
 const DISTORTIONS = [
   'Tout ou rien',
@@ -115,6 +116,7 @@ export default function CarnetDePensees() {
   };
 
   const consultLuna = async () => {
+    track('luna_consulted');
     const init: Message = {
       role: 'user',
       content: "J'ai rempli les 4 premières colonnes de mon carnet. Aide-moi à examiner ma pensée automatique.",
@@ -313,7 +315,7 @@ export default function CarnetDePensees() {
           </div>
 
           <button
-            onClick={() => { setEntry(emptyEntry()); setMessages([]); setContextSent(false); }}
+            onClick={() => { if (entry.situation || entry.automaticThoughts) track('carnet_entry_saved'); setEntry(emptyEntry()); setMessages([]); setContextSent(false); }}
             style={{
               padding: '8px 18px',
               border: '1px solid var(--line)',

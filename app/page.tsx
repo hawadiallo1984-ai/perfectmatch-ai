@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { track } from '@vercel/analytics';
 import { OFFERS, OFFERS_ORDER } from '@/lib/offers';
 import styles from './page.module.css';
 
@@ -25,6 +26,8 @@ export default function HomePage() {
   }, []);
 
   const handleCheckout = (offerId: string) => {
+    track('offer_cta_click', { offer: offerId });
+    track('checkout_started', { offer: offerId });
     sessionStorage.setItem('pm_offer', offerId);
     window.location.href = '/questionnaire';
   };
@@ -310,7 +313,7 @@ export default function HomePage() {
                     )}
                   </div>
                 ) : (
-                  offer.isAmazon ? (<a href={offer.amazonUrl as string} target="_blank" rel="noopener noreferrer" className={styles.offerCta} style={{display:"block",textAlign:"center",textDecoration:"none"}}>Commander sur Amazon</a>) : offer.isNutrition ? (<a href="/nutrition" className={styles.offerCta} style={{display:"block",textAlign:"center",textDecoration:"none"}}>7 jours gratuits →</a>) : (<button onClick={() => handleCheckout(offer.id)} className={styles.offerCta}>Obtenir pour {offer.price}€</button>)
+                  offer.isAmazon ? (<a href={offer.amazonUrl as string} target="_blank" rel="noopener noreferrer" onClick={() => track('offer_cta_click', { offer: offer.id })} className={styles.offerCta} style={{display:"block",textAlign:"center",textDecoration:"none"}}>Commander sur Amazon</a>) : offer.isNutrition ? (<a href="/nutrition" onClick={() => track('offer_cta_click', { offer: offer.id })} className={styles.offerCta} style={{display:"block",textAlign:"center",textDecoration:"none"}}>7 jours gratuits →</a>) : (<button onClick={() => handleCheckout(offer.id)} className={styles.offerCta}>Obtenir pour {offer.price}€</button>)
                 )}
               </div>
             );

@@ -15,6 +15,8 @@ const PROMPT_BY_OFFER: Record<OfferId, string> = {
   emotiflex: '',
   emotiflex_digital: '',
   nutrition: '',
+  misogynoir: '',
+  racisme: '',
 };
 
 export async function POST(req: NextRequest) {

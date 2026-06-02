@@ -1,7 +1,7 @@
 // Configuration centrale des 3 offres PerfectMatch
 // Modifie ce fichier pour ajuster prix, features, badges
 
-export type OfferId = 'celibataire' | 'complete' | 'couple' | 'emotiflex' | 'emotiflex_digital' | 'nutrition';
+export type OfferId = 'celibataire' | 'complete' | 'couple' | 'emotiflex' | 'emotiflex_digital' | 'nutrition' | 'misogynoir' | 'racisme';
 
 export interface Offer {
   id: OfferId;
@@ -173,7 +173,51 @@ export const OFFERS: Record<OfferId, Offer> = {
     ],
     nutritionUrl: '/nutrition',
     stripePriceEnvKey: 'STRIPE_PRICE_NUTRITION',
-  }
+  },
+  misogynoir: {
+    id: 'misogynoir',
+    category: 'Résilience & bien-être',
+    name: 'Parcours',
+    nameEmphasis: 'Misogynoir',
+    description: "Un parcours pensé pour les femmes noires qui portent le poids spécifique de la misogynoir — à la croisée du racisme et du sexisme. On valide ton vécu, puis on te donne des outils TCC concrets pour protéger ta santé mentale et reprendre ton pouvoir.",
+    price: 29,
+    unit: 'parcours unique',
+    badge: 'Nouveau',
+    features: [
+      "Un espace qui **valide ton vécu** — le problème, c'est la misogynoir, pas toi",
+      "Comprendre l'impact psychologique de l'intersection racisme + sexisme",
+      "Outils **TCC** pour apaiser la rumination après une micro-agression",
+      "Gérer l'**hypervigilance** et la charge mentale au quotidien",
+      "Désamorcer les messages intériorisés — sans nier la réalité du racisme",
+      "Renforcer l'**estime de soi** et l'auto-compassion",
+      "Protéger ton énergie : poser des limites, choisir tes combats",
+      "Accès à Luna, dans une posture culturellement consciente",
+    ],
+    stripePriceEnvKey: 'STRIPE_PRICE_MISOGYNOIR',
+  },
+  racisme: {
+    id: 'racisme',
+    category: 'Résilience & bien-être',
+    name: 'Parcours',
+    nameEmphasis: 'Négrophobie & Racisme',
+    description: "Un parcours pour traverser l'impact psychologique de la négrophobie et du racisme. Le racisme est le problème — pas toi. Une TCC culturellement adaptée pour gérer le stress, apaiser la rumination et restaurer ton estime.",
+    price: 29,
+    unit: 'parcours unique',
+    badge: 'Nouveau',
+    features: [
+      "Reconnaître le **traumatisme racial** (stress traumatique lié à la race)",
+      "Outils **TCC** pour gérer le stress et l'hypervigilance liés aux discriminations",
+      "Apaiser la rumination et les réactions après un incident raciste",
+      "Distinguer ce qui t'appartient de ce que le racisme projette sur toi",
+      "Restaurer l'**estime de soi** et l'auto-compassion",
+      "Construire des ressources de soutien et de communauté",
+      "Stratégies concrètes pour les situations pro, sociales, du quotidien",
+      "Accès à Luna, posture validante et anti-raciste",
+    ],
+    stripePriceEnvKey: 'STRIPE_PRICE_RACISME',
+  },
 };
 
 export const OFFERS_ORDER: OfferId[] = ['celibataire', 'complete', 'couple', 'emotiflex_digital', 'emotiflex', 'nutrition'];
+
+export const RESILIENCE_ORDER: OfferId[] = ['misogynoir', 'racisme'];

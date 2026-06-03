@@ -1,44 +1,56 @@
-import type { Metadata } from 'next';
-import styles from '@/app/page.module.css';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Sexualité & bien-être — TCC & psychoéducation | PerfectMatch',
-  description:
-    'Guides TCC de psychoéducation sexuelle pour adultes : réappropriation, désir, image du corps, sexualité black. Cadre coaching, sans contenu explicite. Par EvaTalk.',
-};
+import { useEffect } from 'react';
+import styles from '@/app/page.module.css';
 
 const GUIDES = [
   {
     id: 'se-reapproprier-sexualite',
     title: 'Se réapproprier sa sexualité',
     emphasis: '4 approches',
-    desc: 'Renouer avec ton désir, ton corps et ton plaisir — à ton propre rythme, sans honte.',
+    desc: 'Dénouer la honte, retrouver ton corps.',
     href: '/guides/se-reapproprier-sexualite',
   },
   {
     id: 'desir-intimite',
     title: 'Désir & intimité',
     emphasis: '4 approches',
-    desc: 'Comprendre les cycles du désir, lever les freins à l\'intimité et cultiver une connexion authentique, seul·e ou à deux.',
+    desc: 'Raviver le lien, sans pression.',
     href: '/guides/desir-intimite',
   },
   {
     id: 'sexualite-image-corps',
     title: 'Sexualité & image du corps',
     emphasis: '4 approches',
-    desc: 'Déconstruire la honte corporelle et retrouver une présence apaisée dans l\'intimité.',
+    desc: 'Habiter ton corps sans le juger.',
     href: '/guides/sexualite-image-corps',
   },
   {
     id: 'sexualite-black',
     title: 'Sexualité black',
     emphasis: '4 approches',
-    desc: 'Habiter ton désir en terrain propre, libre du regard racial et des tabous communautaires.',
+    desc: 'Habiter ton désir, libre du regard racial et des tabous communautaires.',
     href: '/guides/sexualite-black',
   },
 ];
 
 export default function SexualitePage() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
 

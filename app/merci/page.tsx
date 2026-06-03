@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { stripe } from '@/lib/stripe';
+import { GUIDES, GuideId } from '@/lib/guides';
 import styles from '@/app/page.module.css';
 
 export const metadata: Metadata = {
@@ -8,15 +9,14 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-dynamic';
 
-const PDF_PATH = '/guides/black-tax-4-approches.pdf';
-
 export default async function MerciPage({
   searchParams,
 }: {
-  searchParams: Promise<{ session_id?: string }>;
+  searchParams: Promise<{ session_id?: string; guide?: string }>;
 }) {
-  const { session_id } = await searchParams;
+  const { session_id, guide: guideParam } = await searchParams;
 
+  const guide = GUIDES[guideParam as GuideId] ?? null;
   let paid = false;
 
   if (session_id) {
@@ -46,7 +46,7 @@ export default async function MerciPage({
         textAlign: 'center',
       }}>
 
-        {paid ? (
+        {paid && guide ? (
           <>
             <div style={{
               fontFamily: 'Fraunces, serif',
@@ -81,12 +81,12 @@ export default async function MerciPage({
               maxWidth: 520,
               margin: '0 auto 48px',
             }}>
-              Ton guide <strong style={{ color: 'var(--cream)', fontWeight: 500 }}>Black Tax — 4 approches</strong> est prêt.
+              Ton guide <strong style={{ color: 'var(--cream)', fontWeight: 500 }}>{guide.name}</strong> est prêt.
               Un email de livraison t&apos;a aussi été envoyé. À toi de l&apos;explorer à ton rythme.
             </p>
 
             <a
-              href={PDF_PATH}
+              href={guide.pdf}
               download
               style={{
                 display: 'inline-flex',
@@ -137,8 +137,8 @@ export default async function MerciPage({
               </a>{' '}
               en mentionnant ton email de paiement.
             </p>
-            <a href="/argent/black-tax" style={{ color: 'var(--gold-soft)', textDecoration: 'underline', fontSize: 14 }}>
-              Retourner à la page du guide
+            <a href="/" style={{ color: 'var(--gold-soft)', textDecoration: 'underline', fontSize: 14 }}>
+              Retourner à l&apos;accueil
             </a>
           </>
         )}

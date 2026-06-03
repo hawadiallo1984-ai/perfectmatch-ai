@@ -1,8 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe';
+import { GUIDES, GuideId } from '@/lib/guides';
 
 export async function POST(req: NextRequest) {
   try {
+    const { guideId } = await req.json();
+    const guide = GUIDES[guideId as GuideId];
+
+    if (!guide) {
+      return NextResponse.json({ error: 'Guide introuvable.' }, { status: 404 });
+    }
+
     const origin = req.headers.get('origin') ?? process.env.NEXT_PUBLIC_APP_URL ?? 'https://perfectmatch-ai.vercel.app';
 
     const session = await stripe.checkout.sessions.create({
@@ -11,20 +19,16 @@ export async function POST(req: NextRequest) {
       line_items: [
         {
           price_data: {
-            currency: 'eur',
-            product_data: {
-              name: 'Guide Black Tax — 4 approches (EvaTalk)',
-            },
-            unit_amount: 1900,
+            currency: guide.currency,
+            product_data: { name: guide.name },
+            unit_amount: guide.priceCents,
           },
           quantity: 1,
         },
       ],
-      success_url: `${origin}/merci?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/argent/black-tax`,
-      metadata: {
-        product: 'black-tax-guide',
-      },
+      success_url: `${origin}/merci?session_id={CHECKOUT_SESSION_ID}&guide=${guide.id}`,
+      cancel_url: origin,
+      metadata: { guideId: guide.id },
     });
 
     return NextResponse.json({ url: session.url });

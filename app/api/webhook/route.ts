@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe';
 import Stripe from 'stripe';
 import { Resend } from 'resend';
+import { GUIDES, GuideId } from '@/lib/guides';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -25,19 +26,20 @@ export async function POST(req: NextRequest) {
     case 'checkout.session.completed': {
       const session = event.data.object as Stripe.Checkout.Session;
       const offerId = session.metadata?.offerId;
-      const product = session.metadata?.product;
-      console.log(`[webhook] Payment OK — offer=${offerId} product=${product} session=${session.id}`);
+      const guideId = session.metadata?.guideId as GuideId | undefined;
+      console.log(`[webhook] Payment OK — offer=${offerId} guideId=${guideId} session=${session.id}`);
 
-      if (product === 'black-tax-guide') {
+      if (guideId && GUIDES[guideId]) {
+        const guide = GUIDES[guideId];
         const email = session.customer_details?.email;
         if (email) {
           const resend = new Resend(process.env.RESEND_API_KEY!);
           const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://perfectmatch-ai.vercel.app';
-          const guidePdfUrl = `${siteUrl}/guides/black-tax-4-approches.pdf`;
+          const guidePdfUrl = `${siteUrl}${guide.pdf}`;
           await resend.emails.send({
             from: 'EvaTalk <onboarding@resend.dev>',
             to: email,
-            subject: 'Ton guide Black Tax — 4 approches est là ✦',
+            subject: `Ton ${guide.name} est là ✦`,
             html: `
               <div style="font-family: Georgia, serif; max-width: 560px; margin: 0 auto; color: #0B0A14; background: #F5EFE3; padding: 48px 40px;">
                 <p style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #C9A24B; margin-bottom: 32px;">✦ EvaTalk</p>
@@ -45,7 +47,7 @@ export async function POST(req: NextRequest) {
                   Merci pour ta confiance.
                 </h1>
                 <p style="font-size: 16px; line-height: 1.75; font-weight: 300; margin-bottom: 28px;">
-                  Ton guide <strong>Black Tax — 4 approches</strong> est prêt à être téléchargé.
+                  Ton guide <strong>${guide.name}</strong> est prêt à être téléchargé.
                   Je l'ai conçu avec soin pour t'aider à nommer, comprendre et transformer ce que tu portes — sans honte.
                 </p>
                 <a href="${guidePdfUrl}" style="display: inline-block; padding: 14px 32px; background: #C9A24B; color: #0B0A14; border-radius: 100px; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; text-decoration: none; margin-bottom: 36px;">
@@ -60,7 +62,7 @@ export async function POST(req: NextRequest) {
               </div>
             `,
           });
-          console.log(`[webhook] Guide email sent to ${email}`);
+          console.log(`[webhook] Guide email sent to ${email} for ${guideId}`);
         }
       }
 

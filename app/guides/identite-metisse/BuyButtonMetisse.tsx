@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-export default function BuyButton() {
+export default function BuyButtonMetisse() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -13,7 +13,7 @@ export default function BuyButton() {
       const res = await fetch('/api/checkout-guide', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ guideId: 'black-tax' }),
+        body: JSON.stringify({ guideId: 'identite-metisse' }),
       });
       const data = await res.json();
       if (data.url) {

@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import styles from './SiteNav.module.css';
 
 const NAV_LINKS = [
+  { label: 'Guides', href: '/bibliotheque' },
   { label: 'Résilience', href: '/resilience' },
   { label: 'Argent', href: '/argent' },
   { label: 'Sexualité', href: '/sexualite' },

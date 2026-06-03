@@ -1,0 +1,186 @@
+import type { Metadata } from 'next';
+import styles from '@/app/page.module.css';
+import BuyButtonCelibat from './BuyButtonCelibat';
+
+export const metadata: Metadata = {
+  title: 'Guide Bien vivre son célibat — 4 approches | EvaTalk',
+  description:
+    'S\'épanouir en célibat, habiter sa valeur hors de tout statut relationnel : un guide PDF de 4 approches TCC. Par EvaTalk.',
+};
+
+export default function GestionCelibatPage() {
+  return (
+    <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
+
+      {/* Nav */}
+      <nav className={styles.nav}>
+        <a href="/" className={styles.logo} style={{ textDecoration: 'none' }}>
+          <span className={styles.logoMark}></span>
+          PerfectMatch
+        </a>
+        <div className={styles.navLinks}>
+          <a href="/">Accueil</a>
+          <a href="/resilience" className={styles.navCta}>Résilience</a>
+        </div>
+      </nav>
+
+      {/* Bouton d'achat en vedette */}
+      <section style={{ paddingTop: 80, paddingBottom: 0, textAlign: 'center' }}>
+        <div style={{ maxWidth: 640, margin: '0 auto', padding: '0 24px 48px' }}>
+          <div style={{
+            display: 'inline-block',
+            fontFamily: 'Fraunces, serif',
+            fontStyle: 'italic',
+            fontSize: 13,
+            color: 'var(--gold)',
+            letterSpacing: '0.12em',
+            marginBottom: 20,
+            opacity: 0.9,
+          }}>
+            ✦ Disponible maintenant
+          </div>
+          <BuyButtonCelibat />
+          <p style={{ marginTop: 14, fontSize: 12, opacity: 0.45, letterSpacing: '0.05em' }}>
+            Paiement sécurisé · PDF envoyé par email · 19,00 €
+          </p>
+        </div>
+      </section>
+
+      {/* Header */}
+      <section className={styles.section} style={{ paddingTop: 20 }}>
+        <div className={styles.offersHeader}>
+          <div className={styles.sectionLabel} style={{ justifyContent: 'center' }}>
+            Guide PDF · Bien vivre son célibat
+          </div>
+          <h1 className={`${styles.sectionTitle} reveal`} style={{ textAlign: 'center', margin: '0 auto 28px' }}>
+            Bien vivre son célibat —<br />
+            <em>4 approches</em>
+          </h1>
+          <p className={`${styles.sectionLead} reveal`} style={{ textAlign: 'center', margin: '0 auto 20px', maxWidth: 560 }}>
+            Le célibat n&apos;est pas une salle d&apos;attente. Ce guide t&apos;accompagne à travers 4 regards TCC
+            pour t&apos;épanouir pleinement — en couple ou non — et habiter ta valeur hors de tout statut relationnel.
+          </p>
+          <p className={`${styles.sectionLead} reveal`} style={{
+            textAlign: 'center', margin: '0 auto',
+            fontSize: 13, opacity: 0.55, maxWidth: 480,
+          }}>
+            Accompagnement mindset et bien-être, pas un conseil thérapeutique.
+          </p>
+        </div>
+      </section>
+
+      {/* Ce que contient le guide */}
+      <section className={styles.section} style={{ paddingTop: 0 }}>
+        <div style={{ maxWidth: 760, margin: '0 auto' }}>
+          <div style={{
+            display: 'flex', alignItems: 'baseline', gap: 20, marginBottom: 36,
+            borderBottom: '1px solid var(--line)', paddingBottom: 16,
+          }}>
+            <span style={{ fontFamily: 'Fraunces, serif', fontStyle: 'italic', fontSize: 18, color: 'var(--gold)' }}>✦</span>
+            <span style={{ fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--gold)', opacity: 0.85 }}>
+              Au programme
+            </span>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 20 }}>
+            {[
+              {
+                n: '01',
+                title: 'Ce que le célibat te raconte',
+                desc: 'Décrypter les croyances et les histoires que tu te racontes sur toi-même à travers le prisme du célibat.',
+              },
+              {
+                n: '02',
+                title: 'Le piège du « il me manque quelqu\'un »',
+                desc: 'Défaire la pensée du manque et de l\'incomplétude pour cesser de te définir par ce que tu n\'as pas.',
+              },
+              {
+                n: '03',
+                title: 'Une vie pleine maintenant',
+                desc: 'Construire désir, projet et joie sans attendre une relation pour commencer à vivre pleinement.',
+              },
+              {
+                n: '04',
+                title: 'Pressions et regards',
+                desc: 'Naviguer les injonctions sociales et familiales autour du célibat sans en faire une honte ou une urgence.',
+              },
+            ].map((item) => (
+              <div key={item.n} style={{
+                padding: '28px 28px 24px',
+                border: '1px solid var(--line)',
+                background: 'rgba(28,24,51,0.4)',
+              }}>
+                <div style={{
+                  fontFamily: 'Fraunces, serif', fontStyle: 'italic',
+                  fontSize: 32, color: 'var(--gold)', opacity: 0.4,
+                  lineHeight: 1, marginBottom: 12,
+                }}>
+                  {item.n}
+                </div>
+                <h3 style={{
+                  fontFamily: 'Fraunces, serif', fontSize: 20, fontWeight: 400,
+                  marginBottom: 10, lineHeight: 1.2,
+                }}>
+                  {item.title}
+                </h3>
+                <p style={{ fontSize: 14, opacity: 0.7, lineHeight: 1.65, fontWeight: 300 }}>
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Cahier d'exercices */}
+          <div style={{
+            marginTop: 20,
+            padding: '28px 28px 24px',
+            border: '1px solid rgba(201,162,75,0.4)',
+            background: 'rgba(201,162,75,0.06)',
+          }}>
+            <div style={{
+              fontFamily: 'Fraunces, serif', fontStyle: 'italic',
+              fontSize: 32, color: 'var(--gold)', opacity: 0.4,
+              lineHeight: 1, marginBottom: 12,
+            }}>
+              ✦
+            </div>
+            <h3 style={{
+              fontFamily: 'Fraunces, serif', fontSize: 20, fontWeight: 400,
+              marginBottom: 10, lineHeight: 1.2,
+            }}>
+              Cahier d&apos;exercices inclus
+            </h3>
+            <p style={{ fontSize: 14, opacity: 0.7, lineHeight: 1.65, fontWeight: 300 }}>
+              Espaces guidés pour clarifier ce que tu veux vraiment et avancer librement — des outils concrets pour construire une vie pleine, maintenant.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA bas de page */}
+      <section style={{ textAlign: 'center', padding: 'clamp(40px, 8vw, 80px) 24px' }}>
+        <p style={{
+          fontFamily: 'Fraunces, serif', fontStyle: 'italic',
+          fontSize: 20, color: 'var(--gold-soft)', marginBottom: 32, lineHeight: 1.4,
+        }}>
+          « Tu n&apos;es pas en attente. Tu es déjà entier·e. »
+        </p>
+        <BuyButtonCelibat />
+        <p style={{ marginTop: 16, fontSize: 12, opacity: 0.4, letterSpacing: '0.04em' }}>
+          PDF livré par email · 19,00 € TTC · par EvaTalk
+        </p>
+      </section>
+
+      {/* Footer */}
+      <footer className={styles.footer}>
+        <div className={styles.logo} style={{ justifyContent: 'center', marginBottom: 8 }}>
+          <span className={styles.logoMark}></span>
+          PerfectMatch
+        </div>
+        <p className={styles.footerByline}>par EvaTalk</p>
+        <p className={styles.copyright}>© 2026 PerfectMatch · une création <strong>EvaTalk</strong></p>
+      </footer>
+
+    </div>
+  );
+}

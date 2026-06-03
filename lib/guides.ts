@@ -143,6 +143,38 @@ export const GUIDES = {
       'Carnet de pensées — espaces guidés pour observer, noter et transformer tes schémas de pensée',
     ],
   },
+  'gestion-solitude': {
+    id: 'gestion-solitude',
+    name: 'Guide Apprivoiser la solitude — 4 approches',
+    priceCents: 1900,
+    currency: 'eur' as const,
+    pdf: '/guides/gestion-solitude-4-approches.pdf',
+    blurb:
+      'La solitude peut faire mal, ou devenir une ressource. Ce guide t\'accompagne à travers 4 regards TCC pour traverser la solitude autrement — en te reliant d\'abord à toi-même, puis aux autres, à ton propre rythme.',
+    bullets: [
+      'Ce que la solitude réveille — identifier les émotions et les besoins que la solitude met à nu',
+      'Les pensées qui isolent — repérer les distorsions cognitives qui renforcent le sentiment de solitude',
+      'La relation à soi — construire une présence intérieure apaisée pour ne plus fuir le silence',
+      'Tisser du lien — créer des connexions authentiques sans se perdre dans le besoin d\'être accepté·e',
+      'Cahier d\'exercices — espaces de réflexion guidés pour avancer vers une solitude choisie',
+    ],
+  },
+  'gestion-celibat': {
+    id: 'gestion-celibat',
+    name: 'Guide Bien vivre son célibat — 4 approches',
+    priceCents: 1900,
+    currency: 'eur' as const,
+    pdf: '/guides/gestion-celibat-4-approches.pdf',
+    blurb:
+      'Le célibat n\'est pas une salle d\'attente. Ce guide t\'accompagne à travers 4 regards TCC pour t\'épanouir pleinement — en couple ou non — et habiter ta valeur hors de tout statut relationnel.',
+    bullets: [
+      'Ce que le célibat te raconte — décrypter les croyances et les histoires que tu te racontes sur toi-même',
+      'Le piège du « il me manque quelqu\'un » — défaire la pensée du manque et de l\'incomplétude',
+      'Une vie pleine maintenant — construire désir, projet et joie sans attendre une relation pour commencer',
+      'Pressions et regards — naviguer les injonctions sociales et familiales sans en faire une honte',
+      'Cahier d\'exercices — espaces guidés pour clarifier ce que tu veux vraiment et avancer librement',
+    ],
+  },
 } as const;
 
 export type GuideId = keyof typeof GUIDES;

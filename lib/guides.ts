@@ -47,6 +47,22 @@ export const GUIDES = {
       'Cahier d\'exercices — exercices à faire seul·e ou à deux pour ancrer les prises de conscience',
     ],
   },
+  'couple-noir': {
+    id: 'couple-noir',
+    name: 'Guide Couple noir face au monde — 4 approches',
+    priceCents: 1900,
+    currency: 'eur' as const,
+    pdf: '/guides/couple-noir-face-au-monde-4-approches.pdf',
+    blurb:
+      'Aimer et être aimé·e, c\'est déjà fort. Le faire dans un monde qui vous regarde de travers, c\'est un acte de résistance. Seul·e ou à deux, ce guide t\'accompagne à travers 4 regards TCC pour faire de votre amour un refuge face au racisme extérieur — et tenir ensemble.',
+    bullets: [
+      'Ce que le monde a déposé en vous — identifier les blessures raciales qui entrent dans la relation sans qu\'on les ait invitées',
+      'Ne pas laisser le dehors entrer dedans — créer des pare-feux émotionnels pour protéger l\'espace du couple',
+      'Être le refuge l\'un de l\'autre — construire une sécurité intérieure partagée face aux agressions extérieures',
+      'Faire front ensemble — développer une stratégie commune face aux regards, commentaires et discriminations',
+      'Cahier d\'exercices — exercices à faire seul·e ou à deux pour renforcer le lien et la résilience du couple',
+    ],
+  },
 } as const;
 
 export type GuideId = keyof typeof GUIDES;

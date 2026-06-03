@@ -127,6 +127,22 @@ export const GUIDES = {
       'Cahier d\'exercices — espaces de réflexion et exercices d\'affirmation identitaire',
     ],
   },
+  'anxiete-pensees-negatives': {
+    id: 'anxiete-pensees-negatives',
+    name: 'Guide Anxiété & pensées négatives — 4 approches',
+    priceCents: 1900,
+    currency: 'eur' as const,
+    pdf: '/guides/anxiete-et-pensees-negatives-4-approches.pdf',
+    blurb:
+      'Le mental s\'emballe, les ruminations tournent en boucle, les pensées négatives s\'installent. Ce guide t\'accompagne à travers 4 regards TCC concrets pour apaiser le mental, défaire les spirales de pensées et reprendre la main — en auto-aide, à ton rythme.',
+    bullets: [
+      'D\'où vient ta petite voix — comprendre l\'origine de tes pensées automatiques et de tes ruminations',
+      'Repérer et nuancer tes pensées — identifier les distorsions cognitives et les reformuler avec justesse',
+      'T\'accueillir sans te juger — cultiver l\'auto-compassion pour sortir des spirales d\'autocritique',
+      'Ton environnement et tes boucles — identifier les déclencheurs externes qui alimentent l\'anxiété',
+      'Carnet de pensées — espaces guidés pour observer, noter et transformer tes schémas de pensée',
+    ],
+  },
 } as const;
 
 export type GuideId = keyof typeof GUIDES;

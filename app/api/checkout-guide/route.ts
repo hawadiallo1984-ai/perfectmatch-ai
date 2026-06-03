@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
             product_data: {
               name: 'Guide Black Tax — 4 approches (EvaTalk)',
             },
-            unit_amount: 1400,
+            unit_amount: 1900,
           },
           quantity: 1,
         },

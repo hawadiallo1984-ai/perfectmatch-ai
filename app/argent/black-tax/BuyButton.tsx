@@ -48,7 +48,7 @@ export default function BuyButton() {
           transition: 'all 0.25s',
         }}
       >
-        {loading ? 'Redirection…' : 'Acheter le guide — 14 €'}
+        {loading ? 'Redirection…' : 'Acheter le guide — 19 €'}
       </button>
       {error && (
         <p style={{ fontSize: 13, color: 'var(--danger)', margin: 0 }}>{error}</p>

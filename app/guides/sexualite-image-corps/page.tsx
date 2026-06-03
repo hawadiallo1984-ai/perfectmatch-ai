@@ -3,9 +3,9 @@ import styles from '@/app/page.module.css';
 import BuyButton from './BuyButton';
 
 export const metadata: Metadata = {
-  title: 'Guide Sexualité & image du corps — 4 approches | EvaTalk',
+  title: 'Guide Sexualité & image du corps — 4 approches TCC',
   description:
-    'Déconstruire la honte corporelle et retrouver une présence apaisée dans l\'intimité : un guide PDF de 4 approches TCC. Par EvaTalk.',
+    "Déconstruire la honte corporelle et retrouver une présence apaisée dans l'intimité : un guide PDF de 4 approches TCC pour habiter ton corps avec douceur.",
 };
 
 export default function SexualiteImageCorpsPage() {

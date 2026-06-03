@@ -3,9 +3,9 @@ import styles from '@/app/page.module.css';
 import BuyButtonSolitude from './BuyButtonSolitude';
 
 export const metadata: Metadata = {
-  title: 'Guide Apprivoiser la solitude — 4 approches | EvaTalk',
+  title: 'Guide Apprivoiser la solitude — 4 approches TCC',
   description:
-    'Traverser la solitude en se reliant à soi puis aux autres : un guide PDF de 4 approches TCC concrètes. Par EvaTalk.',
+    'Traverser la solitude en te reliant à toi-même puis aux autres : un guide PDF de 4 approches TCC concrètes pour transformer la solitude subie en solitude choisie.',
 };
 
 export default function GestionSolitudePage() {

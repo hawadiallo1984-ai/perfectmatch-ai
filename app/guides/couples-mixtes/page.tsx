@@ -3,9 +3,9 @@ import styles from '@/app/page.module.css';
 import BuyButtonCouplesMixtes from './BuyButtonCouplesMixtes';
 
 export const metadata: Metadata = {
-  title: 'Guide Couples mixtes & interculturels — 4 approches | EvaTalk',
+  title: 'Guide Couples mixtes & interculturels — 4 approches TCC',
   description:
-    'S\'aimer à travers la différence : un guide PDF de 4 approches TCC pour construire une relation interculturelle solide et apaisée. Par EvaTalk.',
+    "S'aimer à travers la différence : un guide PDF de 4 approches TCC pour transformer la friction culturelle en richesse et construire une relation interculturelle solide.",
 };
 
 export default function CouplesMixtesPage() {

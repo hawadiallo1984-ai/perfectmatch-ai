@@ -3,9 +3,9 @@ import styles from '@/app/page.module.css';
 import BuyButtonCoupleNoir from './BuyButtonCoupleNoir';
 
 export const metadata: Metadata = {
-  title: 'Guide Couple noir face au monde — 4 approches | EvaTalk',
+  title: 'Guide Couple noir face au monde — 4 approches TCC',
   description:
-    'Faire de votre amour un refuge face au racisme extérieur : un guide PDF de 4 approches TCC pour tenir ensemble. Par EvaTalk.',
+    'Faire de votre amour un refuge face au racisme extérieur : un guide PDF de 4 approches TCC pour protéger votre lien et tenir ensemble.',
 };
 
 export default function CoupleNoirPage() {

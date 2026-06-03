@@ -3,9 +3,9 @@ import styles from '@/app/page.module.css';
 import BuyButtonAnxiete from './BuyButtonAnxiete';
 
 export const metadata: Metadata = {
-  title: 'Guide Anxiété & pensées négatives — 4 approches | EvaTalk',
+  title: 'Guide Anxiété & pensées négatives — 4 approches TCC',
   description:
-    'Apaiser le mental, les ruminations et les pensées négatives en auto-aide TCC : un guide PDF de 4 approches concrètes. Par EvaTalk.',
+    'Apaiser le mental, les ruminations et les pensées négatives en auto-aide TCC : un guide PDF de 4 approches concrètes pour reprendre la main sur tes pensées automatiques.',
 };
 
 export default function AnxietePenseesNegativesPage() {

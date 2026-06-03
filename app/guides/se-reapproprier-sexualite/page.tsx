@@ -3,9 +3,9 @@ import styles from '@/app/page.module.css';
 import BuyButton from './BuyButton';
 
 export const metadata: Metadata = {
-  title: 'Guide Se réapproprier sa sexualité — 4 approches | EvaTalk',
+  title: 'Guide Se réapproprier sa sexualité — 4 approches TCC',
   description:
-    'Renouer avec ton désir, ton corps et ton plaisir : un guide PDF de 4 approches TCC pour se réapproprier sa sexualité, sans honte. Par EvaTalk.',
+    'Renouer avec ton désir, ton corps et ton plaisir sans honte : un guide PDF de 4 approches TCC pour déconstruire les blocages et te réapproprier pleinement ta sexualité.',
 };
 
 export default function SeReapproprierSexualitePage() {

@@ -3,9 +3,9 @@ import styles from '@/app/page.module.css';
 import BuyButtonCelibat from './BuyButtonCelibat';
 
 export const metadata: Metadata = {
-  title: 'Guide Bien vivre son célibat — 4 approches | EvaTalk',
+  title: 'Guide Bien vivre son célibat — 4 approches TCC',
   description:
-    'S\'épanouir en célibat, habiter sa valeur hors de tout statut relationnel : un guide PDF de 4 approches TCC. Par EvaTalk.',
+    "S'épanouir pleinement en célibat et habiter ta valeur hors de tout statut relationnel : un guide PDF de 4 approches TCC en auto-aide.",
 };
 
 export default function GestionCelibatPage() {

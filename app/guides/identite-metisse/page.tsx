@@ -3,9 +3,9 @@ import styles from '@/app/page.module.css';
 import BuyButtonMetisse from './BuyButtonMetisse';
 
 export const metadata: Metadata = {
-  title: 'Guide Identité métisse — 4 approches | EvaTalk',
+  title: 'Guide Identité métisse — 4 approches TCC',
   description:
-    'Sortir de l\'entre-deux et habiter une identité pleinement tienne : un guide PDF de 4 approches TCC pour intégrer tes appartenances multiples. Par EvaTalk.',
+    "Sortir de l'entre-deux et habiter une identité pleinement tienne : un guide PDF de 4 approches TCC pour intégrer tes appartenances multiples sans avoir à choisir.",
 };
 
 export default function IdentiteMetissePage() {

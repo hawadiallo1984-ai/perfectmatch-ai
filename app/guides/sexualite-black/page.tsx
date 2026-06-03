@@ -3,9 +3,9 @@ import styles from '@/app/page.module.css';
 import BuyButton from './BuyButton';
 
 export const metadata: Metadata = {
-  title: 'Guide Sexualité black — 4 approches | EvaTalk',
+  title: 'Guide Sexualité black — 4 approches TCC',
   description:
-    'Habiter son désir en terrain propre, libre du regard racial : un guide PDF de 4 approches TCC sur la sexualité black. Par EvaTalk.',
+    'Habiter ton désir en terrain propre, libre du regard racial et des tabous communautaires : un guide PDF de 4 approches TCC sur la sexualité black.',
 };
 
 export default function SexualiteBlackPage() {

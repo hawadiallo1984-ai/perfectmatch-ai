@@ -3,9 +3,9 @@ import styles from '@/app/page.module.css';
 import BuyButton from './BuyButton';
 
 export const metadata: Metadata = {
-  title: 'Guide Désir & intimité — 4 approches | EvaTalk',
+  title: 'Guide Désir & intimité — 4 approches TCC',
   description:
-    'Comprendre les cycles du désir, lever les freins à l\'intimité et cultiver une connexion authentique : un guide PDF de 4 approches TCC. Par EvaTalk.',
+    "Comprendre les cycles du désir, lever les freins à l'intimité et cultiver une connexion authentique seul·e ou à deux : un guide PDF de 4 approches TCC.",
 };
 
 export default function DesirIntimitePage() {

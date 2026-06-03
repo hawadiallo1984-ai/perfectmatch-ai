@@ -68,7 +68,6 @@ export default function ResiliencePage() {
         <div className={styles.navLinks}>
           <a href="/">Accueil</a>
           <a href="/#offres">Offres</a>
-          <a href="/carnet">Carnet TCC</a>
           <a href="/resilience" className={styles.navCta}>Résilience</a>
         </div>
       </nav>

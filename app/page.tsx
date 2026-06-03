@@ -73,7 +73,6 @@ export default function HomePage() {
           <a href="#pillars">Methode</a>
           <a href="#offres">Tarifs</a>
           <a href="#methode">Processus</a>
-          <a href="/carnet">Carnet TCC</a>
           <a href="/resilience">Racisme &amp; misogynoir</a>
           <a href="/argent">Argent &amp; business</a>
           <a href="/sexualite">Sexualité</a>

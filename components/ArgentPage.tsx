@@ -68,7 +68,6 @@ export default function ArgentPage() {
         <div className={styles.navLinks}>
           <a href="/">Accueil</a>
           <a href="/#offres">Offres</a>
-          <a href="/carnet">Carnet TCC</a>
           <a href="/resilience">Racisme &amp; misogynoir</a>
           <a href="/argent" className={styles.navCta}>Argent &amp; business</a>
         </div>

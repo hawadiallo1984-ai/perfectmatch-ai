@@ -31,6 +31,22 @@ export const GUIDES = {
       'Cahier d\'exercices — exercices de mise en récit et d\'ancrage identitaire',
     ],
   },
+  'couples-mixtes': {
+    id: 'couples-mixtes',
+    name: 'Guide Couples mixtes & interculturels — 4 approches',
+    priceCents: 1900,
+    currency: 'eur' as const,
+    pdf: '/guides/couples-mixtes-4-approches.pdf',
+    blurb:
+      'S\'aimer à travers la différence, c\'est beau — et parfois épuisant. Seul·e ou à deux, ce guide t\'accompagne à travers 4 regards TCC pour transformer ce qui divise en richesse partagée, et construire une relation interculturelle solide et apaisée.',
+    bullets: [
+      'Ce que chacun apporte sans le savoir — identifier les héritages culturels invisibles dans la relation',
+      'Quand « différent » devient « menace » — déconstruire les réflexes de rejet et de surinterprétation',
+      'Deux mondes, une rencontre — créer un espace commun sans effacer ce qu\'on est chacun',
+      'Les deux familles dans le salon — naviguer les attentes, les regards et les pressions extérieures',
+      'Cahier d\'exercices — exercices à faire seul·e ou à deux pour ancrer les prises de conscience',
+    ],
+  },
 } as const;
 
 export type GuideId = keyof typeof GUIDES;

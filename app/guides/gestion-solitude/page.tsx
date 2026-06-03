@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import styles from '@/app/page.module.css';
+import SiteNav from '@/components/SiteNav';
 import BuyButtonSolitude from './BuyButtonSolitude';
 
 export const metadata: Metadata = {
@@ -12,17 +13,7 @@ export default function GestionSolitudePage() {
   return (
     <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
 
-      {/* Nav */}
-      <nav className={styles.nav}>
-        <a href="/" className={styles.logo} style={{ textDecoration: 'none' }}>
-          <span className={styles.logoMark}></span>
-          PerfectMatch
-        </a>
-        <div className={styles.navLinks}>
-          <a href="/">Accueil</a>
-          <a href="/resilience" className={styles.navCta}>Résilience</a>
-        </div>
-      </nav>
+      <SiteNav />
 
       {/* Bouton d'achat en vedette */}
       <section style={{ paddingTop: 80, paddingBottom: 0, textAlign: 'center' }}>

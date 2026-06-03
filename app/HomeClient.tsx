@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { track } from '@vercel/analytics';
 import { OFFERS, OFFERS_ORDER } from '@/lib/offers';
+import SiteNav from '@/components/SiteNav';
 import styles from './page.module.css';
 
 export default function HomePage() {
@@ -64,21 +65,7 @@ export default function HomePage() {
 
   return (
     <>
-      <nav className={styles.nav}>
-        <div className={styles.logo}>
-          <span className={styles.logoMark}></span>
-          PerfectMatch
-        </div>
-        <div className={styles.navLinks}>
-          <a href="#pillars">Methode</a>
-          <a href="#offres">Tarifs</a>
-          <a href="#methode">Processus</a>
-          <a href="/resilience">Racisme &amp; misogynoir</a>
-          <a href="/argent">Argent &amp; business</a>
-          <a href="/sexualite">Sexualité</a>
-          <a href="#offres" className={styles.navCta}>Commencer</a>
-        </div>
-      </nav>
+      <SiteNav />
 
       <section className={styles.hero}>
         <svg className={styles.zodiacRing} viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg">

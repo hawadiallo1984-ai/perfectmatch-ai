@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { stripe } from '@/lib/stripe';
 import { GUIDES, GuideId } from '@/lib/guides';
+import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
 export const metadata: Metadata = {
@@ -31,13 +32,7 @@ export default async function MerciPage({
   return (
     <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
 
-      {/* Nav */}
-      <nav className={styles.nav}>
-        <a href="/" className={styles.logo} style={{ textDecoration: 'none' }}>
-          <span className={styles.logoMark}></span>
-          PerfectMatch
-        </a>
-      </nav>
+      <SiteNav />
 
       <main style={{
         maxWidth: 680,

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
 const GUIDES = [
@@ -54,19 +55,7 @@ export default function SexualiteClient() {
   return (
     <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
 
-      {/* Nav */}
-      <nav className={styles.nav}>
-        <a href="/" className={styles.logo} style={{ textDecoration: 'none' }}>
-          <span className={styles.logoMark}></span>
-          PerfectMatch
-        </a>
-        <div className={styles.navLinks}>
-          <a href="/">Accueil</a>
-          <a href="/resilience">Résilience</a>
-          <a href="/argent">Argent</a>
-          <a href="/sexualite" className={styles.navCta}>Sexualité</a>
-        </div>
-      </nav>
+      <SiteNav />
 
       {/* Header */}
       <section className={styles.section} style={{ textAlign: 'center', paddingBottom: 0 }}>

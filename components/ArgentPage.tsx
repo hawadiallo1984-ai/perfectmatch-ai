@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { OFFERS, ARGENT_ORDER, type OfferId } from '@/lib/offers';
+import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
 export default function ArgentPage() {
@@ -59,19 +60,7 @@ export default function ArgentPage() {
   return (
     <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
 
-      {/* Nav */}
-      <nav className={styles.nav}>
-        <a href="/" className={styles.logo} style={{ textDecoration: 'none' }}>
-          <span className={styles.logoMark}></span>
-          PerfectMatch
-        </a>
-        <div className={styles.navLinks}>
-          <a href="/">Accueil</a>
-          <a href="/#offres">Offres</a>
-          <a href="/resilience">Racisme &amp; misogynoir</a>
-          <a href="/argent" className={styles.navCta}>Argent &amp; business</a>
-        </div>
-      </nav>
+      <SiteNav />
 
       {/* Header */}
       <section className={styles.section} style={{ textAlign: 'center', paddingBottom: 0 }}>

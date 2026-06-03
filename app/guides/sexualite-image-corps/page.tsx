@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import styles from '@/app/page.module.css';
+import SiteNav from '@/components/SiteNav';
 import BuyButton from './BuyButton';
 
 export const metadata: Metadata = {
@@ -12,16 +13,7 @@ export default function SexualiteImageCorpsPage() {
   return (
     <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
 
-      <nav className={styles.nav}>
-        <a href="/" className={styles.logo} style={{ textDecoration: 'none' }}>
-          <span className={styles.logoMark}></span>
-          PerfectMatch
-        </a>
-        <div className={styles.navLinks}>
-          <a href="/">Accueil</a>
-          <a href="/sexualite" className={styles.navCta}>Sexualité</a>
-        </div>
-      </nav>
+      <SiteNav />
 
       <section style={{ paddingTop: 80, paddingBottom: 0, textAlign: 'center' }}>
         <div style={{ maxWidth: 640, margin: '0 auto', padding: '0 24px 48px' }}>

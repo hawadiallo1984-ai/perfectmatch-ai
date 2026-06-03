@@ -76,6 +76,7 @@ export default function HomePage() {
           <a href="/carnet">Carnet TCC</a>
           <a href="/resilience">Racisme &amp; misogynoir</a>
           <a href="/argent">Argent &amp; business</a>
+          <a href="/sexualite">Sexualité</a>
           <a href="#offres" className={styles.navCta}>Commencer</a>
         </div>
       </nav>

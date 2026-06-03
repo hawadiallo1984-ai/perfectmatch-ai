@@ -175,6 +175,54 @@ export const GUIDES = {
       'Cahier d\'exercices — espaces guidés pour clarifier ce que tu veux vraiment et avancer librement',
     ],
   },
+  'confiance-estime-de-soi': {
+    id: 'confiance-estime-de-soi',
+    name: 'Guide Confiance & estime de soi — 4 approches',
+    priceCents: 1900,
+    currency: 'eur' as const,
+    pdf: '/guides/confiance-estime-de-soi-4-approches.pdf',
+    blurb:
+      "L'estime de soi ne se décrète pas — elle se construit, un regard intérieur à la fois. Ce guide t'accompagne à travers 4 approches TCC pour identifier les racines de tes pensées dévalorisantes et bâtir une valeur inconditionnelle.",
+    bullets: [
+      'Les racines de ton estime — d\'où viennent les croyances sur ta valeur et comment elles se sont formées',
+      'Repérer tes pensées dévalorisantes — identifier et nommer les distorsions cognitives qui t\'effacent',
+      'Une valeur inconditionnelle — construire une estime stable qui ne dépend pas des performances ou du regard des autres',
+      'Ton environnement et tes comparaisons — sortir des dynamiques qui érodent ta confiance au quotidien',
+      'Cahier d\'exercices — espaces guidés pour ancrer de nouvelles croyances sur toi-même',
+    ],
+  },
+  'styles-attachement': {
+    id: 'styles-attachement',
+    name: "Guide Styles d'attachement — 4 approches",
+    priceCents: 1900,
+    currency: 'eur' as const,
+    pdf: '/guides/styles-attachement-4-approches.pdf',
+    blurb:
+      "Ton style d'attachement s'est formé bien avant tes premières relations amoureuses. Ce guide t'aide à comprendre d'où il vient, ce qu'il active en toi — et comment évoluer vers une base sécure, seul·e ou à deux.",
+    bullets: [
+      "D'où vient ton style — comprendre la formation de l'attachement et ses traces dans tes relations actuelles",
+      "Les pensées de l'anxieux et de l'évitant — identifier les schémas cognitifs propres à chaque style",
+      'Vers une base sécure — exercices TCC pour moduler les réponses automatiques d\'anxiété ou de retrait',
+      'La danse anxieux-évitant — comprendre et sortir des dynamiques de couple les plus courantes',
+      'Cahier d\'exercices — mises en situation pour répondre autrement à la peur du rejet ou de la proximité',
+    ],
+  },
+  'guerir-rupture': {
+    id: 'guerir-rupture',
+    name: "Guide Guérir d'une rupture — 4 approches",
+    priceCents: 1900,
+    currency: 'eur' as const,
+    pdf: '/guides/guerir-rupture-4-approches.pdf',
+    blurb:
+      "Une rupture ne fait pas que perdre quelqu'un — elle remet en question qui on est. Ce guide t'accompagne à travers 4 approches TCC pour traverser la douleur, sortir de la rumination et te retrouver.",
+    bullets: [
+      'Pourquoi ça fait si mal — comprendre ce que la rupture active vraiment sur le plan psychologique',
+      'Sortir de la rumination — identifier les pensées qui entretiennent la souffrance et les interrompre',
+      'Te retrouver — reconnecter avec ton identité propre, en dehors de la relation perdue',
+      'Reconstruire ton monde — réinvestir ta vie, tes liens et ton avenir sans te fermer à la suite',
+      'Cahier d\'exercices — espaces de deuil guidés et exercices de reconstruction pas à pas',
+    ],
+  },
 } as const;
 
 export type GuideId = keyof typeof GUIDES;

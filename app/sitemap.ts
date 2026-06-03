@@ -4,15 +4,18 @@ const BASE_URL = 'https://perfectmatch-ai.vercel.app';
 
 const GUIDE_IDS = [
   'anxiete-pensees-negatives',
+  'confiance-estime-de-soi',
   'couple-noir',
   'couples-mixtes',
   'desir-intimite',
   'gestion-celibat',
   'gestion-solitude',
+  'guerir-rupture',
   'identite-metisse',
   'se-reapproprier-sexualite',
   'sexualite-black',
   'sexualite-image-corps',
+  'styles-attachement',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

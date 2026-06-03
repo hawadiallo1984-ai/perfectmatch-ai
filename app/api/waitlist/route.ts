@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
     await resend.emails.send({
       from: 'PerfectMatch <onboarding@resend.dev>',
       to: process.env.NOTIFY_EMAIL!,
-      subject: `Nouvelle inscription liste d'accès — ${parcoursLabel}`,
+      subject: `Liste d'accès — ${parcoursLabel} — ${email}`,
       html: `<p>${email} souhaite accéder au parcours : <strong>${parcoursLabel}</strong></p>`,
     });
 

@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { label: 'Résilience', href: '/resilience' },
   { label: 'Argent', href: '/argent' },
   { label: 'Sexualité', href: '/sexualite' },
+  { label: 'FAQ', href: '/faq' },
 ];
 
 export default function SiteNav() {

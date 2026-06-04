@@ -102,6 +102,60 @@ const SECTIONS = [
     ],
   },
   {
+    id: 'resilience',
+    label: 'Résilience',
+    guides: [
+      {
+        id: 'misogynoir',
+        title: 'Misogynoir',
+        desc: 'Déconstruire et traverser la haine croisée du genre et de la race.',
+        href: '/guides/misogynoir',
+      },
+      {
+        id: 'charge-raciale',
+        title: 'Charge raciale',
+        desc: 'Alléger le poids mental du racisme chronique au quotidien.',
+        href: '/guides/charge-raciale',
+      },
+      {
+        id: 'racisme-au-quotidien',
+        title: 'Racisme au quotidien',
+        desc: "Des outils TCC pour répondre aux microagressions sans t'épuiser.",
+        href: '/guides/racisme-au-quotidien',
+      },
+      {
+        id: 'colorisme',
+        title: 'Colorisme',
+        desc: 'Guérir les blessures liées à la teinte de peau, dedans et dehors.',
+        href: '/guides/colorisme',
+      },
+      {
+        id: 'dating-femme-noire',
+        title: 'Dating femme noire',
+        desc: 'Naviguer le dating sans effacer qui tu es.',
+        href: '/guides/dating-femme-noire',
+      },
+      {
+        id: 'parentalite-noire',
+        title: 'Parentalité noire',
+        desc: 'Élever ses enfants avec fierté dans un monde qui les questionne.',
+        href: '/guides/parentalite-noire',
+      },
+      {
+        id: 'syndrome-imposteur',
+        title: "Syndrome de l'imposteur",
+        desc: 'Déconstruire la voix intérieure qui doute de ta légitimité.',
+        href: '/guides/syndrome-imposteur',
+      },
+      {
+        id: 'foi-identite-bien-etre',
+        title: 'Foi, identité & bien-être',
+        desc: 'Réconcilier spiritualité, culture et santé mentale.',
+        href: '/guides/foi-identite-bien-etre',
+      },
+    ],
+  },
+  {
     id: 'argent',
     label: 'Argent',
     guides: [
@@ -110,6 +164,42 @@ const SECTIONS = [
         title: 'Black Tax',
         desc: 'Comprendre et poser des limites face au poids financier familial.',
         href: '/argent/black-tax',
+      },
+      {
+        id: 'croyances-argent',
+        title: "Croyances sur l'argent",
+        desc: "Désamorcer les croyances limitantes qui bloquent ta relation à l'argent.",
+        href: '/guides/croyances-argent',
+      },
+      {
+        id: 'mentalite-abondance',
+        title: "Mentalité d'abondance",
+        desc: 'Apaiser la peur du manque et cultiver un rapport serein à la prospérité.',
+        href: '/guides/mentalite-abondance',
+      },
+      {
+        id: 'honte-de-classe',
+        title: 'Honte de classe',
+        desc: "T'aimer d'où que tu viennes et dépasser la honte sociale.",
+        href: '/guides/honte-de-classe',
+      },
+      {
+        id: 'oser-ta-valeur-tarifs',
+        title: 'Oser ta valeur & tes tarifs',
+        desc: 'Fixer un prix juste sans honte ni sous-estimer ce que tu vaux.',
+        href: '/guides/oser-ta-valeur-tarifs',
+      },
+      {
+        id: 'anxiete-financiere',
+        title: 'Anxiété financière',
+        desc: "Apaiser la peur de l'argent et agir pas à pas vers plus de sécurité.",
+        href: '/guides/anxiete-financiere',
+      },
+      {
+        id: 'argent-couple',
+        title: "L'argent dans le couple",
+        desc: 'Construire confiance et équité financière dans la relation.',
+        href: '/guides/argent-couple',
       },
     ],
   },
@@ -144,7 +234,7 @@ export default function BibliothequeClient() {
             Bibliothèque
           </div>
           <h1 className={`${styles.sectionTitle} reveal`} style={{ textAlign: 'center', margin: '0 auto 28px' }}>
-            14 guides, <em>un seul endroit</em>
+            Tous les guides, <em>un seul endroit</em>
           </h1>
           <p className={`${styles.sectionLead} reveal`} style={{ textAlign: 'center', margin: '0 auto 40px', maxWidth: 560 }}>
             Amour, bien-être, sexualité, argent — chaque guide est un espace de travail concret,

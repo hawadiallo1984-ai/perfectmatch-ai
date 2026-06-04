@@ -1,16 +1,55 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { OFFERS, ARGENT_ORDER, type OfferId } from '@/lib/offers';
+import { useEffect } from 'react';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
-export default function ArgentPage() {
-  const [email, setEmail] = useState('');
-  const [sentOffer, setSentOffer] = useState<string | null>(null);
-  const [loadingOffer, setLoadingOffer] = useState<string | null>(null);
-  const [errorOffer, setErrorOffer] = useState<string | null>(null);
+const GUIDES = [
+  {
+    id: 'black-tax',
+    title: 'Black Tax',
+    desc: "Soutenir sa famille sans s’oublier.",
+    href: '/argent/black-tax',
+  },
+  {
+    id: 'croyances-argent',
+    title: "Croyances sur l’argent",
+    desc: 'Désamorcer ce qui te bloque.',
+    href: '/guides/croyances-argent',
+  },
+  {
+    id: 'mentalite-abondance',
+    title: "Mentalité d’abondance",
+    desc: 'Apaiser la peur du manque.',
+    href: '/guides/mentalite-abondance',
+  },
+  {
+    id: 'honte-de-classe',
+    title: 'Honte de classe',
+    desc: "T’aimer d’où que tu viennes.",
+    href: '/guides/honte-de-classe',
+  },
+  {
+    id: 'oser-ta-valeur-tarifs',
+    title: 'Oser ta valeur & tes tarifs',
+    desc: 'Fixer un prix juste sans honte.',
+    href: '/guides/oser-ta-valeur-tarifs',
+  },
+  {
+    id: 'anxiete-financiere',
+    title: 'Anxiété financière',
+    desc: 'Apaiser la peur, agir pas à pas.',
+    href: '/guides/anxiete-financiere',
+  },
+  {
+    id: 'argent-couple',
+    title: "L’argent dans le couple",
+    desc: 'Confiance & équité.',
+    href: '/guides/argent-couple',
+  },
+];
 
+export default function ArgentPage() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -26,36 +65,6 @@ export default function ArgentPage() {
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
-
-  const handleWaitlist = async (e: React.FormEvent, offerId: OfferId) => {
-    e.preventDefault();
-    if (!email || loadingOffer) return;
-    setLoadingOffer(offerId);
-    setErrorOffer(null);
-    try {
-      const res = await fetch('/api/waitlist', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, parcours: OFFERS[offerId].nameEmphasis }),
-      });
-      if (!res.ok) throw new Error('Erreur serveur');
-      setSentOffer(offerId);
-      setEmail('');
-      setTimeout(() => setSentOffer(null), 6000);
-    } catch {
-      setErrorOffer(offerId);
-    }
-    setLoadingOffer(null);
-  };
-
-  const renderFeature = (text: string) => {
-    const parts = text.split(/(\*\*.*?\*\*)/g);
-    return parts.map((part, i) =>
-      part.startsWith('**') && part.endsWith('**')
-        ? <strong key={i}>{part.slice(2, -2)}</strong>
-        : <span key={i}>{part}</span>
-    );
-  };
 
   return (
     <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
@@ -78,104 +87,31 @@ export default function ArgentPage() {
           <p className={`${styles.sectionLead} reveal`} style={{ textAlign: 'center', margin: '0 auto 16px', fontSize: 13, opacity: 0.6 }}>
             Accompagnement mindset et bien-être, pas un conseil financier.
           </p>
-          <p className="reveal" style={{
-            textAlign: 'center', fontSize: 13.5, color: 'var(--violet-soft)',
-            fontStyle: 'italic', fontFamily: 'Fraunces, serif', opacity: 0.85,
-          }}>
-            Ces parcours arrivent progressivement — rejoins la liste d&apos;accès anticipé pour être prévenu·e en premier.
-          </p>
         </div>
       </section>
 
-      {/* Cartes */}
+      {/* Cartes guides */}
       <section className={`${styles.section} ${styles.offersSection}`}>
         <div
           className={styles.offersGrid}
           style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}
         >
-          {ARGENT_ORDER.map((id) => {
-            const offer = OFFERS[id];
-            const isSent = sentOffer === id;
-            const isLoading = loadingOffer === id;
-            const hasError = errorOffer === id;
-            return (
-              <div key={id} className={`${styles.offer} reveal`}>
-                {offer.badge && <div className={styles.offerBadge}>{offer.badge}</div>}
-                <div className={styles.offerCategory}>{offer.category}</div>
-                <h3 className={styles.offerName}>
-                  {offer.name}{' '}<em>{offer.nameEmphasis}</em>
-                </h3>
-                <p className={styles.offerDesc}>{offer.description}</p>
-
-                <div className={styles.offerPrice}>
-                  <span className={styles.amount}>{offer.price === 0 ? 'Gratuit' : offer.price}</span>
-                  {offer.price > 0 && <span className={styles.currency}>€</span>}
-                  <span className={styles.unit}>· {offer.unit}</span>
-                </div>
-
-                <ul className={styles.offerFeatures}>
-                  {offer.features.map((feature, i) => (
-                    <li key={i}>{renderFeature(feature)}</li>
-                  ))}
-                </ul>
-
-                <div style={{ marginTop: 'auto' }}>
-                  {isSent ? (
-                    <div style={{
-                      padding: '18px 12px',
-                      textAlign: 'center',
-                      border: '1px dashed rgba(142, 122, 181, 0.5)',
-                      background: 'rgba(142, 122, 181, 0.08)',
-                      fontFamily: 'Fraunces, serif',
-                      fontStyle: 'italic',
-                      color: '#A995C7',
-                      fontSize: 14,
-                    }}>
-                      ✦ Tu seras prévenu·e en premier
-                    </div>
-                  ) : (
-                    <form
-                      onSubmit={(e) => handleWaitlist(e, id)}
-                      style={{ display: 'flex', flexDirection: 'column', gap: 10 }}
-                    >
-                      <input
-                        type="email"
-                        required
-                        placeholder="Ton email pour rejoindre la liste d'accès"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        style={{
-                          width: '100%',
-                          padding: '14px 16px',
-                          border: '1px solid rgba(142, 122, 181, 0.4)',
-                          background: 'rgba(28, 24, 51, 0.5)',
-                          color: '#F5EFE3',
-                          fontFamily: 'inherit',
-                          fontSize: 14,
-                          outline: 'none',
-                          borderRadius: 2,
-                          boxSizing: 'border-box',
-                        }}
-                      />
-                      <button
-                        type="submit"
-                        className={styles.offerCta}
-                        disabled={isLoading}
-                        style={{ opacity: isLoading ? 0.6 : 1 }}
-                      >
-                        {isLoading ? 'Envoi en cours…' : 'Rejoindre la liste d\'accès'}
-                      </button>
-                      {hasError && (
-                        <p style={{ fontSize: 13, color: 'var(--danger)', textAlign: 'center', margin: 0 }}>
-                          Une erreur est survenue — réessaie dans un instant.
-                        </p>
-                      )}
-                    </form>
-                  )}
-                </div>
+          {GUIDES.map((guide) => (
+            <div key={guide.id} className={`${styles.offer} reveal`}>
+              <div className={styles.offerCategory}>Guide PDF · 19 €</div>
+              <h3 className={styles.offerName}>{guide.title}</h3>
+              <p className={styles.offerDesc}>{guide.desc}</p>
+              <div style={{ marginTop: 'auto' }}>
+                <a
+                  href={guide.href}
+                  className={styles.offerCta}
+                  style={{ display: 'block', textAlign: 'center', textDecoration: 'none' }}
+                >
+                  Acheter — 19€ →
+                </a>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </section>
 

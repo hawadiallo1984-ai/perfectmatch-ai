@@ -3,6 +3,7 @@ import type { MetadataRoute } from 'next';
 const BASE_URL = 'https://perfectmatch-ai.vercel.app';
 
 const GUIDE_IDS = [
+  // Amour & Relations
   'anxiete-pensees-negatives',
   'confiance-estime-de-soi',
   'couple-noir',
@@ -12,10 +13,27 @@ const GUIDE_IDS = [
   'gestion-solitude',
   'guerir-rupture',
   'identite-metisse',
+  'styles-attachement',
+  // Sexualité
   'se-reapproprier-sexualite',
   'sexualite-black',
   'sexualite-image-corps',
-  'styles-attachement',
+  // Résilience
+  'misogynoir',
+  'charge-raciale',
+  'racisme-au-quotidien',
+  'colorisme',
+  'dating-femme-noire',
+  'parentalite-noire',
+  'syndrome-imposteur',
+  'foi-identite-bien-etre',
+  // Argent
+  'croyances-argent',
+  'mentalite-abondance',
+  'honte-de-classe',
+  'oser-ta-valeur-tarifs',
+  'anxiete-financiere',
+  'argent-couple',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

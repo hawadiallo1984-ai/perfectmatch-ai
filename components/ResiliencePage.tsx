@@ -1,16 +1,73 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { OFFERS, RESILIENCE_ORDER, type OfferId } from '@/lib/offers';
+import { useEffect } from 'react';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
-export default function ResiliencePage() {
-  const [email, setEmail] = useState('');
-  const [sentOffer, setSentOffer] = useState<string | null>(null);
-  const [loadingOffer, setLoadingOffer] = useState<string | null>(null);
-  const [errorOffer, setErrorOffer] = useState<string | null>(null);
+const GUIDES = [
+  {
+    id: 'misogynoir',
+    title: 'Misogynoir',
+    desc: 'Déconstruire et traverser la haine croisée du genre et de la race.',
+    href: '/guides/misogynoir',
+  },
+  {
+    id: 'charge-raciale',
+    title: 'Charge raciale',
+    desc: 'Alléger le poids mental du racisme chronique au quotidien.',
+    href: '/guides/charge-raciale',
+  },
+  {
+    id: 'racisme-au-quotidien',
+    title: 'Racisme au quotidien',
+    desc: "Des outils TCC pour répondre aux microagressions sans t'épuiser.",
+    href: '/guides/racisme-au-quotidien',
+  },
+  {
+    id: 'colorisme',
+    title: 'Colorisme',
+    desc: 'Guérir les blessures liées à la teinte de peau, dedans et dehors.',
+    href: '/guides/colorisme',
+  },
+  {
+    id: 'dating-femme-noire',
+    title: 'Dating femme noire',
+    desc: 'Naviguer le dating sans effacer qui tu es.',
+    href: '/guides/dating-femme-noire',
+  },
+  {
+    id: 'parentalite-noire',
+    title: 'Parentalité noire',
+    desc: 'Élever ses enfants avec fierté dans un monde qui les questionne.',
+    href: '/guides/parentalite-noire',
+  },
+  {
+    id: 'syndrome-imposteur',
+    title: "Syndrome de l'imposteur",
+    desc: 'Déconstruire la voix intérieure qui doute de ta légitimité.',
+    href: '/guides/syndrome-imposteur',
+  },
+  {
+    id: 'foi-identite-bien-etre',
+    title: 'Foi, identité & bien-être',
+    desc: 'Réconcilier spiritualité, culture et santé mentale.',
+    href: '/guides/foi-identite-bien-etre',
+  },
+  {
+    id: 'identite-metisse',
+    title: 'Identité métisse',
+    desc: 'Habiter pleinement une identité plurielle sans la choisir entre deux.',
+    href: '/guides/identite-metisse',
+  },
+  {
+    id: 'couple-noir',
+    title: 'Couple noir face au monde',
+    desc: 'Protéger et nourrir ton couple dans un environnement qui le questionne.',
+    href: '/guides/couple-noir',
+  },
+];
 
+export default function ResiliencePage() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -26,36 +83,6 @@ export default function ResiliencePage() {
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
-
-  const handleWaitlist = async (e: React.FormEvent, offerId: OfferId) => {
-    e.preventDefault();
-    if (!email || loadingOffer) return;
-    setLoadingOffer(offerId);
-    setErrorOffer(null);
-    try {
-      const res = await fetch('/api/waitlist', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, parcours: OFFERS[offerId].nameEmphasis }),
-      });
-      if (!res.ok) throw new Error('Erreur serveur');
-      setSentOffer(offerId);
-      setEmail('');
-      setTimeout(() => setSentOffer(null), 6000);
-    } catch {
-      setErrorOffer(offerId);
-    }
-    setLoadingOffer(null);
-  };
-
-  const renderFeature = (text: string) => {
-    const parts = text.split(/(\*\*.*?\*\*)/g);
-    return parts.map((part, i) =>
-      part.startsWith('**') && part.endsWith('**')
-        ? <strong key={i}>{part.slice(2, -2)}</strong>
-        : <span key={i}>{part}</span>
-    );
-  };
 
   return (
     <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
@@ -75,104 +102,31 @@ export default function ResiliencePage() {
             Ici, des outils issus de la TCC culturellement adaptés pour valider ton vécu,
             protéger ta santé mentale et reprendre ton pouvoir.
           </p>
-          <p className="reveal" style={{
-            textAlign: 'center', fontSize: 13.5, color: 'var(--violet-soft)',
-            fontStyle: 'italic', fontFamily: 'Fraunces, serif', opacity: 0.85,
-          }}>
-            Ces parcours arrivent progressivement — rejoins la liste d&apos;accès anticipé pour être prévenu·e en premier.
-          </p>
         </div>
       </section>
 
-      {/* Cartes */}
+      {/* Cartes guides */}
       <section className={`${styles.section} ${styles.offersSection}`}>
         <div
           className={styles.offersGrid}
           style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}
         >
-          {RESILIENCE_ORDER.map((id) => {
-            const offer = OFFERS[id];
-            const isSent = sentOffer === id;
-            const isLoading = loadingOffer === id;
-            const hasError = errorOffer === id;
-            return (
-              <div key={id} className={`${styles.offer} reveal`}>
-                {offer.badge && <div className={styles.offerBadge}>{offer.badge}</div>}
-                <div className={styles.offerCategory}>{offer.category}</div>
-                <h3 className={styles.offerName}>
-                  {offer.name}{' '}<em>{offer.nameEmphasis}</em>
-                </h3>
-                <p className={styles.offerDesc}>{offer.description}</p>
-
-                <div className={styles.offerPrice}>
-                  <span className={styles.amount}>{offer.price}</span>
-                  <span className={styles.currency}>€</span>
-                  <span className={styles.unit}>· {offer.unit}</span>
-                </div>
-
-                <ul className={styles.offerFeatures}>
-                  {offer.features.map((feature, i) => (
-                    <li key={i}>{renderFeature(feature)}</li>
-                  ))}
-                </ul>
-
-                <div style={{ marginTop: 'auto' }}>
-                  {isSent ? (
-                    <div style={{
-                      padding: '18px 12px',
-                      textAlign: 'center',
-                      border: '1px dashed rgba(142, 122, 181, 0.5)',
-                      background: 'rgba(142, 122, 181, 0.08)',
-                      fontFamily: 'Fraunces, serif',
-                      fontStyle: 'italic',
-                      color: '#A995C7',
-                      fontSize: 14,
-                    }}>
-                      ✦ Tu seras prévenu·e en premier
-                    </div>
-                  ) : (
-                    <form
-                      onSubmit={(e) => handleWaitlist(e, id)}
-                      style={{ display: 'flex', flexDirection: 'column', gap: 10 }}
-                    >
-                      <input
-                        type="email"
-                        required
-                        placeholder="Ton email pour rejoindre la liste d'accès"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        style={{
-                          width: '100%',
-                          padding: '14px 16px',
-                          border: '1px solid rgba(142, 122, 181, 0.4)',
-                          background: 'rgba(28, 24, 51, 0.5)',
-                          color: '#F5EFE3',
-                          fontFamily: 'inherit',
-                          fontSize: 14,
-                          outline: 'none',
-                          borderRadius: 2,
-                          boxSizing: 'border-box',
-                        }}
-                      />
-                      <button
-                        type="submit"
-                        className={styles.offerCta}
-                        disabled={isLoading}
-                        style={{ opacity: isLoading ? 0.6 : 1 }}
-                      >
-                        {isLoading ? 'Envoi en cours…' : 'Rejoindre la liste d\'accès'}
-                      </button>
-                      {hasError && (
-                        <p style={{ fontSize: 13, color: 'var(--danger)', textAlign: 'center', margin: 0 }}>
-                          Une erreur est survenue — réessaie dans un instant.
-                        </p>
-                      )}
-                    </form>
-                  )}
-                </div>
+          {GUIDES.map((guide) => (
+            <div key={guide.id} className={`${styles.offer} reveal`}>
+              <div className={styles.offerCategory}>Guide PDF · 19 €</div>
+              <h3 className={styles.offerName}>{guide.title}</h3>
+              <p className={styles.offerDesc}>{guide.desc}</p>
+              <div style={{ marginTop: 'auto' }}>
+                <a
+                  href={guide.href}
+                  className={styles.offerCta}
+                  style={{ display: 'block', textAlign: 'center', textDecoration: 'none' }}
+                >
+                  Acheter — 19€ →
+                </a>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </section>
 

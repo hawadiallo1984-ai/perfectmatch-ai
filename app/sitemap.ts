@@ -34,6 +34,44 @@ const GUIDE_IDS = [
   'oser-ta-valeur-tarifs',
   'anxiete-financiere',
   'argent-couple',
+  // Nouveaux FR
+  'trauma-financier-familles-noires',
+  'parent-toxique',
+  // In English — Wellbeing
+  'confidence-self-esteem',
+  'anxiety-negative-thoughts',
+  'coping-with-loneliness',
+  'imposter-syndrome',
+  'toxic-parents',
+  // In English — Relationships
+  'attachment-styles',
+  'healing-from-a-breakup',
+  'thriving-single',
+  'intercultural-couples',
+  'black-couples',
+  'dating-as-a-black-woman',
+  // In English — Identity & Resilience
+  'misogynoir-en',
+  'mixed-race-identity',
+  'racial-fatigue',
+  'everyday-racism',
+  'colorism',
+  'raising-black-children',
+  'faith-identity-wellbeing',
+  'class-shame',
+  // In English — Sexuality
+  'reclaiming-your-sexuality',
+  'desire-and-intimacy',
+  'sexuality-and-body-image',
+  'sexuality-and-black-identity',
+  // In English — Money
+  'black-tax-en',
+  'money-beliefs',
+  'abundance-mindset',
+  'own-your-worth-and-rates',
+  'financial-anxiety',
+  'money-in-relationships',
+  'financial-trauma-black-families',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

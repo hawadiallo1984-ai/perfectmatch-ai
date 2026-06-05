@@ -1,4 +1,17 @@
-export const GUIDES = {
+import { INTL_GUIDES } from './guidesIntl';
+
+type GuideMeta = {
+  id: string;
+  name: string;
+  priceCents: number;
+  currency: 'eur';
+  pdf: string;
+  blurb: string;
+  bullets: readonly string[];
+  lang?: 'en' | 'fr';
+};
+
+const _base = {
   'black-tax': {
     id: 'black-tax',
     name: 'Guide Black Tax — 4 approches',
@@ -435,4 +448,51 @@ export const GUIDES = {
   },
 } as const;
 
-export type GuideId = keyof typeof GUIDES;
+const _mapped = Object.fromEntries(
+  INTL_GUIDES
+    .filter(g => !(g.id in _base))
+    .map(g => [g.id, {
+      id: g.id,
+      name: g.title,
+      priceCents: g.priceCents,
+      currency: 'eur' as const,
+      pdf: g.pdf,
+      blurb: g.blurb,
+      bullets: g.bullets,
+      lang: g.lang,
+    }])
+) as Record<string, GuideMeta>;
+
+const _extra: Record<string, GuideMeta> = {
+  'misogynoir-en': {
+    id: 'misogynoir-en',
+    name: 'Misogynoir',
+    priceCents: 1900,
+    currency: 'eur',
+    pdf: '/guides/misogynoir-4-approaches.pdf',
+    blurb: 'Free yourself from the tropes, reclaim your full humanity.',
+    bullets: [
+      'Four psychology lenses: psychodynamic, CBT, humanistic, systemic',
+      'Psychoeducation + guided written exercises',
+      '11-page printable workbook-guide (instant PDF)',
+    ],
+    lang: 'en',
+  },
+  'black-tax-en': {
+    id: 'black-tax-en',
+    name: 'Black Tax',
+    priceCents: 1900,
+    currency: 'eur',
+    pdf: '/guides/black-tax-4-approaches.pdf',
+    blurb: 'Supporting your people without losing yourself.',
+    bullets: [
+      'Four psychology lenses: psychodynamic, CBT, humanistic, systemic',
+      'Psychoeducation + guided written exercises',
+      '11-page printable workbook-guide (instant PDF)',
+    ],
+    lang: 'en',
+  },
+};
+
+export const GUIDES: Record<string, GuideMeta> = { ..._base, ..._mapped, ..._extra };
+export type GuideId = string;

@@ -1,14 +1,15 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { track } from '@vercel/analytics';
-import { OFFERS, OFFERS_ORDER } from '@/lib/offers';
+import { useEffect } from 'react';
+import { HOME_COPY, Lang } from '@/lib/homeCopy';
 import SiteNav from '@/components/SiteNav';
 import styles from './page.module.css';
 
-export default function HomePage() {
-  const [waitlistEmail, setWaitlistEmail] = useState('');
-  const [waitlistStatus, setWaitlistStatus] = useState<'idle' | 'sent'>('idle');
+type Props = { lang: Lang };
+
+export default function HomeClient({ lang }: Props) {
+  const copy = HOME_COPY[lang];
+  const testHref = lang === 'fr' ? '/blessures-interieures' : '/inner-wounds';
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -26,47 +27,11 @@ export default function HomePage() {
     return () => observer.disconnect();
   }, []);
 
-  const handleCheckout = (offerId: string) => {
-    track('offer_cta_click', { offer: offerId });
-    track('checkout_started', { offer: offerId });
-    sessionStorage.setItem('pm_offer', offerId);
-    window.location.href = '/questionnaire';
-  };
-
-  const handleWaitlist = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!waitlistEmail) return;
-    try {
-      await fetch('/api/waitlist', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: waitlistEmail, parcours: 'Couple' }),
-      });
-    } catch {
-      // best-effort : on affiche quand même la confirmation
-    }
-    setWaitlistStatus('sent');
-    setTimeout(() => {
-      setWaitlistStatus('idle');
-      setWaitlistEmail('');
-    }, 4000);
-  };
-
-  const renderFeature = (text: string) => {
-    const parts = text.split(/(\*\*.*?\*\*)/g);
-    return parts.map((part, i) =>
-      part.startsWith('**') && part.endsWith('**') ? (
-        <strong key={i}>{part.slice(2, -2)}</strong>
-      ) : (
-        <span key={i}>{part}</span>
-      )
-    );
-  };
-
   return (
     <>
       <SiteNav />
 
+      {/* (a) Hero */}
       <section className={styles.hero}>
         <svg className={styles.zodiacRing} viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -80,289 +45,237 @@ export default function HomePage() {
           </text>
         </svg>
 
-        <div className={styles.eyebrow}>IA · Psychologie · Astrologie · TCC</div>
-        <h1 className={styles.heroTitle}>
-          Comprends ce qui se rejoue.<br />
-          <em>Puis transforme-le.</em>
-        </h1>
-        <p className={styles.heroSub}>
-          Anxiété amoureuse, pensées qui tournent en boucle, mêmes scénarios qui se répètent — en couple, au travail, dans ta vie. PerfectMatch croise <strong>psychologie</strong>, <strong>astrologie</strong> et outils de <strong>TCC&nbsp;(thérapie cognitivo-comportementale)</strong> pour identifier tes <strong>pensées automatiques</strong>, tes <strong>distorsions cognitives</strong> et tes <strong>schémas répétitifs</strong> — et t&apos;aider à les dénouer, concrètement.
-        </p>
+        <div className={styles.eyebrow}>{copy.hero.eyebrow}</div>
+        <h1 className={styles.heroTitle}>{copy.hero.h1}</h1>
+        <p className={styles.heroSub}>{copy.hero.sub}</p>
+
         <div className={styles.heroCtaGroup}>
-          <a href="#offres" className={styles.btnPrimary}>Voir les 3 offres</a>
-          <a href="/questionnaire" className={styles.btnGhost}>Commencer le test</a>
+          <a href={testHref} className={styles.btnPrimary}>{copy.hero.ctaPrimary}</a>
+          <a href={copy.hero.ctaSecondaryHref} className={styles.btnGhost}>{copy.hero.ctaSecondary}</a>
         </div>
+
         <div className={styles.painBand}>
-          <span className={styles.painLabel}>Ce que PerfectMatch t&apos;aide à dénouer&nbsp;:</span>
+          <span className={styles.painLabel}>{copy.themesTitle}</span>
           <ul>
-            <li>Anxiété et peur du rejet</li>
-            <li>Pensées négatives et automatiques</li>
-            <li>Schémas amoureux répétitifs</li>
-            <li>Blocages en couple, au travail, dans la vie</li>
-            <li>Manque de confiance</li>
-            <li>Distorsions cognitives</li>
-            <li>Mal-être et baisse de moral</li>
+            {copy.hero.chips.map((chip) => (
+              <li key={chip}>{chip}</li>
+            ))}
           </ul>
         </div>
       </section>
 
-      <section id="distorsions" className={styles.distSection}>
-        <div className={styles.sectionLabel}>Les pièges de pensée</div>
-        <h2 className={`${styles.sectionTitle} reveal`}>Tu reconnais une de ces <em>voix</em>&nbsp;?</h2>
-        <div className={styles.distGrid}>
-          <div className={`${styles.distCard} reveal`}>
-            <strong>La lecture de pensée</strong>
-            <span>« Il a mis trois heures à répondre : il se désintéresse de moi. »</span>
-          </div>
-          <div className={`${styles.distCard} reveal`}>
-            <strong>Le catastrophisme</strong>
-            <span>« Ce rendez-vous va forcément mal se passer. »</span>
-          </div>
-          <div className={`${styles.distCard} reveal`}>
-            <strong>Le tout-ou-rien</strong>
-            <span>« Si ce n&apos;est pas parfait, c&apos;est un échec. »</span>
-          </div>
-          <div className={`${styles.distCard} reveal`}>
-            <strong>La surgénéralisation</strong>
-            <span>« Je tombe toujours sur les mauvaises personnes. »</span>
-          </div>
-          <div className={`${styles.distCard} reveal`}>
-            <strong>L&apos;étiquetage</strong>
-            <span>« Je suis nul·le en couple. »</span>
-          </div>
-          <div className={`${styles.distCard} reveal`}>
-            <strong>Le raisonnement émotionnel</strong>
-            <span>« Je me sens rejetée, donc je le suis. »</span>
-          </div>
-        </div>
-        <p className={`${styles.distFoot} reveal`}>
-          Ces pièges de pensée se repèrent, se questionnent et se remplacent. C&apos;est précisément le travail que tu fais avec PerfectMatch.
-        </p>
-      </section>
-
-      <section id="pillars" className={styles.section}>
-        <div className={styles.sectionLabel}>Les fondations</div>
-        <h2 className={`${styles.sectionTitle} reveal`}>Une methode <em>quadruple</em> - unique au monde.</h2>
-        <p className={`${styles.sectionLead} reveal`}>Chaque analyse repose sur quatre piliers : trois pour comprendre, un pour transformer.</p>
-
-        <div className={styles.pillars}>
-          <div className={`${styles.pillar} reveal`}>
-            <div className={styles.pillarNum}>i.</div>
-            <h3>Psychologie scientifique</h3>
-            <p>Big Five, styles d&apos;attachement, Gottman, Chapman. Les modeles les plus valides par la recherche academique contemporaine.</p>
-          </div>
-          <div className={`${styles.pillar} reveal`}>
-            <div className={styles.pillarNum}>ii.</div>
-            <h3>Astrologie symbolique</h3>
-            <p>Theme natal, maisons, aspects, synastrie de couple. Une lecture symbolique serieuse.</p>
-          </div>
-          <div className={`${styles.pillar} reveal`}>
-            <div className={styles.pillarNum}>iii.</div>
-            <h3>Grille clinique</h3>
-            <p>Triade noire, schémas dysfonctionnels, grille inspirée du DSM-5. <em>Pour comprendre ce qui se rejoue.</em></p>
-          </div>
-          <div className={`${styles.pillar} reveal`}>
-            <div className={styles.pillarNum}>iv.</div>
-            <h3>Boîte à outils TCC</h3>
-            <p>Carnet de pensées, restructuration cognitive, exercices d&apos;exposition et défis comportementaux. <em>Pour transformer.</em></p>
-          </div>
-        </div>
-      </section>
-
-
+      {/* Bandeau mini-guide (kept) */}
       <section style={{
-        background: 'linear-gradient(135deg,rgba(142,122,181,0.15),rgba(201,162,75,0.08))',
-        borderTop: '2px solid rgba(201,162,75,0.4)',
-        borderBottom: '2px solid rgba(201,162,75,0.4)',
-        padding: '4rem 1.5rem',
-        textAlign: 'center'
+        background: 'linear-gradient(135deg,rgba(201,162,75,0.08),rgba(142,122,181,0.06))',
+        borderTop: '1px solid rgba(201,162,75,0.25)',
+        borderBottom: '1px solid rgba(201,162,75,0.25)',
+        padding: '2.5rem 1.5rem',
+        textAlign: 'center',
       }}>
-        <div style={{maxWidth: '600px', margin: '0 auto'}}>
-          <div style={{display:'inline-block',background:'rgba(201,162,75,0.1)',border:'1px solid rgba(201,162,75,0.3)',color:'#C9A24B',fontSize:'.75rem',fontWeight:700,letterSpacing:'.1em',textTransform:'uppercase',padding:'5px 14px',borderRadius:'100px',marginBottom:'1.25rem'}}>
-            Nouveau
+        <div style={{ maxWidth: 600, margin: '0 auto' }}>
+          <div style={{
+            display: 'inline-block',
+            background: 'rgba(201,162,75,0.12)',
+            border: '1px solid rgba(201,162,75,0.35)',
+            color: '#C9A24B',
+            fontSize: '.7rem',
+            fontWeight: 700,
+            letterSpacing: '.12em',
+            textTransform: 'uppercase',
+            padding: '4px 12px',
+            borderRadius: '100px',
+            marginBottom: '1rem',
+          }}>
+            {copy.ebook.eyebrow}
           </div>
-          <h2 style={{fontSize:'clamp(1.5rem,3vw,2rem)',fontWeight:700,marginBottom:'.75rem'}}>
-            Emotiflex <em style={{color:'#C9A24B'}}>Digital</em>
+          <h2 style={{ fontFamily: 'Fraunces, serif', fontSize: 'clamp(1.2rem,3vw,1.6rem)', fontWeight: 400, marginBottom: '.6rem' }}>
+            {copy.ebook.title}
           </h2>
-          <p style={{color:'#A9A3B8',fontSize:'.95rem',lineHeight:1.6,marginBottom:'2rem'}}>
-            Le module d&apos;intelligence emotionnelle de PerfectMatch. Cartes, check-in quotidien, IA de reformulation et exercices de couple.
+          <p style={{ color: '#A9A3B8', fontSize: '.88rem', lineHeight: 1.65, marginBottom: '1.5rem', maxWidth: 460, margin: '0 auto 1.5rem' }}>
+            {copy.ebook.body}
           </p>
-          <a href="/emotiflex" style={{display:'inline-block',background:'linear-gradient(135deg,#C9A24B,#A87C2A)',color:'#0B0A14',fontWeight:700,fontSize:'.95rem',padding:'14px 36px',borderRadius:'4px',textDecoration:'none'}}>
-            Decouvrir Emotiflex Digital
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
+            <a href={testHref} style={{
+              display: 'inline-block',
+              background: 'linear-gradient(135deg,#C9A24B,#A87C2A)',
+              color: '#0B0A14',
+              fontWeight: 700,
+              fontSize: '.87rem',
+              padding: '12px 28px',
+              borderRadius: '4px',
+              textDecoration: 'none',
+              letterSpacing: '.04em',
+            }}>
+              {copy.ebook.cta}
+            </a>
+          </div>
+          <p style={{ marginTop: '.75rem', fontSize: 11, opacity: .45, letterSpacing: '.04em' }}>{copy.ebook.note}</p>
+        </div>
+      </section>
+
+      {/* (b) Themes */}
+      <section className={styles.section}>
+        <div className={styles.offersHeader}>
+          <div className={styles.sectionLabel}>{copy.themesEyebrow}</div>
+          <h2 className={`${styles.sectionTitle} reveal`}>{copy.themesTitle}</h2>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px,1fr))', gap: 16, maxWidth: 900, margin: '0 auto', padding: '0 24px' }}>
+          {copy.themes.map((t) => (
+            <div key={t.title} className="reveal" style={{
+              padding: '24px 24px 20px',
+              border: '1px solid var(--line)',
+              background: 'rgba(28,24,51,0.4)',
+            }}>
+              <h3 style={{ fontFamily: 'Fraunces, serif', fontSize: 17, fontWeight: 400, marginBottom: 8, color: 'var(--cream)' }}>{t.title}</h3>
+              <p style={{ fontSize: '.84rem', color: '#A9A3B8', lineHeight: 1.6 }}>{t.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* (c) Méthode */}
+      <section className={styles.section}>
+        <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 24px' }}>
+          <div className={styles.offersHeader} style={{ marginBottom: 32 }}>
+            <div className={styles.sectionLabel}>{copy.howEyebrow}</div>
+            <h2 className={`${styles.sectionTitle} reveal`}>{copy.howTitle}</h2>
+            <p className={`${styles.sectionLead} reveal`}>{copy.howIntro}</p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: 16, marginBottom: 32 }}>
+            {copy.steps.map((s) => (
+              <div key={s.n} className="reveal" style={{ padding: '20px 22px', border: '1px solid var(--line)', background: 'rgba(28,24,51,0.4)' }}>
+                <div style={{ fontFamily: 'Fraunces, serif', fontStyle: 'italic', fontSize: 28, color: '#C9A24B', opacity: .5, lineHeight: 1, marginBottom: 10 }}>{s.n}.</div>
+                <strong style={{ display: 'block', fontSize: '.9rem', marginBottom: 6, color: 'var(--cream)' }}>{s.title}</strong>
+                <span style={{ fontSize: '.84rem', color: '#A9A3B8' }}>{s.desc}</span>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ borderTop: '1px solid var(--line)', paddingTop: 28 }}>
+            <p style={{ fontSize: 11, letterSpacing: '.25em', textTransform: 'uppercase', color: '#C9A24B', opacity: .8, marginBottom: 20 }}>
+              {copy.approachesTitle}
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(180px,1fr))', gap: 12 }}>
+              {copy.approaches.map((a) => (
+                <div key={a.title} className="reveal" style={{ padding: '16px 18px', border: '1px solid var(--line)', background: 'rgba(142,122,181,0.06)' }}>
+                  <strong style={{ display: 'block', fontSize: '.88rem', color: 'var(--cream)', marginBottom: 4 }}>{a.title}</strong>
+                  <span style={{ fontSize: '.82rem', color: '#A9A3B8' }}>— {a.desc}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* (e) Profil relationnel */}
+      <section style={{ background: 'rgba(142,122,181,0.06)', borderTop: '1px solid rgba(142,122,181,0.2)', borderBottom: '1px solid rgba(142,122,181,0.2)', padding: '4rem 1.5rem', textAlign: 'center' }}>
+        <div style={{ maxWidth: 560, margin: '0 auto' }}>
+          <div style={{
+            display: 'inline-block',
+            background: 'rgba(201,162,75,0.1)',
+            border: '1px solid rgba(201,162,75,0.3)',
+            color: '#C9A24B',
+            fontSize: '.7rem',
+            fontWeight: 700,
+            letterSpacing: '.12em',
+            textTransform: 'uppercase',
+            padding: '4px 12px',
+            borderRadius: '100px',
+            marginBottom: '1.25rem',
+          }}>
+            {copy.profile.eyebrow}
+          </div>
+          <h2 style={{ fontFamily: 'Fraunces, serif', fontSize: 'clamp(1.3rem,3vw,1.7rem)', fontWeight: 400, marginBottom: '.75rem' }}>{copy.profile.title}</h2>
+          <p style={{ color: '#A9A3B8', fontSize: '.9rem', lineHeight: 1.65, marginBottom: '1.75rem' }}>{copy.profile.body}</p>
+          <a href="/questionnaire" style={{
+            display: 'inline-block',
+            background: 'linear-gradient(135deg,#C9A24B,#A87C2A)',
+            color: '#0B0A14',
+            fontWeight: 700,
+            fontSize: '.9rem',
+            padding: '13px 30px',
+            borderRadius: '4px',
+            textDecoration: 'none',
+            letterSpacing: '.04em',
+          }}>
+            {copy.profile.cta}
           </a>
         </div>
       </section>
-      <section id="offres" className={`${styles.section} ${styles.offersSection}`}>
-        <div className={styles.offersHeader}>
-          <div className={styles.sectionLabel}>Choisir ton parcours</div>
-          <h2 className={`${styles.sectionTitle} reveal`}>Trois chemins. <em>Un seul</em> objectif : la clarte.</h2>
-          <p className={`${styles.sectionLead} reveal`}>Paiement unique, rapport IA complet, aucun abonnement.</p>
-        </div>
 
-        <div className={styles.offersGrid}>
-          {OFFERS_ORDER.map((id) => {
-            const offer = OFFERS[id];
-            const isComingSoon = offer.comingSoon === true;
-            return (
-              <div
-                key={id}
-                className={`${styles.offer} ${offer.featured ? styles.offerFeatured : ''} reveal`}
-                style={isComingSoon ? { opacity: 0.78, position: 'relative' } : {}}
-              >
-                {isComingSoon && (
-                  <div style={{
-                    position: 'absolute',
-                    top: -12,
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    background: 'rgba(142, 122, 181, 0.95)',
-                    color: '#0B0A14',
-                    fontSize: 11,
-                    letterSpacing: '0.2em',
-                    textTransform: 'uppercase',
-                    fontWeight: 600,
-                    padding: '6px 16px',
-                    borderRadius: 100,
-                    zIndex: 5,
-                    whiteSpace: 'nowrap',
-                  }}>
-                    {offer.comingSoonNote || 'Bientot disponible'}
-                  </div>
-                )}
-                {offer.badge && !isComingSoon && <div className={styles.offerBadge}>{offer.badge}</div>}
-                <div className={styles.offerCategory}>{offer.category}</div>
-                <h3 className={styles.offerName}>
-                  {offer.name}{' '}<em>{offer.nameEmphasis}</em>
-                </h3>
-                <p className={styles.offerDesc}>{offer.description}</p>
-
-                <div className={styles.offerPrice}>
-                  <span className={styles.amount}>{offer.price}</span>
-                  <span className={styles.currency}>€</span>
-                  <span className={styles.unit}>· {offer.unit}</span>
-                </div>
-
-                <ul className={styles.offerFeatures}>
-                  {offer.features.map((feature, i) => (
-                    <li key={i}>{renderFeature(feature)}</li>
-                  ))}
-                </ul>
-
-                {isComingSoon ? (
-                  <div style={{ marginTop: 'auto' }}>
-                    {waitlistStatus === 'sent' ? (
-                      <div style={{
-                        padding: '18px 12px',
-                        textAlign: 'center',
-                        border: '1px dashed rgba(142, 122, 181, 0.5)',
-                        background: 'rgba(142, 122, 181, 0.08)',
-                        fontFamily: 'Fraunces, serif',
-                        fontStyle: 'italic',
-                        color: '#A995C7',
-                        fontSize: 14,
-                      }}>
-                        ✦ Tu seras prevenu·e en premier
-                      </div>
-                    ) : (
-                      <form onSubmit={handleWaitlist} style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                        <input
-                          type="email"
-                          required
-                          placeholder="Ton email pour etre prevenu·e"
-                          value={waitlistEmail}
-                          onChange={(e) => setWaitlistEmail(e.target.value)}
-                          style={{
-                            width: '100%',
-                            padding: '14px 16px',
-                            border: '1px solid rgba(142, 122, 181, 0.4)',
-                            background: 'rgba(28, 24, 51, 0.5)',
-                            color: '#F5EFE3',
-                            fontFamily: 'inherit',
-                            fontSize: 14,
-                            outline: 'none',
-                            borderRadius: 2,
-                          }}
-                        />
-                        <button
-                          type="submit"
-                          style={{
-                            width: '100%',
-                            padding: 16,
-                            border: '1px solid rgba(142, 122, 181, 0.6)',
-                            background: 'linear-gradient(135deg, rgba(142, 122, 181, 0.2), rgba(142, 122, 181, 0.05))',
-                            color: '#F5EFE3',
-                            fontFamily: 'inherit',
-                            fontSize: 13,
-                            letterSpacing: '0.15em',
-                            textTransform: 'uppercase',
-                            fontWeight: 500,
-                            cursor: 'pointer',
-                            transition: 'all 0.3s',
-                            borderRadius: 2,
-                          }}
-                        >
-                          Me prevenir au lancement
-                        </button>
-                      </form>
-                    )}
-                  </div>
-                ) : (
-                  offer.isAmazon ? (<a href={offer.amazonUrl as string} target="_blank" rel="noopener noreferrer" onClick={() => track('offer_cta_click', { offer: offer.id })} className={styles.offerCta} style={{display:"block",textAlign:"center",textDecoration:"none"}}>Commander sur Amazon</a>) : offer.isNutrition ? (<a href="/nutrition" onClick={() => track('offer_cta_click', { offer: offer.id })} className={styles.offerCta} style={{display:"block",textAlign:"center",textDecoration:"none"}}>7 jours gratuits →</a>) : (<button onClick={() => handleCheckout(offer.id)} className={styles.offerCta}>Obtenir pour {offer.price}€</button>)
-                )}
-              </div>
-            );
-          })}
+      {/* (f) Crédibilité */}
+      <section className={styles.section}>
+        <div style={{ maxWidth: 640, margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
+          <div className={styles.sectionLabel} style={{ justifyContent: 'center', marginBottom: 20 }}>{copy.credibility.eyebrow}</div>
+          <h2 className={`${styles.sectionTitle} reveal`} style={{ textAlign: 'center', margin: '0 auto 20px' }}>{copy.credibility.title}</h2>
+          <p className="reveal" style={{ fontSize: '.93rem', color: '#A9A3B8', lineHeight: 1.75 }}>{copy.credibility.body}</p>
         </div>
       </section>
 
-      <section id="methode" className={styles.section}>
-        <div className={styles.methodGrid}>
-          <div>
-            <div className={styles.sectionLabel}>Le processus</div>
-            <h2 className={`${styles.sectionTitle} reveal`}>De la question<br />a la <em>clarte</em>.</h2>
+      {/* (g) Coaching */}
+      <section style={{ background: 'rgba(142,122,181,0.04)', borderTop: '1px solid rgba(142,122,181,0.15)', borderBottom: '1px solid rgba(142,122,181,0.15)', padding: '4rem 1.5rem', textAlign: 'center' }}>
+        <div style={{ maxWidth: 520, margin: '0 auto' }}>
+          <div style={{
+            display: 'inline-block',
+            background: 'rgba(142,122,181,0.1)',
+            border: '1px solid rgba(142,122,181,0.3)',
+            color: '#8E7AB5',
+            fontSize: '.7rem',
+            fontWeight: 700,
+            letterSpacing: '.12em',
+            textTransform: 'uppercase',
+            padding: '4px 12px',
+            borderRadius: '100px',
+            marginBottom: '1.25rem',
+          }}>
+            {copy.coaching.eyebrow}
           </div>
-
-          <ul className={`${styles.methodList} reveal`}>
-            <li>
-              <div className={styles.methodNum}>01.</div>
-              <div>
-                <h4>Tu choisis ton parcours</h4>
-                <p>Celibataire, psycho complete avec clinique, ou couple.</p>
-              </div>
-            </li>
-            <li>
-              <div className={styles.methodNum}>02.</div>
-              <div>
-                <h4>Tu reponds en profondeur</h4>
-                <p>Entre 10 et 20 minutes selon l&apos;offre.</p>
-              </div>
-            </li>
-            <li>
-              <div className={styles.methodNum}>03.</div>
-              <div>
-                <h4>L&apos;IA genere ton rapport</h4>
-                <p>Claude analyse tes 127 variables selon nos modeles cliniques.</p>
-              </div>
-            </li>
-            <li>
-              <div className={styles.methodNum}>04.</div>
-              <div>
-                <h4>Tu approfondis avec Luna</h4>
-                <p>Luna, ton IA relationnelle, connait tes resultats.</p>
-              </div>
-            </li>
-            <li>
-              <div className={styles.methodNum}>05.</div>
-              <div>
-                <h4>Tu passes à l&apos;action</h4>
-                <p>Carnet de pensées, exercices TCC et micro-défis : tu transformes ce que tu as compris en habitudes concrètes.</p>
-              </div>
-            </li>
-          </ul>
+          <h2 style={{ fontFamily: 'Fraunces, serif', fontSize: 'clamp(1.2rem,3vw,1.6rem)', fontWeight: 400, marginBottom: '.75rem' }}>{copy.coaching.title}</h2>
+          <p style={{ color: '#A9A3B8', fontSize: '.9rem', lineHeight: 1.65, marginBottom: '1.75rem' }}>{copy.coaching.body}</p>
+          <a href={copy.coaching.ctaHref} style={{
+            display: 'inline-block',
+            border: '1px solid rgba(142,122,181,0.6)',
+            color: '#8E7AB5',
+            fontWeight: 600,
+            fontSize: '.88rem',
+            padding: '12px 28px',
+            borderRadius: '4px',
+            textDecoration: 'none',
+            letterSpacing: '.04em',
+          }}>
+            {copy.coaching.cta}
+          </a>
         </div>
       </section>
 
-      <section style={{background:"rgba(142,122,181,0.06)",borderTop:"1px solid rgba(142,122,181,0.2)",borderBottom:"1px solid rgba(142,122,181,0.2)",padding:"4rem 1.5rem",textAlign:"center"}}><div style={{maxWidth:"600px",margin:"0 auto"}}><div style={{display:"inline-block",background:"rgba(201,162,75,0.1)",border:"1px solid rgba(201,162,75,0.3)",color:"#C9A24B",fontSize:".75rem",fontWeight:700,letterSpacing:".1em",textTransform:"uppercase",padding:"5px 14px",borderRadius:"100px",marginBottom:"1.25rem"}}>Nouveau</div><h2 style={{fontSize:"clamp(1.5rem,3vw,2rem)",fontWeight:700,marginBottom:".75rem"}}>Emotiflex <em style={{color:"#C9A24B"}}>Digital</em></h2><p style={{color:"#A9A3B8",fontSize:".95rem",lineHeight:1.6,marginBottom:"2rem"}}>Le module d intelligence emotionnelle de PerfectMatch. Cartes, check-in quotidien, IA de reformulation et exercices de couple — pour des relations plus saines.</p><div style={{display:"flex",gap:".75rem",flexWrap:"wrap",justifyContent:"center",marginBottom:"2rem"}}><span style={{background:"rgba(255,255,255,.05)",border:"1px solid rgba(255,255,255,.1)",padding:"6px 14px",borderRadius:"100px",fontSize:".82rem",color:"#C5BFD4"}}>Cartes emotionnelles</span><span style={{background:"rgba(255,255,255,.05)",border:"1px solid rgba(255,255,255,.1)",padding:"6px 14px",borderRadius:"100px",fontSize:".82rem",color:"#C5BFD4"}}>IA de reformulation</span><span style={{background:"rgba(255,255,255,.05)",border:"1px solid rgba(255,255,255,.1)",padding:"6px 14px",borderRadius:"100px",fontSize:".82rem",color:"#C5BFD4"}}>Mode couple</span></div><a href="/emotiflex" style={{display:"inline-block",background:"linear-gradient(135deg,#C9A24B,#A87C2A)",color:"#0B0A14",fontWeight:700,fontSize:".95rem",padding:"14px 36px",borderRadius:"4px",textDecoration:"none"}}>Decouvrir Emotiflex Digital</a></div></section>
+      {/* (h) Closing */}
+      <section style={{ textAlign: 'center', padding: 'clamp(48px,8vw,80px) 24px' }}>
+        <h2 style={{ fontFamily: 'Fraunces, serif', fontStyle: 'italic', fontSize: 'clamp(1.3rem,3vw,1.9rem)', fontWeight: 400, color: '#C9A24B', marginBottom: '.75rem' }}>
+          {copy.closing.title}
+        </h2>
+        <p style={{ color: '#A9A3B8', fontSize: '.9rem', lineHeight: 1.65, marginBottom: '2rem', maxWidth: 440, margin: '0 auto 2rem' }}>
+          {copy.closing.body}
+        </p>
+        <a href={testHref} style={{
+          display: 'inline-block',
+          background: 'linear-gradient(135deg,#C9A24B,#A87C2A)',
+          color: '#0B0A14',
+          fontWeight: 700,
+          fontSize: '.9rem',
+          padding: '14px 32px',
+          borderRadius: '4px',
+          textDecoration: 'none',
+          letterSpacing: '.04em',
+        }}>
+          {copy.closing.cta}
+        </a>
+      </section>
+
+      {/* (i) Note bienveillante */}
+      <div style={{ textAlign: 'center', padding: '0 24px 48px', maxWidth: 640, margin: '0 auto' }}>
+        <p style={{ fontSize: '.78rem', color: '#A9A3B8', opacity: .55, lineHeight: 1.65 }}>{copy.careNote}</p>
+      </div>
 
       <footer className={styles.footer}>
         <div className={styles.logo} style={{ justifyContent: 'center', marginBottom: 8 }}>
@@ -370,7 +283,7 @@ export default function HomePage() {
           PerfectMatch
         </div>
         <p className={styles.footerByline}>par EvaTalk</p>
-        <p className={styles.footerTagline}>« La sante mentale est un droit, pas un luxe. Nous veillons a le rendre accessible au plus grand nombre. »</p>
+        <p className={styles.footerTagline}>{copy.footer.tagline}</p>
         <p className={styles.copyright}>© 2026 PerfectMatch · une création <strong>EvaTalk</strong></p>
       </footer>
     </>

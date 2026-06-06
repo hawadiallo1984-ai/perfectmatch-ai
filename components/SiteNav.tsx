@@ -2,26 +2,31 @@
 
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { HOME_COPY } from '@/lib/homeCopy';
 import styles from './SiteNav.module.css';
-
-const NAV_LINKS = [
-  { label: 'Guides', href: '/bibliotheque' },
-  { label: 'Résilience', href: '/resilience' },
-  { label: 'Argent', href: '/argent' },
-  { label: 'Sexualité', href: '/sexualite' },
-  { label: 'FAQ', href: '/faq' },
-];
 
 export default function SiteNav() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const commencerHref = pathname === '/' ? '#offres' : '/#offres';
+  const isEn = pathname.startsWith('/en');
+  const lang = isEn ? 'en' : 'fr';
+  const nav = HOME_COPY[lang].nav;
 
   const close = () => setOpen(false);
 
+  const NAV_LINKS = [
+    { label: nav.guides, href: isEn ? '/en/guides' : '/bibliotheque' },
+    { label: nav.resilience, href: '/resilience' },
+    { label: nav.argent, href: '/argent' },
+    { label: nav.sexualite, href: '/sexualite' },
+    { label: nav.faq, href: '/faq' },
+  ];
+
+  const commencerHref = isEn ? '/inner-wounds' : '/blessures-interieures';
+
   return (
     <nav className={styles.nav}>
-      <a href="/" className={styles.logo} onClick={close}>
+      <a href={isEn ? '/en' : '/'} className={styles.logo} onClick={close}>
         <span className={styles.logoMark} />
         PerfectMatch
       </a>
@@ -31,14 +36,27 @@ export default function SiteNav() {
         {NAV_LINKS.map(({ label, href }) => (
           <a key={href} href={href}>{label}</a>
         ))}
-        <a href={commencerHref} className={styles.cta}>Commencer</a>
+        <a href={nav.toggleHref} style={{
+          fontSize: 11,
+          letterSpacing: '.12em',
+          textTransform: 'uppercase',
+          opacity: .6,
+          color: 'var(--gold)',
+          textDecoration: 'none',
+          transition: 'opacity .2s',
+        }}>
+          {nav.toggle}
+        </a>
+        <a href={commencerHref} className={styles.cta}>
+          {isEn ? 'Start' : 'Commencer'}
+        </a>
       </div>
 
       {/* Hamburger */}
       <button
         className={`${styles.hamburger} ${open ? styles.hamburgerOpen : ''}`}
         onClick={() => setOpen((v) => !v)}
-        aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
+        aria-label={open ? 'Close menu' : 'Open menu'}
         aria-expanded={open}
       >
         <span className={styles.bar} />
@@ -46,14 +64,17 @@ export default function SiteNav() {
         <span className={styles.bar} />
       </button>
 
-      {/* Mobile panel (absolute child of fixed nav) */}
+      {/* Mobile panel */}
       {open && (
         <div className={styles.mobilePanel}>
           {NAV_LINKS.map(({ label, href }) => (
             <a key={href} href={href} onClick={close}>{label}</a>
           ))}
+          <a href={nav.toggleHref} onClick={close} style={{ color: 'var(--gold)', opacity: .9 }}>
+            {nav.toggle}
+          </a>
           <a href={commencerHref} className={styles.mobileCta} onClick={close}>
-            Commencer
+            {isEn ? 'Start' : 'Commencer'}
           </a>
         </div>
       )}

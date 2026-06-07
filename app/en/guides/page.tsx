@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { INTL_GUIDES } from '@/lib/guidesIntl';
 import { NEW_GUIDES } from '@/lib/newGuides';
 import { PRO_GUIDES } from '@/lib/proGuides';
+import { PRO_GUIDES_2 } from '@/lib/proGuides2';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
@@ -20,6 +21,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...INTL_GUIDES.filter((g) => g.lang === 'en' && g.theme === theme && !EN_CONFLICT_IDS.has(g.id)),
     ...NEW_GUIDES.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_2.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

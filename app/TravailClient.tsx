@@ -26,6 +26,34 @@ const GUIDES = [
     desc: 'Passer de l\'intention à l\'action d\'allié·e utile.',
     href: '/guides/etre-allie-au-travail',
   },
+  {
+    id: 'negocier-son-salaire',
+    title: 'Négocier son salaire',
+    emphasis: '4 approches',
+    desc: 'Demander ce que tu vaux, sans trembler.',
+    href: '/guides/negocier-son-salaire',
+  },
+  {
+    id: 'prevenir-burnout',
+    title: 'Prévenir & guérir du burnout',
+    emphasis: '4 approches',
+    desc: 'Reconnaître les signaux, comprendre, et te relever.',
+    href: '/guides/prevenir-burnout',
+  },
+  {
+    id: 'le-code-switching',
+    title: 'Le code-switching',
+    emphasis: '4 approches',
+    desc: 'Le coût caché de t\'adapter en permanence — et comment reprendre du choix.',
+    href: '/guides/le-code-switching',
+  },
+  {
+    id: 'manager-equipe-inclusive',
+    title: 'Manager une équipe inclusive',
+    emphasis: '4 approches',
+    desc: 'Créer la sécurité psychologique et des pratiques concrètes.',
+    href: '/guides/manager-equipe-inclusive',
+  },
 ];
 
 export default function TravailClient() {

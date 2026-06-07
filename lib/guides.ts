@@ -1,6 +1,7 @@
 import { INTL_GUIDES } from './guidesIntl';
 import { NEW_GUIDES } from './newGuides';
 import { PRO_GUIDES } from './proGuides';
+import { PRO_GUIDES_2 } from './proGuides2';
 
 type GuideMeta = {
   id: string;
@@ -526,5 +527,20 @@ const _pro_mapped = Object.fromEntries(
     }])
 ) as Record<string, GuideMeta>;
 
-export const GUIDES: Record<string, GuideMeta> = { ..._base, ..._mapped, ..._extra, ..._new_mapped, ..._pro_mapped };
+const _pro2_mapped = Object.fromEntries(
+  PRO_GUIDES_2
+    .filter(g => !(g.id in _base) && !(g.id in _mapped) && !(g.id in _extra) && !(g.id in _new_mapped) && !(g.id in _pro_mapped))
+    .map(g => [g.id, {
+      id: g.id,
+      name: g.title,
+      priceCents: g.priceCents,
+      currency: 'eur' as const,
+      pdf: `/guides/${g.pdf}`,
+      blurb: g.blurb,
+      bullets: g.bullets,
+      lang: g.lang,
+    }])
+) as Record<string, GuideMeta>;
+
+export const GUIDES: Record<string, GuideMeta> = { ..._base, ..._mapped, ..._extra, ..._new_mapped, ..._pro_mapped, ..._pro2_mapped };
 export type GuideId = string;

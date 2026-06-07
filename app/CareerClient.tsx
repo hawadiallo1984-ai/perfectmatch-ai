@@ -26,6 +26,34 @@ const GUIDES = [
     desc: 'From intention to action: becoming a useful ally.',
     href: '/guides/being-an-ally-at-work',
   },
+  {
+    id: 'negotiating-your-salary',
+    title: 'Negotiating Your Salary',
+    emphasis: '4 approaches',
+    desc: 'Ask for what you\'re worth, without trembling.',
+    href: '/guides/negotiating-your-salary',
+  },
+  {
+    id: 'preventing-burnout',
+    title: 'Preventing & Recovering from Burnout',
+    emphasis: '4 approaches',
+    desc: 'Recognize the signals, understand, and recover — supported.',
+    href: '/guides/preventing-burnout',
+  },
+  {
+    id: 'code-switching',
+    title: 'Code-Switching',
+    emphasis: '4 approaches',
+    desc: 'The hidden cost of adapting all the time — and how to reclaim choice.',
+    href: '/guides/code-switching',
+  },
+  {
+    id: 'managing-an-inclusive-team',
+    title: 'Managing an Inclusive Team',
+    emphasis: '4 approaches',
+    desc: 'Build a team where everyone gives their best.',
+    href: '/guides/managing-an-inclusive-team',
+  },
 ];
 
 export default function CareerClient() {

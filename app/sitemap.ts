@@ -37,6 +37,11 @@ const GUIDE_IDS = [
   // Nouveaux FR
   'trauma-financier-familles-noires',
   'parent-toxique',
+  // Pro FR lot 2 (etape6)
+  'negocier-son-salaire',
+  'prevenir-burnout',
+  'le-code-switching',
+  'manager-equipe-inclusive',
   // Pro FR (etape5)
   'confiance-au-travail',
   'etre-la-seule-au-travail',
@@ -84,6 +89,11 @@ const GUIDE_IDS = [
   'financial-anxiety',
   'money-in-relationships',
   'financial-trauma-black-families',
+  // Pro EN lot 2 (etape6)
+  'negotiating-your-salary',
+  'preventing-burnout',
+  'code-switching',
+  'managing-an-inclusive-team',
   // Pro EN (etape5)
   'confidence-at-work',
   'being-the-only-one-at-work',

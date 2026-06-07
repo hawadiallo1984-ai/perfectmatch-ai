@@ -5,7 +5,7 @@ export const HOME_COPY = {
       title: "PerfectMatch · Transforme tes blessures intérieures",
       description: "Des guides fondés sur la psychologie (TCC + 3 approches) pour transformer tes blessures intérieures — abandon, rejet, manque de confiance — apaiser l'anxiété et les pensées négatives, et avancer plus libre. Mini-guide gratuit.",
     },
-    nav: { guides: "Guides", resilience: "Résilience", argent: "Argent", sexualite: "Sexualité", faq: "FAQ", toggle: "EN", toggleHref: "/en" },
+    nav: { guides: "Guides", resilience: "Résilience", argent: "Argent", sexualite: "Sexualité", travail: "Travail", faq: "FAQ", toggle: "EN", toggleHref: "/en" },
     hero: {
       eyebrow: "PerfectMatch · par EvaTalk",
       h1: "Transforme tes blessures intérieures.",
@@ -83,7 +83,7 @@ export const HOME_COPY = {
       title: "PerfectMatch · Transform your inner wounds",
       description: "Psychology-based guides (CBT + 3 approaches) to transform your inner wounds — abandonment, rejection, low self-worth — ease anxiety and negative thinking, and move forward freer. Free starter guide.",
     },
-    nav: { guides: "Guides", resilience: "Resilience", argent: "Money", sexualite: "Sexuality", faq: "FAQ", toggle: "FR", toggleHref: "/" },
+    nav: { guides: "Guides", resilience: "Resilience", argent: "Money", sexualite: "Sexuality", travail: "Career", faq: "FAQ", toggle: "FR", toggleHref: "/" },
     hero: {
       eyebrow: "PerfectMatch · by EvaTalk",
       h1: "Transform your inner wounds.",

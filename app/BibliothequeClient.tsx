@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { INTL_GUIDES } from '@/lib/guidesIntl';
 import { NEW_GUIDES } from '@/lib/newGuides';
+import { PRO_GUIDES } from '@/lib/proGuides';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
@@ -259,6 +260,30 @@ const SECTIONS = [
       },
     ],
   },
+  {
+    id: 'travail',
+    label: 'Travail',
+    guides: [
+      {
+        id: 'confiance-au-travail',
+        title: 'Confiance au travail',
+        desc: 'Oser prendre ta place, transformer le doute, te rendre visible.',
+        href: '/guides/confiance-au-travail',
+      },
+      {
+        id: 'etre-la-seule-au-travail',
+        title: 'Être « la seule » au travail',
+        desc: 'Alléger la charge, te protéger, trouver des appuis.',
+        href: '/guides/etre-la-seule-au-travail',
+      },
+      {
+        id: 'etre-allie-au-travail',
+        title: 'Être un·e allié·e au travail',
+        desc: "Passer de l'intention à l'action d'allié·e utile.",
+        href: '/guides/etre-allie-au-travail',
+      },
+    ],
+  },
 ];
 
 const EN_CONFLICT_IDS = new Set(['black-tax', 'misogynoir']);
@@ -266,12 +291,13 @@ const EN_EXTRA = [
   { id: 'misogynoir-en', title: 'Misogynoir', blurb: 'Free yourself from the tropes, reclaim your full humanity.', theme: 'Identity & Resilience' },
   { id: 'black-tax-en', title: 'Black Tax', blurb: 'Supporting your people without losing yourself.', theme: 'Money' },
 ];
-const EN_THEME_ORDER = ['Wellbeing', 'Relationships', 'Identity & Resilience', 'Sexuality', 'Money'];
+const EN_THEME_ORDER = ['Wellbeing', 'Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career'];
 const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
   theme,
   guides: [
     ...INTL_GUIDES.filter((g) => g.lang === 'en' && g.theme === theme && !EN_CONFLICT_IDS.has(g.id)),
     ...NEW_GUIDES.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

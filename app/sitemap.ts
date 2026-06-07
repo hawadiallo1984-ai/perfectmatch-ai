@@ -37,6 +37,10 @@ const GUIDE_IDS = [
   // Nouveaux FR
   'trauma-financier-familles-noires',
   'parent-toxique',
+  // Pro FR (etape5)
+  'confiance-au-travail',
+  'etre-la-seule-au-travail',
+  'etre-allie-au-travail',
   // Nouveaux FR (etape4)
   'sortir-solitude-femmes-noires',
   'apprendre-a-dire-non',
@@ -80,6 +84,10 @@ const GUIDE_IDS = [
   'financial-anxiety',
   'money-in-relationships',
   'financial-trauma-black-families',
+  // Pro EN (etape5)
+  'confidence-at-work',
+  'being-the-only-one-at-work',
+  'being-an-ally-at-work',
   // New EN (etape4)
   'overcoming-loneliness-black-women',
   'learning-to-say-no',
@@ -143,6 +151,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/sexualite`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/travail`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/career`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,

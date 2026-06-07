@@ -1,0 +1,126 @@
+'use client';
+
+import { useEffect } from 'react';
+import SiteNav from '@/components/SiteNav';
+import styles from '@/app/page.module.css';
+
+const GUIDES = [
+  {
+    id: 'confiance-au-travail',
+    title: 'Confiance au travail',
+    emphasis: '4 approches',
+    desc: 'Oser prendre ta place, transformer le doute, te rendre visible.',
+    href: '/guides/confiance-au-travail',
+  },
+  {
+    id: 'etre-la-seule-au-travail',
+    title: 'Être « la seule » au travail',
+    emphasis: '4 approches',
+    desc: 'Alléger la charge, te protéger, trouver des appuis.',
+    href: '/guides/etre-la-seule-au-travail',
+  },
+  {
+    id: 'etre-allie-au-travail',
+    title: 'Être un·e allié·e au travail',
+    emphasis: '4 approches',
+    desc: 'Passer de l\'intention à l\'action d\'allié·e utile.',
+    href: '/guides/etre-allie-au-travail',
+  },
+];
+
+export default function TravailClient() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -60px 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
+
+      <SiteNav />
+
+      {/* Header */}
+      <section className={styles.section} style={{ textAlign: 'center', paddingBottom: 0 }}>
+        <div className={styles.offersHeader}>
+          <div className={styles.sectionLabel} style={{ justifyContent: 'center' }}>
+            Travail &amp; monde pro
+          </div>
+          <h1 className={`${styles.sectionTitle} reveal`} style={{ textAlign: 'center', margin: '0 auto 28px' }}>
+            Prends ta place au travail, <em>sans te perdre</em>
+          </h1>
+          <p className={`${styles.sectionLead} reveal`} style={{ textAlign: 'center', margin: '0 auto 16px', maxWidth: 580 }}>
+            Le monde professionnel active des blessures d&apos;imposteur, de légitimité, de charge invisible.
+            Ces guides t&apos;accompagnent avec des outils TCC concrets pour t&apos;affirmer, te protéger et agir — à ton rythme.
+          </p>
+        </div>
+      </section>
+
+      {/* Cartes guides */}
+      <section className={`${styles.section} ${styles.offersSection}`}>
+        <div
+          className={styles.offersGrid}
+          style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}
+        >
+          {GUIDES.map((guide) => (
+            <div key={guide.id} className={`${styles.offer} reveal`}>
+              <div className={styles.offerCategory}>Guide PDF · 19 €</div>
+              <h3 className={styles.offerName}>
+                {guide.title}{' '}<em>{guide.emphasis}</em>
+              </h3>
+              <p className={styles.offerDesc}>{guide.desc}</p>
+              <div style={{ marginTop: 'auto' }}>
+                <a
+                  href={guide.href}
+                  className={styles.offerCta}
+                  style={{ display: 'block', textAlign: 'center', textDecoration: 'none' }}
+                >
+                  Découvrir ce guide →
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Encadré cadrage */}
+      <section style={{ maxWidth: 640, margin: '0 auto', padding: '0 24px clamp(40px, 8vw, 80px)' }}>
+        <div style={{
+          padding: '28px 32px',
+          border: '1px solid rgba(142,122,181,0.3)',
+          background: 'rgba(142,122,181,0.06)',
+          textAlign: 'center',
+        }}>
+          <p style={{
+            fontFamily: 'Fraunces, serif', fontStyle: 'italic',
+            fontSize: 15, color: 'var(--violet-soft)', lineHeight: 1.7, margin: 0,
+          }}>
+            Ces guides sont des outils de psychoéducation et de coaching professionnel.
+            Ils ne remplacent pas un suivi RH, juridique ou thérapeutique.
+          </p>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className={styles.footer}>
+        <div className={styles.logo} style={{ justifyContent: 'center', marginBottom: 8 }}>
+          <span className={styles.logoMark}></span>
+          PerfectMatch
+        </div>
+        <p className={styles.footerByline}>par EvaTalk</p>
+        <p className={styles.copyright}>© 2026 PerfectMatch · une création <strong>EvaTalk</strong></p>
+      </footer>
+
+    </div>
+  );
+}

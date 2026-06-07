@@ -19,6 +19,7 @@ export default function SiteNav() {
     { label: nav.resilience, href: '/resilience' },
     { label: nav.argent, href: '/argent' },
     { label: nav.sexualite, href: '/sexualite' },
+    { label: nav.travail, href: isEn ? '/career' : '/travail' },
     { label: nav.faq, href: '/faq' },
   ];
 

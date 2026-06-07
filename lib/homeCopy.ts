@@ -60,7 +60,7 @@ export const HOME_COPY = {
     credibility: {
       eyebrow: "LA PERSONNE DERRIÈRE",
       title: "Par EvaTalk",
-      body: "EvaTalk, coach et étudiante en psychologie appliquée, met la psychologie au service de ton mieux-être — avec rigueur et douceur. Une approche fondée sur des cadres reconnus (attachement, TCC, Big Five), jamais sur des promesses magiques.",
+      body: "EvaTalk, entrepreneuse passionnée d'innovation digitale, créatrice du jeu thérapeutique Emotiflex et de plus de 20 guides d'auto-coaching. Elle met la psychologie au service de ton mieux-être, avec des approches reconnues (attachement, TCC, Big Five) — jamais des promesses magiques.",
     },
     coaching: {
       eyebrow: "ACCOMPAGNEMENT",
@@ -138,7 +138,7 @@ export const HOME_COPY = {
     credibility: {
       eyebrow: "THE PERSON BEHIND IT",
       title: "By EvaTalk",
-      body: "EvaTalk, a coach and applied-psychology student, puts psychology to work for your wellbeing — with rigor and warmth. An approach grounded in recognized frameworks (attachment, CBT, Big Five), never in magical promises.",
+      body: "EvaTalk, an entrepreneur passionate about digital innovation, creator of the Emotiflex therapeutic game and of 20+ self-coaching guides. She puts psychology to work for your wellbeing, with recognized approaches (attachment, CBT, Big Five) — never magical promises.",
     },
     coaching: {
       eyebrow: "SUPPORT",

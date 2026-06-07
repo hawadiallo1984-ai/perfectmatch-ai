@@ -37,6 +37,14 @@ const GUIDE_IDS = [
   // Nouveaux FR
   'trauma-financier-familles-noires',
   'parent-toxique',
+  // Nouveaux FR (etape4)
+  'sortir-solitude-femmes-noires',
+  'apprendre-a-dire-non',
+  'briser-isolement',
+  'communication-assertive',
+  'habiletes-sociales',
+  'gerer-ses-emotions',
+  'gerer-le-stress',
   // In English — Wellbeing
   'confidence-self-esteem',
   'anxiety-negative-thoughts',
@@ -72,6 +80,14 @@ const GUIDE_IDS = [
   'financial-anxiety',
   'money-in-relationships',
   'financial-trauma-black-families',
+  // New EN (etape4)
+  'overcoming-loneliness-black-women',
+  'learning-to-say-no',
+  'breaking-isolation',
+  'assertive-communication',
+  'social-skills',
+  'managing-your-emotions',
+  'managing-stress',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

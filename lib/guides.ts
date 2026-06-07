@@ -1,4 +1,5 @@
 import { INTL_GUIDES } from './guidesIntl';
+import { NEW_GUIDES } from './newGuides';
 
 type GuideMeta = {
   id: string;
@@ -494,5 +495,20 @@ const _extra: Record<string, GuideMeta> = {
   },
 };
 
-export const GUIDES: Record<string, GuideMeta> = { ..._base, ..._mapped, ..._extra };
+const _new_mapped = Object.fromEntries(
+  NEW_GUIDES
+    .filter(g => !(g.id in _base) && !(g.id in _mapped) && !(g.id in _extra))
+    .map(g => [g.id, {
+      id: g.id,
+      name: g.title,
+      priceCents: g.priceCents,
+      currency: 'eur' as const,
+      pdf: `/guides/${g.pdf}`,
+      blurb: g.blurb,
+      bullets: g.bullets,
+      lang: g.lang,
+    }])
+) as Record<string, GuideMeta>;
+
+export const GUIDES: Record<string, GuideMeta> = { ..._base, ..._mapped, ..._extra, ..._new_mapped };
 export type GuideId = string;

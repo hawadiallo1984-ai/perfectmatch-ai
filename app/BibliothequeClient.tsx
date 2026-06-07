@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { INTL_GUIDES } from '@/lib/guidesIntl';
+import { NEW_GUIDES } from '@/lib/newGuides';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
@@ -27,6 +28,24 @@ const SECTIONS = [
         title: 'Bien vivre son célibat',
         desc: "Faire du célibat un espace de croissance, pas d'attente.",
         href: '/guides/gestion-celibat',
+      },
+      {
+        id: 'apprendre-a-dire-non',
+        title: 'Apprendre à dire non',
+        desc: 'Poser tes limites sans culpabiliser.',
+        href: '/guides/apprendre-a-dire-non',
+      },
+      {
+        id: 'communication-assertive',
+        title: 'Communication assertive',
+        desc: 'Te faire entendre, sans t\'écraser ni écraser.',
+        href: '/guides/communication-assertive',
+      },
+      {
+        id: 'habiletes-sociales',
+        title: 'Habiletés sociales',
+        desc: 'Créer du lien, ça s\'apprend.',
+        href: '/guides/habiletes-sociales',
       },
       {
         id: 'couples-mixtes',
@@ -69,6 +88,24 @@ const SECTIONS = [
         title: 'Identité métisse',
         desc: 'Habiter pleinement une identité plurielle sans la choisir entre deux.',
         href: '/guides/identite-metisse',
+      },
+      {
+        id: 'briser-isolement',
+        title: 'Briser l\'isolement',
+        desc: 'Sortir du repli, un petit pas à la fois.',
+        href: '/guides/briser-isolement',
+      },
+      {
+        id: 'gerer-ses-emotions',
+        title: 'Gérer ses émotions',
+        desc: 'Tes émotions ne sont pas tes ennemies.',
+        href: '/guides/gerer-ses-emotions',
+      },
+      {
+        id: 'gerer-le-stress',
+        title: 'Gérer le stress',
+        desc: 'Reprendre la main quand tout s\'accélère.',
+        href: '/guides/gerer-le-stress',
       },
     ],
   },
@@ -160,6 +197,12 @@ const SECTIONS = [
         desc: 'Te protéger, guérir, reprendre ta place.',
         href: '/guides/parent-toxique',
       },
+      {
+        id: 'sortir-solitude-femmes-noires',
+        title: 'Sortir de la solitude — pour les femmes noires',
+        desc: 'Créer des liens où tu es vue, entière.',
+        href: '/guides/sortir-solitude-femmes-noires',
+      },
     ],
   },
   {
@@ -228,6 +271,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
   theme,
   guides: [
     ...INTL_GUIDES.filter((g) => g.lang === 'en' && g.theme === theme && !EN_CONFLICT_IDS.has(g.id)),
+    ...NEW_GUIDES.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

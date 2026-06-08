@@ -54,6 +54,34 @@ const GUIDES = [
     desc: 'Créer la sécurité psychologique et des pratiques concrètes.',
     href: '/guides/manager-equipe-inclusive',
   },
+  {
+    id: 'reussir-entretien-embauche',
+    title: "Réussir un entretien d'embauche",
+    emphasis: '4 approches',
+    desc: 'Transformer le trac en atout, préparer des réponses solides.',
+    href: '/guides/reussir-entretien-embauche',
+  },
+  {
+    id: 'quitter-job-toxique',
+    title: 'Quitter un job toxique',
+    emphasis: '4 approches',
+    desc: 'Partir sans culpabilité ni précipitation.',
+    href: '/guides/quitter-job-toxique',
+  },
+  {
+    id: 'misogynoir-au-travail',
+    title: 'Misogynoir au travail',
+    emphasis: '4 approches',
+    desc: 'Protéger ton estime et répondre avec stratégie.',
+    href: '/guides/misogynoir-au-travail',
+  },
+  {
+    id: 'recruter-sans-discriminer',
+    title: 'Recruter sans discriminer',
+    emphasis: '4 approches',
+    desc: 'Repérer tes biais et bâtir un process équitable.',
+    href: '/guides/recruter-sans-discriminer',
+  },
 ];
 
 export default function TravailClient() {

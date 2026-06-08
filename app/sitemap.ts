@@ -37,6 +37,11 @@ const GUIDE_IDS = [
   // Nouveaux FR
   'trauma-financier-familles-noires',
   'parent-toxique',
+  // Pro FR lot 3 (etape7)
+  'reussir-entretien-embauche',
+  'quitter-job-toxique',
+  'misogynoir-au-travail',
+  'recruter-sans-discriminer',
   // Pro FR lot 2 (etape6)
   'negocier-son-salaire',
   'prevenir-burnout',
@@ -89,6 +94,11 @@ const GUIDE_IDS = [
   'financial-anxiety',
   'money-in-relationships',
   'financial-trauma-black-families',
+  // Pro EN lot 3 (etape7)
+  'acing-your-job-interview',
+  'leaving-a-toxic-job',
+  'misogynoir-at-work',
+  'hiring-without-bias',
   // Pro EN lot 2 (etape6)
   'negotiating-your-salary',
   'preventing-burnout',

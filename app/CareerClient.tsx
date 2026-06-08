@@ -54,6 +54,34 @@ const GUIDES = [
     desc: 'Build a team where everyone gives their best.',
     href: '/guides/managing-an-inclusive-team',
   },
+  {
+    id: 'acing-your-job-interview',
+    title: 'Acing Your Job Interview',
+    emphasis: '4 approaches',
+    desc: 'Turn the nerves into an asset, prepare solid answers.',
+    href: '/guides/acing-your-job-interview',
+  },
+  {
+    id: 'leaving-a-toxic-job',
+    title: 'Leaving a Toxic Job',
+    emphasis: '4 approaches',
+    desc: 'Leave without guilt or rushing.',
+    href: '/guides/leaving-a-toxic-job',
+  },
+  {
+    id: 'misogynoir-at-work',
+    title: 'Misogynoir at Work',
+    emphasis: '4 approaches',
+    desc: 'Protect your self-esteem and respond strategically.',
+    href: '/guides/misogynoir-at-work',
+  },
+  {
+    id: 'hiring-without-bias',
+    title: 'Hiring Without Bias',
+    emphasis: '4 approaches',
+    desc: 'Spot your automatic reactions and build a fair process.',
+    href: '/guides/hiring-without-bias',
+  },
 ];
 
 export default function CareerClient() {

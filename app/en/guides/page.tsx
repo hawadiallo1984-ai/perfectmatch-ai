@@ -5,6 +5,7 @@ import { INTL_GUIDES } from '@/lib/guidesIntl';
 import { NEW_GUIDES } from '@/lib/newGuides';
 import { PRO_GUIDES } from '@/lib/proGuides';
 import { PRO_GUIDES_2 } from '@/lib/proGuides2';
+import { PRO_GUIDES_3 } from '@/lib/proGuides3';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
@@ -22,6 +23,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...NEW_GUIDES.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_2.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_3.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

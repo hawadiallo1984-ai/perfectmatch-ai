@@ -140,12 +140,12 @@ export default function EnGuidesPage() {
             Bundles
           </div>
           <h2
-            className={`${styles.sectionTitle} reveal`}
+            className={styles.sectionTitle}
             style={{ fontSize: 'clamp(18px, 3vw, 24px)', marginBottom: 12, letterSpacing: '0.02em' }}
           >
             Our packs
           </h2>
-          <p className="reveal" style={{ fontSize: 14, opacity: 0.55, marginBottom: 40, lineHeight: 1.6 }}>
+          <p style={{ fontSize: 14, opacity: 0.55, marginBottom: 40, lineHeight: 1.6 }}>
             4 thematic guides at a reduced price — €49 instead of €76.
           </p>
           <div
@@ -153,7 +153,7 @@ export default function EnGuidesPage() {
             style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}
           >
             {BUNDLES.filter((b) => b.lang === 'en').map((bundle) => (
-              <div key={bundle.id} className={`${styles.offer} reveal`}>
+              <div key={bundle.id} className={styles.offer}>
                 <div className={styles.offerCategory}>Bundle · 4 guides</div>
                 <h3 className={styles.offerName}>{bundle.title}</h3>
                 <p className={styles.offerDesc}>{bundle.blurb}</p>

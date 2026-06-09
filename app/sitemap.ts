@@ -166,6 +166,16 @@ const GUIDE_IDS = [
   'giving-and-receiving-feedback',
   'work-life-balance-and-mental-load',
   'responding-to-microaggressions-at-work',
+  // Travail B2B/dirigeants FR (etape15)
+  'soutenir-collaborateur-en-difficulte',
+  'entretiens-evaluation-equitables',
+  'manager-retour-apres-arret',
+  'prevenir-risques-psychosociaux',
+  // Career B2B/managers EN (etape15)
+  'supporting-a-struggling-team-member',
+  'fair-performance-reviews',
+  'managing-a-return-to-work',
+  'preventing-psychosocial-risks',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

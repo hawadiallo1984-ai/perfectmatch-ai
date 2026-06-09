@@ -173,6 +173,34 @@ const GUIDES = [
     desc: 'Réagir aux petites phrases qui blessent, à ta façon.',
     href: '/guides/repondre-aux-microagressions',
   },
+  {
+    id: 'soutenir-collaborateur-en-difficulte',
+    title: 'Soutenir un·e collaborateur·rice en difficulté',
+    emphasis: '4 approches',
+    desc: 'La juste posture du manager — écouter, ajuster, orienter.',
+    href: '/guides/soutenir-collaborateur-en-difficulte',
+  },
+  {
+    id: 'entretiens-evaluation-equitables',
+    title: "Mener des entretiens d'évaluation équitables",
+    emphasis: '4 approches',
+    desc: 'Évaluer juste, motiver, sans biais.',
+    href: '/guides/entretiens-evaluation-equitables',
+  },
+  {
+    id: 'manager-retour-apres-arret',
+    title: "Manager le retour après un arrêt",
+    emphasis: '4 approches',
+    desc: 'Accueillir un retour en douceur et prévenir la rechute.',
+    href: '/guides/manager-retour-apres-arret',
+  },
+  {
+    id: 'prevenir-risques-psychosociaux',
+    title: 'Prévenir les risques psychosociaux dans son équipe',
+    emphasis: '4 approches',
+    desc: 'Repérer les signaux et protéger la santé de ton équipe.',
+    href: '/guides/prevenir-risques-psychosociaux',
+  },
 ];
 
 export default function TravailClient() {

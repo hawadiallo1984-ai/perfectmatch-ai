@@ -11,6 +11,7 @@ import { PRO_GUIDES_5 } from '@/lib/proGuides5';
 import { PRO_GUIDES_6 } from '@/lib/proGuides6';
 import { PRO_GUIDES_7 } from '@/lib/proGuides7';
 import { PRO_GUIDES_8 } from '@/lib/proGuides8';
+import { PRO_GUIDES_11 } from '@/lib/proGuides11';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
@@ -34,6 +35,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_6.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_7.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_8.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_11.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

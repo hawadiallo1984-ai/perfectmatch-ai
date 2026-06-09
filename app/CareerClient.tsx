@@ -173,6 +173,34 @@ const GUIDES = [
     desc: 'React to wounding remarks in your own way.',
     href: '/guides/responding-to-microaggressions-at-work',
   },
+  {
+    id: 'supporting-a-struggling-team-member',
+    title: 'Supporting a Struggling Team Member',
+    emphasis: '4 approaches',
+    desc: 'The right manager stance — listen, adjust, direct.',
+    href: '/guides/supporting-a-struggling-team-member',
+  },
+  {
+    id: 'fair-performance-reviews',
+    title: 'Running Fair Performance Reviews',
+    emphasis: '4 approaches',
+    desc: 'Evaluate fairly, motivate, without bias.',
+    href: '/guides/fair-performance-reviews',
+  },
+  {
+    id: 'managing-a-return-to-work',
+    title: 'Managing a Return to Work',
+    emphasis: '4 approaches',
+    desc: 'Welcome a return gently and prevent relapse.',
+    href: '/guides/managing-a-return-to-work',
+  },
+  {
+    id: 'preventing-psychosocial-risks',
+    title: 'Preventing Psychosocial Risks in Your Team',
+    emphasis: '4 approaches',
+    desc: 'Spot the signals and protect your team\'s health.',
+    href: '/guides/preventing-psychosocial-risks',
+  },
 ];
 
 export default function CareerClient() {

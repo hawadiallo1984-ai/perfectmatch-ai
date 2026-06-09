@@ -11,6 +11,7 @@ import { PRO_GUIDES_5 } from '@/lib/proGuides5';
 import { PRO_GUIDES_6 } from '@/lib/proGuides6';
 import { PRO_GUIDES_7 } from '@/lib/proGuides7';
 import { PRO_GUIDES_8 } from '@/lib/proGuides8';
+import { PRO_GUIDES_11 } from '@/lib/proGuides11';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
@@ -457,6 +458,30 @@ const SECTIONS = [
         desc: 'Réagir aux petites phrases qui blessent, à ta façon.',
         href: '/guides/repondre-aux-microagressions',
       },
+      {
+        id: 'soutenir-collaborateur-en-difficulte',
+        title: 'Soutenir un·e collaborateur·rice en difficulté',
+        desc: 'La juste posture du manager — écouter, ajuster, orienter.',
+        href: '/guides/soutenir-collaborateur-en-difficulte',
+      },
+      {
+        id: 'entretiens-evaluation-equitables',
+        title: "Mener des entretiens d'évaluation équitables",
+        desc: 'Évaluer juste, motiver, sans biais.',
+        href: '/guides/entretiens-evaluation-equitables',
+      },
+      {
+        id: 'manager-retour-apres-arret',
+        title: "Manager le retour après un arrêt",
+        desc: 'Accueillir un retour en douceur et prévenir la rechute.',
+        href: '/guides/manager-retour-apres-arret',
+      },
+      {
+        id: 'prevenir-risques-psychosociaux',
+        title: 'Prévenir les risques psychosociaux dans son équipe',
+        desc: 'Repérer les signaux et protéger la santé de ton équipe.',
+        href: '/guides/prevenir-risques-psychosociaux',
+      },
     ],
   },
 ];
@@ -480,6 +505,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_6.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_7.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_8.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_11.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

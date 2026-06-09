@@ -117,6 +117,34 @@ const GUIDES = [
     desc: 'Reconnaître, documenter, te protéger.',
     href: '/guides/harcelement-moral-au-travail',
   },
+  {
+    id: 'reussir-sa-recherche-emploi',
+    title: "Réussir sa recherche d'emploi",
+    emphasis: '4 approches',
+    desc: 'Mener ta recherche avec méthode, confiance et réseau.',
+    href: '/guides/reussir-sa-recherche-emploi',
+  },
+  {
+    id: 'demander-une-promotion',
+    title: 'Demander une promotion',
+    emphasis: '4 approches',
+    desc: 'Oser demander et argumenter ta valeur.',
+    href: '/guides/demander-une-promotion',
+  },
+  {
+    id: 'composer-avec-manager-difficile',
+    title: 'Composer avec un manager difficile',
+    emphasis: '4 approches',
+    desc: "Te protéger et avancer sans t'épuiser.",
+    href: '/guides/composer-avec-manager-difficile',
+  },
+  {
+    id: 'leadership-femme-noire',
+    title: 'Leadership en tant que femme noire',
+    emphasis: '4 approches',
+    desc: 'Diriger pleinement, à ta façon.',
+    href: '/guides/leadership-femme-noire',
+  },
 ];
 
 export default function TravailClient() {

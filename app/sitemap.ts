@@ -136,6 +136,26 @@ const GUIDE_IDS = [
   'social-skills',
   'managing-your-emotions',
   'managing-stress',
+  // Relations saines FR (etape10)
+  'communiquer-dans-le-couple',
+  'sortir-dependance-affective',
+  'surmonter-une-rupture',
+  'gerer-la-jalousie',
+  // Relations saines EN (etape10)
+  'communicating-in-your-relationship',
+  'overcoming-emotional-dependency',
+  'getting-over-a-breakup',
+  'managing-jealousy',
+  // Travail lot 2 FR (etape11)
+  'reussir-sa-recherche-emploi',
+  'demander-une-promotion',
+  'composer-avec-manager-difficile',
+  'leadership-femme-noire',
+  // Career lot 2 EN (etape11)
+  'succeeding-in-your-job-search',
+  'asking-for-a-promotion',
+  'dealing-with-a-difficult-manager',
+  'leadership-as-a-black-woman',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

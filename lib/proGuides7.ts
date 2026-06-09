@@ -1,0 +1,48 @@
+// Lot travail 2 (4 FR + 4 EN), thème Travail / Career.
+// Upload dans lib/proGuides7.ts. PDF dans public/guides/.
+// AFFICHAGE FR : section codée en dur SECTIONS -> clé "travail" (label "Travail").
+// AFFICHAGE EN : filtre par thème "Career" (déjà dans EN_THEME_ORDER).
+export const PRO_GUIDES_7 = [
+  // ---- FR : thème Travail ----
+  { id: "reussir-sa-recherche-emploi", lang: "fr", theme: "Travail",
+    title: "Réussir sa recherche d'emploi",
+    blurb: "Mener ta recherche avec méthode et confiance : tenir le moral, clarifier ta cible, activer ton réseau. 4 approches + conseils & tips.",
+    pdf: "reussir-sa-recherche-emploi-4-approches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Tiens le moral", "Clarifie ta cible", "Active ton réseau"] },
+  { id: "demander-une-promotion", lang: "fr", theme: "Travail",
+    title: "Demander une promotion",
+    blurb: "Oser demander et argumenter ta valeur : dépasser tes freins, chiffrer tes résultats, préparer ta demande. 4 approches + conseils & tips.",
+    pdf: "demander-une-promotion-4-approches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Ose demander", "Reconnais ta valeur", "Prépare ta demande"] },
+  { id: "composer-avec-manager-difficile", lang: "fr", theme: "Travail",
+    title: "Composer avec un manager difficile",
+    blurb: "Te protéger et avancer sans t'épuiser : comprendre ce que ça réveille, préserver ton estime, des stratégies concrètes. 4 approches + conseils & tips.",
+    pdf: "composer-avec-manager-difficile-4-approches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Préserve ton estime", "Adapte ta communication", "Connais ta limite"] },
+  { id: "leadership-femme-noire", lang: "fr", theme: "Travail",
+    title: "Leadership en tant que femme noire",
+    blurb: "Diriger pleinement, à ta façon : déposer la pression de l'irréprochable, un leadership à ton image, t'entourer. 4 approches + conseils & tips.",
+    pdf: "leadership-femme-noire-4-approches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Dépose la pression", "Un leadership à ton image", "Entoure-toi & ouvre la voie"] },
+  // ---- EN : theme Career ----
+  { id: "succeeding-in-your-job-search", lang: "en", theme: "Career",
+    title: "Succeeding in Your Job Search",
+    blurb: "Run your search with method and confidence: keep your morale, clarify your target, activate your network. 4 approaches + tips.",
+    pdf: "succeeding-in-your-job-search-4-approaches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Keep your morale", "Clarify your target", "Activate your network"] },
+  { id: "asking-for-a-promotion", lang: "en", theme: "Career",
+    title: "Asking for a Promotion",
+    blurb: "Dare to ask and make the case for your value: move past your blockers, quantify your results, prepare your request. 4 approaches + tips.",
+    pdf: "asking-for-a-promotion-4-approaches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Dare to ask", "Recognize your value", "Prepare your request"] },
+  { id: "dealing-with-a-difficult-manager", lang: "en", theme: "Career",
+    title: "Dealing with a Difficult Manager",
+    blurb: "Protect yourself and move forward without burning out: understand what it stirs, protect your self-esteem, concrete strategies. 4 approaches + tips.",
+    pdf: "dealing-with-a-difficult-manager-4-approaches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Protect your self-esteem", "Adapt your communication", "Know your limit"] },
+  { id: "leadership-as-a-black-woman", lang: "en", theme: "Career",
+    title: "Leadership as a Black Woman",
+    blurb: "Lead fully, in your own way: set down the pressure to be flawless, a leadership in your own image, build support. 4 approaches + tips.",
+    pdf: "leadership-as-a-black-woman-4-approaches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Set down the pressure", "Leadership in your own image", "Build support & open the way"] },
+] as const;

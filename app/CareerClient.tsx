@@ -117,6 +117,34 @@ const GUIDES = [
     desc: 'Recognize, document, protect yourself.',
     href: '/guides/psychological-harassment-at-work',
   },
+  {
+    id: 'succeeding-in-your-job-search',
+    title: 'Succeeding in Your Job Search',
+    emphasis: '4 approaches',
+    desc: 'Run your search with method, confidence and network.',
+    href: '/guides/succeeding-in-your-job-search',
+  },
+  {
+    id: 'asking-for-a-promotion',
+    title: 'Asking for a Promotion',
+    emphasis: '4 approaches',
+    desc: 'Dare to ask and make the case for your value.',
+    href: '/guides/asking-for-a-promotion',
+  },
+  {
+    id: 'dealing-with-a-difficult-manager',
+    title: 'Dealing with a Difficult Manager',
+    emphasis: '4 approaches',
+    desc: 'Protect yourself and move forward without burning out.',
+    href: '/guides/dealing-with-a-difficult-manager',
+  },
+  {
+    id: 'leadership-as-a-black-woman',
+    title: 'Leadership as a Black Woman',
+    emphasis: '4 approaches',
+    desc: 'Lead fully, in your own way.',
+    href: '/guides/leadership-as-a-black-woman',
+  },
 ];
 
 export default function CareerClient() {

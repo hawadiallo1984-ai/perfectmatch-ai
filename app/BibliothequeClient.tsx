@@ -8,6 +8,8 @@ import { PRO_GUIDES_2 } from '@/lib/proGuides2';
 import { PRO_GUIDES_3 } from '@/lib/proGuides3';
 import { PRO_GUIDES_4 } from '@/lib/proGuides4';
 import { PRO_GUIDES_5 } from '@/lib/proGuides5';
+import { PRO_GUIDES_6 } from '@/lib/proGuides6';
+import { PRO_GUIDES_7 } from '@/lib/proGuides7';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
@@ -75,6 +77,30 @@ const SECTIONS = [
         title: 'Couple noir face au monde',
         desc: 'Protéger et nourrir ton couple dans un environnement qui le questionne.',
         href: '/guides/couple-noir',
+      },
+      {
+        id: 'communiquer-dans-le-couple',
+        title: 'Communiquer dans le couple',
+        desc: 'Se parler vraiment sans que ça dégénère.',
+        href: '/guides/communiquer-dans-le-couple',
+      },
+      {
+        id: 'sortir-dependance-affective',
+        title: 'Sortir de la dépendance affective',
+        desc: 'Aimer sans te perdre.',
+        href: '/guides/sortir-dependance-affective',
+      },
+      {
+        id: 'surmonter-une-rupture',
+        title: 'Surmonter une rupture amoureuse',
+        desc: 'Traverser le deuil amoureux et renaître.',
+        href: '/guides/surmonter-une-rupture',
+      },
+      {
+        id: 'gerer-la-jalousie',
+        title: 'Gérer la jalousie',
+        desc: 'Apaiser la jalousie et renforcer ta sécurité intérieure.',
+        href: '/guides/gerer-la-jalousie',
       },
     ],
   },
@@ -382,6 +408,30 @@ const SECTIONS = [
         desc: 'Reconnaître, documenter, te protéger.',
         href: '/guides/harcelement-moral-au-travail',
       },
+      {
+        id: 'reussir-sa-recherche-emploi',
+        title: "Réussir sa recherche d'emploi",
+        desc: 'Mener ta recherche avec méthode, confiance et réseau.',
+        href: '/guides/reussir-sa-recherche-emploi',
+      },
+      {
+        id: 'demander-une-promotion',
+        title: 'Demander une promotion',
+        desc: 'Oser demander et argumenter ta valeur.',
+        href: '/guides/demander-une-promotion',
+      },
+      {
+        id: 'composer-avec-manager-difficile',
+        title: 'Composer avec un manager difficile',
+        desc: "Te protéger et avancer sans t'épuiser.",
+        href: '/guides/composer-avec-manager-difficile',
+      },
+      {
+        id: 'leadership-femme-noire',
+        title: 'Leadership en tant que femme noire',
+        desc: 'Diriger pleinement, à ta façon.',
+        href: '/guides/leadership-femme-noire',
+      },
     ],
   },
 ];
@@ -402,6 +452,8 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_3.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_4.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_5.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_6.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_7.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

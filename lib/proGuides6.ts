@@ -1,0 +1,48 @@
+// Cluster "relations saines" (4 FR + 4 EN), tout en thème Relations / Relationships.
+// Upload dans lib/proGuides6.ts. PDF dans public/guides/.
+// AFFICHAGE FR : section codée en dur SECTIONS -> clé "amour-relations" (labels "Amour & Relations").
+// AFFICHAGE EN : filtre par thème "Relationships" (déjà dans EN_THEME_ORDER).
+export const PRO_GUIDES_6 = [
+  // ---- FR : thème Relations, section amour-relations ----
+  { id: "communiquer-dans-le-couple", lang: "fr", theme: "Relations",
+    title: "Communiquer dans le couple",
+    blurb: "Se parler vraiment sans que ça dégénère : comprendre ce qui bloque, exprimer ses besoins, s'écouter. 4 approches + conseils & tips.",
+    pdf: "communiquer-dans-le-couple-4-approches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Repère ton schéma", "Parle en « je »", "Des outils concrets"] },
+  { id: "sortir-dependance-affective", lang: "fr", theme: "Relations",
+    title: "Sortir de la dépendance affective",
+    blurb: "Aimer sans te perdre : comprendre d'où vient le besoin, te retrouver toi, rééquilibrer la relation. 4 approches + conseils & tips.",
+    pdf: "sortir-dependance-affective-4-approches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Comprends ton besoin", "Retrouve-toi", "Rééquilibre la relation"] },
+  { id: "surmonter-une-rupture", lang: "fr", theme: "Relations",
+    title: "Surmonter une rupture amoureuse",
+    blurb: "Traverser le deuil amoureux et renaître : comprendre ce que tu traverses, apaiser la rumination, te reconstruire. 4 approches + conseils & tips.",
+    pdf: "surmonter-une-rupture-4-approches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Comprends le deuil amoureux", "Apaise la rumination", "Reconstruis-toi"] },
+  { id: "gerer-la-jalousie", lang: "fr", theme: "Relations",
+    title: "Gérer la jalousie",
+    blurb: "Apaiser la jalousie qui t'envahit : comprendre ce qu'elle cache, renforcer ta sécurité intérieure, la désamorcer. 4 approches + conseils & tips.",
+    pdf: "gerer-la-jalousie-4-approches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Ce que cache la jalousie", "Renforce ta sécurité intérieure", "Désamorce"] },
+  // ---- EN : theme Relationships ----
+  { id: "communicating-in-your-relationship", lang: "en", theme: "Relationships",
+    title: "Communicating in Your Relationship",
+    blurb: "Truly talk without it blowing up: understand what blocks dialogue, express your needs, listen. 4 approaches + tips.",
+    pdf: "communicating-in-your-relationship-4-approaches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Spot your pattern", "Speak in 'I'", "Concrete tools"] },
+  { id: "overcoming-emotional-dependency", lang: "en", theme: "Relationships",
+    title: "Overcoming Emotional Dependency",
+    blurb: "Love without losing yourself: understand where the need comes from, find yourself, rebalance the relationship. 4 approaches + tips.",
+    pdf: "overcoming-emotional-dependency-4-approaches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Understand your need", "Find yourself", "Rebalance the relationship"] },
+  { id: "getting-over-a-breakup", lang: "en", theme: "Relationships",
+    title: "Getting Over a Breakup",
+    blurb: "Move through heartbreak and come back to life: understand what you're going through, ease rumination, rebuild. 4 approaches + tips.",
+    pdf: "getting-over-a-breakup-4-approaches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Understand heartbreak", "Ease rumination", "Rebuild yourself"] },
+  { id: "managing-jealousy", lang: "en", theme: "Relationships",
+    title: "Managing Jealousy",
+    blurb: "Ease the jealousy that takes over: understand what it hides, strengthen your inner security, defuse it. 4 approaches + tips.",
+    pdf: "managing-jealousy-4-approaches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["What jealousy hides", "Strengthen inner security", "Defuse it"] },
+] as const;

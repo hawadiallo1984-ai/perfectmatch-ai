@@ -110,6 +110,13 @@ const GUIDES = [
     desc: 'Make inclusion real, not a slogan.',
     href: '/guides/building-an-inclusive-culture',
   },
+  {
+    id: 'psychological-harassment-at-work',
+    title: 'Psychological Harassment at Work',
+    emphasis: '4 approaches',
+    desc: 'Recognize, document, protect yourself.',
+    href: '/guides/psychological-harassment-at-work',
+  },
 ];
 
 export default function CareerClient() {

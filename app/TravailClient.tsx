@@ -110,6 +110,13 @@ const GUIDES = [
     desc: 'Faire de l\'inclusion une réalité, pas un slogan.',
     href: '/guides/creer-culture-inclusive',
   },
+  {
+    id: 'harcelement-moral-au-travail',
+    title: 'Le harcèlement moral au travail',
+    emphasis: '4 approches',
+    desc: 'Reconnaître, documenter, te protéger.',
+    href: '/guides/harcelement-moral-au-travail',
+  },
 ];
 
 export default function TravailClient() {

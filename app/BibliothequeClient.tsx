@@ -7,6 +7,7 @@ import { PRO_GUIDES } from '@/lib/proGuides';
 import { PRO_GUIDES_2 } from '@/lib/proGuides2';
 import { PRO_GUIDES_3 } from '@/lib/proGuides3';
 import { PRO_GUIDES_4 } from '@/lib/proGuides4';
+import { PRO_GUIDES_5 } from '@/lib/proGuides5';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
@@ -32,6 +33,18 @@ const SECTIONS = [
         title: 'Bien vivre son célibat',
         desc: "Faire du célibat un espace de croissance, pas d'attente.",
         href: '/guides/gestion-celibat',
+      },
+      {
+        id: 'reconnaitre-controle-coercitif',
+        title: 'Reconnaître le contrôle coercitif',
+        desc: 'Nommer l\'emprise pour t\'en libérer.',
+        href: '/guides/reconnaitre-controle-coercitif',
+      },
+      {
+        id: 'sortir-du-gaslighting',
+        title: 'Sortir du gaslighting',
+        desc: 'Te refaire confiance quand on te fait douter de tout.',
+        href: '/guides/sortir-du-gaslighting',
       },
       {
         id: 'apprendre-a-dire-non',
@@ -92,6 +105,12 @@ const SECTIONS = [
         title: 'Identité métisse',
         desc: 'Habiter pleinement une identité plurielle sans la choisir entre deux.',
         href: '/guides/identite-metisse',
+      },
+      {
+        id: 'se-reconstruire-apres-relation-toxique',
+        title: 'Se reconstruire après une relation toxique',
+        desc: 'Retrouver qui tu es après l\'emprise.',
+        href: '/guides/se-reconstruire-apres-relation-toxique',
       },
       {
         id: 'briser-isolement',
@@ -357,6 +376,12 @@ const SECTIONS = [
         desc: "Faire de l'inclusion une réalité, pas un slogan.",
         href: '/guides/creer-culture-inclusive',
       },
+      {
+        id: 'harcelement-moral-au-travail',
+        title: 'Le harcèlement moral au travail',
+        desc: 'Reconnaître, documenter, te protéger.',
+        href: '/guides/harcelement-moral-au-travail',
+      },
     ],
   },
 ];
@@ -376,6 +401,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_2.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_3.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_4.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_5.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

@@ -1,0 +1,48 @@
+// Cluster "violences psychologiques" (4 FR + 4 EN), réparti sur 3 thèmes.
+// Upload dans lib/proGuides5.ts. PDF dans public/guides/.
+// IMPORTANT : ces thèmes (Relations / Relationships, Travail / Career, Bien-être / Wellbeing)
+// existent déjà sur le site. Utilise EXACTEMENT les mêmes chaînes de thème que les guides voisins.
+export const PRO_GUIDES_5 = [
+  // ---- FR ----
+  { id: "reconnaitre-controle-coercitif", lang: "fr", theme: "Relations",
+    title: "Reconnaître le contrôle coercitif",
+    blurb: "Nommer l'emprise pour t'en libérer : reconnaître les mécanismes, comprendre pourquoi c'est si dur d'en sortir, te réentourer en sécurité. 4 approches + ressources.",
+    pdf: "reconnaitre-controle-coercitif-4-approches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Reconnais les mécanismes", "Ce n'est pas ta faute", "Te réentourer en sécurité"] },
+  { id: "sortir-du-gaslighting", lang: "fr", theme: "Relations",
+    title: "Sortir du gaslighting",
+    blurb: "Te refaire confiance quand on te fait douter de tout : reconnaître la manipulation, reconstruire ta perception, t'entourer. 4 approches + ressources.",
+    pdf: "sortir-du-gaslighting-4-approches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Reconnais le gaslighting", "Reconstruis ta perception", "Refais-toi confiance"] },
+  { id: "harcelement-moral-au-travail", lang: "fr", theme: "Travail",
+    title: "Le harcèlement moral au travail",
+    blurb: "Reconnaître, documenter, te protéger : protéger ton estime et ta santé, t'appuyer sur les bons relais. 4 approches + ressources.",
+    pdf: "harcelement-moral-au-travail-4-approches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Reconnais le harcèlement", "Documente les faits", "Appuie-toi sur les bons relais"] },
+  { id: "se-reconstruire-apres-relation-toxique", lang: "fr", theme: "Bien-être",
+    title: "Se reconstruire après une relation toxique",
+    blurb: "Retrouver qui tu es après l'emprise : comprendre ce que tu traverses, apaiser la culpabilité, te reconstruire une estime. 4 approches + ressources.",
+    pdf: "se-reconstruire-apres-relation-toxique-4-approches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Comprends ce que tu traverses", "Apaise la culpabilité", "Reconstruis ton estime"] },
+  // ---- EN ----
+  { id: "recognizing-coercive-control", lang: "en", theme: "Relationships",
+    title: "Recognizing Coercive Control",
+    blurb: "Name the grip to free yourself: recognize the mechanisms, understand why it's so hard to leave, rebuild your support safely. 4 approaches + resources.",
+    pdf: "recognizing-coercive-control-4-approaches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Recognize the mechanisms", "It's not your fault", "Rebuild support safely"] },
+  { id: "recovering-from-gaslighting", lang: "en", theme: "Relationships",
+    title: "Recovering from Gaslighting",
+    blurb: "Trust yourself again when you're made to doubt everything: recognize the manipulation, rebuild your perception, find support. 4 approaches + resources.",
+    pdf: "recovering-from-gaslighting-4-approaches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Recognize gaslighting", "Rebuild your perception", "Trust yourself again"] },
+  { id: "psychological-harassment-at-work", lang: "en", theme: "Career",
+    title: "Psychological Harassment at Work",
+    blurb: "Recognize, document, protect yourself: protect your self-esteem and health, lean on the right channels. 4 approaches + resources.",
+    pdf: "psychological-harassment-at-work-4-approaches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Recognize harassment", "Document the facts", "Lean on the right channels"] },
+  { id: "rebuilding-after-a-toxic-relationship", lang: "en", theme: "Wellbeing",
+    title: "Rebuilding After a Toxic Relationship",
+    blurb: "Find yourself again after the grip: understand what you're going through, ease the guilt, rebuild your self-esteem. 4 approaches + resources.",
+    pdf: "rebuilding-after-a-toxic-relationship-4-approaches.pdf", priceCents: 1900, currency: "eur",
+    bullets: ["Understand what you're going through", "Ease the guilt", "Rebuild your self-esteem"] },
+] as const;

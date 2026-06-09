@@ -37,6 +37,11 @@ const GUIDE_IDS = [
   // Nouveaux FR
   'trauma-financier-familles-noires',
   'parent-toxique',
+  // Violences psychologiques FR (etape9)
+  'reconnaitre-controle-coercitif',
+  'sortir-du-gaslighting',
+  'harcelement-moral-au-travail',
+  'se-reconstruire-apres-relation-toxique',
   // Pro FR lot 4 (etape8)
   'gerer-conflit-travail',
   'prendre-la-parole-en-public',
@@ -99,6 +104,11 @@ const GUIDE_IDS = [
   'financial-anxiety',
   'money-in-relationships',
   'financial-trauma-black-families',
+  // Psychological violence EN (etape9)
+  'recognizing-coercive-control',
+  'recovering-from-gaslighting',
+  'psychological-harassment-at-work',
+  'rebuilding-after-a-toxic-relationship',
   // Pro EN lot 4 (etape8)
   'handling-conflict-at-work',
   'public-speaking-at-work',

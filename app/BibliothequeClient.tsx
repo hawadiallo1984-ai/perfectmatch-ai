@@ -12,6 +12,7 @@ import { PRO_GUIDES_6 } from '@/lib/proGuides6';
 import { PRO_GUIDES_7 } from '@/lib/proGuides7';
 import { PRO_GUIDES_8 } from '@/lib/proGuides8';
 import { PRO_GUIDES_11 } from '@/lib/proGuides11';
+import { PRO_GUIDES_12 } from '@/lib/proGuides12';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
@@ -484,6 +485,36 @@ const SECTIONS = [
       },
     ],
   },
+  {
+    id: 'intimite-sexualite',
+    label: 'Intimité & Sexualité (18+)',
+    guides: [
+      {
+        id: 'raviver-le-desir',
+        title: 'Raviver le désir dans le couple',
+        desc: 'Retrouver l\'envie, à deux, dans la durée — sans pression.',
+        href: '/guides/raviver-le-desir',
+      },
+      {
+        id: 'parler-de-sexe-sans-tabou',
+        title: 'Parler de sexe sans tabou',
+        desc: 'Oser dire ses envies, ses limites, ses ressentis.',
+        href: '/guides/parler-de-sexe-sans-tabou',
+      },
+      {
+        id: 'depasser-honte-blocages-sexuels',
+        title: 'Dépasser la honte et les blocages',
+        desc: 'Te réconcilier avec ton corps et ton plaisir, en douceur.',
+        href: '/guides/depasser-honte-blocages-sexuels',
+      },
+      {
+        id: 'desirs-desaccordes',
+        title: 'Quand les désirs sont désaccordés',
+        desc: 'Accueillir deux désirs différents et trouver un terrain commun.',
+        href: '/guides/desirs-desaccordes',
+      },
+    ],
+  },
 ];
 
 const EN_CONFLICT_IDS = new Set(['black-tax', 'misogynoir']);
@@ -491,7 +522,7 @@ const EN_EXTRA = [
   { id: 'misogynoir-en', title: 'Misogynoir', blurb: 'Free yourself from the tropes, reclaim your full humanity.', theme: 'Identity & Resilience' },
   { id: 'black-tax-en', title: 'Black Tax', blurb: 'Supporting your people without losing yourself.', theme: 'Money' },
 ];
-const EN_THEME_ORDER = ['Wellbeing', 'Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career'];
+const EN_THEME_ORDER = ['Wellbeing', 'Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career', 'Intimacy & Sexuality'];
 const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
   theme,
   guides: [
@@ -506,6 +537,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_7.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_8.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_11.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_12.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

@@ -176,6 +176,16 @@ const GUIDE_IDS = [
   'fair-performance-reviews',
   'managing-a-return-to-work',
   'preventing-psychosocial-risks',
+  // Intimité & Sexualité FR (etape16)
+  'raviver-le-desir',
+  'parler-de-sexe-sans-tabou',
+  'depasser-honte-blocages-sexuels',
+  'desirs-desaccordes',
+  // Intimacy & Sexuality EN (etape16)
+  'rekindling-desire-in-your-relationship',
+  'talking-about-sex-without-taboo',
+  'overcoming-shame-and-sexual-blocks',
+  'mismatched-desire-in-couples',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

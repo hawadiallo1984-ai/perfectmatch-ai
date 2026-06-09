@@ -186,6 +186,26 @@ const GUIDE_IDS = [
   'talking-about-sex-without-taboo',
   'overcoming-shame-and-sexual-blocks',
   'mismatched-desire-in-couples',
+  // Carrière & Rebond FR (etape13)
+  'reussir-sa-reconversion',
+  'rebondir-apres-licenciement',
+  'soigner-son-personal-branding',
+  'developper-son-reseau',
+  // Career & Comeback EN (etape13)
+  'making-a-career-change',
+  'bouncing-back-after-a-layoff',
+  'building-your-personal-brand',
+  'building-your-network',
+  // Travail lot B FR (etape14)
+  'anxiete-de-performance',
+  'gerer-son-temps-deleguer',
+  'cheveux-apparence-au-travail',
+  'entreprendre-femme-noire',
+  // Career lot B EN (etape14)
+  'taming-performance-anxiety',
+  'managing-time-and-delegating',
+  'hair-and-appearance-at-work',
+  'entrepreneurship-as-a-black-woman',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

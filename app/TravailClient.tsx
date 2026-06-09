@@ -201,6 +201,62 @@ const GUIDES = [
     desc: 'Repérer les signaux et protéger la santé de ton équipe.',
     href: '/guides/prevenir-risques-psychosociaux',
   },
+  {
+    id: 'reussir-sa-reconversion',
+    title: 'Réussir une reconversion professionnelle',
+    emphasis: '4 approches',
+    desc: 'Changer de voie avec méthode et courage.',
+    href: '/guides/reussir-sa-reconversion',
+  },
+  {
+    id: 'rebondir-apres-licenciement',
+    title: 'Rebondir après un licenciement',
+    emphasis: '4 approches',
+    desc: 'Encaisser puis te relever — stratégique et posé·e.',
+    href: '/guides/rebondir-apres-licenciement',
+  },
+  {
+    id: 'soigner-son-personal-branding',
+    title: 'Soigner son personal branding',
+    emphasis: '4 approches',
+    desc: 'Rendre ta valeur visible sans te trahir.',
+    href: '/guides/soigner-son-personal-branding',
+  },
+  {
+    id: 'developper-son-reseau',
+    title: 'Développer son réseau',
+    emphasis: '4 approches',
+    desc: 'Tisser des liens utiles sans faire semblant.',
+    href: '/guides/developper-son-reseau',
+  },
+  {
+    id: 'anxiete-de-performance',
+    title: "Apprivoiser l'anxiété de performance",
+    emphasis: '4 approches',
+    desc: 'Donner le meilleur sans que la peur te paralyse.',
+    href: '/guides/anxiete-de-performance',
+  },
+  {
+    id: 'gerer-son-temps-deleguer',
+    title: 'Gérer son temps & déléguer',
+    emphasis: '4 approches',
+    desc: "Faire l'essentiel sans tout porter.",
+    href: '/guides/gerer-son-temps-deleguer',
+  },
+  {
+    id: 'cheveux-apparence-au-travail',
+    title: 'Cheveux & apparence au travail',
+    emphasis: '4 approches',
+    desc: "T'affirmer telle que tu es sans te lisser.",
+    href: '/guides/cheveux-apparence-au-travail',
+  },
+  {
+    id: 'entreprendre-femme-noire',
+    title: 'Entreprendre en tant que femme noire',
+    emphasis: '4 approches',
+    desc: 'Lancer ton projet malgré les obstacles en plus.',
+    href: '/guides/entreprendre-femme-noire',
+  },
 ];
 
 export default function TravailClient() {

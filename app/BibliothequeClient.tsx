@@ -11,8 +11,12 @@ import { PRO_GUIDES_5 } from '@/lib/proGuides5';
 import { PRO_GUIDES_6 } from '@/lib/proGuides6';
 import { PRO_GUIDES_7 } from '@/lib/proGuides7';
 import { PRO_GUIDES_8 } from '@/lib/proGuides8';
+import { PRO_GUIDES_9 } from '@/lib/proGuides9';
+import { PRO_GUIDES_10 } from '@/lib/proGuides10';
 import { PRO_GUIDES_11 } from '@/lib/proGuides11';
 import { PRO_GUIDES_12 } from '@/lib/proGuides12';
+import { BUNDLES } from '@/lib/bundles';
+import BundleBuyButton from '@/components/BundleBuyButton';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
@@ -483,6 +487,54 @@ const SECTIONS = [
         desc: 'Repérer les signaux et protéger la santé de ton équipe.',
         href: '/guides/prevenir-risques-psychosociaux',
       },
+      {
+        id: 'reussir-sa-reconversion',
+        title: 'Réussir une reconversion professionnelle',
+        desc: 'Changer de voie avec méthode et courage.',
+        href: '/guides/reussir-sa-reconversion',
+      },
+      {
+        id: 'rebondir-apres-licenciement',
+        title: 'Rebondir après un licenciement',
+        desc: 'Encaisser puis te relever — stratégique et posé·e.',
+        href: '/guides/rebondir-apres-licenciement',
+      },
+      {
+        id: 'soigner-son-personal-branding',
+        title: 'Soigner son personal branding',
+        desc: 'Rendre ta valeur visible sans te trahir.',
+        href: '/guides/soigner-son-personal-branding',
+      },
+      {
+        id: 'developper-son-reseau',
+        title: 'Développer son réseau',
+        desc: 'Tisser des liens utiles sans faire semblant.',
+        href: '/guides/developper-son-reseau',
+      },
+      {
+        id: 'anxiete-de-performance',
+        title: "Apprivoiser l'anxiété de performance",
+        desc: 'Donner le meilleur sans que la peur te paralyse.',
+        href: '/guides/anxiete-de-performance',
+      },
+      {
+        id: 'gerer-son-temps-deleguer',
+        title: 'Gérer son temps & déléguer',
+        desc: "Faire l'essentiel sans tout porter.",
+        href: '/guides/gerer-son-temps-deleguer',
+      },
+      {
+        id: 'cheveux-apparence-au-travail',
+        title: 'Cheveux & apparence au travail',
+        desc: "T'affirmer telle que tu es sans te lisser.",
+        href: '/guides/cheveux-apparence-au-travail',
+      },
+      {
+        id: 'entreprendre-femme-noire',
+        title: 'Entreprendre en tant que femme noire',
+        desc: 'Lancer ton projet malgré les obstacles en plus.',
+        href: '/guides/entreprendre-femme-noire',
+      },
     ],
   },
   {
@@ -536,6 +588,8 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_6.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_7.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_8.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_9.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_10.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_11.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_12.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
@@ -614,6 +668,44 @@ export default function BibliothequeClient() {
           </div>
         </section>
       ))}
+
+      {/* Packs FR */}
+      <section className={styles.section} style={{ paddingTop: 0 }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
+          <h2
+            className={`${styles.sectionTitle} reveal`}
+            style={{ fontSize: 'clamp(18px, 3vw, 24px)', marginBottom: 12, letterSpacing: '0.02em' }}
+          >
+            Nos packs
+          </h2>
+          <p className="reveal" style={{ fontSize: 14, opacity: 0.55, marginBottom: 40, lineHeight: 1.6 }}>
+            4 guides thématiques à prix réduit — 49 € au lieu de 76 €.
+          </p>
+          <div
+            className={styles.offersGrid}
+            style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}
+          >
+            {BUNDLES.filter((b) => b.lang === 'fr').map((bundle) => (
+              <div key={bundle.id} className={`${styles.offer} reveal`}>
+                <div className={styles.offerCategory}>Pack · 4 guides</div>
+                <h3 className={styles.offerName}>{bundle.title}</h3>
+                <p className={styles.offerDesc}>{bundle.blurb}</p>
+                <div style={{ marginTop: 'auto' }}>
+                  <div style={{ marginBottom: 12, textAlign: 'center' }}>
+                    <span style={{ fontSize: 13, opacity: 0.4, textDecoration: 'line-through', marginRight: 8 }}>
+                      {bundle.compareAtCents / 100} €
+                    </span>
+                    <span style={{ fontSize: 18, fontWeight: 700, color: 'var(--gold)' }}>
+                      {bundle.priceCents / 100} €
+                    </span>
+                  </div>
+                  <BundleBuyButton bundleId={bundle.id} label={`Acheter le pack — ${bundle.priceCents / 100} €`} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* In English */}
       <section className={styles.section} style={{ paddingTop: 0 }}>

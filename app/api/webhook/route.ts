@@ -3,6 +3,7 @@ import { stripe } from '@/lib/stripe';
 import Stripe from 'stripe';
 import { Resend } from 'resend';
 import { GUIDES, GuideId } from '@/lib/guides';
+import { BUNDLES } from '@/lib/bundles';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -27,9 +28,53 @@ export async function POST(req: NextRequest) {
       const session = event.data.object as Stripe.Checkout.Session;
       const offerId = session.metadata?.offerId;
       const guideId = session.metadata?.guideId as GuideId | undefined;
-      console.log(`[webhook] Payment OK — offer=${offerId} guideId=${guideId} session=${session.id}`);
+      const bundleId = session.metadata?.bundleId;
+      console.log(`[webhook] Payment OK — offer=${offerId} guideId=${guideId} bundleId=${bundleId} session=${session.id}`);
 
-      if (guideId && GUIDES[guideId]) {
+      if (bundleId) {
+        const bundle = BUNDLES.find((b) => b.id === bundleId);
+        const email = session.customer_details?.email;
+        if (bundle && email) {
+          const resend = new Resend(process.env.RESEND_API_KEY!);
+          const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://perfectmatch-ai.vercel.app';
+          const isEn = bundle.lang === 'en';
+          const pdfLinks = (bundle.guideIds as readonly string[])
+            .map((id) => GUIDES[id as GuideId])
+            .filter((g): g is NonNullable<typeof g> => g !== undefined)
+            .map((g) => `<li style="margin-bottom:10px;"><a href="${siteUrl}${g.pdf}" style="color:#C9A24B;font-family:Georgia,serif;">${g.name} →</a></li>`)
+            .join('');
+          await resend.emails.send({
+            from: 'EvaTalk <guides@eva-talk-coach.com>',
+            replyTo: 'hawa.diallo1984@gmail.com',
+            to: email,
+            subject: isEn ? `Your pack "${bundle.title}" is ready ✦` : `Ton pack "${bundle.title}" est là ✦`,
+            html: `
+              <div style="font-family: Georgia, serif; max-width: 560px; margin: 0 auto; color: #0B0A14; background: #F5EFE3; padding: 48px 40px;">
+                <p style="font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: #C9A24B; margin-bottom: 32px;">✦ EvaTalk</p>
+                <h1 style="font-size: 32px; font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 20px;">
+                  ${isEn ? 'Thank you for your trust.' : 'Merci pour ta confiance.'}
+                </h1>
+                <p style="font-size: 16px; line-height: 1.75; font-weight: 300; margin-bottom: 24px;">
+                  ${isEn
+                    ? `Your pack <strong>${bundle.title}</strong> is ready. Here are your ${bundle.guideIds.length} guides:`
+                    : `Ton pack <strong>${bundle.title}</strong> est prêt. Voici tes ${bundle.guideIds.length} guides :`
+                  }
+                </p>
+                <ul style="list-style:none; padding:0; margin:0 0 36px;">
+                  ${pdfLinks}
+                </ul>
+                <p style="font-size: 14px; line-height: 1.7; opacity: 0.7; margin-bottom: 8px;">
+                  ${isEn ? 'If you have any questions, just reply to this email — I read everything.' : 'Si tu as la moindre question, réponds simplement à cet email — je lis tout.'}
+                </p>
+                <p style="font-size: 14px; font-style: italic; color: #C9A24B; margin-top: 32px;">
+                  ${isEn ? 'With care,<br />Eva — EvaTalk' : 'Avec douceur,<br />Eva — EvaTalk'}
+                </p>
+              </div>
+            `,
+          });
+          console.log(`[webhook] Bundle email sent to ${email} for ${bundleId}`);
+        }
+      } else if (guideId && GUIDES[guideId]) {
         const guide = GUIDES[guideId];
         const email = session.customer_details?.email;
         if (email) {

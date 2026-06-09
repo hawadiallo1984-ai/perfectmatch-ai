@@ -8,6 +8,8 @@ import { PRO_GUIDES_5 } from './proGuides5';
 import { PRO_GUIDES_6 } from './proGuides6';
 import { PRO_GUIDES_7 } from './proGuides7';
 import { PRO_GUIDES_8 } from './proGuides8';
+import { PRO_GUIDES_9 } from './proGuides9';
+import { PRO_GUIDES_10 } from './proGuides10';
 import { PRO_GUIDES_11 } from './proGuides11';
 import { PRO_GUIDES_12 } from './proGuides12';
 
@@ -640,9 +642,39 @@ const _pro8_mapped = Object.fromEntries(
     }])
 ) as Record<string, GuideMeta>;
 
+const _pro9_mapped = Object.fromEntries(
+  PRO_GUIDES_9
+    .filter(g => !(g.id in _base) && !(g.id in _mapped) && !(g.id in _extra) && !(g.id in _new_mapped) && !(g.id in _pro_mapped) && !(g.id in _pro2_mapped) && !(g.id in _pro3_mapped) && !(g.id in _pro4_mapped) && !(g.id in _pro5_mapped) && !(g.id in _pro6_mapped) && !(g.id in _pro7_mapped) && !(g.id in _pro8_mapped))
+    .map(g => [g.id, {
+      id: g.id,
+      name: g.title,
+      priceCents: g.priceCents,
+      currency: 'eur' as const,
+      pdf: `/guides/${g.pdf}`,
+      blurb: g.blurb,
+      bullets: g.bullets,
+      lang: g.lang,
+    }])
+) as Record<string, GuideMeta>;
+
+const _pro10_mapped = Object.fromEntries(
+  PRO_GUIDES_10
+    .filter(g => !(g.id in _base) && !(g.id in _mapped) && !(g.id in _extra) && !(g.id in _new_mapped) && !(g.id in _pro_mapped) && !(g.id in _pro2_mapped) && !(g.id in _pro3_mapped) && !(g.id in _pro4_mapped) && !(g.id in _pro5_mapped) && !(g.id in _pro6_mapped) && !(g.id in _pro7_mapped) && !(g.id in _pro8_mapped) && !(g.id in _pro9_mapped))
+    .map(g => [g.id, {
+      id: g.id,
+      name: g.title,
+      priceCents: g.priceCents,
+      currency: 'eur' as const,
+      pdf: `/guides/${g.pdf}`,
+      blurb: g.blurb,
+      bullets: g.bullets,
+      lang: g.lang,
+    }])
+) as Record<string, GuideMeta>;
+
 const _pro11_mapped = Object.fromEntries(
   PRO_GUIDES_11
-    .filter(g => !(g.id in _base) && !(g.id in _mapped) && !(g.id in _extra) && !(g.id in _new_mapped) && !(g.id in _pro_mapped) && !(g.id in _pro2_mapped) && !(g.id in _pro3_mapped) && !(g.id in _pro4_mapped) && !(g.id in _pro5_mapped) && !(g.id in _pro6_mapped) && !(g.id in _pro7_mapped) && !(g.id in _pro8_mapped))
+    .filter(g => !(g.id in _base) && !(g.id in _mapped) && !(g.id in _extra) && !(g.id in _new_mapped) && !(g.id in _pro_mapped) && !(g.id in _pro2_mapped) && !(g.id in _pro3_mapped) && !(g.id in _pro4_mapped) && !(g.id in _pro5_mapped) && !(g.id in _pro6_mapped) && !(g.id in _pro7_mapped) && !(g.id in _pro8_mapped) && !(g.id in _pro9_mapped) && !(g.id in _pro10_mapped))
     .map(g => [g.id, {
       id: g.id,
       name: g.title,
@@ -657,7 +689,7 @@ const _pro11_mapped = Object.fromEntries(
 
 const _pro12_mapped = Object.fromEntries(
   PRO_GUIDES_12
-    .filter(g => !(g.id in _base) && !(g.id in _mapped) && !(g.id in _extra) && !(g.id in _new_mapped) && !(g.id in _pro_mapped) && !(g.id in _pro2_mapped) && !(g.id in _pro3_mapped) && !(g.id in _pro4_mapped) && !(g.id in _pro5_mapped) && !(g.id in _pro6_mapped) && !(g.id in _pro7_mapped) && !(g.id in _pro8_mapped) && !(g.id in _pro11_mapped))
+    .filter(g => !(g.id in _base) && !(g.id in _mapped) && !(g.id in _extra) && !(g.id in _new_mapped) && !(g.id in _pro_mapped) && !(g.id in _pro2_mapped) && !(g.id in _pro3_mapped) && !(g.id in _pro4_mapped) && !(g.id in _pro5_mapped) && !(g.id in _pro6_mapped) && !(g.id in _pro7_mapped) && !(g.id in _pro8_mapped) && !(g.id in _pro9_mapped) && !(g.id in _pro10_mapped) && !(g.id in _pro11_mapped))
     .map(g => [g.id, {
       id: g.id,
       name: g.title,
@@ -670,5 +702,5 @@ const _pro12_mapped = Object.fromEntries(
     }])
 ) as Record<string, GuideMeta>;
 
-export const GUIDES: Record<string, GuideMeta> = { ..._base, ..._mapped, ..._extra, ..._new_mapped, ..._pro_mapped, ..._pro2_mapped, ..._pro3_mapped, ..._pro4_mapped, ..._pro5_mapped, ..._pro6_mapped, ..._pro7_mapped, ..._pro8_mapped, ..._pro11_mapped, ..._pro12_mapped };
+export const GUIDES: Record<string, GuideMeta> = { ..._base, ..._mapped, ..._extra, ..._new_mapped, ..._pro_mapped, ..._pro2_mapped, ..._pro3_mapped, ..._pro4_mapped, ..._pro5_mapped, ..._pro6_mapped, ..._pro7_mapped, ..._pro8_mapped, ..._pro9_mapped, ..._pro10_mapped, ..._pro11_mapped, ..._pro12_mapped };
 export type GuideId = string;

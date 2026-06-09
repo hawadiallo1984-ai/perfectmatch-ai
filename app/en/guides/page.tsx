@@ -11,8 +11,12 @@ import { PRO_GUIDES_5 } from '@/lib/proGuides5';
 import { PRO_GUIDES_6 } from '@/lib/proGuides6';
 import { PRO_GUIDES_7 } from '@/lib/proGuides7';
 import { PRO_GUIDES_8 } from '@/lib/proGuides8';
+import { PRO_GUIDES_9 } from '@/lib/proGuides9';
+import { PRO_GUIDES_10 } from '@/lib/proGuides10';
 import { PRO_GUIDES_11 } from '@/lib/proGuides11';
 import { PRO_GUIDES_12 } from '@/lib/proGuides12';
+import { BUNDLES } from '@/lib/bundles';
+import BundleBuyButton from '@/components/BundleBuyButton';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
@@ -36,6 +40,8 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_6.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_7.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_8.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_9.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_10.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_11.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_12.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
@@ -123,6 +129,50 @@ export default function EnGuidesPage() {
           </div>
         </section>
       ))}
+
+      {/* Packs EN */}
+      <section className={styles.section} style={{ paddingTop: 0 }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
+          <div style={{
+            fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase',
+            color: 'var(--gold)', opacity: 0.8, marginBottom: 8,
+          }}>
+            Bundles
+          </div>
+          <h2
+            className={`${styles.sectionTitle} reveal`}
+            style={{ fontSize: 'clamp(18px, 3vw, 24px)', marginBottom: 12, letterSpacing: '0.02em' }}
+          >
+            Our packs
+          </h2>
+          <p className="reveal" style={{ fontSize: 14, opacity: 0.55, marginBottom: 40, lineHeight: 1.6 }}>
+            4 thematic guides at a reduced price — €49 instead of €76.
+          </p>
+          <div
+            className={styles.offersGrid}
+            style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}
+          >
+            {BUNDLES.filter((b) => b.lang === 'en').map((bundle) => (
+              <div key={bundle.id} className={`${styles.offer} reveal`}>
+                <div className={styles.offerCategory}>Bundle · 4 guides</div>
+                <h3 className={styles.offerName}>{bundle.title}</h3>
+                <p className={styles.offerDesc}>{bundle.blurb}</p>
+                <div style={{ marginTop: 'auto' }}>
+                  <div style={{ marginBottom: 12, textAlign: 'center' }}>
+                    <span style={{ fontSize: 13, opacity: 0.4, textDecoration: 'line-through', marginRight: 8 }}>
+                      €{bundle.compareAtCents / 100}
+                    </span>
+                    <span style={{ fontSize: 18, fontWeight: 700, color: 'var(--gold)' }}>
+                      €{bundle.priceCents / 100}
+                    </span>
+                  </div>
+                  <BundleBuyButton bundleId={bundle.id} label={`Get the pack — €${bundle.priceCents / 100}`} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <footer className={styles.footer}>
         <div className={styles.logo} style={{ justifyContent: 'center', marginBottom: 8 }}>

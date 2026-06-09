@@ -6,6 +6,7 @@ import { NEW_GUIDES } from '@/lib/newGuides';
 import { PRO_GUIDES } from '@/lib/proGuides';
 import { PRO_GUIDES_2 } from '@/lib/proGuides2';
 import { PRO_GUIDES_3 } from '@/lib/proGuides3';
+import { PRO_GUIDES_4 } from '@/lib/proGuides4';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
@@ -332,6 +333,30 @@ const SECTIONS = [
         desc: 'Repérer tes biais et bâtir un process équitable.',
         href: '/guides/recruter-sans-discriminer',
       },
+      {
+        id: 'gerer-conflit-travail',
+        title: 'Gérer un conflit au travail',
+        desc: 'Désamorcer sans fuir ni exploser.',
+        href: '/guides/gerer-conflit-travail',
+      },
+      {
+        id: 'prendre-la-parole-en-public',
+        title: 'Prendre la parole en public',
+        desc: 'Parler en réunion ou présenter sans paniquer.',
+        href: '/guides/prendre-la-parole-en-public',
+      },
+      {
+        id: 'trouver-mentors-sponsors',
+        title: 'Trouver mentors & sponsors',
+        desc: "T'entourer pour avancer quand on part isolée.",
+        href: '/guides/trouver-mentors-sponsors',
+      },
+      {
+        id: 'creer-culture-inclusive',
+        title: 'Créer une culture inclusive',
+        desc: "Faire de l'inclusion une réalité, pas un slogan.",
+        href: '/guides/creer-culture-inclusive',
+      },
     ],
   },
 ];
@@ -350,6 +375,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_2.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_3.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_4.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

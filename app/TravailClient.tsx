@@ -82,6 +82,34 @@ const GUIDES = [
     desc: 'Repérer tes biais et bâtir un process équitable.',
     href: '/guides/recruter-sans-discriminer',
   },
+  {
+    id: 'gerer-conflit-travail',
+    title: 'Gérer un conflit au travail',
+    emphasis: '4 approches',
+    desc: 'Désamorcer sans fuir ni exploser.',
+    href: '/guides/gerer-conflit-travail',
+  },
+  {
+    id: 'prendre-la-parole-en-public',
+    title: 'Prendre la parole en public',
+    emphasis: '4 approches',
+    desc: 'Parler en réunion ou présenter sans paniquer.',
+    href: '/guides/prendre-la-parole-en-public',
+  },
+  {
+    id: 'trouver-mentors-sponsors',
+    title: 'Trouver mentors & sponsors',
+    emphasis: '4 approches',
+    desc: 'T\'entourer pour avancer quand on part isolée.',
+    href: '/guides/trouver-mentors-sponsors',
+  },
+  {
+    id: 'creer-culture-inclusive',
+    title: 'Créer une culture inclusive',
+    emphasis: '4 approches',
+    desc: 'Faire de l\'inclusion une réalité, pas un slogan.',
+    href: '/guides/creer-culture-inclusive',
+  },
 ];
 
 export default function TravailClient() {

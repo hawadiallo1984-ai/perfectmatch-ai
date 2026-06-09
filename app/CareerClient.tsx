@@ -82,6 +82,34 @@ const GUIDES = [
     desc: 'Spot your automatic reactions and build a fair process.',
     href: '/guides/hiring-without-bias',
   },
+  {
+    id: 'handling-conflict-at-work',
+    title: 'Handling Conflict at Work',
+    emphasis: '4 approaches',
+    desc: 'Defuse without fleeing or exploding.',
+    href: '/guides/handling-conflict-at-work',
+  },
+  {
+    id: 'public-speaking-at-work',
+    title: 'Public Speaking at Work',
+    emphasis: '4 approaches',
+    desc: 'Speak up or present without panicking.',
+    href: '/guides/public-speaking-at-work',
+  },
+  {
+    id: 'finding-mentors-and-sponsors',
+    title: 'Finding Mentors & Sponsors',
+    emphasis: '4 approaches',
+    desc: 'Build support to move forward when you start out isolated.',
+    href: '/guides/finding-mentors-and-sponsors',
+  },
+  {
+    id: 'building-an-inclusive-culture',
+    title: 'Building an Inclusive Culture',
+    emphasis: '4 approaches',
+    desc: 'Make inclusion real, not a slogan.',
+    href: '/guides/building-an-inclusive-culture',
+  },
 ];
 
 export default function CareerClient() {

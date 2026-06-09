@@ -37,6 +37,11 @@ const GUIDE_IDS = [
   // Nouveaux FR
   'trauma-financier-familles-noires',
   'parent-toxique',
+  // Pro FR lot 4 (etape8)
+  'gerer-conflit-travail',
+  'prendre-la-parole-en-public',
+  'trouver-mentors-sponsors',
+  'creer-culture-inclusive',
   // Pro FR lot 3 (etape7)
   'reussir-entretien-embauche',
   'quitter-job-toxique',
@@ -94,6 +99,11 @@ const GUIDE_IDS = [
   'financial-anxiety',
   'money-in-relationships',
   'financial-trauma-black-families',
+  // Pro EN lot 4 (etape8)
+  'handling-conflict-at-work',
+  'public-speaking-at-work',
+  'finding-mentors-and-sponsors',
+  'building-an-inclusive-culture',
   // Pro EN lot 3 (etape7)
   'acing-your-job-interview',
   'leaving-a-toxic-job',

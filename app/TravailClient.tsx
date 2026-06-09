@@ -145,6 +145,34 @@ const GUIDES = [
     desc: 'Diriger pleinement, à ta façon.',
     href: '/guides/leadership-femme-noire',
   },
+  {
+    id: 'reussir-sa-prise-de-poste',
+    title: 'Réussir sa prise de poste',
+    emphasis: '4 approches',
+    desc: 'Bien démarrer, trouver ta place, piloter tes 30/60/90 premiers jours.',
+    href: '/guides/reussir-sa-prise-de-poste',
+  },
+  {
+    id: 'donner-recevoir-feedback',
+    title: 'Donner et recevoir du feedback',
+    emphasis: '4 approches',
+    desc: 'Des retours qui font grandir, pas qui blessent.',
+    href: '/guides/donner-recevoir-feedback',
+  },
+  {
+    id: 'equilibre-pro-perso',
+    title: 'Équilibre pro-perso & charge mentale',
+    emphasis: '4 approches',
+    desc: 'Poser des limites et alléger la charge mentale.',
+    href: '/guides/equilibre-pro-perso',
+  },
+  {
+    id: 'repondre-aux-microagressions',
+    title: 'Répondre aux microagressions au travail',
+    emphasis: '4 approches',
+    desc: 'Réagir aux petites phrases qui blessent, à ta façon.',
+    href: '/guides/repondre-aux-microagressions',
+  },
 ];
 
 export default function TravailClient() {

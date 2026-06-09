@@ -145,6 +145,34 @@ const GUIDES = [
     desc: 'Lead fully, in your own way.',
     href: '/guides/leadership-as-a-black-woman',
   },
+  {
+    id: 'succeeding-in-a-new-role',
+    title: 'Succeeding in a New Role',
+    emphasis: '4 approaches',
+    desc: 'Start well, find your place, steer your 30/60/90 first days.',
+    href: '/guides/succeeding-in-a-new-role',
+  },
+  {
+    id: 'giving-and-receiving-feedback',
+    title: 'Giving and Receiving Feedback',
+    emphasis: '4 approaches',
+    desc: 'Feedback that grows people, not wounds them.',
+    href: '/guides/giving-and-receiving-feedback',
+  },
+  {
+    id: 'work-life-balance-and-mental-load',
+    title: 'Work-Life Balance & Mental Load',
+    emphasis: '4 approaches',
+    desc: 'Set limits and ease the mental load.',
+    href: '/guides/work-life-balance-and-mental-load',
+  },
+  {
+    id: 'responding-to-microaggressions-at-work',
+    title: 'Responding to Microaggressions at Work',
+    emphasis: '4 approaches',
+    desc: 'React to wounding remarks in your own way.',
+    href: '/guides/responding-to-microaggressions-at-work',
+  },
 ];
 
 export default function CareerClient() {

@@ -156,6 +156,16 @@ const GUIDE_IDS = [
   'asking-for-a-promotion',
   'dealing-with-a-difficult-manager',
   'leadership-as-a-black-woman',
+  // Travail lot 3 FR (etape12)
+  'reussir-sa-prise-de-poste',
+  'donner-recevoir-feedback',
+  'equilibre-pro-perso',
+  'repondre-aux-microagressions',
+  // Career lot 3 EN (etape12)
+  'succeeding-in-a-new-role',
+  'giving-and-receiving-feedback',
+  'work-life-balance-and-mental-load',
+  'responding-to-microaggressions-at-work',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

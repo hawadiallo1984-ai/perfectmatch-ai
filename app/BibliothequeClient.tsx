@@ -10,6 +10,7 @@ import { PRO_GUIDES_4 } from '@/lib/proGuides4';
 import { PRO_GUIDES_5 } from '@/lib/proGuides5';
 import { PRO_GUIDES_6 } from '@/lib/proGuides6';
 import { PRO_GUIDES_7 } from '@/lib/proGuides7';
+import { PRO_GUIDES_8 } from '@/lib/proGuides8';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
@@ -432,6 +433,30 @@ const SECTIONS = [
         desc: 'Diriger pleinement, à ta façon.',
         href: '/guides/leadership-femme-noire',
       },
+      {
+        id: 'reussir-sa-prise-de-poste',
+        title: 'Réussir sa prise de poste',
+        desc: 'Bien démarrer, trouver ta place, piloter tes 30/60/90 premiers jours.',
+        href: '/guides/reussir-sa-prise-de-poste',
+      },
+      {
+        id: 'donner-recevoir-feedback',
+        title: 'Donner et recevoir du feedback',
+        desc: 'Des retours qui font grandir, pas qui blessent.',
+        href: '/guides/donner-recevoir-feedback',
+      },
+      {
+        id: 'equilibre-pro-perso',
+        title: 'Équilibre pro-perso & charge mentale',
+        desc: 'Poser des limites et alléger la charge mentale.',
+        href: '/guides/equilibre-pro-perso',
+      },
+      {
+        id: 'repondre-aux-microagressions',
+        title: 'Répondre aux microagressions au travail',
+        desc: 'Réagir aux petites phrases qui blessent, à ta façon.',
+        href: '/guides/repondre-aux-microagressions',
+      },
     ],
   },
 ];
@@ -454,6 +479,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_5.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_6.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_7.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_8.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

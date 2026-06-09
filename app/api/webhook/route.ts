@@ -37,7 +37,8 @@ export async function POST(req: NextRequest) {
           const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://perfectmatch-ai.vercel.app';
           const guidePdfUrl = `${siteUrl}${guide.pdf}`;
           await resend.emails.send({
-            from: 'EvaTalk <onboarding@resend.dev>',
+            from: 'EvaTalk <guides@eva-talk-coach.com>',
+            replyTo: 'hawa.diallo1984@gmail.com',
             to: email,
             subject: `Ton ${guide.name} est là ✦`,
             html: `

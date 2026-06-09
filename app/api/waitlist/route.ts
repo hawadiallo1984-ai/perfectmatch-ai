@@ -27,7 +27,8 @@ export async function POST(req: NextRequest) {
 
     // Notification interne
     await resend.emails.send({
-      from: 'PerfectMatch <onboarding@resend.dev>',
+      from: 'PerfectMatch <bonjour@eva-talk-coach.com>',
+      replyTo: 'hawa.diallo1984@gmail.com',
       to: process.env.NOTIFY_EMAIL!,
       subject: `Liste d'accès — ${parcoursLabel} — ${email}`,
       html: `<p>${email} souhaite accéder au parcours : <strong>${parcoursLabel}</strong></p>`,

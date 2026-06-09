@@ -634,41 +634,6 @@ export default function BibliothequeClient() {
         </div>
       </section>
 
-      {/* Sections thématiques */}
-      {SECTIONS.map((section) => (
-        <section key={section.id} className={styles.section} style={{ paddingTop: 0 }}>
-          <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
-            <h2
-              className={`${styles.sectionTitle} reveal`}
-              style={{ fontSize: 'clamp(18px, 3vw, 24px)', marginBottom: 32, letterSpacing: '0.02em' }}
-            >
-              {section.label}
-            </h2>
-            <div
-              className={styles.offersGrid}
-              style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}
-            >
-              {section.guides.map((guide) => (
-                <div key={guide.id} className={`${styles.offer} reveal`}>
-                  <div className={styles.offerCategory}>Guide PDF · 19 €</div>
-                  <h3 className={styles.offerName}>{guide.title}</h3>
-                  <p className={styles.offerDesc}>{guide.desc}</p>
-                  <div style={{ marginTop: 'auto' }}>
-                    <a
-                      href={guide.href}
-                      className={styles.offerCta}
-                      style={{ display: 'block', textAlign: 'center', textDecoration: 'none' }}
-                    >
-                      Découvrir →
-                    </a>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      ))}
-
       {/* Packs FR */}
       <section className={styles.section} style={{ paddingTop: 0 }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
@@ -706,6 +671,41 @@ export default function BibliothequeClient() {
           </div>
         </div>
       </section>
+
+      {/* Sections thématiques */}
+      {SECTIONS.map((section) => (
+        <section key={section.id} className={styles.section} style={{ paddingTop: 0 }}>
+          <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
+            <h2
+              className={`${styles.sectionTitle} reveal`}
+              style={{ fontSize: 'clamp(18px, 3vw, 24px)', marginBottom: 32, letterSpacing: '0.02em' }}
+            >
+              {section.label}
+            </h2>
+            <div
+              className={styles.offersGrid}
+              style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}
+            >
+              {section.guides.map((guide) => (
+                <div key={guide.id} className={`${styles.offer} reveal`}>
+                  <div className={styles.offerCategory}>Guide PDF · 19 €</div>
+                  <h3 className={styles.offerName}>{guide.title}</h3>
+                  <p className={styles.offerDesc}>{guide.desc}</p>
+                  <div style={{ marginTop: 'auto' }}>
+                    <a
+                      href={guide.href}
+                      className={styles.offerCta}
+                      style={{ display: 'block', textAlign: 'center', textDecoration: 'none' }}
+                    >
+                      Découvrir →
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
 
       {/* In English */}
       <section className={styles.section} style={{ paddingTop: 0 }}>

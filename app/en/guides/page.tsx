@@ -96,40 +96,6 @@ export default function EnGuidesPage() {
         </div>
       </section>
 
-      {EN_BY_THEME.map(({ theme, guides }) => (
-        <section key={theme} className={styles.section} style={{ paddingTop: 0 }}>
-          <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
-            <div style={{
-              fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase',
-              color: 'var(--gold)', opacity: 0.8, marginBottom: 20,
-            }}>
-              {theme}
-            </div>
-            <div
-              className={styles.offersGrid}
-              style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}
-            >
-              {guides.map((guide) => (
-                <div key={guide.id} className={`${styles.offer} reveal`}>
-                  <div className={styles.offerCategory}>PDF Guide · €19</div>
-                  <h3 className={styles.offerName}>{guide.title}</h3>
-                  <p className={styles.offerDesc}>{guide.blurb}</p>
-                  <div style={{ marginTop: 'auto' }}>
-                    <a
-                      href={`/guides/${guide.id}`}
-                      className={styles.offerCta}
-                      style={{ display: 'block', textAlign: 'center', textDecoration: 'none' }}
-                    >
-                      Discover →
-                    </a>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      ))}
-
       {/* Packs EN */}
       <section className={styles.section} style={{ paddingTop: 0 }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
@@ -173,6 +139,40 @@ export default function EnGuidesPage() {
           </div>
         </div>
       </section>
+
+      {EN_BY_THEME.map(({ theme, guides }) => (
+        <section key={theme} className={styles.section} style={{ paddingTop: 0 }}>
+          <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 24px' }}>
+            <div style={{
+              fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase',
+              color: 'var(--gold)', opacity: 0.8, marginBottom: 20,
+            }}>
+              {theme}
+            </div>
+            <div
+              className={styles.offersGrid}
+              style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}
+            >
+              {guides.map((guide) => (
+                <div key={guide.id} className={`${styles.offer} reveal`}>
+                  <div className={styles.offerCategory}>PDF Guide · €19</div>
+                  <h3 className={styles.offerName}>{guide.title}</h3>
+                  <p className={styles.offerDesc}>{guide.blurb}</p>
+                  <div style={{ marginTop: 'auto' }}>
+                    <a
+                      href={`/guides/${guide.id}`}
+                      className={styles.offerCta}
+                      style={{ display: 'block', textAlign: 'center', textDecoration: 'none' }}
+                    >
+                      Discover →
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
 
       <footer className={styles.footer}>
         <div className={styles.logo} style={{ justifyContent: 'center', marginBottom: 8 }}>

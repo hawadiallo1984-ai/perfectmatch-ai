@@ -1,6 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { BLESSURE_RECO } from '@/lib/blessuresReco';
+import { BUNDLES } from '@/lib/bundles';
+import { GUIDES, GuideId } from '@/lib/guides';
+import BundleBuyButton from '@/components/BundleBuyButton';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
@@ -81,6 +85,14 @@ const WOUNDS = [
   },
 ];
 
+const WOUND_TO_RECO_KEY: Record<string, keyof typeof BLESSURE_RECO> = {
+  A: 'abandon',
+  R: 'rejet',
+  E: 'humiliation',
+  T: 'trahison',
+  I: 'injustice',
+};
+
 export default function BlessuresClient() {
   const [checked, setChecked] = useState<Record<string, boolean>>({});
 
@@ -95,6 +107,13 @@ export default function BlessuresClient() {
 
   const maxScore = Math.max(...scores.map((s) => s.score));
   const dominantKeys = maxScore > 0 ? scores.filter((s) => s.score === maxScore).map((s) => s.key) : [];
+
+  const recoKey = dominantKeys.length > 0 ? WOUND_TO_RECO_KEY[dominantKeys[0]] : null;
+  const reco = recoKey ? BLESSURE_RECO[recoKey] : null;
+  const recoPack = reco ? (BUNDLES.find(b => b.id === reco.packId) ?? null) : null;
+  const recoGuides = reco
+    ? [...reco.guideIds].map(id => GUIDES[id as GuideId]).filter((g): g is NonNullable<typeof g> => g !== undefined)
+    : [];
 
   return (
     <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
@@ -303,6 +322,75 @@ export default function BlessuresClient() {
           </div>
         </div>
       </section>
+
+      {/* Recommandé pour toi */}
+      {reco && (
+        <section className={styles.section} style={{ paddingTop: 0 }}>
+          <div style={{ maxWidth: 760, margin: '0 auto' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginBottom: 28, borderBottom: '1px solid var(--line)', paddingBottom: 14 }}>
+              <span style={{ fontSize: 11, letterSpacing: '.3em', textTransform: 'uppercase', color: '#C9A24B', opacity: .85 }}>
+                Recommandé pour toi
+              </span>
+            </div>
+            <h2 style={{ fontFamily: 'Fraunces, serif', fontSize: 'clamp(1.2rem,2.5vw,1.6rem)', fontWeight: 400, marginBottom: '1rem', lineHeight: 1.25 }}>
+              {reco.title}
+            </h2>
+            <p style={{ fontSize: '.9rem', color: '#A9A3B8', lineHeight: 1.7, marginBottom: '1.75rem' }}>
+              {reco.message}
+            </p>
+
+            {recoPack && (
+              <div style={{ marginBottom: '1.75rem' }}>
+                <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
+                  Pack recommandé
+                </p>
+                <div style={{ padding: '22px 24px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.05)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Pack · 4 guides</div>
+                  <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 17, lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{recoPack.title}</h3>
+                  <p style={{ fontSize: '.85rem', opacity: 0.6, lineHeight: 1.6, margin: 0 }}>{recoPack.blurb}</p>
+                  <div style={{ textAlign: 'center', margin: '4px 0' }}>
+                    <span style={{ fontSize: 12, opacity: 0.4, textDecoration: 'line-through', marginRight: 8 }}>{recoPack.compareAtCents / 100} €</span>
+                    <span style={{ fontSize: 17, fontWeight: 700, color: '#C9A24B' }}>{recoPack.priceCents / 100} €</span>
+                  </div>
+                  <BundleBuyButton bundleId={recoPack.id} label={`Acheter le pack — ${recoPack.priceCents / 100} €`} />
+                </div>
+              </div>
+            )}
+
+            {recoGuides.length > 0 && (
+              <div>
+                <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
+                  Guides pour aller plus loin
+                </p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+                  {recoGuides.map((g) => (
+                    <a
+                      key={g.id}
+                      href={`/guides/${g.id}`}
+                      style={{
+                        display: 'inline-flex', flexDirection: 'column', gap: 4,
+                        padding: '12px 16px',
+                        border: '1px solid rgba(201,162,75,0.3)',
+                        background: 'rgba(201,162,75,0.05)',
+                        color: '#F5EFE3',
+                        textDecoration: 'none',
+                        borderRadius: '2px',
+                        fontSize: '.85rem',
+                        lineHeight: 1.3,
+                        flex: '1 1 180px',
+                        minWidth: 180,
+                      }}
+                    >
+                      <span style={{ fontWeight: 600 }}>{g.name}</span>
+                      <span style={{ fontSize: '.78rem', color: '#C9A24B', opacity: 0.8 }}>19 € · Découvrir →</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* Ton point de départ */}
       <section className={styles.section} style={{ paddingTop: 0 }}>

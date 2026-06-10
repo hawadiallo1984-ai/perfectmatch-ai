@@ -70,67 +70,6 @@ export default function HomeClient({ lang }: Props) {
         </div>
       </section>
 
-      {/* Packs phares */}
-      <section style={{
-        padding: 'clamp(40px, 6vw, 72px) 24px',
-        borderTop: '1px solid rgba(201,162,75,0.15)',
-        borderBottom: '1px solid rgba(201,162,75,0.1)',
-      }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: 40 }}>
-            <div style={{ fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.8, marginBottom: 12 }}>
-              Packs · Offres groupées
-            </div>
-            <h2 style={{ fontFamily: 'Fraunces, serif', fontSize: 'clamp(1.4rem, 3vw, 2rem)', fontWeight: 300, letterSpacing: '-0.02em', marginBottom: 10 }}>
-              Économise avec nos packs
-            </h2>
-            <p style={{ fontSize: 14, opacity: 0.55, lineHeight: 1.6 }}>
-              4 guides à 49 € au lieu de 76 €.
-            </p>
-          </div>
-          <div
-            className={styles.offersGrid}
-            style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', marginBottom: 32 }}
-          >
-            {FEATURED_PACKS.map((bundle) => (
-              <div key={bundle.id} className={styles.offer}>
-                <div className={styles.offerCategory}>Pack · 4 guides</div>
-                <h3 className={styles.offerName}>{bundle.title}</h3>
-                <p className={styles.offerDesc}>{bundle.blurb}</p>
-                <div style={{ marginTop: 'auto' }}>
-                  <div style={{ marginBottom: 12, textAlign: 'center' }}>
-                    <span style={{ fontSize: 13, opacity: 0.4, textDecoration: 'line-through', marginRight: 8 }}>
-                      {bundle.compareAtCents / 100} €
-                    </span>
-                    <span style={{ fontSize: 18, fontWeight: 700, color: 'var(--gold)' }}>
-                      {bundle.priceCents / 100} €
-                    </span>
-                  </div>
-                  <BundleBuyButton bundleId={bundle.id} label={`Acheter le pack — ${bundle.priceCents / 100} €`} />
-                </div>
-              </div>
-            ))}
-          </div>
-          <div style={{ textAlign: 'center' }}>
-            <a
-              href="/bibliotheque"
-              style={{
-                display: 'inline-block',
-                border: '1px solid rgba(201,162,75,0.4)',
-                color: '#C9A24B',
-                fontSize: 13,
-                padding: '10px 24px',
-                borderRadius: '4px',
-                textDecoration: 'none',
-                letterSpacing: '.04em',
-              }}
-            >
-              Voir tous les packs →
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* Bandeau mini-guide (kept) */}
       <section style={{
         background: 'linear-gradient(135deg,rgba(201,162,75,0.08),rgba(142,122,181,0.06))',
@@ -231,6 +170,67 @@ export default function HomeClient({ lang }: Props) {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Et aussi : packs */}
+      <section style={{
+        padding: 'clamp(32px, 5vw, 56px) 24px',
+        borderTop: '1px solid rgba(201,162,75,0.12)',
+        borderBottom: '1px solid rgba(201,162,75,0.08)',
+      }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: 32 }}>
+            <div style={{ fontSize: 11, letterSpacing: '0.3em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7, marginBottom: 10 }}>
+              Packs · Offres groupées
+            </div>
+            <h2 style={{ fontFamily: 'Fraunces, serif', fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)', fontWeight: 300, letterSpacing: '-0.01em', marginBottom: 8 }}>
+              Et aussi : nos guides en packs
+            </h2>
+            <p style={{ fontSize: 13, opacity: 0.5, lineHeight: 1.6 }}>
+              4 guides à 49 € au lieu de 76 €.
+            </p>
+          </div>
+          <div
+            className={styles.offersGrid}
+            style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', marginBottom: 28 }}
+          >
+            {FEATURED_PACKS.map((bundle) => (
+              <div key={bundle.id} className={styles.offer}>
+                <div className={styles.offerCategory}>Pack · 4 guides</div>
+                <h3 className={styles.offerName}>{bundle.title}</h3>
+                <p className={styles.offerDesc}>{bundle.blurb}</p>
+                <div style={{ marginTop: 'auto' }}>
+                  <div style={{ marginBottom: 12, textAlign: 'center' }}>
+                    <span style={{ fontSize: 13, opacity: 0.4, textDecoration: 'line-through', marginRight: 8 }}>
+                      {bundle.compareAtCents / 100} €
+                    </span>
+                    <span style={{ fontSize: 18, fontWeight: 700, color: 'var(--gold)' }}>
+                      {bundle.priceCents / 100} €
+                    </span>
+                  </div>
+                  <BundleBuyButton bundleId={bundle.id} label={`Acheter le pack — ${bundle.priceCents / 100} €`} />
+                </div>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            <a
+              href="/bibliotheque"
+              style={{
+                display: 'inline-block',
+                border: '1px solid rgba(201,162,75,0.35)',
+                color: '#C9A24B',
+                fontSize: 13,
+                padding: '9px 22px',
+                borderRadius: '4px',
+                textDecoration: 'none',
+                letterSpacing: '.04em',
+              }}
+            >
+              Voir tous les packs →
+            </a>
           </div>
         </div>
       </section>

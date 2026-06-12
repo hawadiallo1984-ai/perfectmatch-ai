@@ -206,6 +206,14 @@ const GUIDE_IDS = [
   'managing-time-and-delegating',
   'hair-and-appearance-at-work',
   'entrepreneurship-as-a-black-woman',
+  // Déconstruction & Alliance FR (etape23)
+  'deconstruire-sa-negrophobie',
+  'deconstruire-sa-misogynoir',
+  'deconstruire-son-racisme',
+  // Deconstruction & Allyship EN (etape23)
+  'unlearning-anti-black-racism',
+  'unlearning-misogynoir',
+  'unlearning-racism-becoming-antiracist',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -15,6 +15,7 @@ import { PRO_GUIDES_9 } from '@/lib/proGuides9';
 import { PRO_GUIDES_10 } from '@/lib/proGuides10';
 import { PRO_GUIDES_11 } from '@/lib/proGuides11';
 import { PRO_GUIDES_12 } from '@/lib/proGuides12';
+import { PRO_GUIDES_14 } from '@/lib/proGuides14';
 import { BUNDLES } from '@/lib/bundles';
 import BundleBuyButton from '@/components/BundleBuyButton';
 import SiteNav from '@/components/SiteNav';
@@ -567,6 +568,30 @@ const SECTIONS = [
       },
     ],
   },
+  {
+    id: 'deconstruction-alliance',
+    label: 'Déconstruction & Alliance',
+    guides: [
+      {
+        id: 'deconstruire-sa-negrophobie',
+        title: 'Déconstruire sa négrophobie',
+        desc: 'Reconnaître et désapprendre le racisme anti-Noir·e en soi.',
+        href: '/guides/deconstruire-sa-negrophobie',
+      },
+      {
+        id: 'deconstruire-sa-misogynoir',
+        title: 'Déconstruire sa misogynoir',
+        desc: 'Voir le double standard, rendre leur pleine humanité, agir.',
+        href: '/guides/deconstruire-sa-misogynoir',
+      },
+      {
+        id: 'deconstruire-son-racisme',
+        title: 'Déconstruire son racisme',
+        desc: 'Du « non-raciste » passif à l\'action concrète et continue.',
+        href: '/guides/deconstruire-son-racisme',
+      },
+    ],
+  },
 ];
 
 const EN_CONFLICT_IDS = new Set(['black-tax', 'misogynoir']);
@@ -574,7 +599,7 @@ const EN_EXTRA = [
   { id: 'misogynoir-en', title: 'Misogynoir', blurb: 'Free yourself from the tropes, reclaim your full humanity.', theme: 'Identity & Resilience' },
   { id: 'black-tax-en', title: 'Black Tax', blurb: 'Supporting your people without losing yourself.', theme: 'Money' },
 ];
-const EN_THEME_ORDER = ['Wellbeing', 'Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career', 'Intimacy & Sexuality'];
+const EN_THEME_ORDER = ['Wellbeing', 'Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career', 'Intimacy & Sexuality', 'Deconstruction & Allyship'];
 const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
   theme,
   guides: [
@@ -592,6 +617,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_10.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_11.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_12.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_14.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

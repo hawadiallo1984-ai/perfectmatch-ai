@@ -15,6 +15,7 @@ import { PRO_GUIDES_9 } from '@/lib/proGuides9';
 import { PRO_GUIDES_10 } from '@/lib/proGuides10';
 import { PRO_GUIDES_11 } from '@/lib/proGuides11';
 import { PRO_GUIDES_12 } from '@/lib/proGuides12';
+import { PRO_GUIDES_13 } from '@/lib/proGuides13';
 import { PRO_GUIDES_14 } from '@/lib/proGuides14';
 import { BUNDLES } from '@/lib/bundles';
 import BundleBuyButton from '@/components/BundleBuyButton';
@@ -164,6 +165,12 @@ const SECTIONS = [
         desc: 'Reprendre la main quand tout s\'accélère.',
         href: '/guides/gerer-le-stress',
       },
+      {
+        id: 'se-reconstruire-apres-abus-sexuels',
+        title: 'Se reconstruire après l\'inceste et les abus sexuels',
+        desc: 'Un chemin de guérison : comprendre le trauma, retrouver ta valeur, trouver le bon soutien.',
+        href: '/guides/se-reconstruire-apres-abus-sexuels',
+      },
     ],
   },
   {
@@ -259,6 +266,24 @@ const SECTIONS = [
         title: 'Sortir de la solitude — pour les femmes noires',
         desc: 'Créer des liens où tu es vue, entière.',
         href: '/guides/sortir-solitude-femmes-noires',
+      },
+      {
+        id: 'se-reconstruire-face-negrophobie',
+        title: 'Se reconstruire face à la négrophobie',
+        desc: 'Guérir ce que le racisme anti-Noir·e a abîmé, te reconstruire avec fierté.',
+        href: '/guides/se-reconstruire-face-negrophobie',
+      },
+      {
+        id: 'se-liberer-misogynoir',
+        title: 'Se libérer de la misogynoir',
+        desc: 'Nommer le double poids, sortir des cases, te réautoriser à être toi.',
+        href: '/guides/se-liberer-misogynoir',
+      },
+      {
+        id: 'preserver-sante-mentale-racisme',
+        title: 'Préserver sa santé mentale face au racisme',
+        desc: 'Reconnaître le trauma racial, protéger ton énergie, guérir.',
+        href: '/guides/preserver-sante-mentale-racisme',
       },
     ],
   },
@@ -617,6 +642,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_10.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_11.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_12.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_13.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_14.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],

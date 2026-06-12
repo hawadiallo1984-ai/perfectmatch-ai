@@ -206,6 +206,16 @@ const GUIDE_IDS = [
   'managing-time-and-delegating',
   'hair-and-appearance-at-work',
   'entrepreneurship-as-a-black-woman',
+  // Déconstruction & guérison FR (etape22)
+  'se-reconstruire-face-negrophobie',
+  'se-liberer-misogynoir',
+  'preserver-sante-mentale-racisme',
+  'se-reconstruire-apres-abus-sexuels',
+  // Deconstruction & healing EN (etape22)
+  'healing-from-anti-black-racism',
+  'freeing-yourself-from-misogynoir',
+  'protecting-your-mental-health-from-racism',
+  'healing-after-incest-and-sexual-abuse',
   // Déconstruction & Alliance FR (etape23)
   'deconstruire-sa-negrophobie',
   'deconstruire-sa-misogynoir',

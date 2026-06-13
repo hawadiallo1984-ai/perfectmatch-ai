@@ -17,6 +17,7 @@ import { PRO_GUIDES_11 } from '@/lib/proGuides11';
 import { PRO_GUIDES_12 } from '@/lib/proGuides12';
 import { PRO_GUIDES_13 } from '@/lib/proGuides13';
 import { PRO_GUIDES_14 } from '@/lib/proGuides14';
+import { PRO_GUIDES_15 } from '@/lib/proGuides15';
 import { BUNDLES } from '@/lib/bundles';
 import BundleBuyButton from '@/components/BundleBuyButton';
 import SiteNav from '@/components/SiteNav';
@@ -591,6 +592,48 @@ const SECTIONS = [
         desc: 'Accueillir deux désirs différents et trouver un terrain commun.',
         href: '/guides/desirs-desaccordes',
       },
+      {
+        id: 'retrouver-sa-libido-femme',
+        title: 'Retrouver sa libido (femmes)',
+        desc: 'Comprendre ce qui éteint le désir, le réveiller sans pression.',
+        href: '/guides/retrouver-sa-libido-femme',
+      },
+      {
+        id: 'se-reapproprier-son-plaisir',
+        title: 'Se réapproprier son plaisir (femmes)',
+        desc: 'Lever les blocages psychologiques, sortir de la course à l\'orgasme.',
+        href: '/guides/se-reapproprier-son-plaisir',
+      },
+      {
+        id: 'sexualite-apres-une-naissance',
+        title: 'Sexualité après une naissance',
+        desc: 'Retrouver l\'intimité à deux après bébé, en douceur et en communiquant.',
+        href: '/guides/sexualite-apres-une-naissance',
+      },
+      {
+        id: 'anxiete-performance-sexuelle-homme',
+        title: 'Dépasser l\'anxiété de performance (hommes)',
+        desc: 'Sortir du cercle vicieux de l\'anxiété, revenir aux sensations.',
+        href: '/guides/anxiete-performance-sexuelle-homme',
+      },
+      {
+        id: 'dimension-psy-erection',
+        title: 'La dimension psy de l\'érection (hommes)',
+        desc: 'Comprendre le rôle du mental, apaiser le cercle anxiété-érection.',
+        href: '/guides/dimension-psy-erection',
+      },
+      {
+        id: 'depasser-injonctions-virilite',
+        title: 'Sortir de la pression de performance (hommes)',
+        desc: 'Te libérer des injonctions de virilité, t\'autoriser la vulnérabilité.',
+        href: '/guides/depasser-injonctions-virilite',
+      },
+      {
+        id: 'rapport-sain-pornographie',
+        title: 'Un rapport sain à la pornographie',
+        desc: 'Comprendre son influence, repérer un usage qui pèse, garder l\'équilibre.',
+        href: '/guides/rapport-sain-pornographie',
+      },
     ],
   },
   {
@@ -644,6 +687,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_12.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_13.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_14.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_15.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

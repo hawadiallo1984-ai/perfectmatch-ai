@@ -216,6 +216,22 @@ const GUIDE_IDS = [
   'freeing-yourself-from-misogynoir',
   'protecting-your-mental-health-from-racism',
   'healing-after-incest-and-sexual-abuse',
+  // Intimité & Sexualité lot 2 FR (etape24)
+  'retrouver-sa-libido-femme',
+  'se-reapproprier-son-plaisir',
+  'sexualite-apres-une-naissance',
+  'anxiete-performance-sexuelle-homme',
+  'dimension-psy-erection',
+  'depasser-injonctions-virilite',
+  'rapport-sain-pornographie',
+  // Intimacy & Sexuality lot 2 EN (etape24)
+  'rekindling-your-libido-women',
+  'reclaiming-your-pleasure-women',
+  'sex-after-having-a-baby',
+  'overcoming-sexual-performance-anxiety-men',
+  'the-mind-and-erections-men',
+  'letting-go-of-performance-pressure-men',
+  'a-healthy-relationship-with-porn',
   // Déconstruction & Alliance FR (etape23)
   'deconstruire-sa-negrophobie',
   'deconstruire-sa-misogynoir',

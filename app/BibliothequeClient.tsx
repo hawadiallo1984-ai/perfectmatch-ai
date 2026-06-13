@@ -20,6 +20,7 @@ import { PRO_GUIDES_14 } from '@/lib/proGuides14';
 import { PRO_GUIDES_15 } from '@/lib/proGuides15';
 import { BUNDLES } from '@/lib/bundles';
 import BundleBuyButton from '@/components/BundleBuyButton';
+import Testimonials from '@/components/Testimonials';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
@@ -848,6 +849,8 @@ export default function BibliothequeClient() {
           ))}
         </div>
       </section>
+
+      <Testimonials lang="fr" />
 
       {/* Footer */}
       <footer className={styles.footer}>

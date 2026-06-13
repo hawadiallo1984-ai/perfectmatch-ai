@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { HOME_COPY, Lang } from '@/lib/homeCopy';
 import { BUNDLES } from '@/lib/bundles';
 import BundleBuyButton from '@/components/BundleBuyButton';
+import Testimonials from '@/components/Testimonials';
 import SiteNav from '@/components/SiteNav';
 import styles from './page.module.css';
 
@@ -173,6 +174,8 @@ export default function HomeClient({ lang }: Props) {
           </div>
         </div>
       </section>
+
+      <Testimonials lang={lang} />
 
       {/* Et aussi : packs */}
       <section style={{

@@ -20,6 +20,7 @@ import { PRO_GUIDES_14 } from '@/lib/proGuides14';
 import { PRO_GUIDES_15 } from '@/lib/proGuides15';
 import { BUNDLES } from '@/lib/bundles';
 import BundleBuyButton from '@/components/BundleBuyButton';
+import Testimonials from '@/components/Testimonials';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
@@ -179,6 +180,8 @@ export default function EnGuidesPage() {
           </div>
         </section>
       ))}
+
+      <Testimonials lang="en" />
 
       <footer className={styles.footer}>
         <div className={styles.logo} style={{ justifyContent: 'center', marginBottom: 8 }}>

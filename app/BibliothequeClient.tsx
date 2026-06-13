@@ -800,6 +800,14 @@ export default function BibliothequeClient() {
                 </div>
               ))}
             </div>
+            {section.id === 'intimite-sexualite' && (
+              <p style={{ marginTop: 16, fontSize: '.83rem', color: '#A9A3B8' }}>
+                Pas sûr·e par où commencer ?{' '}
+                <a href="/rapport-au-desir" style={{ color: '#C9A24B', textDecoration: 'none' }}>
+                  Fais le test gratuit →
+                </a>
+              </p>
+            )}
           </div>
         </section>
       ))}

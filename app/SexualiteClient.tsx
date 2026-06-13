@@ -107,6 +107,40 @@ export default function SexualiteClient() {
         </div>
       </section>
 
+      {/* CTA test désir */}
+      <section style={{ textAlign: 'center', padding: '0 24px clamp(32px, 6vw, 56px)' }}>
+        <div style={{
+          display: 'inline-block',
+          padding: '28px 36px',
+          border: '1px solid rgba(201,162,75,0.3)',
+          background: 'rgba(201,162,75,0.05)',
+          maxWidth: 540,
+        }}>
+          <p style={{ fontSize: '.75rem', letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
+            Test gratuit · 18+
+          </p>
+          <p style={{ fontFamily: 'Fraunces, serif', fontSize: 'clamp(1.1rem,2.5vw,1.4rem)', fontWeight: 400, color: '#F5EFE3', lineHeight: 1.35, marginBottom: '1rem' }}>
+            Quel est ton rapport au désir et à l&apos;intimité ?
+          </p>
+          <p style={{ fontSize: '.87rem', color: '#A9A3B8', lineHeight: 1.6, marginBottom: '1.25rem' }}>
+            9 questions pour identifier ce qui freine ton intimité.
+          </p>
+          <a href="/rapport-au-desir" style={{
+            display: 'inline-block',
+            background: 'linear-gradient(135deg,#C9A24B,#A87C2A)',
+            color: '#0B0A14',
+            fontWeight: 700,
+            fontSize: '.88rem',
+            padding: '12px 28px',
+            borderRadius: '4px',
+            textDecoration: 'none',
+            letterSpacing: '.04em',
+          }}>
+            Faire le test gratuit →
+          </a>
+        </div>
+      </section>
+
       {/* Encadré cadrage */}
       <section style={{ maxWidth: 640, margin: '0 auto', padding: '0 24px clamp(40px, 8vw, 80px)' }}>
         <div style={{

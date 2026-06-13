@@ -1,66 +1,75 @@
-import { publishedTestimonials } from '@/lib/testimonials';
+'use client';
+
+import Script from 'next/script';
 import styles from '@/app/page.module.css';
 
-type Props = { lang: 'fr' | 'en' };
+const SENJA_WIDGET_ID = "REMPLACER_PAR_LE_DATA_ID_DU_WIDGET";
+const SENJA_FORM_URL  = "REMPLACER_PAR_URL_DU_FORMULAIRE";
 
-export default function Testimonials({ lang }: Props) {
-  const list = publishedTestimonials(lang);
-  if (list.length === 0) return null;
+type Props = { lang?: 'fr' | 'en' };
 
-  const title = lang === 'fr' ? 'Ils en parlent' : 'What people say';
+export default function Testimonials({ lang = 'fr' }: Props) {
+  const widgetReady = !SENJA_WIDGET_ID.includes('REMPLACER');
+  const formReady   = !SENJA_FORM_URL.includes('REMPLACER');
+
+  if (!widgetReady && !formReady) return null;
+
+  const title    = lang === 'fr' ? 'Ils en parlent'  : 'What people say';
+  const btnLabel = lang === 'fr' ? 'Laisser un avis' : 'Leave a review';
 
   return (
-    <section style={{
-      padding: 'clamp(40px, 6vw, 64px) 24px',
-      borderTop: '1px solid rgba(201,162,75,0.1)',
-    }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-        <div className={styles.offersHeader} style={{ marginBottom: 32 }}>
-          <div className={styles.sectionLabel}>
-            {lang === 'fr' ? 'Témoignages' : 'Reviews'}
-          </div>
-          <h2 className={styles.sectionTitle}>{title}</h2>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 20 }}>
-          {list.map((t) => (
-            <div
-              key={t.id}
-              style={{
-                padding: '24px 24px 20px',
-                border: '1px solid var(--line)',
-                background: 'rgba(28,24,51,0.4)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 12,
-              }}
-            >
-              {t.rating !== undefined && (
-                <div style={{ color: '#C9A24B', fontSize: 14, letterSpacing: 2 }}>
-                  {'★'.repeat(t.rating)}{'☆'.repeat(5 - t.rating)}
-                </div>
-              )}
-              <p style={{
-                fontFamily: 'Fraunces, serif',
-                fontStyle: 'italic',
-                fontSize: '1rem',
-                lineHeight: 1.65,
-                color: 'var(--cream)',
-                margin: 0,
-              }}>
-                « {t.text} »
-              </p>
-              <div>
-                <strong style={{ display: 'block', fontSize: '.85rem', color: 'var(--cream)' }}>
-                  {t.name}
-                </strong>
-                {t.context && (
-                  <span style={{ fontSize: '.8rem', color: '#A9A3B8' }}>{t.context}</span>
-                )}
-              </div>
+    <>
+      {widgetReady && (
+        <Script
+          src="https://static.senja.io/dist/platform.js"
+          strategy="lazyOnload"
+          async
+        />
+      )}
+      <section style={{
+        padding: 'clamp(40px, 6vw, 64px) 24px',
+        borderTop: '1px solid rgba(201,162,75,0.1)',
+      }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+          <div className={styles.offersHeader} style={{ marginBottom: 32 }}>
+            <div className={styles.sectionLabel}>
+              {lang === 'fr' ? 'Témoignages' : 'Reviews'}
             </div>
-          ))}
+            <h2 className={styles.sectionTitle}>{title}</h2>
+          </div>
+
+          {widgetReady && (
+            <div
+              className="senja-embed"
+              data-id={SENJA_WIDGET_ID}
+              data-lazyload="false"
+              style={{ marginBottom: 32 }}
+            />
+          )}
+
+          {formReady && (
+            <div style={{ textAlign: 'center' }}>
+              <a
+                href={SENJA_FORM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-block',
+                  border: '1px solid rgba(201,162,75,0.4)',
+                  color: '#C9A24B',
+                  fontSize: 13,
+                  padding: '10px 24px',
+                  borderRadius: '4px',
+                  textDecoration: 'none',
+                  letterSpacing: '.04em',
+                }}
+              >
+                {btnLabel} →
+              </a>
+            </div>
+          )}
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

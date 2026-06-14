@@ -240,6 +240,12 @@ const GUIDE_IDS = [
   'unlearning-anti-black-racism',
   'unlearning-misogynoir',
   'unlearning-racism-becoming-antiracist',
+  // Schémas d'union FR (etape28)
+  'comprendre-hypergamie-endogamie-hypogamie',
+  'femmes-noires-hommes-fortunes',
+  // Union patterns EN (etape28)
+  'hypergamy-endogamy-hypogamy-explained',
+  'black-women-relationships-with-wealthy-men',
   // Infidélité + Psychologie santé au travail FR (etape29)
   'se-reconstruire-apres-infidelite',
   'apres-avoir-ete-infidele',

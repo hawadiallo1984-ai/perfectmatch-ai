@@ -15,6 +15,7 @@ import { PRO_GUIDES_12 } from './proGuides12';
 import { PRO_GUIDES_13 } from './proGuides13';
 import { PRO_GUIDES_14 } from './proGuides14';
 import { PRO_GUIDES_15 } from './proGuides15';
+import { PRO_GUIDES_17 } from './proGuides17';
 
 type GuideMeta = {
   id: string;
@@ -750,5 +751,20 @@ const _pro15_mapped = Object.fromEntries(
     }])
 ) as Record<string, GuideMeta>;
 
-export const GUIDES: Record<string, GuideMeta> = { ..._base, ..._mapped, ..._extra, ..._new_mapped, ..._pro_mapped, ..._pro2_mapped, ..._pro3_mapped, ..._pro4_mapped, ..._pro5_mapped, ..._pro6_mapped, ..._pro7_mapped, ..._pro8_mapped, ..._pro9_mapped, ..._pro10_mapped, ..._pro11_mapped, ..._pro12_mapped, ..._pro13_mapped, ..._pro14_mapped, ..._pro15_mapped };
+const _pro17_mapped = Object.fromEntries(
+  PRO_GUIDES_17
+    .filter(g => !(g.id in _base) && !(g.id in _mapped) && !(g.id in _extra) && !(g.id in _new_mapped) && !(g.id in _pro_mapped) && !(g.id in _pro2_mapped) && !(g.id in _pro3_mapped) && !(g.id in _pro4_mapped) && !(g.id in _pro5_mapped) && !(g.id in _pro6_mapped) && !(g.id in _pro7_mapped) && !(g.id in _pro8_mapped) && !(g.id in _pro9_mapped) && !(g.id in _pro10_mapped) && !(g.id in _pro11_mapped) && !(g.id in _pro12_mapped) && !(g.id in _pro13_mapped) && !(g.id in _pro14_mapped) && !(g.id in _pro15_mapped))
+    .map(g => [g.id, {
+      id: g.id,
+      name: g.title,
+      priceCents: g.priceCents,
+      currency: 'eur' as const,
+      pdf: `/guides/${g.pdf}`,
+      blurb: g.blurb,
+      bullets: g.bullets,
+      lang: g.lang,
+    }])
+) as Record<string, GuideMeta>;
+
+export const GUIDES: Record<string, GuideMeta> = { ..._base, ..._mapped, ..._extra, ..._new_mapped, ..._pro_mapped, ..._pro2_mapped, ..._pro3_mapped, ..._pro4_mapped, ..._pro5_mapped, ..._pro6_mapped, ..._pro7_mapped, ..._pro8_mapped, ..._pro9_mapped, ..._pro10_mapped, ..._pro11_mapped, ..._pro12_mapped, ..._pro13_mapped, ..._pro14_mapped, ..._pro15_mapped, ..._pro17_mapped };
 export type GuideId = string;

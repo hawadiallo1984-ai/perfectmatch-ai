@@ -240,6 +240,16 @@ const GUIDE_IDS = [
   'unlearning-anti-black-racism',
   'unlearning-misogynoir',
   'unlearning-racism-becoming-antiracist',
+  // Infidélité + Psychologie santé au travail FR (etape29)
+  'se-reconstruire-apres-infidelite',
+  'apres-avoir-ete-infidele',
+  'psychologie-sante-travail-theories',
+  'gerer-stress-travail-tcc',
+  // Infidelity + Occupational health psychology EN (etape29)
+  'healing-after-being-cheated-on',
+  'moving-forward-after-cheating',
+  'workplace-health-psychology-theories',
+  'managing-work-stress-with-cbt',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

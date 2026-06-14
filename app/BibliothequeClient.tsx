@@ -18,6 +18,7 @@ import { PRO_GUIDES_12 } from '@/lib/proGuides12';
 import { PRO_GUIDES_13 } from '@/lib/proGuides13';
 import { PRO_GUIDES_14 } from '@/lib/proGuides14';
 import { PRO_GUIDES_15 } from '@/lib/proGuides15';
+import { PRO_GUIDES_17 } from '@/lib/proGuides17';
 import { BUNDLES } from '@/lib/bundles';
 import BundleBuyButton from '@/components/BundleBuyButton';
 import Testimonials from '@/components/Testimonials';
@@ -112,6 +113,18 @@ const SECTIONS = [
         title: 'Gérer la jalousie',
         desc: 'Apaiser la jalousie et renforcer ta sécurité intérieure.',
         href: '/guides/gerer-la-jalousie',
+      },
+      {
+        id: 'se-reconstruire-apres-infidelite',
+        title: 'Se reconstruire après une infidélité',
+        desc: 'Surmonter la trahison, reprendre confiance, décider en conscience.',
+        href: '/guides/se-reconstruire-apres-infidelite',
+      },
+      {
+        id: 'apres-avoir-ete-infidele',
+        title: 'Après avoir été infidèle',
+        desc: 'Comprendre sans excuser, assumer honnêtement, réparer ou clore.',
+        href: '/guides/apres-avoir-ete-infidele',
       },
     ],
   },
@@ -563,6 +576,18 @@ const SECTIONS = [
         desc: 'Lancer ton projet malgré les obstacles en plus.',
         href: '/guides/entreprendre-femme-noire',
       },
+      {
+        id: 'psychologie-sante-travail-theories',
+        title: 'Psychologie de la santé au travail',
+        desc: 'Karasek, Siegrist, JD-R, Maslach — comprendre le stress et le burnout.',
+        href: '/guides/psychologie-sante-travail-theories',
+      },
+      {
+        id: 'gerer-stress-travail-tcc',
+        title: 'Gérer le stress au travail avec la TCC',
+        desc: 'Recadrer ses pensées, poser des limites, réguler et prévenir le burnout.',
+        href: '/guides/gerer-stress-travail-tcc',
+      },
     ],
   },
   {
@@ -668,7 +693,7 @@ const EN_EXTRA = [
   { id: 'misogynoir-en', title: 'Misogynoir', blurb: 'Free yourself from the tropes, reclaim your full humanity.', theme: 'Identity & Resilience' },
   { id: 'black-tax-en', title: 'Black Tax', blurb: 'Supporting your people without losing yourself.', theme: 'Money' },
 ];
-const EN_THEME_ORDER = ['Wellbeing', 'Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career', 'Intimacy & Sexuality', 'Deconstruction & Allyship'];
+const EN_THEME_ORDER = ['Wellbeing', 'Relationships', 'Love & Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career', 'Intimacy & Sexuality', 'Deconstruction & Allyship'];
 const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
   theme,
   guides: [
@@ -689,6 +714,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_13.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_14.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_15.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_17.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

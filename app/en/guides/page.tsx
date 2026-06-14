@@ -18,6 +18,7 @@ import { PRO_GUIDES_12 } from '@/lib/proGuides12';
 import { PRO_GUIDES_13 } from '@/lib/proGuides13';
 import { PRO_GUIDES_14 } from '@/lib/proGuides14';
 import { PRO_GUIDES_15 } from '@/lib/proGuides15';
+import { PRO_GUIDES_17 } from '@/lib/proGuides17';
 import { BUNDLES } from '@/lib/bundles';
 import BundleBuyButton from '@/components/BundleBuyButton';
 import Testimonials from '@/components/Testimonials';
@@ -29,7 +30,7 @@ const EN_EXTRA = [
   { id: 'misogynoir-en', title: 'Misogynoir', blurb: 'Free yourself from the tropes, reclaim your full humanity.', theme: 'Identity & Resilience' },
   { id: 'black-tax-en', title: 'Black Tax', blurb: 'Supporting your people without losing yourself.', theme: 'Money' },
 ];
-const EN_THEME_ORDER = ['Wellbeing', 'Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career', 'Intimacy & Sexuality', 'Deconstruction & Allyship'];
+const EN_THEME_ORDER = ['Wellbeing', 'Relationships', 'Love & Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career', 'Intimacy & Sexuality', 'Deconstruction & Allyship'];
 
 const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
   theme,
@@ -51,6 +52,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_13.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_14.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_15.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_17.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

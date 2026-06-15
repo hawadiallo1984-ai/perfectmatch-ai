@@ -5,6 +5,7 @@ import { DESIR_QUESTIONS, DESIR_RESULTS, type DesirProfile } from '@/lib/desirTe
 import { BUNDLES } from '@/lib/bundles';
 import { GUIDES } from '@/lib/guides';
 import BundleBuyButton from '@/components/BundleBuyButton';
+import LeadMagnet from '@/components/LeadMagnet';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
@@ -160,6 +161,8 @@ export default function DesirClient() {
           )}
         </div>
       </section>
+
+      <LeadMagnet lang="fr" />
 
       {/* Résultat + Recommandé pour toi */}
       {result && (

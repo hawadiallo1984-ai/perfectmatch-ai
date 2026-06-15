@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import LeadMagnet from '@/components/LeadMagnet';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
@@ -303,6 +304,8 @@ export default function InnerWoundsClient() {
           </div>
         </div>
       </section>
+
+      <LeadMagnet lang="en" />
 
       {/* Your starting point */}
       <section className={styles.section} style={{ paddingTop: 0 }}>

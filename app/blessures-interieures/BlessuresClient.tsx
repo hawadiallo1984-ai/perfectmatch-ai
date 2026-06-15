@@ -5,6 +5,7 @@ import { BLESSURE_RECO } from '@/lib/blessuresReco';
 import { BUNDLES } from '@/lib/bundles';
 import { GUIDES, GuideId } from '@/lib/guides';
 import BundleBuyButton from '@/components/BundleBuyButton';
+import LeadMagnet from '@/components/LeadMagnet';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
@@ -322,6 +323,8 @@ export default function BlessuresClient() {
           </div>
         </div>
       </section>
+
+      <LeadMagnet lang="fr" />
 
       {/* Recommandé pour toi */}
       {reco && (

@@ -48,10 +48,10 @@ export default function LeadMagnet({ lang = 'fr' }: Props) {
     setStatus('loading');
 
     try {
-      await fetch('/api/waitlist', {
+      await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, parcours: 'lead-magnet-blessures' }),
+        body: JSON.stringify({ email }),
       });
     } catch (err) {
       console.error('[LeadMagnet] email capture failed:', err);

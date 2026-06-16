@@ -789,6 +789,9 @@ export default function BibliothequeClient() {
           >
             {BUNDLES.filter((b) => b.lang === 'fr').map((bundle) => (
               <div key={bundle.id} className={styles.offer}>
+                <div style={{ display: 'inline-block', background: 'rgba(201,162,75,0.12)', border: '1px solid rgba(201,162,75,0.35)', color: '#B8923D', fontSize: '.67rem', fontWeight: 700, letterSpacing: '.09em', padding: '3px 8px', borderRadius: 3, marginBottom: 8 }}>
+                  –15 % avec BIENVENUE15
+                </div>
                 <div className={styles.offerCategory}>Pack · 4 guides</div>
                 <h3 className={styles.offerName}>{bundle.title}</h3>
                 <p className={styles.offerDesc}>{bundle.blurb}</p>

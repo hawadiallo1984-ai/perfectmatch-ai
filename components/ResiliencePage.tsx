@@ -1,8 +1,18 @@
 'use client';
 
 import { useEffect } from 'react';
+import { BUNDLES } from '@/lib/bundles';
+import BundleBuyButton from '@/components/BundleBuyButton';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
+
+const PACK = BUNDLES.find((b) => b.id === 'pack-identite-resilience')!;
+
+const FEATURED_GUIDES = [
+  { id: 'se-reconstruire-face-negrophobie', title: 'Se reconstruire face à la négrophobie', href: '/guides/se-reconstruire-face-negrophobie' },
+  { id: 'se-liberer-misogynoir', title: 'Se libérer de la misogynoir', href: '/guides/se-liberer-misogynoir' },
+  { id: 'preserver-sante-mentale-racisme', title: 'Préserver sa santé mentale face au racisme', href: '/guides/preserver-sante-mentale-racisme' },
+];
 
 const GUIDES = [
   {
@@ -102,6 +112,51 @@ export default function ResiliencePage() {
             Ici, des outils issus de la TCC culturellement adaptés pour valider ton vécu,
             protéger ta santé mentale et reprendre ton pouvoir.
           </p>
+        </div>
+      </section>
+
+      {/* Pack Identité & Résilience */}
+      <section className={styles.section} style={{ paddingTop: 0 }}>
+        <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 24px' }}>
+          <div style={{
+            padding: '28px 32px',
+            border: '1px solid rgba(201,162,75,0.35)',
+            background: 'rgba(201,162,75,0.05)',
+            marginBottom: 32,
+          }}>
+            <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.8, marginBottom: 8 }}>
+              Pack · 4 guides
+            </div>
+            <h2 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 'clamp(1.1rem,2.5vw,1.4rem)', lineHeight: 1.25, marginBottom: '.5rem', color: '#F5EFE3' }}>
+              {PACK.title}
+            </h2>
+            <p style={{ fontSize: '.87rem', opacity: 0.6, lineHeight: 1.6, marginBottom: '1rem' }}>{PACK.blurb}</p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: '1rem' }}>
+              <span style={{ fontSize: 13, opacity: 0.4, textDecoration: 'line-through' }}>{PACK.compareAtCents / 100} €</span>
+              <span style={{ fontSize: 20, fontWeight: 700, color: '#C9A24B' }}>{PACK.priceCents / 100} €</span>
+            </div>
+            <BundleBuyButton bundleId={PACK.id} label={`Acheter le pack — ${PACK.priceCents / 100} €`} />
+          </div>
+
+          <p style={{ fontSize: '.75rem', letterSpacing: '.12em', textTransform: 'uppercase', color: '#C9A24B', opacity: .8, marginBottom: 16 }}>
+            3 guides phares
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px,1fr))', gap: 12, marginBottom: 12 }}>
+            {FEATURED_GUIDES.map((g) => (
+              <a key={g.id} href={g.href} style={{
+                display: 'block', padding: '16px 18px',
+                border: '1px solid var(--line)',
+                background: 'rgba(28,24,51,0.4)',
+                color: '#F5EFE3', textDecoration: 'none',
+                fontSize: '.87rem', lineHeight: 1.4,
+              }}>
+                {g.title} <span style={{ color: '#C9A24B', fontSize: '.8rem' }}>→</span>
+              </a>
+            ))}
+          </div>
+          <a href="/bibliotheque#resilience" style={{ fontSize: '.82rem', color: '#8E7AB5', textDecoration: 'none' }}>
+            Voir tous les guides Identité &amp; Résilience →
+          </a>
         </div>
       </section>
 

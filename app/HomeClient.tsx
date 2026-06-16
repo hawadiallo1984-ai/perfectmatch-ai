@@ -60,6 +60,13 @@ export default function HomeClient({ lang }: Props) {
           <a href={testHref} className={styles.btnPrimary}>{copy.hero.ctaPrimary}</a>
           <a href={copy.hero.ctaSecondaryHref} className={styles.btnGhost}>{copy.hero.ctaSecondary}</a>
         </div>
+        {lang === 'fr' && (
+          <p style={{ marginTop: '1rem', fontSize: '.78rem', opacity: .55 }}>
+            <a href="/rapport-au-desir" style={{ color: '#8E7AB5', textDecoration: 'none' }}>
+              Test désir &amp; intimité (18+) →
+            </a>
+          </p>
+        )}
 
         <div className={styles.painBand}>
           <span className={styles.painLabel}>{copy.themesTitle}</span>

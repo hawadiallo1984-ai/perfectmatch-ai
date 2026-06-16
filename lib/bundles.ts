@@ -34,6 +34,11 @@ export const BUNDLES = [
     blurb: "Raviver le désir, parler de sexe sans tabou, dépasser la honte, gérer des désirs désaccordés — 4 guides pour l'intimité du couple. (4 guides · 49€ au lieu de 76€)",
     priceCents: 4900, compareAtCents: 7600, currency: "eur",
     guideIds: ["raviver-le-desir","parler-de-sexe-sans-tabou","depasser-honte-blocages-sexuels","desirs-desaccordes"] },
+  { id: "pack-identite-resilience", lang: "fr",
+    title: "Pack Identité & Résilience",
+    blurb: "Te reconstruire, déconstruire l'intériorisé, préserver ta santé mentale et ta fierté. (4 guides · 49€ au lieu de 76€)",
+    priceCents: 4900, compareAtCents: 7600, currency: "eur",
+    guideIds: ["se-reconstruire-face-negrophobie","se-liberer-misogynoir","preserver-sante-mentale-racisme","charge-raciale"] },
   // ---------------- EN ----------------
   { id: "pack-career-comeback", lang: "en",
     title: "Career & Comeback Pack",
@@ -65,4 +70,9 @@ export const BUNDLES = [
     blurb: "Rekindle desire, talk about sex without taboo, overcome shame, handle mismatched desire — 4 guides for couple intimacy. (4 guides · €49 instead of €76)",
     priceCents: 4900, compareAtCents: 7600, currency: "eur",
     guideIds: ["rekindling-desire-in-your-relationship","talking-about-sex-without-taboo","overcoming-shame-and-sexual-blocks","mismatched-desire-in-couples"] },
+  { id: "pack-identity-resilience", lang: "en",
+    title: "Identity & Resilience Pack",
+    blurb: "Rebuild yourself, unlearn the internalized, protect your mental health and your pride. (4 guides · €49 instead of €76)",
+    priceCents: 4900, compareAtCents: 7600, currency: "eur",
+    guideIds: ["healing-from-anti-black-racism","freeing-yourself-from-misogynoir","protecting-your-mental-health-from-racism","racial-fatigue"] },
 ] as const;

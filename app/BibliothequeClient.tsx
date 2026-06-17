@@ -229,6 +229,36 @@ const SECTIONS = [
         desc: "T'autoriser l'imperfection, recadrer le perfectionnisme, retrouver ta souplesse.",
         href: '/guides/guerir-blessure-injustice',
       },
+      {
+        id: 'approfondir-blessure-rejet',
+        title: 'Blessure de rejet — Aller plus loin',
+        desc: "Tome 2 : enfant intérieur, reparentage, déclencheurs, programme 30 jours.",
+        href: '/guides/approfondir-blessure-rejet',
+      },
+      {
+        id: 'approfondir-blessure-abandon',
+        title: "Blessure d'abandon — Aller plus loin",
+        desc: "Tome 2 : reparenter l'enfant qui avait peur, t'auto-sécuriser, 30 jours.",
+        href: '/guides/approfondir-blessure-abandon',
+      },
+      {
+        id: 'approfondir-blessure-humiliation',
+        title: "Blessure d'humiliation — Aller plus loin",
+        desc: "Tome 2 : reparenter, rendre la honte, oser tes besoins, 30 jours.",
+        href: '/guides/approfondir-blessure-humiliation',
+      },
+      {
+        id: 'approfondir-blessure-trahison',
+        title: 'Blessure de trahison — Aller plus loin',
+        desc: "Tome 2 : reparenter, désamorcer le contrôle, petits paris de confiance, 30 jours.",
+        href: '/guides/approfondir-blessure-trahison',
+      },
+      {
+        id: 'approfondir-blessure-injustice',
+        title: "Blessure d'injustice — Aller plus loin",
+        desc: "Tome 2 : reparenter, assouplir la rigidité, te réautoriser à ressentir, 30 jours.",
+        href: '/guides/approfondir-blessure-injustice',
+      },
     ],
   },
   {

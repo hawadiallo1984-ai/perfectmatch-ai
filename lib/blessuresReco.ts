@@ -2,6 +2,8 @@
 export const BLESSURE_RECO = {
   rejet: {
     primaryGuideId: "guerir-blessure-rejet",
+    tome2GuideId: "approfondir-blessure-rejet",
+    completePack: "pack-blessure-rejet-complet",
     label: "Rejet",
     title: "Avancer avec la blessure de rejet",
     message: "La peur de ne pas être à sa place peut te pousser à te retirer ou à te suradapter. Ces ressources t'aident à reconstruire une estime solide et à oser prendre ta place.",
@@ -10,6 +12,8 @@ export const BLESSURE_RECO = {
   },
   abandon: {
     primaryGuideId: "guerir-blessure-abandon",
+    tome2GuideId: "approfondir-blessure-abandon",
+    completePack: "pack-blessure-abandon-complet",
     label: "Abandon",
     title: "Apaiser la blessure d'abandon",
     message: "La peur d'être quitté·e peut nourrir dépendance affective et jalousie. Ces ressources t'aident à aimer sans te perdre et à te sentir en sécurité, à l'intérieur.",
@@ -18,6 +22,8 @@ export const BLESSURE_RECO = {
   },
   humiliation: {
     primaryGuideId: "guerir-blessure-humiliation",
+    tome2GuideId: "approfondir-blessure-humiliation",
+    completePack: "pack-blessure-humiliation-complet",
     label: "Humiliation",
     title: "Te libérer de la blessure d'humiliation",
     message: "La honte et la peur du jugement peuvent te faire douter de ta valeur et de ton corps. Ces ressources t'aident à te réconcilier avec toi et à t'affirmer sans te rabaisser.",
@@ -26,6 +32,8 @@ export const BLESSURE_RECO = {
   },
   trahison: {
     primaryGuideId: "guerir-blessure-trahison",
+    tome2GuideId: "approfondir-blessure-trahison",
+    completePack: "pack-blessure-trahison-complet",
     label: "Trahison",
     title: "Te reconstruire après la blessure de trahison",
     message: "La difficulté à faire confiance vient souvent d'une confiance abîmée. Ces ressources t'aident à reconnaître l'emprise, te refaire confiance et te reconstruire.",
@@ -34,6 +42,8 @@ export const BLESSURE_RECO = {
   },
   injustice: {
     primaryGuideId: "guerir-blessure-injustice",
+    tome2GuideId: "approfondir-blessure-injustice",
+    completePack: "pack-blessure-injustice-complet",
     label: "Injustice",
     title: "Adoucir la blessure d'injustice",
     message: "L'exigence et le contrôle peuvent t'épuiser et te couper de tes émotions. Ces ressources t'aident à relâcher la pression et à retrouver de la souplesse.",

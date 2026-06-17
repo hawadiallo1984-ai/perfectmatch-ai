@@ -17,6 +17,22 @@ const WOUND_TO_EN_GUIDE_ID: Record<string, string> = {
   I: 'healing-the-injustice-wound',
 };
 
+const WOUND_TO_EN_TOME2_GUIDE_ID: Record<string, string> = {
+  A: 'deepening-the-abandonment-wound',
+  R: 'deepening-the-rejection-wound',
+  E: 'deepening-the-humiliation-wound',
+  T: 'deepening-the-betrayal-wound',
+  I: 'deepening-the-injustice-wound',
+};
+
+const WOUND_TO_EN_COMPLETE_PACK_ID: Record<string, string> = {
+  A: 'pack-abandonment-wound-complete',
+  R: 'pack-rejection-wound-complete',
+  E: 'pack-humiliation-wound-complete',
+  T: 'pack-betrayal-wound-complete',
+  I: 'pack-injustice-wound-complete',
+};
+
 const WOUNDS = [
   {
     key: 'A',
@@ -111,6 +127,10 @@ export default function InnerWoundsClient() {
 
   const primaryGuideId = dominantKeys.length > 0 ? WOUND_TO_EN_GUIDE_ID[dominantKeys[0]] : null;
   const primaryGuide = primaryGuideId ? (GUIDES[primaryGuideId as GuideId] ?? null) : null;
+  const tome2GuideId = dominantKeys.length > 0 ? WOUND_TO_EN_TOME2_GUIDE_ID[dominantKeys[0]] : null;
+  const tome2Guide = tome2GuideId ? (GUIDES[tome2GuideId as GuideId] ?? null) : null;
+  const woundCompletePackId = dominantKeys.length > 0 ? WOUND_TO_EN_COMPLETE_PACK_ID[dominantKeys[0]] : null;
+  const woundCompletePack = woundCompletePackId ? (BUNDLES.find(b => b.id === woundCompletePackId) ?? null) : null;
   const innerWoundsPack = BUNDLES.find(b => b.id === 'pack-inner-wounds') ?? null;
 
   return (
@@ -343,6 +363,37 @@ export default function InnerWoundsClient() {
                 <GuideBuyButton guideId={primaryGuide.id} />
               </div>
             </div>
+            {tome2Guide && (
+              <div style={{ marginBottom: '1.75rem' }}>
+                <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
+                  Going deeper → Volume 2
+                </p>
+                <div style={{ padding: '22px 24px', border: '1px solid rgba(142,122,181,0.4)', background: 'rgba(142,122,181,0.06)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#8E7AB5', opacity: 0.8 }}>PDF Guide · €19</div>
+                  <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 17, lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{tome2Guide.name}</h3>
+                  <p style={{ fontSize: '.85rem', opacity: 0.6, lineHeight: 1.6, margin: 0 }}>{tome2Guide.blurb}</p>
+                  <GuideBuyButton guideId={tome2Guide.id} />
+                </div>
+              </div>
+            )}
+
+            {woundCompletePack && (
+              <div style={{ marginBottom: '1.75rem' }}>
+                <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
+                  Both volumes together
+                </p>
+                <div style={{ padding: '22px 24px', border: '1px solid rgba(201,162,75,0.4)', background: 'rgba(201,162,75,0.07)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Pack · 2 guides</div>
+                  <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 17, lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{woundCompletePack.title}</h3>
+                  <div style={{ textAlign: 'center', margin: '4px 0' }}>
+                    <span style={{ fontSize: 12, opacity: 0.4, textDecoration: 'line-through', marginRight: 8 }}>€{woundCompletePack.compareAtCents / 100}</span>
+                    <span style={{ fontSize: 17, fontWeight: 700, color: '#C9A24B' }}>€{woundCompletePack.priceCents / 100}</span>
+                  </div>
+                  <BundleBuyButton bundleId={woundCompletePack.id} label={`Get the pack — €${woundCompletePack.priceCents / 100}`} />
+                </div>
+              </div>
+            )}
+
             {innerWoundsPack && (
               <div>
                 <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>

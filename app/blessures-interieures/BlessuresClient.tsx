@@ -113,6 +113,8 @@ export default function BlessuresClient() {
   const recoKey = dominantKeys.length > 0 ? WOUND_TO_RECO_KEY[dominantKeys[0]] : null;
   const reco = recoKey ? BLESSURE_RECO[recoKey] : null;
   const primaryGuide = reco ? (GUIDES[reco.primaryGuideId as GuideId] ?? null) : null;
+  const tome2Guide = reco ? (GUIDES[reco.tome2GuideId as GuideId] ?? null) : null;
+  const woundCompletePack = reco ? (BUNDLES.find(b => b.id === reco.completePack) ?? null) : null;
   const recoPack = reco ? (BUNDLES.find(b => b.id === reco.packId) ?? null) : null;
   const recoGuides = reco
     ? [...reco.guideIds].map(id => GUIDES[id as GuideId]).filter((g): g is NonNullable<typeof g> => g !== undefined)
@@ -354,6 +356,37 @@ export default function BlessuresClient() {
                   <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 17, lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{primaryGuide.name}</h3>
                   <p style={{ fontSize: '.85rem', opacity: 0.6, lineHeight: 1.6, margin: 0 }}>{primaryGuide.blurb}</p>
                   <GuideBuyButton guideId={primaryGuide.id} />
+                </div>
+              </div>
+            )}
+
+            {tome2Guide && (
+              <div style={{ marginBottom: '1.75rem' }}>
+                <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
+                  Pour aller plus loin → Tome 2
+                </p>
+                <div style={{ padding: '22px 24px', border: '1px solid rgba(142,122,181,0.4)', background: 'rgba(142,122,181,0.06)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#8E7AB5', opacity: 0.8 }}>Guide PDF · 19 €</div>
+                  <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 17, lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{tome2Guide.name}</h3>
+                  <p style={{ fontSize: '.85rem', opacity: 0.6, lineHeight: 1.6, margin: 0 }}>{tome2Guide.blurb}</p>
+                  <GuideBuyButton guideId={tome2Guide.id} />
+                </div>
+              </div>
+            )}
+
+            {woundCompletePack && (
+              <div style={{ marginBottom: '1.75rem' }}>
+                <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
+                  Les deux tomes ensemble
+                </p>
+                <div style={{ padding: '22px 24px', border: '1px solid rgba(201,162,75,0.4)', background: 'rgba(201,162,75,0.07)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Pack · 2 guides</div>
+                  <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 17, lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{woundCompletePack.title}</h3>
+                  <div style={{ textAlign: 'center', margin: '4px 0' }}>
+                    <span style={{ fontSize: 12, opacity: 0.4, textDecoration: 'line-through', marginRight: 8 }}>{woundCompletePack.compareAtCents / 100} €</span>
+                    <span style={{ fontSize: 17, fontWeight: 700, color: '#C9A24B' }}>{woundCompletePack.priceCents / 100} €</span>
+                  </div>
+                  <BundleBuyButton bundleId={woundCompletePack.id} label={`Acheter le pack — ${woundCompletePack.priceCents / 100} €`} />
                 </div>
               </div>
             )}

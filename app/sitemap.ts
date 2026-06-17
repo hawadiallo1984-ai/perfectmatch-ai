@@ -286,6 +286,18 @@ const GUIDE_IDS = [
   'healing-the-humiliation-wound',
   'healing-the-betrayal-wound',
   'healing-the-injustice-wound',
+  // Blessures Tome 2 FR (etape38)
+  'approfondir-blessure-rejet',
+  'approfondir-blessure-abandon',
+  'approfondir-blessure-humiliation',
+  'approfondir-blessure-trahison',
+  'approfondir-blessure-injustice',
+  // Inner wounds vol. 2 EN (etape38)
+  'deepening-the-rejection-wound',
+  'deepening-the-abandonment-wound',
+  'deepening-the-humiliation-wound',
+  'deepening-the-betrayal-wound',
+  'deepening-the-injustice-wound',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

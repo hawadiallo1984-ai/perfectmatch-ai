@@ -38,7 +38,7 @@ export const BUNDLES = [
     title: "Pack Identité & Résilience",
     blurb: "Te reconstruire, déconstruire l'intériorisé, préserver ta santé mentale et ta fierté. (4 guides · 49€ au lieu de 76€)",
     priceCents: 4900, compareAtCents: 7600, currency: "eur",
-    guideIds: ["se-reconstruire-face-negrophobie","se-liberer-misogynoir","preserver-sante-mentale-racisme","charge-raciale","developper-resilience-emotionnelle","cultiver-auto-compassion","faire-face-microagressions","naviguer-identite-plurielle"] },
+    guideIds: ["se-reconstruire-face-negrophobie","se-liberer-misogynoir","preserver-sante-mentale-racisme","charge-raciale","developper-resilience-emotionnelle","cultiver-auto-compassion","faire-face-microagressions","naviguer-identite-plurielle","faire-taire-critique-interieur","rebondir-apres-un-echec","croissance-post-traumatique"] },
   // ---------------- EN ----------------
   { id: "pack-career-comeback", lang: "en",
     title: "Career & Comeback Pack",
@@ -74,5 +74,5 @@ export const BUNDLES = [
     title: "Identity & Resilience Pack",
     blurb: "Rebuild yourself, unlearn the internalized, protect your mental health and your pride. (4 guides · €49 instead of €76)",
     priceCents: 4900, compareAtCents: 7600, currency: "eur",
-    guideIds: ["healing-from-anti-black-racism","freeing-yourself-from-misogynoir","protecting-your-mental-health-from-racism","racial-fatigue","building-emotional-resilience","cultivating-self-compassion","coping-with-microaggressions","navigating-a-plural-identity"] },
+    guideIds: ["healing-from-anti-black-racism","freeing-yourself-from-misogynoir","protecting-your-mental-health-from-racism","racial-fatigue","building-emotional-resilience","cultivating-self-compassion","coping-with-microaggressions","navigating-a-plural-identity","silencing-your-inner-critic","bouncing-back-from-failure","post-traumatic-growth"] },
 ] as const;

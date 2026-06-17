@@ -337,6 +337,24 @@ const SECTIONS = [
         desc: "« Ni d'ici, ni de là-bas » : faire de ta pluralité une force.",
         href: '/guides/naviguer-identite-plurielle',
       },
+      {
+        id: 'faire-taire-critique-interieur',
+        title: 'Faire taire son critique intérieur',
+        desc: "Désarmer la voix qui te dévalorise, cultiver à la place un allié intérieur.",
+        href: '/guides/faire-taire-critique-interieur',
+      },
+      {
+        id: 'rebondir-apres-un-echec',
+        title: 'Rebondir après un échec',
+        desc: "Transformer l'échec en tremplin sans te briser, séparer l'échec de ton identité.",
+        href: '/guides/rebondir-apres-un-echec',
+      },
+      {
+        id: 'croissance-post-traumatique',
+        title: 'La croissance post-traumatique',
+        desc: "Grandir après l'épreuve, à ton rythme, sans positivité toxique.",
+        href: '/guides/croissance-post-traumatique',
+      },
     ],
   },
   {

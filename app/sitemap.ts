@@ -266,6 +266,14 @@ const GUIDE_IDS = [
   'cultivating-self-compassion',
   'coping-with-microaggressions',
   'navigating-a-plural-identity',
+  // Résilience 2 FR (etape36)
+  'faire-taire-critique-interieur',
+  'rebondir-apres-un-echec',
+  'croissance-post-traumatique',
+  // Resilience 2 EN (etape36)
+  'silencing-your-inner-critic',
+  'bouncing-back-from-failure',
+  'post-traumatic-growth',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

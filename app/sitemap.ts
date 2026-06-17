@@ -298,6 +298,24 @@ const GUIDE_IDS = [
   'deepening-the-humiliation-wound',
   'deepening-the-betrayal-wound',
   'deepening-the-injustice-wound',
+  // Relations plurielles FR (etape39)
+  'vivre-la-polygamie',
+  // Relations plurielles EN (etape39)
+  'navigating-polygamy',
+  // Relations plurielles lot 1 FR (etape40)
+  'coepouses-apaiser-rivalites',
+  'partager-lepoux',
+  'enfants-dans-la-polygamie',
+  'quand-lepoux-en-prefere-une-autre',
+  'te-sentir-desirable',
+  'inegalites-et-tensions',
+  // Plural relationships lot 1 EN (etape40)
+  'co-wives-easing-rivalry',
+  'sharing-your-husband',
+  'children-in-polygamy',
+  'when-your-husband-prefers-another',
+  'feeling-desirable-again',
+  'inequalities-and-tensions',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

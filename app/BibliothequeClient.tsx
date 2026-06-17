@@ -20,6 +20,8 @@ import { PRO_GUIDES_14 } from '@/lib/proGuides14';
 import { PRO_GUIDES_15 } from '@/lib/proGuides15';
 import { PRO_GUIDES_16 } from '@/lib/proGuides16';
 import { PRO_GUIDES_17 } from '@/lib/proGuides17';
+import { PRO_GUIDES_22 } from '@/lib/proGuides22';
+import { PRO_GUIDES_23 } from '@/lib/proGuides23';
 import { BUNDLES } from '@/lib/bundles';
 import BundleBuyButton from '@/components/BundleBuyButton';
 import Testimonials from '@/components/Testimonials';
@@ -259,6 +261,19 @@ const SECTIONS = [
         desc: "Tome 2 : reparenter, assouplir la rigidité, te réautoriser à ressentir, 30 jours.",
         href: '/guides/approfondir-blessure-injustice',
       },
+    ],
+  },
+  {
+    id: 'relations-plurielles',
+    label: 'Relations plurielles',
+    guides: [
+      { id: 'vivre-la-polygamie', title: 'Vivre la polygamie', desc: "Polygamie traditionnelle ou non-monogamie choisie : estime de soi, jalousie, identité, limites. Sans jugement.", href: '/guides/vivre-la-polygamie' },
+      { id: 'coepouses-apaiser-rivalites', title: 'Coépouses : apaiser les rivalités', desc: "Sortir de la guerre entre coépouses et protéger ta paix.", href: '/guides/coepouses-apaiser-rivalites' },
+      { id: 'partager-lepoux', title: "Partager l'époux", desc: "Faire la paix avec le partage ou clarifier ce que tu veux vraiment.", href: '/guides/partager-lepoux' },
+      { id: 'enfants-dans-la-polygamie', title: 'Les enfants dans la polygamie', desc: "Protéger tes enfants — et toi — dans une famille plurielle.", href: '/guides/enfants-dans-la-polygamie' },
+      { id: 'quand-lepoux-en-prefere-une-autre', title: "Quand l'époux en préfère une autre", desc: "Quand tu te sens mise de côté : préserver ta valeur intacte.", href: '/guides/quand-lepoux-en-prefere-une-autre' },
+      { id: 'te-sentir-desirable', title: 'Te sentir désirable et vivante', desc: "Te réapproprier ton corps et ta lumière — pour toi, pas pour son regard.", href: '/guides/te-sentir-desirable' },
+      { id: 'inegalites-et-tensions', title: 'Inégalités et tensions : poser un cadre juste', desc: "Repérer ce qui est juste, désamorcer les tensions, te tenir debout.", href: '/guides/inegalites-et-tensions' },
     ],
   },
   {
@@ -803,6 +818,8 @@ const SECTIONS = [
   },
 ];
 
+const PACK_RELATIONS_PLURIELLES = BUNDLES.find((b) => b.id === 'pack-relations-plurielles');
+
 const EN_CONFLICT_IDS = new Set(['black-tax', 'misogynoir']);
 const EN_EXTRA = [
   { id: 'misogynoir-en', title: 'Misogynoir', blurb: 'Free yourself from the tropes, reclaim your full humanity.', theme: 'Identity & Resilience' },
@@ -831,6 +848,8 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_15.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_16.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_17.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_22.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_23.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);
@@ -945,6 +964,18 @@ export default function BibliothequeClient() {
                 </div>
               ))}
             </div>
+            {section.id === 'relations-plurielles' && PACK_RELATIONS_PLURIELLES && (
+              <div style={{ marginTop: 32, padding: '20px 24px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.04)' }}>
+                <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: 6 }}>Pack collection complète</div>
+                <p style={{ fontWeight: 600, marginBottom: 6, color: '#F5EFE3' }}>{PACK_RELATIONS_PLURIELLES.title}</p>
+                <p style={{ fontSize: '.83rem', opacity: 0.6, lineHeight: 1.6, marginBottom: 10 }}>{PACK_RELATIONS_PLURIELLES.blurb}</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+                  <span style={{ fontSize: 13, opacity: 0.4, textDecoration: 'line-through' }}>{PACK_RELATIONS_PLURIELLES.compareAtCents / 100} €</span>
+                  <span style={{ fontSize: 18, fontWeight: 700, color: '#C9A24B' }}>{PACK_RELATIONS_PLURIELLES.priceCents / 100} €</span>
+                </div>
+                <BundleBuyButton bundleId={PACK_RELATIONS_PLURIELLES.id} label={`Acheter le pack — ${PACK_RELATIONS_PLURIELLES.priceCents / 100} €`} />
+              </div>
+            )}
             {section.id === 'intimite-sexualite' && (
               <p style={{ marginTop: 16, fontSize: '.83rem', color: '#A9A3B8' }}>
                 Pas sûr·e par où commencer ?{' '}

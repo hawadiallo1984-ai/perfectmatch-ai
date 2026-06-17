@@ -199,6 +199,36 @@ const SECTIONS = [
         desc: 'Un chemin de guérison : comprendre le trauma, retrouver ta valeur, trouver le bon soutien.',
         href: '/guides/se-reconstruire-apres-abus-sexuels',
       },
+      {
+        id: 'guerir-blessure-rejet',
+        title: 'Guérir la blessure de rejet',
+        desc: "Te donner le droit d'exister et de prendre ta place, désarmer le masque du fuyant.",
+        href: '/guides/guerir-blessure-rejet',
+      },
+      {
+        id: 'guerir-blessure-abandon',
+        title: "Guérir la blessure d'abandon",
+        desc: "Apprendre à te sentir en sécurité de l'intérieur, distinguer éloignement et abandon.",
+        href: '/guides/guerir-blessure-abandon',
+      },
+      {
+        id: 'guerir-blessure-humiliation',
+        title: "Guérir la blessure d'humiliation",
+        desc: "Reconnaître ta valeur, rendre la honte qui n'est pas la tienne, oser recevoir.",
+        href: '/guides/guerir-blessure-humiliation',
+      },
+      {
+        id: 'guerir-blessure-trahison',
+        title: 'Guérir la blessure de trahison',
+        desc: "Réapprendre à faire confiance et lâcher le contrôle, peur ≠ preuve.",
+        href: '/guides/guerir-blessure-trahison',
+      },
+      {
+        id: 'guerir-blessure-injustice',
+        title: "Guérir la blessure d'injustice",
+        desc: "T'autoriser l'imperfection, recadrer le perfectionnisme, retrouver ta souplesse.",
+        href: '/guides/guerir-blessure-injustice',
+      },
     ],
   },
   {
@@ -748,7 +778,7 @@ const EN_EXTRA = [
   { id: 'misogynoir-en', title: 'Misogynoir', blurb: 'Free yourself from the tropes, reclaim your full humanity.', theme: 'Identity & Resilience' },
   { id: 'black-tax-en', title: 'Black Tax', blurb: 'Supporting your people without losing yourself.', theme: 'Money' },
 ];
-const EN_THEME_ORDER = ['Wellbeing', 'Relationships', 'Love & Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career', 'Intimacy & Sexuality', 'Deconstruction & Allyship'];
+const EN_THEME_ORDER = ['Wellbeing', 'Wellbeing & Self', 'Relationships', 'Love & Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career', 'Intimacy & Sexuality', 'Deconstruction & Allyship'];
 const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
   theme,
   guides: [

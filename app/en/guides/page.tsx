@@ -31,7 +31,7 @@ const EN_EXTRA = [
   { id: 'misogynoir-en', title: 'Misogynoir', blurb: 'Free yourself from the tropes, reclaim your full humanity.', theme: 'Identity & Resilience' },
   { id: 'black-tax-en', title: 'Black Tax', blurb: 'Supporting your people without losing yourself.', theme: 'Money' },
 ];
-const EN_THEME_ORDER = ['Wellbeing', 'Relationships', 'Love & Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career', 'Intimacy & Sexuality', 'Deconstruction & Allyship'];
+const EN_THEME_ORDER = ['Wellbeing', 'Wellbeing & Self', 'Relationships', 'Love & Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career', 'Intimacy & Sexuality', 'Deconstruction & Allyship'];
 
 const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
   theme,

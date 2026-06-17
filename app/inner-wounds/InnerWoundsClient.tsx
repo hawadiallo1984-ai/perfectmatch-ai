@@ -1,9 +1,21 @@
 'use client';
 
 import { useState } from 'react';
+import { GUIDES, GuideId } from '@/lib/guides';
+import { BUNDLES } from '@/lib/bundles';
+import BundleBuyButton from '@/components/BundleBuyButton';
+import GuideBuyButton from '@/components/GuideBuyButton';
 import LeadMagnet from '@/components/LeadMagnet';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
+
+const WOUND_TO_EN_GUIDE_ID: Record<string, string> = {
+  A: 'healing-the-abandonment-wound',
+  R: 'healing-the-rejection-wound',
+  E: 'healing-the-humiliation-wound',
+  T: 'healing-the-betrayal-wound',
+  I: 'healing-the-injustice-wound',
+};
 
 const WOUNDS = [
   {
@@ -96,6 +108,10 @@ export default function InnerWoundsClient() {
 
   const maxScore = Math.max(...scores.map((s) => s.score));
   const dominantKeys = maxScore > 0 ? scores.filter((s) => s.score === maxScore).map((s) => s.key) : [];
+
+  const primaryGuideId = dominantKeys.length > 0 ? WOUND_TO_EN_GUIDE_ID[dominantKeys[0]] : null;
+  const primaryGuide = primaryGuideId ? (GUIDES[primaryGuideId as GuideId] ?? null) : null;
+  const innerWoundsPack = BUNDLES.find(b => b.id === 'pack-inner-wounds') ?? null;
 
   return (
     <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
@@ -306,6 +322,47 @@ export default function InnerWoundsClient() {
       </section>
 
       <LeadMagnet lang="en" />
+
+      {/* Guide for your wound */}
+      {primaryGuide && (
+        <section className={styles.section} style={{ paddingTop: 0 }}>
+          <div style={{ maxWidth: 760, margin: '0 auto' }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginBottom: 28, borderBottom: '1px solid var(--line)', paddingBottom: 14 }}>
+              <span style={{ fontSize: 11, letterSpacing: '.3em', textTransform: 'uppercase', color: '#C9A24B', opacity: .85 }}>
+                Recommended for you
+              </span>
+            </div>
+            <div style={{ marginBottom: '1.75rem' }}>
+              <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
+                The guide made for your wound
+              </p>
+              <div style={{ padding: '22px 24px', border: '1px solid rgba(201,162,75,0.5)', background: 'rgba(201,162,75,0.07)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>PDF Guide · €19</div>
+                <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 17, lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{primaryGuide.name}</h3>
+                <p style={{ fontSize: '.85rem', opacity: 0.6, lineHeight: 1.6, margin: 0 }}>{primaryGuide.blurb}</p>
+                <GuideBuyButton guideId={primaryGuide.id} />
+              </div>
+            </div>
+            {innerWoundsPack && (
+              <div>
+                <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
+                  Working on multiple wounds? The complete pack
+                </p>
+                <div style={{ padding: '22px 24px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.05)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Pack · 5 guides</div>
+                  <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 17, lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{innerWoundsPack.title}</h3>
+                  <p style={{ fontSize: '.85rem', opacity: 0.6, lineHeight: 1.6, margin: 0 }}>{innerWoundsPack.blurb}</p>
+                  <div style={{ textAlign: 'center', margin: '4px 0' }}>
+                    <span style={{ fontSize: 12, opacity: 0.4, textDecoration: 'line-through', marginRight: 8 }}>€{innerWoundsPack.compareAtCents / 100}</span>
+                    <span style={{ fontSize: 17, fontWeight: 700, color: '#C9A24B' }}>€{innerWoundsPack.priceCents / 100}</span>
+                  </div>
+                  <BundleBuyButton bundleId={innerWoundsPack.id} label={`Get the pack — €${innerWoundsPack.priceCents / 100}`} />
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* Your starting point */}
       <section className={styles.section} style={{ paddingTop: 0 }}>

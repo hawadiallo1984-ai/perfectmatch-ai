@@ -5,6 +5,7 @@ import { BLESSURE_RECO } from '@/lib/blessuresReco';
 import { BUNDLES } from '@/lib/bundles';
 import { GUIDES, GuideId } from '@/lib/guides';
 import BundleBuyButton from '@/components/BundleBuyButton';
+import GuideBuyButton from '@/components/GuideBuyButton';
 import LeadMagnet from '@/components/LeadMagnet';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
@@ -111,6 +112,7 @@ export default function BlessuresClient() {
 
   const recoKey = dominantKeys.length > 0 ? WOUND_TO_RECO_KEY[dominantKeys[0]] : null;
   const reco = recoKey ? BLESSURE_RECO[recoKey] : null;
+  const primaryGuide = reco ? (GUIDES[reco.primaryGuideId as GuideId] ?? null) : null;
   const recoPack = reco ? (BUNDLES.find(b => b.id === reco.packId) ?? null) : null;
   const recoGuides = reco
     ? [...reco.guideIds].map(id => GUIDES[id as GuideId]).filter((g): g is NonNullable<typeof g> => g !== undefined)
@@ -342,10 +344,24 @@ export default function BlessuresClient() {
               {reco.message}
             </p>
 
+            {primaryGuide && (
+              <div style={{ marginBottom: '1.75rem' }}>
+                <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
+                  Le guide fait pour ta blessure
+                </p>
+                <div style={{ padding: '22px 24px', border: '1px solid rgba(201,162,75,0.5)', background: 'rgba(201,162,75,0.07)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Guide PDF · 19 €</div>
+                  <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 17, lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{primaryGuide.name}</h3>
+                  <p style={{ fontSize: '.85rem', opacity: 0.6, lineHeight: 1.6, margin: 0 }}>{primaryGuide.blurb}</p>
+                  <GuideBuyButton guideId={primaryGuide.id} />
+                </div>
+              </div>
+            )}
+
             {recoPack && (
               <div style={{ marginBottom: '1.75rem' }}>
                 <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
-                  Pack recommandé
+                  Tu as plusieurs blessures ? Le pack complet
                 </p>
                 <div style={{ padding: '22px 24px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.05)', display: 'flex', flexDirection: 'column', gap: 8 }}>
                   <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Pack · 4 guides</div>

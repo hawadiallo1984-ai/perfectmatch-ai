@@ -274,6 +274,18 @@ const GUIDE_IDS = [
   'silencing-your-inner-critic',
   'bouncing-back-from-failure',
   'post-traumatic-growth',
+  // Blessures intérieures FR (etape37)
+  'guerir-blessure-rejet',
+  'guerir-blessure-abandon',
+  'guerir-blessure-humiliation',
+  'guerir-blessure-trahison',
+  'guerir-blessure-injustice',
+  // Inner wounds EN (etape37)
+  'healing-the-rejection-wound',
+  'healing-the-abandonment-wound',
+  'healing-the-humiliation-wound',
+  'healing-the-betrayal-wound',
+  'healing-the-injustice-wound',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -22,6 +22,7 @@ import { PRO_GUIDES_16 } from '@/lib/proGuides16';
 import { PRO_GUIDES_17 } from '@/lib/proGuides17';
 import { PRO_GUIDES_22 } from '@/lib/proGuides22';
 import { PRO_GUIDES_23 } from '@/lib/proGuides23';
+import { PRO_GUIDES_24 } from '@/lib/proGuides24';
 import { BUNDLES } from '@/lib/bundles';
 import BundleBuyButton from '@/components/BundleBuyButton';
 import Testimonials from '@/components/Testimonials';
@@ -274,6 +275,12 @@ const SECTIONS = [
       { id: 'quand-lepoux-en-prefere-une-autre', title: "Quand l'époux en préfère une autre", desc: "Quand tu te sens mise de côté : préserver ta valeur intacte.", href: '/guides/quand-lepoux-en-prefere-une-autre' },
       { id: 'te-sentir-desirable', title: 'Te sentir désirable et vivante', desc: "Te réapproprier ton corps et ta lumière — pour toi, pas pour son regard.", href: '/guides/te-sentir-desirable' },
       { id: 'inegalites-et-tensions', title: 'Inégalités et tensions : poser un cadre juste', desc: "Repérer ce qui est juste, désamorcer les tensions, te tenir debout.", href: '/guides/inegalites-et-tensions' },
+      { id: 'garder-lien-fort-mari', title: 'Garder un lien fort avec ton mari', desc: "Entretenir votre complicité et protéger ce qui est unique à votre couple.", href: '/guides/garder-lien-fort-mari' },
+      { id: 'poids-belle-famille', title: 'Le poids de la belle-famille', desc: "Poser des limites face aux attentes et ingérences, mobiliser ton mari comme tampon.", href: '/guides/poids-belle-famille' },
+      { id: 'etre-premiere-epouse', title: 'Être la première épouse (awo)', desc: "Porter ton statut d'aînée sans te perdre, séparer ton rang de ta valeur.", href: '/guides/etre-premiere-epouse' },
+      { id: 'regard-communaute', title: 'Le regard de la communauté', desc: "T'honorer toi, au-delà du qu'en-dira-t-on, t'aligner sur tes valeurs.", href: '/guides/regard-communaute' },
+      { id: 'polygamie-et-foi', title: 'Polygamie et foi', desc: "Concilier ta réalité émotionnelle et ta spiritualité — ressentir n'est pas trahir.", href: '/guides/polygamie-et-foi' },
+      { id: 'dependance-economique-autonomie', title: 'Dépendance économique & autonomie', desc: "Bâtir ton indépendance et ta dignité, des pas concrets vers un revenu.", href: '/guides/dependance-economique-autonomie' },
     ],
   },
   {
@@ -850,6 +857,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_17.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_22.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_23.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_24.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

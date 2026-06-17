@@ -17,6 +17,12 @@ const RELATIONS_PLURIELLES_GUIDES = [
   { id: 'quand-lepoux-en-prefere-une-autre', title: "Quand l'époux en préfère une autre", desc: "Quand tu te sens mise de côté : préserver ta valeur intacte.", href: '/guides/quand-lepoux-en-prefere-une-autre' },
   { id: 'te-sentir-desirable', title: 'Te sentir désirable et vivante', desc: "Te réapproprier ton corps et ta lumière — pour toi.", href: '/guides/te-sentir-desirable' },
   { id: 'inegalites-et-tensions', title: 'Inégalités et tensions : poser un cadre juste', desc: "Repérer ce qui est juste, désamorcer les tensions.", href: '/guides/inegalites-et-tensions' },
+  { id: 'garder-lien-fort-mari', title: 'Garder un lien fort avec ton mari', desc: "Entretenir votre complicité et protéger ce qui est unique à votre couple.", href: '/guides/garder-lien-fort-mari' },
+  { id: 'poids-belle-famille', title: 'Le poids de la belle-famille', desc: "Poser des limites face aux attentes et ingérences.", href: '/guides/poids-belle-famille' },
+  { id: 'etre-premiere-epouse', title: 'Être la première épouse (awo)', desc: "Porter ton statut d'aînée sans te perdre.", href: '/guides/etre-premiere-epouse' },
+  { id: 'regard-communaute', title: 'Le regard de la communauté', desc: "T'honorer toi, au-delà du qu'en-dira-t-on.", href: '/guides/regard-communaute' },
+  { id: 'polygamie-et-foi', title: 'Polygamie et foi', desc: "Concilier ta réalité émotionnelle et ta spiritualité.", href: '/guides/polygamie-et-foi' },
+  { id: 'dependance-economique-autonomie', title: 'Dépendance économique & autonomie', desc: "Bâtir ton indépendance et ta dignité.", href: '/guides/dependance-economique-autonomie' },
 ];
 
 const FEATURED_GUIDES = [

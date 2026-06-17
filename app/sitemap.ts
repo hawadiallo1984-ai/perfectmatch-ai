@@ -316,6 +316,20 @@ const GUIDE_IDS = [
   'when-your-husband-prefers-another',
   'feeling-desirable-again',
   'inequalities-and-tensions',
+  // Relations plurielles lot 2 FR (etape41)
+  'garder-lien-fort-mari',
+  'poids-belle-famille',
+  'etre-premiere-epouse',
+  'regard-communaute',
+  'polygamie-et-foi',
+  'dependance-economique-autonomie',
+  // Plural relationships lot 2 EN (etape41)
+  'staying-close-to-your-husband',
+  'the-weight-of-in-laws',
+  'being-the-first-wife',
+  'facing-community-judgment',
+  'polygamy-and-faith',
+  'economic-dependence-and-autonomy',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

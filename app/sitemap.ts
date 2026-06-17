@@ -256,6 +256,16 @@ const GUIDE_IDS = [
   'moving-forward-after-cheating',
   'workplace-health-psychology-theories',
   'managing-work-stress-with-cbt',
+  // Résilience FR (etape35)
+  'developper-resilience-emotionnelle',
+  'cultiver-auto-compassion',
+  'faire-face-microagressions',
+  'naviguer-identite-plurielle',
+  // Resilience EN (etape35)
+  'building-emotional-resilience',
+  'cultivating-self-compassion',
+  'coping-with-microaggressions',
+  'navigating-a-plural-identity',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

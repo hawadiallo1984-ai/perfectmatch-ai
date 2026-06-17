@@ -313,6 +313,30 @@ const SECTIONS = [
         desc: 'Reconnaître le trauma racial, protéger ton énergie, guérir.',
         href: '/guides/preserver-sante-mentale-racisme',
       },
+      {
+        id: 'developper-resilience-emotionnelle',
+        title: "Développer sa résilience émotionnelle",
+        desc: "Rebondir après l'épreuve : optimisme réaliste, ressources internes, soutien.",
+        href: '/guides/developper-resilience-emotionnelle',
+      },
+      {
+        id: 'cultiver-auto-compassion',
+        title: "Cultiver l'auto-compassion",
+        desc: "Désarmer ton autocritique, te parler avec bienveillance.",
+        href: '/guides/cultiver-auto-compassion',
+      },
+      {
+        id: 'faire-face-microagressions',
+        title: 'Faire face aux microagressions',
+        desc: 'Comprendre, ne pas internaliser, choisir si et comment répondre.',
+        href: '/guides/faire-face-microagressions',
+      },
+      {
+        id: 'naviguer-identite-plurielle',
+        title: 'Naviguer une identité plurielle',
+        desc: "« Ni d'ici, ni de là-bas » : faire de ta pluralité une force.",
+        href: '/guides/naviguer-identite-plurielle',
+      },
     ],
   },
   {

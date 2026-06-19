@@ -26,6 +26,7 @@ import { PRO_GUIDES_24 } from '@/lib/proGuides24';
 import { PRO_GUIDES_25 } from '@/lib/proGuides25';
 import { PRO_GUIDES_26 } from '@/lib/proGuides26';
 import { PRO_GUIDES_27 } from '@/lib/proGuides27';
+import { PRO_GUIDES_28 } from '@/lib/proGuides28';
 import { BUNDLES } from '@/lib/bundles';
 import BundleBuyButton from '@/components/BundleBuyButton';
 import Testimonials from '@/components/Testimonials';
@@ -144,6 +145,42 @@ const SECTIONS = [
         title: 'Femmes noires & relations avec des hommes fortunés',
         desc: 'Défis spécifiques, confiance & valeur (TCC), rester soi avec intégrité.',
         href: '/guides/femmes-noires-hommes-fortunes',
+      },
+      {
+        id: 'savoir-ce-que-tu-cherches',
+        title: '① Savoir ce que tu cherches vraiment',
+        desc: 'Parcours Dating · Étape 1 — La clarté avant la rencontre : tes valeurs, ton schéma, tes non-négociables.',
+        href: '/guides/savoir-ce-que-tu-cherches',
+      },
+      {
+        id: 'oser-te-montrer-rencontrer',
+        title: '② Oser te montrer et rencontrer',
+        desc: 'Parcours Dating · Étape 2 — Visibilité, peur du rejet, te montrer vrai — pas parfait.',
+        href: '/guides/oser-te-montrer-rencontrer',
+      },
+      {
+        id: 'le-premier-rendez-vous',
+        title: '③ Le premier rendez-vous',
+        desc: 'Parcours Dating · Étape 3 — Être toi, lire l\'autre, drapeaux verts/rouges et sécurité.',
+        href: '/guides/le-premier-rendez-vous',
+      },
+      {
+        id: 'creer-du-lien-sans-te-perdre',
+        title: '④ Créer du lien sans te perdre',
+        desc: 'Parcours Dating · Étape 4 — Doser l\'élan, garder ta vie, vérifier la réciprocité.',
+        href: '/guides/creer-du-lien-sans-te-perdre',
+      },
+      {
+        id: 'decrypter-les-signaux',
+        title: '⑤ Décrypter les signaux et éviter les pièges',
+        desc: 'Parcours Dating · Étape 5 — Ghosting, jeux, anxieux/évitant — nommer pour reprendre le pouvoir.',
+        href: '/guides/decrypter-les-signaux',
+      },
+      {
+        id: 'definir-la-relation-engagement',
+        title: '⑥ Définir la relation et avancer vers l\'engagement',
+        desc: 'Parcours Dating · Étape 6 — Du « on est quoi ? » à un vrai projet — oser la conversation.',
+        href: '/guides/definir-la-relation-engagement',
       },
     ],
   },
@@ -932,6 +969,8 @@ const SECTIONS = [
 
 const PACK_RELATIONS_PLURIELLES = BUNDLES.find((b) => b.id === 'pack-relations-plurielles');
 const PACK_INTIMITE_SEXUALITE = BUNDLES.find((b) => b.id === 'pack-intimite-sexualite');
+const PACK_PARCOURS_DATING = BUNDLES.find((b) => b.id === 'pack-parcours-dating');
+const PACK_DATING_JOURNEY = BUNDLES.find((b) => b.id === 'pack-dating-journey');
 
 const EN_CONFLICT_IDS = new Set(['black-tax', 'misogynoir']);
 const EN_EXTRA = [
@@ -967,6 +1006,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_25.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_26.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_27.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_28.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);
@@ -1081,6 +1121,18 @@ export default function BibliothequeClient() {
                 </div>
               ))}
             </div>
+            {section.id === 'amour-relations' && PACK_PARCOURS_DATING && (
+              <div style={{ marginTop: 32, padding: '20px 24px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.04)' }}>
+                <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: 6 }}>Parcours complet · 6 guides</div>
+                <p style={{ fontWeight: 600, marginBottom: 6, color: '#F5EFE3' }}>{PACK_PARCOURS_DATING.title}</p>
+                <p style={{ fontSize: '.83rem', opacity: 0.6, lineHeight: 1.6, marginBottom: 10 }}>{PACK_PARCOURS_DATING.blurb}</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+                  <span style={{ fontSize: 13, opacity: 0.4, textDecoration: 'line-through' }}>{PACK_PARCOURS_DATING.compareAtCents / 100} €</span>
+                  <span style={{ fontSize: 18, fontWeight: 700, color: '#C9A24B' }}>{PACK_PARCOURS_DATING.priceCents / 100} €</span>
+                </div>
+                <BundleBuyButton bundleId={PACK_PARCOURS_DATING.id} label={`Acheter le parcours — ${PACK_PARCOURS_DATING.priceCents / 100} €`} />
+              </div>
+            )}
             {section.id === 'relations-plurielles' && PACK_RELATIONS_PLURIELLES && (
               <div style={{ marginTop: 32, padding: '20px 24px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.04)' }}>
                 <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: 6 }}>Pack collection complète</div>
@@ -1160,6 +1212,18 @@ export default function BibliothequeClient() {
                   </div>
                 ))}
               </div>
+              {theme === 'Love & Relationships' && PACK_DATING_JOURNEY && (
+                <div style={{ marginTop: 24, padding: '20px 24px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.04)' }}>
+                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: 6 }}>Dating Journey · 6 guides</div>
+                  <p style={{ fontWeight: 600, marginBottom: 6, color: '#F5EFE3' }}>{PACK_DATING_JOURNEY.title}</p>
+                  <p style={{ fontSize: '.83rem', opacity: 0.6, lineHeight: 1.6, marginBottom: 10 }}>{PACK_DATING_JOURNEY.blurb}</p>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+                    <span style={{ fontSize: 13, opacity: 0.4, textDecoration: 'line-through' }}>{PACK_DATING_JOURNEY.compareAtCents / 100} €</span>
+                    <span style={{ fontSize: 18, fontWeight: 700, color: '#C9A24B' }}>{PACK_DATING_JOURNEY.priceCents / 100} €</span>
+                  </div>
+                  <BundleBuyButton bundleId={PACK_DATING_JOURNEY.id} label={`Buy the journey — ${PACK_DATING_JOURNEY.priceCents / 100} €`} />
+                </div>
+              )}
             </div>
           ))}
         </div>

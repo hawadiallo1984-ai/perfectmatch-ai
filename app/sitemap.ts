@@ -298,6 +298,20 @@ const GUIDE_IDS = [
   'deepening-the-humiliation-wound',
   'deepening-the-betrayal-wound',
   'deepening-the-injustice-wound',
+  // Parcours Dating FR (etape46)
+  'savoir-ce-que-tu-cherches',
+  'oser-te-montrer-rencontrer',
+  'le-premier-rendez-vous',
+  'creer-du-lien-sans-te-perdre',
+  'decrypter-les-signaux',
+  'definir-la-relation-engagement',
+  // Parcours Dating EN (etape46)
+  'know-what-you-truly-want',
+  'putting-yourself-out-there',
+  'the-first-date',
+  'building-connection-without-losing-yourself',
+  'reading-the-signals',
+  'defining-the-relationship',
   // Santé sexuelle FR (etape45)
   'comprendre-le-vaginisme',
   'sexualite-apres-menopause',

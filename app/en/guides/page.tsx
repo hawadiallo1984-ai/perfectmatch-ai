@@ -23,6 +23,7 @@ import { PRO_GUIDES_17 } from '@/lib/proGuides17';
 import { PRO_GUIDES_22 } from '@/lib/proGuides22';
 import { PRO_GUIDES_23 } from '@/lib/proGuides23';
 import { PRO_GUIDES_24 } from '@/lib/proGuides24';
+import { PRO_GUIDES_25 } from '@/lib/proGuides25';
 import { BUNDLES } from '@/lib/bundles';
 import BundleBuyButton from '@/components/BundleBuyButton';
 import Testimonials from '@/components/Testimonials';
@@ -61,6 +62,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_22.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_23.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_24.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_25.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

@@ -23,6 +23,7 @@ import { PRO_GUIDES_17 } from '@/lib/proGuides17';
 import { PRO_GUIDES_22 } from '@/lib/proGuides22';
 import { PRO_GUIDES_23 } from '@/lib/proGuides23';
 import { PRO_GUIDES_24 } from '@/lib/proGuides24';
+import { PRO_GUIDES_25 } from '@/lib/proGuides25';
 import { BUNDLES } from '@/lib/bundles';
 import BundleBuyButton from '@/components/BundleBuyButton';
 import Testimonials from '@/components/Testimonials';
@@ -797,6 +798,36 @@ const SECTIONS = [
         desc: 'Comprendre son influence, repérer un usage qui pèse, garder l\'équilibre.',
         href: '/guides/rapport-sain-pornographie',
       },
+      {
+        id: 'communiquer-desirs-limites',
+        title: 'Communiquer ses désirs et ses limites',
+        desc: 'Oser dire ce que tu veux — et ce que tu ne veux pas.',
+        href: '/guides/communiquer-desirs-limites',
+      },
+      {
+        id: 'explorer-ses-fantasmes',
+        title: 'Explorer ses fantasmes sans culpabilité',
+        desc: 'Accueillir ton imaginaire, lever la honte, partager si tu veux.',
+        href: '/guides/explorer-ses-fantasmes',
+      },
+      {
+        id: 'echangisme-a-deux',
+        title: 'L\'échangisme à deux',
+        desc: 'Explorer sans abîmer ton couple — règles, consentement, debrief.',
+        href: '/guides/echangisme-a-deux',
+      },
+      {
+        id: 'plaisir-anal-en-confiance',
+        title: 'Le plaisir anal, en confiance',
+        desc: 'À ton rythme, en sécurité et sans pression.',
+        href: '/guides/plaisir-anal-en-confiance',
+      },
+      {
+        id: 'fellation-sans-tabou',
+        title: 'La fellation, sans tabou ni pression',
+        desc: 'Plaisir partagé, jamais une obligation : ton consentement d\'abord.',
+        href: '/guides/fellation-sans-tabou',
+      },
     ],
   },
   {
@@ -826,6 +857,7 @@ const SECTIONS = [
 ];
 
 const PACK_RELATIONS_PLURIELLES = BUNDLES.find((b) => b.id === 'pack-relations-plurielles');
+const PACK_INTIMITE_SEXUALITE = BUNDLES.find((b) => b.id === 'pack-intimite-sexualite');
 
 const EN_CONFLICT_IDS = new Set(['black-tax', 'misogynoir']);
 const EN_EXTRA = [
@@ -858,6 +890,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_22.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_23.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_24.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_25.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);
@@ -985,12 +1018,26 @@ export default function BibliothequeClient() {
               </div>
             )}
             {section.id === 'intimite-sexualite' && (
-              <p style={{ marginTop: 16, fontSize: '.83rem', color: '#A9A3B8' }}>
-                Pas sûr·e par où commencer ?{' '}
-                <a href="/rapport-au-desir" style={{ color: '#C9A24B', textDecoration: 'none' }}>
-                  Fais le test gratuit →
-                </a>
-              </p>
+              <div style={{ marginTop: 24 }}>
+                {PACK_INTIMITE_SEXUALITE && (
+                  <div style={{ padding: '20px 24px', border: '1px solid rgba(201,162,75,0.35)', background: 'rgba(201,162,75,0.06)', marginBottom: 16 }}>
+                    <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7, marginBottom: 6 }}>Pack collection complète · 18+</div>
+                    <p style={{ fontWeight: 600, marginBottom: 4, color: '#F5EFE3', fontSize: '.9rem' }}>{PACK_INTIMITE_SEXUALITE.title}</p>
+                    <p style={{ fontSize: '.83rem', opacity: 0.6, lineHeight: 1.6, marginBottom: 10 }}>{PACK_INTIMITE_SEXUALITE.blurb}</p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+                      <span style={{ fontSize: 13, opacity: 0.4, textDecoration: 'line-through' }}>{PACK_INTIMITE_SEXUALITE.compareAtCents / 100} €</span>
+                      <span style={{ fontSize: 18, fontWeight: 700, color: '#C9A24B' }}>{PACK_INTIMITE_SEXUALITE.priceCents / 100} €</span>
+                    </div>
+                    <BundleBuyButton bundleId={PACK_INTIMITE_SEXUALITE.id} label={`Acheter le pack — ${PACK_INTIMITE_SEXUALITE.priceCents / 100} €`} />
+                  </div>
+                )}
+                <p style={{ fontSize: '.83rem', color: '#A9A3B8' }}>
+                  Pas sûr·e par où commencer ?{' '}
+                  <a href="/rapport-au-desir" style={{ color: '#C9A24B', textDecoration: 'none' }}>
+                    Fais le test gratuit →
+                  </a>
+                </p>
+              </div>
             )}
           </div>
         </section>

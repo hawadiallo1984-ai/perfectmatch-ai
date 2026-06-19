@@ -70,25 +70,25 @@ export const DESIR_RESULTS: Record<DesirProfile, {
   "desir-en-veille": {
     title: "Le désir en veille", emoji: "🌙",
     message: "Ton désir s'est mis en pause — souvent à cause de la fatigue, de la charge mentale ou de la routine. Rien n'est cassé : le désir se cultive, et il peut se réveiller en douceur.",
-    guideIds: ["raviver-le-desir", "se-reapproprier-son-plaisir", "retrouver-sa-libido-femme"],
+    guideIds: ["communiquer-desirs-limites", "raviver-le-desir", "se-reapproprier-son-plaisir", "retrouver-sa-libido-femme"],
     packId: "pack-intimite-sexualite",
   },
   "sous-pression": {
     title: "Sous pression", emoji: "🎯",
     message: "Tu vis l'intimité comme une évaluation : peur de décevoir, de ne pas être à la hauteur. Cette anxiété de performance est très fréquente, et surtout : elle se travaille. Moins de pression = plus de plaisir.",
-    guideIds: ["anxiete-performance-sexuelle-homme", "depasser-injonctions-virilite", "se-reapproprier-son-plaisir"],
+    guideIds: ["communiquer-desirs-limites", "anxiete-performance-sexuelle-homme", "depasser-injonctions-virilite", "se-reapproprier-son-plaisir"],
     packId: "pack-intimite-sexualite",
   },
   "pudeur-blocage": {
     title: "Entre pudeur et blocage", emoji: "🔑",
     message: "Le désir est là, mais la honte, les tabous ou la difficulté à lâcher prise le freinent. Ces blocages sont surtout psychologiques — et tu as le droit de t'autoriser ton plaisir.",
-    guideIds: ["depasser-honte-blocages-sexuels", "parler-de-sexe-sans-tabou", "se-reapproprier-son-plaisir"],
+    guideIds: ["communiquer-desirs-limites", "depasser-honte-blocages-sexuels", "parler-de-sexe-sans-tabou", "explorer-ses-fantasmes"],
     packId: "pack-intimite-sexualite",
   },
   "quete-connexion": {
     title: "En quête de connexion", emoji: "💞",
     message: "Ce qui pèse, c'est le décalage avec ton/ta partenaire : rythmes, attentes, communication. Se reconnecter et oser se parler change tout — souvent plus que la « technique ».",
-    guideIds: ["desirs-desaccordes", "parler-de-sexe-sans-tabou", "raviver-le-desir"],
+    guideIds: ["communiquer-desirs-limites", "raviver-le-desir", "desirs-desaccordes", "parler-de-sexe-sans-tabou"],
     packId: "pack-intimite-sexualite",
   },
 };

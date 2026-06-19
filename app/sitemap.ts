@@ -298,6 +298,19 @@ const GUIDE_IDS = [
   'deepening-the-humiliation-wound',
   'deepening-the-betrayal-wound',
   'deepening-the-injustice-wound',
+  // Bien-être sexuel FR (etape43)
+  'communiquer-desirs-limites',
+  'explorer-ses-fantasmes',
+  'echangisme-a-deux',
+  'plaisir-anal-en-confiance',
+  'fellation-sans-tabou',
+  // Bien-être sexuel EN (etape43)
+  'communicating-desires-and-limits',
+  'reviving-desire-in-your-couple',
+  'exploring-your-fantasies',
+  'swinging-as-a-couple',
+  'anal-pleasure-with-confidence',
+  'fellatio-without-taboo',
   // Relations plurielles FR (etape39)
   'vivre-la-polygamie',
   // Relations plurielles EN (etape39)

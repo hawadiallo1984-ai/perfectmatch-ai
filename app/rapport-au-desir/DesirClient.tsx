@@ -5,6 +5,7 @@ import { DESIR_QUESTIONS, DESIR_RESULTS, type DesirProfile } from '@/lib/desirTe
 import { BUNDLES } from '@/lib/bundles';
 import { GUIDES } from '@/lib/guides';
 import BundleBuyButton from '@/components/BundleBuyButton';
+import GuideBuyButton from '@/components/GuideBuyButton';
 import LeadMagnet from '@/components/LeadMagnet';
 import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
@@ -40,6 +41,8 @@ export default function DesirClient() {
   const recoGuides = result
     ? result.guideIds.map(id => GUIDES[id]).filter((g): g is NonNullable<typeof g> => g !== undefined)
     : [];
+  const primaryRecoGuide = recoGuides.length > 0 ? recoGuides[0] : null;
+  const secondaryRecoGuides = recoGuides.slice(1);
 
   return (
     <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
@@ -167,32 +170,49 @@ export default function DesirClient() {
       {/* Résultat + Recommandé pour toi */}
       {result && (
         <section className={styles.section} style={{ paddingTop: 0 }}>
-          <div style={{ maxWidth: 760, margin: '0 auto' }}>
+          <div style={{ maxWidth: 680, margin: '0 auto' }}>
             <div style={{
-              display: 'flex', alignItems: 'baseline', gap: 16, marginBottom: 28,
+              display: 'flex', alignItems: 'baseline', gap: 16, marginBottom: 20,
               borderBottom: '1px solid var(--line)', paddingBottom: 14,
             }}>
               <span style={{ fontSize: 11, letterSpacing: '.3em', textTransform: 'uppercase', color: '#C9A24B', opacity: .85 }}>
-                Recommandé pour toi
+                Ton profil
               </span>
             </div>
             <h2 style={{ fontFamily: 'Fraunces, serif', fontSize: 'clamp(1.4rem,3vw,2rem)', fontWeight: 400, marginBottom: '.75rem', lineHeight: 1.2 }}>
               {result.emoji} {result.title}
             </h2>
-            <p style={{ fontSize: '.93rem', color: '#A9A3B8', lineHeight: 1.75, marginBottom: '2rem' }}>
+            <p style={{ fontSize: '.93rem', color: '#A9A3B8', lineHeight: 1.75, marginBottom: '1.5rem' }}>
               {result.message}
             </p>
 
-            {recoPack && (
-              <div style={{ marginBottom: '1.75rem' }}>
-                <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
-                  Pack recommandé
+            {primaryRecoGuide && (
+              <div style={{ marginBottom: '1.5rem' }}>
+                <p style={{ fontSize: '.75rem', letterSpacing: '.12em', textTransform: 'uppercase', color: '#C9A24B', fontWeight: 700, marginBottom: '.75rem' }}>
+                  Le guide fait pour ton profil
                 </p>
-                <div style={{ padding: '22px 24px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.05)', display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Pack · 4 guides</div>
-                  <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 17, lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{recoPack.title}</h3>
-                  <p style={{ fontSize: '.85rem', opacity: 0.6, lineHeight: 1.6, margin: 0 }}>{recoPack.blurb}</p>
-                  <div style={{ textAlign: 'center', margin: '4px 0' }}>
+                <div style={{ padding: '24px', border: '1px solid rgba(201,162,75,0.55)', background: 'rgba(201,162,75,0.08)', display: 'flex', flexDirection: 'column', gap: 10 }}>
+                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Guide PDF · 19 €</div>
+                  <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 'clamp(1.05rem,2.5vw,1.2rem)', lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{primaryRecoGuide.name}</h3>
+                  <p style={{ fontSize: '.87rem', opacity: 0.65, lineHeight: 1.65, margin: 0 }}>{primaryRecoGuide.blurb}</p>
+                  <GuideBuyButton guideId={primaryRecoGuide.id} label="Commencer — 19 € →" />
+                  <p style={{ fontSize: '.75rem', color: '#A9A3B8', textAlign: 'center', margin: 0 }}>
+                    Téléchargement immédiat · méthode des 4 approches · contenu 18+
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {recoPack && (
+              <div style={{ marginBottom: '1.5rem' }}>
+                <p style={{ fontSize: '.73rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#8E7AB5', marginBottom: '.6rem', fontWeight: 700 }}>
+                  Collection complète
+                </p>
+                <div style={{ padding: '20px 22px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.05)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Pack · 8 guides</div>
+                  <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: '1rem', lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{recoPack.title}</h3>
+                  <p style={{ fontSize: '.85rem', opacity: 0.55, lineHeight: 1.6, margin: 0 }}>{recoPack.blurb}</p>
+                  <div>
                     <span style={{ fontSize: 12, opacity: 0.4, textDecoration: 'line-through', marginRight: 8 }}>{recoPack.compareAtCents / 100} €</span>
                     <span style={{ fontSize: 17, fontWeight: 700, color: '#C9A24B' }}>{recoPack.priceCents / 100} €</span>
                   </div>
@@ -201,32 +221,31 @@ export default function DesirClient() {
               </div>
             )}
 
-            {recoGuides.length > 0 && (
+            {secondaryRecoGuides.length > 0 && (
               <div>
-                <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
-                  Guides pour aller plus loin
+                <p style={{ fontSize: '.73rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#8E7AB5', marginBottom: '.6rem', fontWeight: 700 }}>
+                  Autres guides associés
                 </p>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-                  {recoGuides.map((g) => (
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                  {secondaryRecoGuides.map((g) => (
                     <a
                       key={g.id}
                       href={`/guides/${g.id}`}
                       style={{
                         display: 'inline-flex', flexDirection: 'column', gap: 4,
-                        padding: '12px 16px',
-                        border: '1px solid rgba(201,162,75,0.3)',
-                        background: 'rgba(201,162,75,0.05)',
+                        padding: '10px 14px',
+                        border: '1px solid rgba(142,122,181,0.25)',
+                        background: 'rgba(142,122,181,0.04)',
                         color: '#F5EFE3',
                         textDecoration: 'none',
-                        borderRadius: '2px',
-                        fontSize: '.85rem',
+                        fontSize: '.82rem',
                         lineHeight: 1.3,
-                        flex: '1 1 180px',
-                        minWidth: 180,
+                        flex: '1 1 160px',
+                        minWidth: 160,
                       }}
                     >
                       <span style={{ fontWeight: 600 }}>{g.name}</span>
-                      <span style={{ fontSize: '.78rem', color: '#C9A24B', opacity: 0.8 }}>19 € · Découvrir →</span>
+                      <span style={{ fontSize: '.75rem', color: '#8E7AB5', opacity: 0.8 }}>19 € · Découvrir →</span>
                     </a>
                   ))}
                 </div>

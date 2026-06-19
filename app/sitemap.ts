@@ -298,6 +298,20 @@ const GUIDE_IDS = [
   'deepening-the-humiliation-wound',
   'deepening-the-betrayal-wound',
   'deepening-the-injustice-wound',
+  // Santé sexuelle FR (etape45)
+  'comprendre-le-vaginisme',
+  'sexualite-apres-menopause',
+  'troubles-erection-partenaire',
+  'ejaculation-precoce-a-deux',
+  'decouvrir-le-tantrisme',
+  'sexualite-apres-accouchement',
+  // Santé sexuelle EN (etape45)
+  'understanding-vaginismus',
+  'sexuality-after-menopause',
+  'partners-erection-difficulties',
+  'premature-ejaculation-together',
+  'discovering-tantra',
+  'sexuality-after-childbirth',
   // Bien-être sexuel 2 FR (etape44)
   'plaisir-feminin-orgasme',
   'plaisir-solo-masturbation',

@@ -25,6 +25,7 @@ import { PRO_GUIDES_23 } from '@/lib/proGuides23';
 import { PRO_GUIDES_24 } from '@/lib/proGuides24';
 import { PRO_GUIDES_25 } from '@/lib/proGuides25';
 import { PRO_GUIDES_26 } from '@/lib/proGuides26';
+import { PRO_GUIDES_27 } from '@/lib/proGuides27';
 import { BUNDLES } from '@/lib/bundles';
 import BundleBuyButton from '@/components/BundleBuyButton';
 import Testimonials from '@/components/Testimonials';
@@ -865,6 +866,42 @@ const SECTIONS = [
         desc: 'Explorer la domination/soumission avec consentement, sécurité et plaisir.',
         href: '/guides/bdsm-jeux-de-pouvoir',
       },
+      {
+        id: 'comprendre-le-vaginisme',
+        title: 'Comprendre le vaginisme',
+        desc: 'Sortir de la culpabilité, apaiser le cercle peur-douleur, trouver l\'aide qui marche.',
+        href: '/guides/comprendre-le-vaginisme',
+      },
+      {
+        id: 'sexualite-apres-menopause',
+        title: 'La sexualité après la ménopause',
+        desc: 'Ton désir évolue, il ne s\'éteint pas — démystifier et trouver des solutions concrètes.',
+        href: '/guides/sexualite-apres-menopause',
+      },
+      {
+        id: 'troubles-erection-partenaire',
+        title: 'Quand ton partenaire a des troubles de l\'érection',
+        desc: 'Ce n\'est pas un rejet de toi — comprendre, alléger la pression, soutenir.',
+        href: '/guides/troubles-erection-partenaire',
+      },
+      {
+        id: 'ejaculation-precoce-a-deux',
+        title: 'L\'éjaculation précoce : en parler et la gérer à deux',
+        desc: 'Un sujet d\'équipe, sans honte — démystifier et trouver des solutions ensemble.',
+        href: '/guides/ejaculation-precoce-a-deux',
+      },
+      {
+        id: 'decouvrir-le-tantrisme',
+        title: 'Découvrir le tantrisme',
+        desc: 'Présence plutôt que performance — sexualité lente, consciente et connectée.',
+        href: '/guides/decouvrir-le-tantrisme',
+      },
+      {
+        id: 'sexualite-apres-accouchement',
+        title: 'La sexualité après l\'accouchement',
+        desc: 'Retrouver ton corps et ton désir à ton rythme — sans pression de calendrier.',
+        href: '/guides/sexualite-apres-accouchement',
+      },
     ],
   },
   {
@@ -929,6 +966,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_24.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_25.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_26.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_27.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

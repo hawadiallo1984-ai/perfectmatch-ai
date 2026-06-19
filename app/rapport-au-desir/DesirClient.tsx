@@ -209,7 +209,7 @@ export default function DesirClient() {
                   Collection complète
                 </p>
                 <div style={{ padding: '20px 22px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.05)', display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Pack · 12 guides</div>
+                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Pack · 18 guides</div>
                   <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: '1rem', lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{recoPack.title}</h3>
                   <p style={{ fontSize: '.85rem', opacity: 0.55, lineHeight: 1.6, margin: 0 }}>{recoPack.blurb}</p>
                   <div>

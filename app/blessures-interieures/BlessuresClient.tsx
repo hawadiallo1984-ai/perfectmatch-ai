@@ -328,120 +328,139 @@ export default function BlessuresClient() {
         </div>
       </section>
 
-      <LeadMagnet lang="fr" />
-
-      {/* Recommandé pour toi */}
-      {reco && (
-        <section className={styles.section} style={{ paddingTop: 0 }}>
-          <div style={{ maxWidth: 760, margin: '0 auto' }}>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginBottom: 28, borderBottom: '1px solid var(--line)', paddingBottom: 14 }}>
-              <span style={{ fontSize: 11, letterSpacing: '.3em', textTransform: 'uppercase', color: '#C9A24B', opacity: .85 }}>
-                Recommandé pour toi
-              </span>
+      {reco ? (
+        <>
+          {/* A — Héros résultat */}
+          <section className={styles.section} style={{ paddingTop: 0 }}>
+            <div style={{ maxWidth: 680, margin: '0 auto' }}>
+              <div style={{ padding: '28px 32px', border: '1px solid rgba(201,162,75,0.4)', background: 'rgba(201,162,75,0.06)' }}>
+                <div style={{ fontSize: 11, letterSpacing: '.25em', textTransform: 'uppercase', color: '#C9A24B', opacity: .8, marginBottom: 10 }}>
+                  Ta blessure dominante
+                </div>
+                <h2 style={{ fontFamily: 'Fraunces, serif', fontSize: 'clamp(1.5rem,3.5vw,2rem)', fontWeight: 400, lineHeight: 1.2, marginBottom: '.75rem', color: '#F5EFE3' }}>
+                  {reco.label}
+                </h2>
+                <p style={{ fontSize: '.93rem', color: '#C5BFD4', lineHeight: 1.7, marginBottom: '1.25rem' }}>
+                  {reco.intro}
+                </p>
+                <div style={{ borderTop: '1px solid rgba(201,162,75,0.2)', paddingTop: '1rem' }}>
+                  <p style={{ fontSize: '.75rem', fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.6rem' }}>
+                    Tu te reconnais ?
+                  </p>
+                  <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 6 }}>
+                    {[...reco.signs].map((sign, i) => (
+                      <li key={i} style={{ fontSize: '.88rem', color: '#A9A3B8', lineHeight: 1.5, display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+                        <span style={{ color: '#C9A24B', flexShrink: 0, marginTop: 2 }}>·</span>
+                        {sign}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
-            <h2 style={{ fontFamily: 'Fraunces, serif', fontSize: 'clamp(1.2rem,2.5vw,1.6rem)', fontWeight: 400, marginBottom: '1rem', lineHeight: 1.25 }}>
-              {reco.title}
-            </h2>
-            <p style={{ fontSize: '.9rem', color: '#A9A3B8', lineHeight: 1.7, marginBottom: '1.75rem' }}>
-              {reco.message}
-            </p>
+          </section>
 
-            {primaryGuide && (
-              <div style={{ marginBottom: '1.75rem' }}>
-                <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
+          {/* B — Guide héros */}
+          {primaryGuide && (
+            <section className={styles.section} style={{ paddingTop: 0 }}>
+              <div style={{ maxWidth: 680, margin: '0 auto' }}>
+                <p style={{ fontSize: '.75rem', letterSpacing: '.12em', textTransform: 'uppercase', color: '#C9A24B', fontWeight: 700, marginBottom: '.75rem' }}>
                   Le guide fait pour ta blessure
                 </p>
-                <div style={{ padding: '22px 24px', border: '1px solid rgba(201,162,75,0.5)', background: 'rgba(201,162,75,0.07)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <div style={{ padding: '28px', border: '1px solid rgba(201,162,75,0.55)', background: 'rgba(201,162,75,0.08)', display: 'flex', flexDirection: 'column', gap: 12 }}>
                   <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Guide PDF · 19 €</div>
-                  <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 17, lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{primaryGuide.name}</h3>
-                  <p style={{ fontSize: '.85rem', opacity: 0.6, lineHeight: 1.6, margin: 0 }}>{primaryGuide.blurb}</p>
-                  <GuideBuyButton guideId={primaryGuide.id} />
+                  <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 'clamp(1.05rem,2.5vw,1.25rem)', lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>
+                    {primaryGuide.name}
+                  </h3>
+                  <p style={{ fontSize: '.87rem', opacity: 0.65, lineHeight: 1.65, margin: 0 }}>{primaryGuide.blurb}</p>
+                  <GuideBuyButton guideId={primaryGuide.id} label={`Commencer à guérir ma blessure de ${reco.label} →`} />
+                  <p style={{ fontSize: '.75rem', color: '#A9A3B8', textAlign: 'center', margin: 0 }}>
+                    Téléchargement immédiat · méthode des 4 approches · format guide-cahier
+                  </p>
                 </div>
               </div>
-            )}
+            </section>
+          )}
 
-            {tome2Guide && (
-              <div style={{ marginBottom: '1.75rem' }}>
-                <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
-                  Pour aller plus loin → Tome 2
-                </p>
-                <div style={{ padding: '22px 24px', border: '1px solid rgba(142,122,181,0.4)', background: 'rgba(142,122,181,0.06)', display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#8E7AB5', opacity: 0.8 }}>Guide PDF · 19 €</div>
-                  <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 17, lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{tome2Guide.name}</h3>
-                  <p style={{ fontSize: '.85rem', opacity: 0.6, lineHeight: 1.6, margin: 0 }}>{tome2Guide.blurb}</p>
-                  <GuideBuyButton guideId={tome2Guide.id} />
-                </div>
-              </div>
-            )}
+          {/* C — Filet email */}
+          <LeadMagnet lang="fr" />
 
-            {woundCompletePack && (
-              <div style={{ marginBottom: '1.75rem' }}>
-                <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
-                  Les deux tomes ensemble
+          {/* D — Pour aller plus loin */}
+          {(tome2Guide || woundCompletePack || recoPack || recoGuides.length > 0) && (
+            <section className={styles.section} style={{ paddingTop: 0 }}>
+              <div style={{ maxWidth: 680, margin: '0 auto' }}>
+                <p style={{ fontSize: '.75rem', letterSpacing: '.12em', textTransform: 'uppercase', color: '#8E7AB5', fontWeight: 700, marginBottom: '1.25rem', opacity: .8 }}>
+                  Pour aller plus loin
                 </p>
-                <div style={{ padding: '22px 24px', border: '1px solid rgba(201,162,75,0.4)', background: 'rgba(201,162,75,0.07)', display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Pack · 2 guides</div>
-                  <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 17, lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{woundCompletePack.title}</h3>
-                  <div style={{ textAlign: 'center', margin: '4px 0' }}>
-                    <span style={{ fontSize: 12, opacity: 0.4, textDecoration: 'line-through', marginRight: 8 }}>{woundCompletePack.compareAtCents / 100} €</span>
-                    <span style={{ fontSize: 17, fontWeight: 700, color: '#C9A24B' }}>{woundCompletePack.priceCents / 100} €</span>
+                {tome2Guide && (
+                  <div style={{ marginBottom: '1.25rem' }}>
+                    <p style={{ fontSize: '.73rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#8E7AB5', marginBottom: '.6rem', fontWeight: 700 }}>Tome 2</p>
+                    <div style={{ padding: '20px 22px', border: '1px solid rgba(142,122,181,0.35)', background: 'rgba(142,122,181,0.05)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#8E7AB5', opacity: 0.8 }}>Guide PDF · 19 €</div>
+                      <h4 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: '1rem', lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{tome2Guide.name}</h4>
+                      <p style={{ fontSize: '.83rem', opacity: 0.55, lineHeight: 1.6, margin: 0 }}>{tome2Guide.blurb}</p>
+                      <GuideBuyButton guideId={tome2Guide.id} />
+                    </div>
                   </div>
-                  <BundleBuyButton bundleId={woundCompletePack.id} label={`Acheter le pack — ${woundCompletePack.priceCents / 100} €`} />
-                </div>
-              </div>
-            )}
-
-            {recoPack && (
-              <div style={{ marginBottom: '1.75rem' }}>
-                <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
-                  Tu as plusieurs blessures ? Le pack complet
-                </p>
-                <div style={{ padding: '22px 24px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.05)', display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Pack · 4 guides</div>
-                  <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 17, lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{recoPack.title}</h3>
-                  <p style={{ fontSize: '.85rem', opacity: 0.6, lineHeight: 1.6, margin: 0 }}>{recoPack.blurb}</p>
-                  <div style={{ textAlign: 'center', margin: '4px 0' }}>
-                    <span style={{ fontSize: 12, opacity: 0.4, textDecoration: 'line-through', marginRight: 8 }}>{recoPack.compareAtCents / 100} €</span>
-                    <span style={{ fontSize: 17, fontWeight: 700, color: '#C9A24B' }}>{recoPack.priceCents / 100} €</span>
+                )}
+                {woundCompletePack && (
+                  <div style={{ marginBottom: '1.25rem' }}>
+                    <p style={{ fontSize: '.73rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#8E7AB5', marginBottom: '.6rem', fontWeight: 700 }}>Les deux tomes ensemble</p>
+                    <div style={{ padding: '20px 22px', border: '1px solid rgba(201,162,75,0.35)', background: 'rgba(201,162,75,0.06)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Pack · 2 guides</div>
+                      <h4 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: '1rem', lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{woundCompletePack.title}</h4>
+                      <div>
+                        <span style={{ fontSize: 12, opacity: 0.4, textDecoration: 'line-through', marginRight: 8 }}>{woundCompletePack.compareAtCents / 100} €</span>
+                        <span style={{ fontSize: 16, fontWeight: 700, color: '#C9A24B' }}>{woundCompletePack.priceCents / 100} €</span>
+                      </div>
+                      <BundleBuyButton bundleId={woundCompletePack.id} label={`Acheter le pack — ${woundCompletePack.priceCents / 100} €`} />
+                    </div>
                   </div>
-                  <BundleBuyButton bundleId={recoPack.id} label={`Acheter le pack — ${recoPack.priceCents / 100} €`} />
-                </div>
+                )}
+                {recoPack && (
+                  <div style={{ marginBottom: '1.25rem' }}>
+                    <p style={{ fontSize: '.73rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#8E7AB5', marginBottom: '.6rem', fontWeight: 700 }}>Tu as plusieurs blessures ? Le pack complet</p>
+                    <div style={{ padding: '20px 22px', border: '1px solid rgba(201,162,75,0.25)', background: 'rgba(201,162,75,0.04)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Pack · 10 guides</div>
+                      <h4 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: '1rem', lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{recoPack.title}</h4>
+                      <div>
+                        <span style={{ fontSize: 12, opacity: 0.4, textDecoration: 'line-through', marginRight: 8 }}>{recoPack.compareAtCents / 100} €</span>
+                        <span style={{ fontSize: 16, fontWeight: 700, color: '#C9A24B' }}>{recoPack.priceCents / 100} €</span>
+                      </div>
+                      <BundleBuyButton bundleId={recoPack.id} label={`Acheter le pack — ${recoPack.priceCents / 100} €`} />
+                    </div>
+                  </div>
+                )}
+                {recoGuides.length > 0 && (
+                  <div>
+                    <p style={{ fontSize: '.73rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#8E7AB5', marginBottom: '.6rem', fontWeight: 700 }}>Guides associés</p>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                      {recoGuides.map((g) => (
+                        <a key={g.id} href={`/guides/${g.id}`} style={{
+                          display: 'inline-flex', flexDirection: 'column', gap: 4,
+                          padding: '10px 14px',
+                          border: '1px solid rgba(142,122,181,0.25)',
+                          background: 'rgba(142,122,181,0.04)',
+                          color: '#F5EFE3',
+                          textDecoration: 'none',
+                          fontSize: '.82rem',
+                          lineHeight: 1.3,
+                          flex: '1 1 160px',
+                          minWidth: 160,
+                        }}>
+                          <span style={{ fontWeight: 600 }}>{g.name}</span>
+                          <span style={{ fontSize: '.75rem', color: '#8E7AB5', opacity: 0.8 }}>19 € · Découvrir →</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
-
-            {recoGuides.length > 0 && (
-              <div>
-                <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
-                  Guides pour aller plus loin
-                </p>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-                  {recoGuides.map((g) => (
-                    <a
-                      key={g.id}
-                      href={`/guides/${g.id}`}
-                      style={{
-                        display: 'inline-flex', flexDirection: 'column', gap: 4,
-                        padding: '12px 16px',
-                        border: '1px solid rgba(201,162,75,0.3)',
-                        background: 'rgba(201,162,75,0.05)',
-                        color: '#F5EFE3',
-                        textDecoration: 'none',
-                        borderRadius: '2px',
-                        fontSize: '.85rem',
-                        lineHeight: 1.3,
-                        flex: '1 1 180px',
-                        minWidth: 180,
-                      }}
-                    >
-                      <span style={{ fontWeight: 600 }}>{g.name}</span>
-                      <span style={{ fontSize: '.78rem', color: '#C9A24B', opacity: 0.8 }}>19 € · Découvrir →</span>
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-        </section>
+            </section>
+          )}
+        </>
+      ) : (
+        <LeadMagnet lang="fr" />
       )}
 
       {/* Ton point de départ */}

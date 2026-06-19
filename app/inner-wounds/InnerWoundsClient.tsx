@@ -33,6 +33,30 @@ const WOUND_TO_EN_COMPLETE_PACK_ID: Record<string, string> = {
   I: 'pack-injustice-wound-complete',
 };
 
+const WOUND_TO_EN_INTRO: Record<string, string> = {
+  A: "The fear of being left or left alone follows you.",
+  R: "Deep down, you've often felt like you were 'too much'.",
+  E: "You put others first, and you struggle to receive.",
+  T: "You've learned to control everything so you're never betrayed again.",
+  I: "You are demanding, perfectionist, hard on yourself.",
+};
+
+const WOUND_TO_EN_SIGNS: Record<string, readonly string[]> = {
+  A: ["you cling or constantly seek reassurance", "being alone fills you with dread", "a silence makes you imagine the worst"],
+  R: ["you pull back before someone can reject you", "you aim for perfection to earn your place", "you avoid true intimacy when it gets too real"],
+  E: ["you sacrifice yourself and make yourself indispensable", "you feel ashamed of your needs", "saying no fills you with guilt"],
+  T: ["you struggle to trust or delegate", "you need to be strong and right", "you stay on guard"],
+  I: ["never 'good enough'", "you cut yourself off from your emotions", "you can't stand imperfection — yours or anyone else's"],
+};
+
+const WOUND_TO_EN_LABEL: Record<string, string> = {
+  A: 'Abandonment',
+  R: 'Rejection',
+  E: 'Humiliation',
+  T: 'Betrayal',
+  I: 'Injustice',
+};
+
 const WOUNDS = [
   {
     key: 'A',
@@ -132,6 +156,10 @@ export default function InnerWoundsClient() {
   const woundCompletePackId = dominantKeys.length > 0 ? WOUND_TO_EN_COMPLETE_PACK_ID[dominantKeys[0]] : null;
   const woundCompletePack = woundCompletePackId ? (BUNDLES.find(b => b.id === woundCompletePackId) ?? null) : null;
   const innerWoundsPack = BUNDLES.find(b => b.id === 'pack-inner-wounds') ?? null;
+  const dominantKey = dominantKeys.length > 0 ? dominantKeys[0] : null;
+  const enIntro = dominantKey ? WOUND_TO_EN_INTRO[dominantKey] ?? null : null;
+  const enSigns = dominantKey ? WOUND_TO_EN_SIGNS[dominantKey] ?? null : null;
+  const enLabel = dominantKey ? WOUND_TO_EN_LABEL[dominantKey] ?? null : null;
 
   return (
     <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
@@ -341,78 +369,115 @@ export default function InnerWoundsClient() {
         </div>
       </section>
 
-      <LeadMagnet lang="en" />
-
-      {/* Guide for your wound */}
-      {primaryGuide && (
-        <section className={styles.section} style={{ paddingTop: 0 }}>
-          <div style={{ maxWidth: 760, margin: '0 auto' }}>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginBottom: 28, borderBottom: '1px solid var(--line)', paddingBottom: 14 }}>
-              <span style={{ fontSize: 11, letterSpacing: '.3em', textTransform: 'uppercase', color: '#C9A24B', opacity: .85 }}>
-                Recommended for you
-              </span>
+      {dominantKey && enIntro && enLabel && enSigns ? (
+        <>
+          {/* A — Result hero */}
+          <section className={styles.section} style={{ paddingTop: 0 }}>
+            <div style={{ maxWidth: 680, margin: '0 auto' }}>
+              <div style={{ padding: '28px 32px', border: '1px solid rgba(201,162,75,0.4)', background: 'rgba(201,162,75,0.06)' }}>
+                <div style={{ fontSize: 11, letterSpacing: '.25em', textTransform: 'uppercase', color: '#C9A24B', opacity: .8, marginBottom: 10 }}>
+                  Your core wound
+                </div>
+                <h2 style={{ fontFamily: 'Fraunces, serif', fontSize: 'clamp(1.5rem,3.5vw,2rem)', fontWeight: 400, lineHeight: 1.2, marginBottom: '.75rem', color: '#F5EFE3' }}>
+                  {enLabel}
+                </h2>
+                <p style={{ fontSize: '.93rem', color: '#C5BFD4', lineHeight: 1.7, marginBottom: '1.25rem' }}>
+                  {enIntro}
+                </p>
+                <div style={{ borderTop: '1px solid rgba(201,162,75,0.2)', paddingTop: '1rem' }}>
+                  <p style={{ fontSize: '.75rem', fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.6rem' }}>
+                    Does this sound like you?
+                  </p>
+                  <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 6 }}>
+                    {[...enSigns].map((sign, i) => (
+                      <li key={i} style={{ fontSize: '.88rem', color: '#A9A3B8', lineHeight: 1.5, display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+                        <span style={{ color: '#C9A24B', flexShrink: 0, marginTop: 2 }}>·</span>
+                        {sign}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div style={{ marginBottom: '1.75rem' }}>
-              <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
-                The guide made for your wound
-              </p>
-              <div style={{ padding: '22px 24px', border: '1px solid rgba(201,162,75,0.5)', background: 'rgba(201,162,75,0.07)', display: 'flex', flexDirection: 'column', gap: 8 }}>
-                <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>PDF Guide · €19</div>
-                <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 17, lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{primaryGuide.name}</h3>
-                <p style={{ fontSize: '.85rem', opacity: 0.6, lineHeight: 1.6, margin: 0 }}>{primaryGuide.blurb}</p>
-                <GuideBuyButton guideId={primaryGuide.id} />
-              </div>
-            </div>
-            {tome2Guide && (
-              <div style={{ marginBottom: '1.75rem' }}>
-                <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
-                  Going deeper → Volume 2
-                </p>
-                <div style={{ padding: '22px 24px', border: '1px solid rgba(142,122,181,0.4)', background: 'rgba(142,122,181,0.06)', display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#8E7AB5', opacity: 0.8 }}>PDF Guide · €19</div>
-                  <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 17, lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{tome2Guide.name}</h3>
-                  <p style={{ fontSize: '.85rem', opacity: 0.6, lineHeight: 1.6, margin: 0 }}>{tome2Guide.blurb}</p>
-                  <GuideBuyButton guideId={tome2Guide.id} />
-                </div>
-              </div>
-            )}
+          </section>
 
-            {woundCompletePack && (
-              <div style={{ marginBottom: '1.75rem' }}>
-                <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
-                  Both volumes together
+          {/* B — Guide hero */}
+          {primaryGuide && (
+            <section className={styles.section} style={{ paddingTop: 0 }}>
+              <div style={{ maxWidth: 680, margin: '0 auto' }}>
+                <p style={{ fontSize: '.75rem', letterSpacing: '.12em', textTransform: 'uppercase', color: '#C9A24B', fontWeight: 700, marginBottom: '.75rem' }}>
+                  The guide made for your wound
                 </p>
-                <div style={{ padding: '22px 24px', border: '1px solid rgba(201,162,75,0.4)', background: 'rgba(201,162,75,0.07)', display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Pack · 2 guides</div>
-                  <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 17, lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{woundCompletePack.title}</h3>
-                  <div style={{ textAlign: 'center', margin: '4px 0' }}>
-                    <span style={{ fontSize: 12, opacity: 0.4, textDecoration: 'line-through', marginRight: 8 }}>€{woundCompletePack.compareAtCents / 100}</span>
-                    <span style={{ fontSize: 17, fontWeight: 700, color: '#C9A24B' }}>€{woundCompletePack.priceCents / 100}</span>
-                  </div>
-                  <BundleBuyButton bundleId={woundCompletePack.id} label={`Get the pack — €${woundCompletePack.priceCents / 100}`} />
+                <div style={{ padding: '28px', border: '1px solid rgba(201,162,75,0.55)', background: 'rgba(201,162,75,0.08)', display: 'flex', flexDirection: 'column', gap: 12 }}>
+                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>PDF Guide · €19</div>
+                  <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 'clamp(1.05rem,2.5vw,1.25rem)', lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>
+                    {primaryGuide.name}
+                  </h3>
+                  <p style={{ fontSize: '.87rem', opacity: 0.65, lineHeight: 1.65, margin: 0 }}>{primaryGuide.blurb}</p>
+                  <GuideBuyButton guideId={primaryGuide.id} label={`Start healing my ${enLabel} wound →`} />
+                  <p style={{ fontSize: '.75rem', color: '#A9A3B8', textAlign: 'center', margin: 0 }}>
+                    Instant download · 4-approach method · workbook format
+                  </p>
                 </div>
               </div>
-            )}
+            </section>
+          )}
 
-            {innerWoundsPack && (
-              <div>
-                <p style={{ fontSize: '.75rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: '.75rem', fontWeight: 700 }}>
-                  Working on multiple wounds? The complete pack
+          {/* C — Email net */}
+          <LeadMagnet lang="en" />
+
+          {/* D — Going deeper */}
+          {(tome2Guide || woundCompletePack || innerWoundsPack) && (
+            <section className={styles.section} style={{ paddingTop: 0 }}>
+              <div style={{ maxWidth: 680, margin: '0 auto' }}>
+                <p style={{ fontSize: '.75rem', letterSpacing: '.12em', textTransform: 'uppercase', color: '#8E7AB5', fontWeight: 700, marginBottom: '1.25rem', opacity: .8 }}>
+                  Going deeper
                 </p>
-                <div style={{ padding: '22px 24px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.05)', display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Pack · 5 guides</div>
-                  <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 17, lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{innerWoundsPack.title}</h3>
-                  <p style={{ fontSize: '.85rem', opacity: 0.6, lineHeight: 1.6, margin: 0 }}>{innerWoundsPack.blurb}</p>
-                  <div style={{ textAlign: 'center', margin: '4px 0' }}>
-                    <span style={{ fontSize: 12, opacity: 0.4, textDecoration: 'line-through', marginRight: 8 }}>€{innerWoundsPack.compareAtCents / 100}</span>
-                    <span style={{ fontSize: 17, fontWeight: 700, color: '#C9A24B' }}>€{innerWoundsPack.priceCents / 100}</span>
+                {tome2Guide && (
+                  <div style={{ marginBottom: '1.25rem' }}>
+                    <p style={{ fontSize: '.73rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#8E7AB5', marginBottom: '.6rem', fontWeight: 700 }}>Volume 2</p>
+                    <div style={{ padding: '20px 22px', border: '1px solid rgba(142,122,181,0.35)', background: 'rgba(142,122,181,0.05)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#8E7AB5', opacity: 0.8 }}>PDF Guide · €19</div>
+                      <h4 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: '1rem', lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{tome2Guide.name}</h4>
+                      <p style={{ fontSize: '.83rem', opacity: 0.55, lineHeight: 1.6, margin: 0 }}>{tome2Guide.blurb}</p>
+                      <GuideBuyButton guideId={tome2Guide.id} />
+                    </div>
                   </div>
-                  <BundleBuyButton bundleId={innerWoundsPack.id} label={`Get the pack — €${innerWoundsPack.priceCents / 100}`} />
-                </div>
+                )}
+                {woundCompletePack && (
+                  <div style={{ marginBottom: '1.25rem' }}>
+                    <p style={{ fontSize: '.73rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#8E7AB5', marginBottom: '.6rem', fontWeight: 700 }}>Both volumes together</p>
+                    <div style={{ padding: '20px 22px', border: '1px solid rgba(201,162,75,0.35)', background: 'rgba(201,162,75,0.06)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Pack · 2 guides</div>
+                      <h4 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: '1rem', lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{woundCompletePack.title}</h4>
+                      <div>
+                        <span style={{ fontSize: 12, opacity: 0.4, textDecoration: 'line-through', marginRight: 8 }}>€{woundCompletePack.compareAtCents / 100}</span>
+                        <span style={{ fontSize: 16, fontWeight: 700, color: '#C9A24B' }}>€{woundCompletePack.priceCents / 100}</span>
+                      </div>
+                      <BundleBuyButton bundleId={woundCompletePack.id} label={`Get the pack — €${woundCompletePack.priceCents / 100}`} />
+                    </div>
+                  </div>
+                )}
+                {innerWoundsPack && (
+                  <div>
+                    <p style={{ fontSize: '.73rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#8E7AB5', marginBottom: '.6rem', fontWeight: 700 }}>Working on multiple wounds? The complete pack</p>
+                    <div style={{ padding: '20px 22px', border: '1px solid rgba(201,162,75,0.25)', background: 'rgba(201,162,75,0.04)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Pack · 5 guides</div>
+                      <h4 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: '1rem', lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{innerWoundsPack.title}</h4>
+                      <div>
+                        <span style={{ fontSize: 12, opacity: 0.4, textDecoration: 'line-through', marginRight: 8 }}>€{innerWoundsPack.compareAtCents / 100}</span>
+                        <span style={{ fontSize: 16, fontWeight: 700, color: '#C9A24B' }}>€{innerWoundsPack.priceCents / 100}</span>
+                      </div>
+                      <BundleBuyButton bundleId={innerWoundsPack.id} label={`Get the pack — €${innerWoundsPack.priceCents / 100}`} />
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-        </section>
+            </section>
+          )}
+        </>
+      ) : (
+        <LeadMagnet lang="en" />
       )}
 
       {/* Your starting point */}

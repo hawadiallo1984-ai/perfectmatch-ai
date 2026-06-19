@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-export default function GuideBuyButton({ guideId }: { guideId: string }) {
+export default function GuideBuyButton({ guideId, label }: { guideId: string; label?: string }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -52,7 +52,7 @@ export default function GuideBuyButton({ guideId }: { guideId: string }) {
           transition: 'all 0.25s',
         }}
       >
-        {loading ? 'Redirection…' : 'Acheter le guide — 19 €'}
+        {loading ? 'Redirection…' : (label ?? 'Acheter le guide — 19 €')}
       </button>
       {error && (
         <p style={{ fontSize: 13, color: 'var(--danger)', margin: 0 }}>{error}</p>

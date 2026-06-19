@@ -24,6 +24,7 @@ import { PRO_GUIDES_22 } from '@/lib/proGuides22';
 import { PRO_GUIDES_23 } from '@/lib/proGuides23';
 import { PRO_GUIDES_24 } from '@/lib/proGuides24';
 import { PRO_GUIDES_25 } from '@/lib/proGuides25';
+import { PRO_GUIDES_26 } from '@/lib/proGuides26';
 import { BUNDLES } from '@/lib/bundles';
 import BundleBuyButton from '@/components/BundleBuyButton';
 import Testimonials from '@/components/Testimonials';
@@ -828,6 +829,42 @@ const SECTIONS = [
         desc: 'Plaisir partagé, jamais une obligation : ton consentement d\'abord.',
         href: '/guides/fellation-sans-tabou',
       },
+      {
+        id: 'plaisir-feminin-orgasme',
+        title: 'Plaisir féminin & orgasme',
+        desc: 'Comprendre, explorer et vivre ton plaisir sans injonction ni pression.',
+        href: '/guides/plaisir-feminin-orgasme',
+      },
+      {
+        id: 'plaisir-solo-masturbation',
+        title: 'Plaisir solo & masturbation',
+        desc: 'Te connaître, te donner du plaisir — sans honte, sans culpabilité.',
+        href: '/guides/plaisir-solo-masturbation',
+      },
+      {
+        id: 'preliminaires-et-lenteur',
+        title: 'Préliminaires & lenteur',
+        desc: 'Ralentir pour ressentir davantage — l\'art du désir qui monte.',
+        href: '/guides/preliminaires-et-lenteur',
+      },
+      {
+        id: 'sextoys-oser-les-integrer',
+        title: 'Sextoys : oser les intégrer',
+        desc: 'Découvrir, choisir et partager sans tabou ni maladresse.',
+        href: '/guides/sextoys-oser-les-integrer',
+      },
+      {
+        id: 'cunnilingus-sans-tabou',
+        title: 'Cunnilingus sans tabou',
+        desc: 'Oser, donner et recevoir — guide pratique et psychologique.',
+        href: '/guides/cunnilingus-sans-tabou',
+      },
+      {
+        id: 'bdsm-jeux-de-pouvoir',
+        title: 'BDSM & jeux de pouvoir',
+        desc: 'Explorer la domination/soumission avec consentement, sécurité et plaisir.',
+        href: '/guides/bdsm-jeux-de-pouvoir',
+      },
     ],
   },
   {
@@ -891,6 +928,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_23.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_24.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_25.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_26.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

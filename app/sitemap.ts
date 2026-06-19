@@ -298,6 +298,20 @@ const GUIDE_IDS = [
   'deepening-the-humiliation-wound',
   'deepening-the-betrayal-wound',
   'deepening-the-injustice-wound',
+  // Bien-être sexuel 2 FR (etape44)
+  'plaisir-feminin-orgasme',
+  'plaisir-solo-masturbation',
+  'preliminaires-et-lenteur',
+  'sextoys-oser-les-integrer',
+  'cunnilingus-sans-tabou',
+  'bdsm-jeux-de-pouvoir',
+  // Bien-être sexuel 2 EN (etape44)
+  'female-pleasure-and-orgasm',
+  'solo-pleasure-masturbation',
+  'foreplay-and-slowness',
+  'sex-toys-bringing-them-in',
+  'cunnilingus-without-taboo',
+  'bdsm-power-play-with-confidence',
   // Bien-être sexuel FR (etape43)
   'communiquer-desirs-limites',
   'explorer-ses-fantasmes',

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { BLESSURE_RECO } from '@/lib/blessuresReco';
 import { BUNDLES } from '@/lib/bundles';
+import { GUIDE_PROMO, discountedCents } from '@/lib/promo';
 import { GUIDES, GuideId } from '@/lib/guides';
 import BundleBuyButton from '@/components/BundleBuyButton';
 import GuideBuyButton from '@/components/GuideBuyButton';
@@ -368,7 +369,11 @@ export default function BlessuresClient() {
                   Le guide fait pour ta blessure
                 </p>
                 <div style={{ padding: '28px', border: '1px solid rgba(201,162,75,0.55)', background: 'rgba(201,162,75,0.08)', display: 'flex', flexDirection: 'column', gap: 12 }}>
-                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Guide PDF · 19 €</div>
+                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>
+                    {GUIDE_PROMO.active ? (
+                      <>Guide PDF · <s style={{ opacity: 0.5 }}>19 €</s>{' '}<span style={{ fontWeight: 700 }}>{(discountedCents(1900) / 100).toFixed(2).replace('.', ',')} €</span>{' '}<span style={{ background: 'rgba(201,162,75,0.2)', padding: '1px 4px', borderRadius: 2, textTransform: 'none' as const, letterSpacing: 0 }}>-30%</span></>
+                    ) : 'Guide PDF · 19 €'}
+                  </div>
                   <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 'clamp(1.05rem,2.5vw,1.25rem)', lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>
                     {primaryGuide.name}
                   </h3>
@@ -396,7 +401,11 @@ export default function BlessuresClient() {
                   <div style={{ marginBottom: '1.25rem' }}>
                     <p style={{ fontSize: '.73rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#8E7AB5', marginBottom: '.6rem', fontWeight: 700 }}>Tome 2</p>
                     <div style={{ padding: '20px 22px', border: '1px solid rgba(142,122,181,0.35)', background: 'rgba(142,122,181,0.05)', display: 'flex', flexDirection: 'column', gap: 8 }}>
-                      <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#8E7AB5', opacity: 0.8 }}>Guide PDF · 19 €</div>
+                      <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#8E7AB5', opacity: 0.8 }}>
+                        {GUIDE_PROMO.active ? (
+                          <>Guide PDF · <s style={{ opacity: 0.5 }}>19 €</s>{' '}<span style={{ fontWeight: 700, color: '#C9A24B' }}>{(discountedCents(1900) / 100).toFixed(2).replace('.', ',')} €</span>{' '}<span style={{ background: 'rgba(201,162,75,0.2)', color: '#C9A24B', padding: '1px 4px', borderRadius: 2, textTransform: 'none' as const, letterSpacing: 0 }}>-30%</span></>
+                        ) : 'Guide PDF · 19 €'}
+                      </div>
                       <h4 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: '1rem', lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{tome2Guide.name}</h4>
                       <p style={{ fontSize: '.83rem', opacity: 0.55, lineHeight: 1.6, margin: 0 }}>{tome2Guide.blurb}</p>
                       <GuideBuyButton guideId={tome2Guide.id} />
@@ -449,7 +458,11 @@ export default function BlessuresClient() {
                           minWidth: 160,
                         }}>
                           <span style={{ fontWeight: 600 }}>{g.name}</span>
-                          <span style={{ fontSize: '.75rem', color: '#8E7AB5', opacity: 0.8 }}>19 € · Découvrir →</span>
+                          <span style={{ fontSize: '.75rem', color: '#8E7AB5', opacity: 0.8 }}>
+                            {GUIDE_PROMO.active ? (
+                              <><s style={{ opacity: 0.6 }}>19 €</s>{' '}<span style={{ color: '#C9A24B', fontWeight: 700 }}>{(discountedCents(1900) / 100).toFixed(2).replace('.', ',')} €</span>{' '}<span style={{ background: 'rgba(201,162,75,0.18)', color: '#C9A24B', padding: '1px 3px', borderRadius: 2, fontSize: '.85em', fontWeight: 700 }}>-30%</span>{' '}· Découvrir →</>
+                            ) : '19 € · Découvrir →'}
+                          </span>
                         </a>
                       ))}
                     </div>

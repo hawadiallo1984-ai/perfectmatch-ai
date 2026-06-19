@@ -30,6 +30,7 @@ import { PRO_GUIDES_28 } from '@/lib/proGuides28';
 import { PRO_GUIDES_29 } from '@/lib/proGuides29';
 import { PRO_GUIDES_30 } from '@/lib/proGuides30';
 import { BUNDLES } from '@/lib/bundles';
+import { GUIDE_PROMO, discountedCents } from '@/lib/promo';
 import BundleBuyButton from '@/components/BundleBuyButton';
 import Testimonials from '@/components/Testimonials';
 import SiteNav from '@/components/SiteNav';
@@ -191,7 +192,11 @@ export default function EnGuidesPage() {
             >
               {guides.map((guide) => (
                 <div key={guide.id} className={`${styles.offer} reveal`}>
-                  <div className={styles.offerCategory}>PDF Guide · €19</div>
+                  <div className={styles.offerCategory}>
+                    {GUIDE_PROMO.active ? (
+                      <>PDF Guide · <s style={{ opacity: 0.45 }}>€19</s>{' '}<span style={{ color: '#C9A24B', fontWeight: 700, textTransform: 'none' as const }}>€{(discountedCents(1900) / 100).toFixed(2)}</span>{' '}<span style={{ background: 'rgba(201,162,75,0.18)', color: '#C9A24B', padding: '1px 4px', borderRadius: 2, fontWeight: 700, fontSize: '0.78em', textTransform: 'none' as const, letterSpacing: 0 }}>-30%</span></>
+                    ) : 'PDF Guide · €19'}
+                  </div>
                   <h3 className={styles.offerName}>{guide.title}</h3>
                   <p className={styles.offerDesc}>{guide.blurb}</p>
                   <div style={{ marginTop: 'auto' }}>

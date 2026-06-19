@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe';
 import { GUIDES, GuideId } from '@/lib/guides';
 import { BUNDLES } from '@/lib/bundles';
+import { discountedCents } from '@/lib/promo';
 
 export async function POST(req: NextRequest) {
   try {
@@ -45,7 +46,7 @@ export async function POST(req: NextRequest) {
           price_data: {
             currency: guide.currency,
             product_data: { name: guide.name },
-            unit_amount: guide.priceCents,
+            unit_amount: discountedCents(guide.priceCents),
           },
           quantity: 1,
         },

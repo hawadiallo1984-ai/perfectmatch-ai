@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { DESIR_QUESTIONS, DESIR_RESULTS, type DesirProfile } from '@/lib/desirTest';
 import { BUNDLES } from '@/lib/bundles';
+import { GUIDE_PROMO, discountedCents } from '@/lib/promo';
 import { GUIDES } from '@/lib/guides';
 import BundleBuyButton from '@/components/BundleBuyButton';
 import GuideBuyButton from '@/components/GuideBuyButton';
@@ -192,10 +193,14 @@ export default function DesirClient() {
                   Le guide fait pour ton profil
                 </p>
                 <div style={{ padding: '24px', border: '1px solid rgba(201,162,75,0.55)', background: 'rgba(201,162,75,0.08)', display: 'flex', flexDirection: 'column', gap: 10 }}>
-                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>Guide PDF · 19 €</div>
+                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>
+                    {GUIDE_PROMO.active ? (
+                      <>Guide PDF · <s style={{ opacity: 0.5 }}>19 €</s>{' '}<span style={{ fontWeight: 700 }}>{(discountedCents(1900) / 100).toFixed(2).replace('.', ',')} €</span>{' '}<span style={{ background: 'rgba(201,162,75,0.2)', padding: '1px 4px', borderRadius: 2, textTransform: 'none' as const, letterSpacing: 0 }}>-30%</span></>
+                    ) : 'Guide PDF · 19 €'}
+                  </div>
                   <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 'clamp(1.05rem,2.5vw,1.2rem)', lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{primaryRecoGuide.name}</h3>
                   <p style={{ fontSize: '.87rem', opacity: 0.65, lineHeight: 1.65, margin: 0 }}>{primaryRecoGuide.blurb}</p>
-                  <GuideBuyButton guideId={primaryRecoGuide.id} label="Commencer — 19 € →" />
+                  <GuideBuyButton guideId={primaryRecoGuide.id} label={`Commencer — ${(discountedCents(1900) / 100).toFixed(2).replace('.', ',')} € →`} />
                   <p style={{ fontSize: '.75rem', color: '#A9A3B8', textAlign: 'center', margin: 0 }}>
                     Téléchargement immédiat · méthode des 4 approches · contenu 18+
                   </p>
@@ -245,7 +250,11 @@ export default function DesirClient() {
                       }}
                     >
                       <span style={{ fontWeight: 600 }}>{g.name}</span>
-                      <span style={{ fontSize: '.75rem', color: '#8E7AB5', opacity: 0.8 }}>19 € · Découvrir →</span>
+                      <span style={{ fontSize: '.75rem', color: '#8E7AB5', opacity: 0.8 }}>
+                        {GUIDE_PROMO.active ? (
+                          <><s style={{ opacity: 0.6 }}>19 €</s>{' '}<span style={{ color: '#C9A24B', fontWeight: 700 }}>{(discountedCents(1900) / 100).toFixed(2).replace('.', ',')} €</span>{' '}<span style={{ background: 'rgba(201,162,75,0.18)', color: '#C9A24B', padding: '1px 3px', borderRadius: 2, fontSize: '.85em', fontWeight: 700 }}>-30%</span>{' '}· Découvrir →</>
+                        ) : '19 € · Découvrir →'}
+                      </span>
                     </a>
                   ))}
                 </div>

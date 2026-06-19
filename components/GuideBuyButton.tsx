@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { discountedCents } from '@/lib/promo';
 
 export default function GuideBuyButton({ guideId, label }: { guideId: string; label?: string }) {
   const [loading, setLoading] = useState(false);
@@ -52,7 +53,7 @@ export default function GuideBuyButton({ guideId, label }: { guideId: string; la
           transition: 'all 0.25s',
         }}
       >
-        {loading ? 'Redirection…' : (label ?? 'Acheter le guide — 19 €')}
+        {loading ? 'Redirection…' : (label ?? `Acheter le guide — ${(discountedCents(1900) / 100).toFixed(2).replace('.', ',')} €`)}
       </button>
       {error && (
         <p style={{ fontSize: 13, color: 'var(--danger)', margin: 0 }}>{error}</p>

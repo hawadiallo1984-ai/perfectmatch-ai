@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { GUIDES } from '@/lib/guides';
+import { GUIDE_PROMO, discountedCents } from '@/lib/promo';
 import styles from '@/app/page.module.css';
 import SiteNav from '@/components/SiteNav';
 import GuideBuyButton from '@/components/GuideBuyButton';
@@ -47,7 +48,10 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
           </div>
           <GuideBuyButton guideId={guide.id} />
           <p style={{ marginTop: 14, fontSize: 12, opacity: 0.45, letterSpacing: '0.05em' }}>
-            Paiement sécurisé · PDF envoyé par email · 19,00 €
+            Paiement sécurisé · PDF envoyé par email ·{' '}
+            {GUIDE_PROMO.active ? (
+              <><s>19,00 €</s> <strong style={{ opacity: 1 }}>{(discountedCents(1900) / 100).toFixed(2).replace('.', ',')} €</strong> <span style={{ background: 'rgba(201,162,75,0.2)', color: '#C9A24B', padding: '1px 4px', borderRadius: 2, fontWeight: 700 }}>-30%</span></>
+            ) : '19,00 €'}
           </p>
         </div>
       </section>
@@ -128,7 +132,11 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
       <section style={{ textAlign: 'center', padding: 'clamp(40px, 8vw, 80px) 24px' }}>
         <GuideBuyButton guideId={guide.id} />
         <p style={{ marginTop: 16, fontSize: 12, opacity: 0.4, letterSpacing: '0.04em' }}>
-          PDF livré par email · 19,00 € TTC · par EvaTalk
+          PDF livré par email ·{' '}
+            {GUIDE_PROMO.active ? (
+              <><s>19,00 €</s> <strong style={{ opacity: 1 }}>{(discountedCents(1900) / 100).toFixed(2).replace('.', ',')} € TTC</strong> <span style={{ background: 'rgba(201,162,75,0.2)', color: '#C9A24B', padding: '1px 4px', borderRadius: 2, fontWeight: 700 }}>-30%</span></>
+            ) : '19,00 € TTC'}{' '}
+            · par EvaTalk
         </p>
       </section>
 

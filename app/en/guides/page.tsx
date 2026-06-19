@@ -27,6 +27,7 @@ import { PRO_GUIDES_25 } from '@/lib/proGuides25';
 import { PRO_GUIDES_26 } from '@/lib/proGuides26';
 import { PRO_GUIDES_27 } from '@/lib/proGuides27';
 import { PRO_GUIDES_28 } from '@/lib/proGuides28';
+import { PRO_GUIDES_29 } from '@/lib/proGuides29';
 import { BUNDLES } from '@/lib/bundles';
 import BundleBuyButton from '@/components/BundleBuyButton';
 import Testimonials from '@/components/Testimonials';
@@ -34,6 +35,7 @@ import SiteNav from '@/components/SiteNav';
 import styles from '@/app/page.module.css';
 
 const PACK_DATING_JOURNEY = BUNDLES.find((b) => b.id === 'pack-dating-journey');
+const PACK_WHERE_TO_MEET = BUNDLES.find((b) => b.id === 'pack-where-to-meet');
 
 const EN_CONFLICT_IDS = new Set(['black-tax', 'misogynoir']);
 const EN_EXTRA = [
@@ -71,6 +73,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_26.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_27.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_28.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_29.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);
@@ -200,16 +203,32 @@ export default function EnGuidesPage() {
                 </div>
               ))}
             </div>
-            {theme === 'Love & Relationships' && PACK_DATING_JOURNEY && (
-              <div style={{ marginTop: 24, padding: '20px 24px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.04)' }}>
-                <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: 6 }}>Dating Journey · 6 guides</div>
-                <p style={{ fontWeight: 600, marginBottom: 6, color: '#F5EFE3' }}>{PACK_DATING_JOURNEY.title}</p>
-                <p style={{ fontSize: '.83rem', opacity: 0.6, lineHeight: 1.6, marginBottom: 10 }}>{PACK_DATING_JOURNEY.blurb}</p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                  <span style={{ fontSize: 13, opacity: 0.4, textDecoration: 'line-through' }}>€{PACK_DATING_JOURNEY.compareAtCents / 100}</span>
-                  <span style={{ fontSize: 18, fontWeight: 700, color: '#C9A24B' }}>€{PACK_DATING_JOURNEY.priceCents / 100}</span>
-                </div>
-                <BundleBuyButton bundleId={PACK_DATING_JOURNEY.id} label={`Buy the journey — €${PACK_DATING_JOURNEY.priceCents / 100}`} />
+            {theme === 'Love & Relationships' && (PACK_DATING_JOURNEY || PACK_WHERE_TO_MEET) && (
+              <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 16 }}>
+                {PACK_DATING_JOURNEY && (
+                  <div style={{ padding: '20px 24px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.04)' }}>
+                    <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: 6 }}>Dating Journey · 6 guides</div>
+                    <p style={{ fontWeight: 600, marginBottom: 6, color: '#F5EFE3' }}>{PACK_DATING_JOURNEY.title}</p>
+                    <p style={{ fontSize: '.83rem', opacity: 0.6, lineHeight: 1.6, marginBottom: 10 }}>{PACK_DATING_JOURNEY.blurb}</p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+                      <span style={{ fontSize: 13, opacity: 0.4, textDecoration: 'line-through' }}>€{PACK_DATING_JOURNEY.compareAtCents / 100}</span>
+                      <span style={{ fontSize: 18, fontWeight: 700, color: '#C9A24B' }}>€{PACK_DATING_JOURNEY.priceCents / 100}</span>
+                    </div>
+                    <BundleBuyButton bundleId={PACK_DATING_JOURNEY.id} label={`Buy the journey — €${PACK_DATING_JOURNEY.priceCents / 100}`} />
+                  </div>
+                )}
+                {PACK_WHERE_TO_MEET && (
+                  <div style={{ padding: '20px 24px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.04)' }}>
+                    <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: 6 }}>Where & How to Meet · 8 guides</div>
+                    <p style={{ fontWeight: 600, marginBottom: 6, color: '#F5EFE3' }}>{PACK_WHERE_TO_MEET.title}</p>
+                    <p style={{ fontSize: '.83rem', opacity: 0.6, lineHeight: 1.6, marginBottom: 10 }}>{PACK_WHERE_TO_MEET.blurb}</p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+                      <span style={{ fontSize: 13, opacity: 0.4, textDecoration: 'line-through' }}>€{PACK_WHERE_TO_MEET.compareAtCents / 100}</span>
+                      <span style={{ fontSize: 18, fontWeight: 700, color: '#C9A24B' }}>€{PACK_WHERE_TO_MEET.priceCents / 100}</span>
+                    </div>
+                    <BundleBuyButton bundleId={PACK_WHERE_TO_MEET.id} label={`Get the pack — €${PACK_WHERE_TO_MEET.priceCents / 100}`} />
+                  </div>
+                )}
               </div>
             )}
           </div>

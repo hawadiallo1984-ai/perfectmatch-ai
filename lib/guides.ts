@@ -28,6 +28,7 @@ import { PRO_GUIDES_25 } from './proGuides25';
 import { PRO_GUIDES_26 } from './proGuides26';
 import { PRO_GUIDES_27 } from './proGuides27';
 import { PRO_GUIDES_28 } from './proGuides28';
+import { PRO_GUIDES_29 } from './proGuides29';
 
 type GuideMeta = {
   id: string;
@@ -958,5 +959,20 @@ const _pro28_mapped = Object.fromEntries(
     }])
 ) as Record<string, GuideMeta>;
 
-export const GUIDES: Record<string, GuideMeta> = { ..._base, ..._mapped, ..._extra, ..._new_mapped, ..._pro_mapped, ..._pro2_mapped, ..._pro3_mapped, ..._pro4_mapped, ..._pro5_mapped, ..._pro6_mapped, ..._pro7_mapped, ..._pro8_mapped, ..._pro9_mapped, ..._pro10_mapped, ..._pro11_mapped, ..._pro12_mapped, ..._pro13_mapped, ..._pro14_mapped, ..._pro15_mapped, ..._pro16_mapped, ..._pro17_mapped, ..._pro18_mapped, ..._pro19_mapped, ..._pro20_mapped, ..._pro21_mapped, ..._pro22_mapped, ..._pro23_mapped, ..._pro24_mapped, ..._pro25_mapped, ..._pro26_mapped, ..._pro27_mapped, ..._pro28_mapped };
+const _pro29_mapped = Object.fromEntries(
+  PRO_GUIDES_29
+    .filter(g => !(g.id in _base) && !(g.id in _mapped) && !(g.id in _extra) && !(g.id in _new_mapped) && !(g.id in _pro_mapped) && !(g.id in _pro2_mapped) && !(g.id in _pro3_mapped) && !(g.id in _pro4_mapped) && !(g.id in _pro5_mapped) && !(g.id in _pro6_mapped) && !(g.id in _pro7_mapped) && !(g.id in _pro8_mapped) && !(g.id in _pro9_mapped) && !(g.id in _pro10_mapped) && !(g.id in _pro11_mapped) && !(g.id in _pro12_mapped) && !(g.id in _pro13_mapped) && !(g.id in _pro14_mapped) && !(g.id in _pro15_mapped) && !(g.id in _pro16_mapped) && !(g.id in _pro17_mapped) && !(g.id in _pro18_mapped) && !(g.id in _pro19_mapped) && !(g.id in _pro20_mapped) && !(g.id in _pro21_mapped) && !(g.id in _pro22_mapped) && !(g.id in _pro23_mapped) && !(g.id in _pro24_mapped) && !(g.id in _pro25_mapped) && !(g.id in _pro26_mapped) && !(g.id in _pro27_mapped) && !(g.id in _pro28_mapped))
+    .map(g => [g.id, {
+      id: g.id,
+      name: g.title,
+      priceCents: g.priceCents,
+      currency: 'eur' as const,
+      pdf: `/guides/${g.pdf}`,
+      blurb: g.blurb,
+      bullets: g.bullets,
+      lang: g.lang,
+    }])
+) as Record<string, GuideMeta>;
+
+export const GUIDES: Record<string, GuideMeta> = { ..._base, ..._mapped, ..._extra, ..._new_mapped, ..._pro_mapped, ..._pro2_mapped, ..._pro3_mapped, ..._pro4_mapped, ..._pro5_mapped, ..._pro6_mapped, ..._pro7_mapped, ..._pro8_mapped, ..._pro9_mapped, ..._pro10_mapped, ..._pro11_mapped, ..._pro12_mapped, ..._pro13_mapped, ..._pro14_mapped, ..._pro15_mapped, ..._pro16_mapped, ..._pro17_mapped, ..._pro18_mapped, ..._pro19_mapped, ..._pro20_mapped, ..._pro21_mapped, ..._pro22_mapped, ..._pro23_mapped, ..._pro24_mapped, ..._pro25_mapped, ..._pro26_mapped, ..._pro27_mapped, ..._pro28_mapped, ..._pro29_mapped };
 export type GuideId = string;

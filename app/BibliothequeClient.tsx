@@ -27,6 +27,7 @@ import { PRO_GUIDES_25 } from '@/lib/proGuides25';
 import { PRO_GUIDES_26 } from '@/lib/proGuides26';
 import { PRO_GUIDES_27 } from '@/lib/proGuides27';
 import { PRO_GUIDES_28 } from '@/lib/proGuides28';
+import { PRO_GUIDES_29 } from '@/lib/proGuides29';
 import { BUNDLES } from '@/lib/bundles';
 import BundleBuyButton from '@/components/BundleBuyButton';
 import Testimonials from '@/components/Testimonials';
@@ -181,6 +182,54 @@ const SECTIONS = [
         title: '⑥ Définir la relation et avancer vers l\'engagement',
         desc: 'Parcours Dating · Étape 6 — Du « on est quoi ? » à un vrai projet — oser la conversation.',
         href: '/guides/definir-la-relation-engagement',
+      },
+      {
+        id: 'rencontrer-hors-des-applis',
+        title: 'Rencontrer hors des applis',
+        desc: 'Où rencontrer · Les occasions sont partout dans la vraie vie — présence, ouverture et respect du non.',
+        href: '/guides/rencontrer-hors-des-applis',
+      },
+      {
+        id: 'reussir-sur-les-applis',
+        title: 'Réussir sur les applis de rencontre',
+        desc: 'Où rencontrer · Profil vraiment toi, conversations qui mènent à une vraie rencontre, éviter l\'épuisement.',
+        href: '/guides/reussir-sur-les-applis',
+      },
+      {
+        id: 'rencontrer-sur-les-reseaux-sociaux',
+        title: 'Rencontrer via les réseaux sociaux',
+        desc: 'Où rencontrer · Du DM sincère à la vraie connexion — passer au réel en sécurité.',
+        href: '/guides/rencontrer-sur-les-reseaux-sociaux',
+      },
+      {
+        id: 'amour-au-travail',
+        title: 'L\'amour au travail',
+        desc: 'Où rencontrer · Jamais de rapport de pouvoir — intérêt mutuel, discrétion et respect absolu du non.',
+        href: '/guides/amour-au-travail',
+      },
+      {
+        id: 'le-speed-dating',
+        title: 'Réussir le speed dating',
+        desc: 'Où rencontrer · Une étincelle, pas un verdict — simplicité, curiosité sincère et relance rapide.',
+        href: '/guides/le-speed-dating',
+      },
+      {
+        id: 'rencontrer-en-soiree',
+        title: 'Rencontrer en soirée',
+        desc: 'Où rencontrer · Vibe ≠ vraie connexion — consentement clair et lucide, le test c\'est le lendemain.',
+        href: '/guides/rencontrer-en-soiree',
+      },
+      {
+        id: 'amour-de-vacances',
+        title: 'L\'amour de vacances',
+        desc: 'Où rencontrer · L\'effet bulle — profiter du présent, la distance est le vrai test.',
+        href: '/guides/amour-de-vacances',
+      },
+      {
+        id: 'd-ami-a-amoureux',
+        title: 'D\'ami·e à amoureux·se',
+        desc: 'Où rencontrer · Oser franchir le pas sans tout perdre — honorer tes sentiments, déclarer sans pression.',
+        href: '/guides/d-ami-a-amoureux',
       },
     ],
   },
@@ -970,7 +1019,9 @@ const SECTIONS = [
 const PACK_RELATIONS_PLURIELLES = BUNDLES.find((b) => b.id === 'pack-relations-plurielles');
 const PACK_INTIMITE_SEXUALITE = BUNDLES.find((b) => b.id === 'pack-intimite-sexualite');
 const PACK_PARCOURS_DATING = BUNDLES.find((b) => b.id === 'pack-parcours-dating');
+const PACK_OU_RENCONTRER = BUNDLES.find((b) => b.id === 'pack-ou-rencontrer');
 const PACK_DATING_JOURNEY = BUNDLES.find((b) => b.id === 'pack-dating-journey');
+const PACK_WHERE_TO_MEET = BUNDLES.find((b) => b.id === 'pack-where-to-meet');
 
 const EN_CONFLICT_IDS = new Set(['black-tax', 'misogynoir']);
 const EN_EXTRA = [
@@ -1007,6 +1058,7 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_26.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_27.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_28.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_29.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);
@@ -1121,16 +1173,32 @@ export default function BibliothequeClient() {
                 </div>
               ))}
             </div>
-            {section.id === 'amour-relations' && PACK_PARCOURS_DATING && (
-              <div style={{ marginTop: 32, padding: '20px 24px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.04)' }}>
-                <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: 6 }}>Parcours complet · 6 guides</div>
-                <p style={{ fontWeight: 600, marginBottom: 6, color: '#F5EFE3' }}>{PACK_PARCOURS_DATING.title}</p>
-                <p style={{ fontSize: '.83rem', opacity: 0.6, lineHeight: 1.6, marginBottom: 10 }}>{PACK_PARCOURS_DATING.blurb}</p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                  <span style={{ fontSize: 13, opacity: 0.4, textDecoration: 'line-through' }}>{PACK_PARCOURS_DATING.compareAtCents / 100} €</span>
-                  <span style={{ fontSize: 18, fontWeight: 700, color: '#C9A24B' }}>{PACK_PARCOURS_DATING.priceCents / 100} €</span>
-                </div>
-                <BundleBuyButton bundleId={PACK_PARCOURS_DATING.id} label={`Acheter le parcours — ${PACK_PARCOURS_DATING.priceCents / 100} €`} />
+            {section.id === 'amour-relations' && (PACK_PARCOURS_DATING || PACK_OU_RENCONTRER) && (
+              <div style={{ marginTop: 32, display: 'flex', flexDirection: 'column', gap: 16 }}>
+                {PACK_PARCOURS_DATING && (
+                  <div style={{ padding: '20px 24px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.04)' }}>
+                    <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: 6 }}>Parcours complet · 6 guides</div>
+                    <p style={{ fontWeight: 600, marginBottom: 6, color: '#F5EFE3' }}>{PACK_PARCOURS_DATING.title}</p>
+                    <p style={{ fontSize: '.83rem', opacity: 0.6, lineHeight: 1.6, marginBottom: 10 }}>{PACK_PARCOURS_DATING.blurb}</p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+                      <span style={{ fontSize: 13, opacity: 0.4, textDecoration: 'line-through' }}>{PACK_PARCOURS_DATING.compareAtCents / 100} €</span>
+                      <span style={{ fontSize: 18, fontWeight: 700, color: '#C9A24B' }}>{PACK_PARCOURS_DATING.priceCents / 100} €</span>
+                    </div>
+                    <BundleBuyButton bundleId={PACK_PARCOURS_DATING.id} label={`Acheter le parcours — ${PACK_PARCOURS_DATING.priceCents / 100} €`} />
+                  </div>
+                )}
+                {PACK_OU_RENCONTRER && (
+                  <div style={{ padding: '20px 24px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.04)' }}>
+                    <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: 6 }}>Où & comment rencontrer · 8 guides</div>
+                    <p style={{ fontWeight: 600, marginBottom: 6, color: '#F5EFE3' }}>{PACK_OU_RENCONTRER.title}</p>
+                    <p style={{ fontSize: '.83rem', opacity: 0.6, lineHeight: 1.6, marginBottom: 10 }}>{PACK_OU_RENCONTRER.blurb}</p>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+                      <span style={{ fontSize: 13, opacity: 0.4, textDecoration: 'line-through' }}>{PACK_OU_RENCONTRER.compareAtCents / 100} €</span>
+                      <span style={{ fontSize: 18, fontWeight: 700, color: '#C9A24B' }}>{PACK_OU_RENCONTRER.priceCents / 100} €</span>
+                    </div>
+                    <BundleBuyButton bundleId={PACK_OU_RENCONTRER.id} label={`Acheter le pack — ${PACK_OU_RENCONTRER.priceCents / 100} €`} />
+                  </div>
+                )}
               </div>
             )}
             {section.id === 'relations-plurielles' && PACK_RELATIONS_PLURIELLES && (
@@ -1212,16 +1280,32 @@ export default function BibliothequeClient() {
                   </div>
                 ))}
               </div>
-              {theme === 'Love & Relationships' && PACK_DATING_JOURNEY && (
-                <div style={{ marginTop: 24, padding: '20px 24px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.04)' }}>
-                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: 6 }}>Dating Journey · 6 guides</div>
-                  <p style={{ fontWeight: 600, marginBottom: 6, color: '#F5EFE3' }}>{PACK_DATING_JOURNEY.title}</p>
-                  <p style={{ fontSize: '.83rem', opacity: 0.6, lineHeight: 1.6, marginBottom: 10 }}>{PACK_DATING_JOURNEY.blurb}</p>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                    <span style={{ fontSize: 13, opacity: 0.4, textDecoration: 'line-through' }}>{PACK_DATING_JOURNEY.compareAtCents / 100} €</span>
-                    <span style={{ fontSize: 18, fontWeight: 700, color: '#C9A24B' }}>{PACK_DATING_JOURNEY.priceCents / 100} €</span>
-                  </div>
-                  <BundleBuyButton bundleId={PACK_DATING_JOURNEY.id} label={`Buy the journey — ${PACK_DATING_JOURNEY.priceCents / 100} €`} />
+              {theme === 'Love & Relationships' && (PACK_DATING_JOURNEY || PACK_WHERE_TO_MEET) && (
+                <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 16 }}>
+                  {PACK_DATING_JOURNEY && (
+                    <div style={{ padding: '20px 24px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.04)' }}>
+                      <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: 6 }}>Dating Journey · 6 guides</div>
+                      <p style={{ fontWeight: 600, marginBottom: 6, color: '#F5EFE3' }}>{PACK_DATING_JOURNEY.title}</p>
+                      <p style={{ fontSize: '.83rem', opacity: 0.6, lineHeight: 1.6, marginBottom: 10 }}>{PACK_DATING_JOURNEY.blurb}</p>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+                        <span style={{ fontSize: 13, opacity: 0.4, textDecoration: 'line-through' }}>{PACK_DATING_JOURNEY.compareAtCents / 100} €</span>
+                        <span style={{ fontSize: 18, fontWeight: 700, color: '#C9A24B' }}>{PACK_DATING_JOURNEY.priceCents / 100} €</span>
+                      </div>
+                      <BundleBuyButton bundleId={PACK_DATING_JOURNEY.id} label={`Buy the journey — ${PACK_DATING_JOURNEY.priceCents / 100} €`} />
+                    </div>
+                  )}
+                  {PACK_WHERE_TO_MEET && (
+                    <div style={{ padding: '20px 24px', border: '1px solid rgba(201,162,75,0.3)', background: 'rgba(201,162,75,0.04)' }}>
+                      <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', marginBottom: 6 }}>Where & How to Meet · 8 guides</div>
+                      <p style={{ fontWeight: 600, marginBottom: 6, color: '#F5EFE3' }}>{PACK_WHERE_TO_MEET.title}</p>
+                      <p style={{ fontSize: '.83rem', opacity: 0.6, lineHeight: 1.6, marginBottom: 10 }}>{PACK_WHERE_TO_MEET.blurb}</p>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+                        <span style={{ fontSize: 13, opacity: 0.4, textDecoration: 'line-through' }}>{PACK_WHERE_TO_MEET.compareAtCents / 100} €</span>
+                        <span style={{ fontSize: 18, fontWeight: 700, color: '#C9A24B' }}>{PACK_WHERE_TO_MEET.priceCents / 100} €</span>
+                      </div>
+                      <BundleBuyButton bundleId={PACK_WHERE_TO_MEET.id} label={`Get the pack — ${PACK_WHERE_TO_MEET.priceCents / 100} €`} />
+                    </div>
+                  )}
                 </div>
               )}
             </div>

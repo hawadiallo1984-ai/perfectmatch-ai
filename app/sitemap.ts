@@ -298,6 +298,22 @@ const GUIDE_IDS = [
   'deepening-the-humiliation-wound',
   'deepening-the-betrayal-wound',
   'deepening-the-injustice-wound',
+  // Cas particuliers dating FR (etape48)
+  'relations-ecart-d-age',
+  'femme-cougar',
+  'dater-avec-des-enfants',
+  'dating-et-traumas',
+  'le-premier-baiser',
+  'le-premier-rapport-sexuel',
+  'qui-paie-au-rendez-vous',
+  // Cas particuliers dating EN (etape48)
+  'age-gap-relationships',
+  'dating-a-younger-man',
+  'dating-with-children',
+  'dating-with-trauma',
+  'the-first-kiss',
+  'the-first-time',
+  'who-pays-on-a-date',
   // Où & comment rencontrer FR (etape47)
   'rencontrer-hors-des-applis',
   'reussir-sur-les-applis',

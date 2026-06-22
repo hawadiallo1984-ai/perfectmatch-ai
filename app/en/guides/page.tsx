@@ -31,6 +31,9 @@ import { PRO_GUIDES_29 } from '@/lib/proGuides29';
 import { PRO_GUIDES_30 } from '@/lib/proGuides30';
 import { PRO_GUIDES_32 } from '@/lib/proGuides32';
 import { PRO_GUIDES_33 } from '@/lib/proGuides33';
+import { PRO_GUIDES_34 } from '@/lib/proGuides34';
+import { PRO_GUIDES_35 } from '@/lib/proGuides35';
+import { PRO_GUIDES_36 } from '@/lib/proGuides36';
 import { BUNDLES } from '@/lib/bundles';
 import { GUIDE_PROMO, discountedCents } from '@/lib/promo';
 import BundleBuyButton from '@/components/BundleBuyButton';
@@ -82,6 +85,9 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_30.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_32.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_33.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_34.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_35.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_36.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

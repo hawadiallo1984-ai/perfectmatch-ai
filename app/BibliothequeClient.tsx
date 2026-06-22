@@ -31,6 +31,9 @@ import { PRO_GUIDES_29 } from '@/lib/proGuides29';
 import { PRO_GUIDES_30 } from '@/lib/proGuides30';
 import { PRO_GUIDES_32 } from '@/lib/proGuides32';
 import { PRO_GUIDES_33 } from '@/lib/proGuides33';
+import { PRO_GUIDES_34 } from '@/lib/proGuides34';
+import { PRO_GUIDES_35 } from '@/lib/proGuides35';
+import { PRO_GUIDES_36 } from '@/lib/proGuides36';
 import { BUNDLES } from '@/lib/bundles';
 import { GUIDE_PROMO, discountedCents } from '@/lib/promo';
 import BundleBuyButton from '@/components/BundleBuyButton';
@@ -1076,6 +1079,24 @@ const SECTIONS = [
       { id: 'jugement-de-tes-proches', title: 'Gérer le jugement de tes proches', desc: '« C\'est pas un vrai métier » : ta voie t\'appartient, poser des limites.', href: '/guides/jugement-de-tes-proches' },
       { id: 'garder-ta-liberte-creative', title: 'Garder ta liberté créative', desc: 'Évoluer sans « trahir » ta communauté : tu as le droit d\'évoluer.', href: '/guides/garder-ta-liberte-creative' },
       { id: 'decalage-image-vraie-vie', title: 'Le décalage image en ligne / vraie vie', desc: 'Quand tu te sens « faux » : réconcilier tes deux faces, réduire le fossé.', href: '/guides/decalage-image-vraie-vie' },
+      { id: 'charisme-face-camera', title: 'Développer ta personnalité et ton charisme face caméra', desc: 'Devenir captivant·e : le charisme s\'apprend, ta singularité est ton charisme.', href: '/guides/charisme-face-camera' },
+      { id: 'trouver-ton-personnage', title: 'Trouver ton « personnage » sans porter de masque', desc: 'Un persona authentique : amplifier qui tu es déjà, définir ton ton et tes codes.', href: '/guides/trouver-ton-personnage' },
+      { id: 'raconter-ta-vie-sans-te-mettre-a-nu', title: 'Raconter ta vie sans te mettre à nu', desc: 'Le storytelling personnel : la leçon pas le déballage, la cicatrice pas la plaie.', href: '/guides/raconter-ta-vie-sans-te-mettre-a-nu' },
+      { id: 'couple-d-influenceurs', title: 'Devenir un couple d\'influenceurs', desc: 'Créer à deux sans abîmer le couple : votre intimité avant le contenu.', href: '/guides/couple-d-influenceurs' },
+      { id: 'creer-en-famille-proteger-enfants', title: 'Créer du contenu en famille — en protégeant tes enfants', desc: 'L\'angle responsable : le droit de ton enfant à son intimité. Dans le doute, non.', href: '/guides/creer-en-famille-proteger-enfants' },
+      { id: 'dire-non-sans-culpabiliser', title: 'Dire non sans culpabiliser', desc: 'Sponsos pas alignées, collabs : tes valeurs avant l\'opportunité.', href: '/guides/dire-non-sans-culpabiliser' },
+      { id: 'survivre-au-bad-buzz', title: 'Survivre à un bad buzz', desc: 'La crise virale : protéger ta santé mentale d\'abord, jamais réagir à chaud.', href: '/guides/survivre-au-bad-buzz' },
+      { id: 'gerer-le-cyberharcelement', title: 'Gérer le cyberharcèlement', desc: 'Le harcèlement ciblé : ce n\'est jamais ta faute, documenter/signaler/agir.', href: '/guides/gerer-le-cyberharcelement' },
+      { id: 'encaisser-un-flop', title: 'Encaisser un flop ou un échec public', desc: 'La vidéo qui fait un bide : un échec ≠ ta valeur, analyser/itérer/repartir.', href: '/guides/encaisser-un-flop' },
+      { id: 'assumer-et-reparer-une-erreur', title: 'Assumer et réparer une vraie erreur', desc: 'Quand tu as réellement merdé : une erreur ne te définit pas, assumer + réparer.', href: '/guides/assumer-et-reparer-une-erreur' },
+      { id: 'la-peur-du-succes', title: 'La peur du succès (et de la chute)', desc: 'Le vertige quand ça décolle : t\'autoriser à réussir, gérer la croissance.', href: '/guides/la-peur-du-succes' },
+      { id: 'passer-un-palier', title: 'Passer un palier (10k, 100k, 1M…)', desc: 'Chaque seuil rebat les cartes : grandir avec ton succès, garder ton pourquoi.', href: '/guides/passer-un-palier' },
+      { id: 'estime-qui-ne-depend-pas-des-likes', title: 'Une estime de soi qui ne dépend pas des likes', desc: 'Le piège de la validation (dopamine) : ta valeur est intrinsèque, sources hors réseaux.', href: '/guides/estime-qui-ne-depend-pas-des-likes' },
+      { id: 'oser-monetiser-sans-culpabilite', title: 'Oser monétiser sans culpabilité', desc: 'Vendre, fixer tes prix : monétiser est légitime, ton travail mérite paiement.', href: '/guides/oser-monetiser-sans-culpabilite' },
+      { id: 'de-la-passion-au-metier', title: 'De la passion au métier : le mindset entrepreneurial', desc: 'Transformer le contenu en revenu durable : t\'autoriser à en vivre.', href: '/guides/de-la-passion-au-metier' },
+      { id: 'addiction-a-ton-telephone', title: 'L\'addiction à ton propre téléphone', desc: 'Le créateur happé par ce qu\'il crée : la boucle dopamine, hygiène numérique.', href: '/guides/addiction-a-ton-telephone' },
+      { id: 'la-depression-du-createur', title: 'La dépression du créateur', desc: 'Quand ça dépasse le coup de mou : ta valeur ≠ ta productivité, consulter un·e pro.', href: '/guides/la-depression-du-createur' },
+      { id: 'le-decalage-de-la-reussite', title: 'Le décalage de la grande réussite', desc: 'Quand le succès ne ressemble pas à ce que tu imaginais : retrouver du sens.', href: '/guides/le-decalage-de-la-reussite' },
     ],
   },
 ];
@@ -1128,6 +1149,9 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_30.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_32.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_33.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_34.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_35.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_36.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

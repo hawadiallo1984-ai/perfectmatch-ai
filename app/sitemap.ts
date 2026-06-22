@@ -447,6 +447,48 @@ const GUIDE_IDS = [
   'loved-ones-judgment',
   'keeping-your-creative-freedom',
   'online-image-vs-real-life',
+  // Créateur & Influence lot 3 FR (etape53)
+  'charisme-face-camera',
+  'trouver-ton-personnage',
+  'raconter-ta-vie-sans-te-mettre-a-nu',
+  'couple-d-influenceurs',
+  'creer-en-famille-proteger-enfants',
+  'dire-non-sans-culpabiliser',
+  // Creator & Influence lot 3 EN (etape53)
+  'charisma-on-camera',
+  'finding-your-persona',
+  'personal-storytelling-with-limits',
+  'influencer-couple',
+  'family-content-protecting-your-kids',
+  'saying-no-without-guilt',
+  // Créateur & Influence lot 4 FR (etape54)
+  'survivre-au-bad-buzz',
+  'gerer-le-cyberharcelement',
+  'encaisser-un-flop',
+  'assumer-et-reparer-une-erreur',
+  'la-peur-du-succes',
+  'passer-un-palier',
+  // Creator & Influence lot 4 EN (etape54)
+  'surviving-a-bad-buzz',
+  'handling-cyberbullying',
+  'handling-a-public-flop',
+  'owning-and-repairing-a-mistake',
+  'the-fear-of-success',
+  'reaching-a-new-level',
+  // Créateur & Influence lot 5 FR (etape55)
+  'estime-qui-ne-depend-pas-des-likes',
+  'oser-monetiser-sans-culpabilite',
+  'de-la-passion-au-metier',
+  'addiction-a-ton-telephone',
+  'la-depression-du-createur',
+  'le-decalage-de-la-reussite',
+  // Creator & Influence lot 5 EN (etape55)
+  'self-esteem-beyond-likes',
+  'monetizing-without-guilt',
+  'from-passion-to-profession',
+  'phone-addiction',
+  'creator-depression',
+  'the-success-letdown',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

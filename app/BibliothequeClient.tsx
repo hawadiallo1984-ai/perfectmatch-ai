@@ -34,6 +34,8 @@ import { PRO_GUIDES_33 } from '@/lib/proGuides33';
 import { PRO_GUIDES_34 } from '@/lib/proGuides34';
 import { PRO_GUIDES_35 } from '@/lib/proGuides35';
 import { PRO_GUIDES_36 } from '@/lib/proGuides36';
+import { PRO_GUIDES_37 } from '@/lib/proGuides37';
+import { PRO_GUIDES_38 } from '@/lib/proGuides38';
 import { BUNDLES } from '@/lib/bundles';
 import { GUIDE_PROMO, discountedCents } from '@/lib/promo';
 import BundleBuyButton from '@/components/BundleBuyButton';
@@ -1099,6 +1101,20 @@ const SECTIONS = [
       { id: 'le-decalage-de-la-reussite', title: 'Le décalage de la grande réussite', desc: 'Quand le succès ne ressemble pas à ce que tu imaginais : retrouver du sens.', href: '/guides/le-decalage-de-la-reussite' },
     ],
   },
+  {
+    id: 'heritage-transmission',
+    label: 'Héritage & Transmission',
+    guides: [
+      { id: 'trauma-transgenerationnel', title: 'Le trauma transgénérationnel', desc: 'Ce qui se transmet vraiment : un héritage n\'est pas un destin, voir les schémas familiaux.', href: '/guides/trauma-transgenerationnel' },
+      { id: 'epigenetique-du-trauma', title: 'L\'épigénétique du trauma', desc: 'Quand le vécu marque l\'expression des gènes : tu n\'es pas réductible à ta biologie.', href: '/guides/epigenetique-du-trauma' },
+      { id: 'secrets-et-non-dits-de-famille', title: 'Les secrets et non-dits de famille', desc: 'Ce qui pèse en silence : ton droit à ta propre vérité, briser le silence avec tact.', href: '/guides/secrets-et-non-dits-de-famille' },
+      { id: 'briser-le-cycle', title: 'Briser le cycle', desc: 'Ne pas transmettre à tes enfants : conscience + réparation + nouveaux gestes.', href: '/guides/briser-le-cycle' },
+      { id: 'memoires-traumatiques', title: 'Les mémoires traumatiques', desc: 'Comment le corps et l\'esprit gardent la trace : compassion pas jugement, réguler.', href: '/guides/memoires-traumatiques' },
+      { id: 'guerir-l-heritage', title: 'Guérir l\'héritage', desc: 'Te réapproprier ton histoire : devenir l\'auteur·e de ton récit.', href: '/guides/guerir-l-heritage' },
+      { id: 'trauma-esclavage-colonisation', title: 'Le trauma de l\'esclavage et de la colonisation', desc: 'Un héritage collectif : honorer la force héritée, guérison collective.', href: '/guides/trauma-esclavage-colonisation' },
+      { id: 'cycle-de-pauvrete-transgenerationnel', title: 'Briser le cycle transgénérationnel de pauvreté', desc: 'Quand le manque se transmet : sortir des croyances de pénurie, passer à la construction.', href: '/guides/cycle-de-pauvrete-transgenerationnel' },
+    ],
+  },
 ];
 
 const PACK_RELATIONS_PLURIELLES = BUNDLES.find((b) => b.id === 'pack-relations-plurielles');
@@ -1115,7 +1131,7 @@ const EN_EXTRA = [
   { id: 'misogynoir-en', title: 'Misogynoir', blurb: 'Free yourself from the tropes, reclaim your full humanity.', theme: 'Identity & Resilience' },
   { id: 'black-tax-en', title: 'Black Tax', blurb: 'Supporting your people without losing yourself.', theme: 'Money' },
 ];
-const EN_THEME_ORDER = ['Wellbeing', 'Wellbeing & Self', 'Relationships', 'Love & Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career', 'Intimacy & Sexuality', 'Deconstruction & Allyship', 'Creator & Influence'];
+const EN_THEME_ORDER = ['Wellbeing', 'Wellbeing & Self', 'Relationships', 'Love & Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career', 'Intimacy & Sexuality', 'Deconstruction & Allyship', 'Creator & Influence', 'Legacy & Transmission'];
 const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
   theme,
   guides: [
@@ -1152,6 +1168,8 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_34.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_35.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_36.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_37.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_38.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

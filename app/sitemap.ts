@@ -489,6 +489,26 @@ const GUIDE_IDS = [
   'phone-addiction',
   'creator-depression',
   'the-success-letdown',
+  // Héritage & Transmission lot 1 FR (etape56)
+  'trauma-transgenerationnel',
+  'epigenetique-du-trauma',
+  'secrets-et-non-dits-de-famille',
+  'briser-le-cycle',
+  'memoires-traumatiques',
+  'guerir-l-heritage',
+  // Legacy & Transmission lot 1 EN (etape56)
+  'transgenerational-trauma',
+  'the-epigenetics-of-trauma',
+  'family-secrets-and-silences',
+  'breaking-the-cycle',
+  'traumatic-memories',
+  'healing-your-inheritance',
+  // Héritage & Transmission lot 2 FR (etape57)
+  'trauma-esclavage-colonisation',
+  'cycle-de-pauvrete-transgenerationnel',
+  // Legacy & Transmission lot 2 EN (etape57)
+  'slavery-and-colonial-trauma',
+  'breaking-the-poverty-cycle',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

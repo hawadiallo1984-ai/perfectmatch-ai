@@ -29,6 +29,8 @@ import { PRO_GUIDES_27 } from '@/lib/proGuides27';
 import { PRO_GUIDES_28 } from '@/lib/proGuides28';
 import { PRO_GUIDES_29 } from '@/lib/proGuides29';
 import { PRO_GUIDES_30 } from '@/lib/proGuides30';
+import { PRO_GUIDES_32 } from '@/lib/proGuides32';
+import { PRO_GUIDES_33 } from '@/lib/proGuides33';
 import { BUNDLES } from '@/lib/bundles';
 import { GUIDE_PROMO, discountedCents } from '@/lib/promo';
 import BundleBuyButton from '@/components/BundleBuyButton';
@@ -1058,6 +1060,24 @@ const SECTIONS = [
       },
     ],
   },
+  {
+    id: 'createur-influence',
+    label: 'Créateur·rice & Influence',
+    guides: [
+      { id: 'oser-te-montrer-camera', title: 'Oser te montrer face caméra', desc: 'Vaincre la peur du jugement : la peur du regard est normale, l\'exposition progressive.', href: '/guides/oser-te-montrer-camera' },
+      { id: 'syndrome-imposteur-createur', title: 'Le syndrome de l\'imposteur du créateur', desc: '« Qui suis-je pour parler de ça ? » Ta voix a de la valeur.', href: '/guides/syndrome-imposteur-createur' },
+      { id: 'trouver-ta-niche-voix', title: 'Trouver ta niche et ta voix authentique', desc: 'Arrête de copier, deviens reconnaissable : niche + authenticité = visibilité.', href: '/guides/trouver-ta-niche-voix' },
+      { id: 'regularite-sans-tepuiser', title: 'La régularité sans t\'épuiser', desc: 'Miser sur les systèmes pas la motivation, bâtir ton système de création.', href: '/guides/regularite-sans-tepuiser' },
+      { id: 'burn-out-createur', title: 'Le burn-out du créateur de contenu', desc: 'L\'« always-on » et la fatigue : repérer les signes, poser des limites pour durer.', href: '/guides/burn-out-createur' },
+      { id: 'solitude-du-createur', title: 'La solitude du créateur', desc: 'Visible par des milliers, seul·e derrière l\'écran : recréer du lien réel.', href: '/guides/solitude-du-createur' },
+      { id: 'gerer-la-comparaison', title: 'Gérer la comparaison', desc: 'Le scroll qui démoralise : un jeu truqué, courir TA course, hygiène de feed.', href: '/guides/gerer-la-comparaison' },
+      { id: 'encaisser-haters-critiques', title: 'Encaisser les critiques et les haters', desc: 'Ne pas intérioriser la haine : ta valeur ≠ leurs mots, filtrer et ne pas nourrir.', href: '/guides/encaisser-haters-critiques' },
+      { id: 'exposition-et-vie-privee', title: 'Exposition & vie privée', desc: 'Poser des limites, gérer le parasocial : ton droit à un jardin secret.', href: '/guides/exposition-et-vie-privee' },
+      { id: 'jugement-de-tes-proches', title: 'Gérer le jugement de tes proches', desc: '« C\'est pas un vrai métier » : ta voie t\'appartient, poser des limites.', href: '/guides/jugement-de-tes-proches' },
+      { id: 'garder-ta-liberte-creative', title: 'Garder ta liberté créative', desc: 'Évoluer sans « trahir » ta communauté : tu as le droit d\'évoluer.', href: '/guides/garder-ta-liberte-creative' },
+      { id: 'decalage-image-vraie-vie', title: 'Le décalage image en ligne / vraie vie', desc: 'Quand tu te sens « faux » : réconcilier tes deux faces, réduire le fossé.', href: '/guides/decalage-image-vraie-vie' },
+    ],
+  },
 ];
 
 const PACK_RELATIONS_PLURIELLES = BUNDLES.find((b) => b.id === 'pack-relations-plurielles');
@@ -1074,7 +1094,7 @@ const EN_EXTRA = [
   { id: 'misogynoir-en', title: 'Misogynoir', blurb: 'Free yourself from the tropes, reclaim your full humanity.', theme: 'Identity & Resilience' },
   { id: 'black-tax-en', title: 'Black Tax', blurb: 'Supporting your people without losing yourself.', theme: 'Money' },
 ];
-const EN_THEME_ORDER = ['Wellbeing', 'Wellbeing & Self', 'Relationships', 'Love & Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career', 'Intimacy & Sexuality', 'Deconstruction & Allyship'];
+const EN_THEME_ORDER = ['Wellbeing', 'Wellbeing & Self', 'Relationships', 'Love & Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career', 'Intimacy & Sexuality', 'Deconstruction & Allyship', 'Creator & Influence'];
 const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
   theme,
   guides: [
@@ -1106,6 +1126,8 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_28.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_29.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_30.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_32.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_33.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

@@ -419,6 +419,34 @@ const GUIDE_IDS = [
   'facing-community-judgment',
   'polygamy-and-faith',
   'economic-dependence-and-autonomy',
+  // Créateur & Influence lot 1 FR (etape51)
+  'oser-te-montrer-camera',
+  'syndrome-imposteur-createur',
+  'trouver-ta-niche-voix',
+  'regularite-sans-tepuiser',
+  'burn-out-createur',
+  'solitude-du-createur',
+  // Creator & Influence lot 1 EN (etape51)
+  'daring-to-show-up-on-camera',
+  'creator-impostor-syndrome',
+  'finding-your-niche-and-voice',
+  'consistency-without-burning-out',
+  'content-creator-burnout',
+  'the-creator-loneliness',
+  // Créateur & Influence lot 2 FR (etape52)
+  'gerer-la-comparaison',
+  'encaisser-haters-critiques',
+  'exposition-et-vie-privee',
+  'jugement-de-tes-proches',
+  'garder-ta-liberte-creative',
+  'decalage-image-vraie-vie',
+  // Creator & Influence lot 2 EN (etape52)
+  'handling-comparison',
+  'handling-criticism-and-haters',
+  'exposure-and-privacy',
+  'loved-ones-judgment',
+  'keeping-your-creative-freedom',
+  'online-image-vs-real-life',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

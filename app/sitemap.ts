@@ -509,6 +509,28 @@ const GUIDE_IDS = [
   // Legacy & Transmission lot 2 EN (etape57)
   'slavery-and-colonial-trauma',
   'breaking-the-poverty-cycle',
+  // Héritage & Transmission lot 3 FR (etape58)
+  'honte-transmise',
+  'loyaute-familiale-invisible',
+  'reussir-transfuge-de-classe',
+  // Legacy & Transmission lot 3 EN (etape58)
+  'inherited-shame',
+  'invisible-family-loyalty',
+  'first-in-your-family-to-succeed',
+  // Émotions & Régulation FR (etape59)
+  'accueillir-tes-emotions',
+  'boite-a-outils-regulation',
+  'gerer-la-frustration',
+  'apaiser-la-colere',
+  'calmer-anxiete-submersion',
+  'tolerer-l-inconfort',
+  // Emotions & Regulation EN (etape59)
+  'understanding-your-emotions',
+  'your-emotion-regulation-toolkit',
+  'managing-frustration',
+  'soothing-anger',
+  'calming-anxiety-and-overwhelm',
+  'tolerating-discomfort',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

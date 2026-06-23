@@ -36,6 +36,8 @@ import { PRO_GUIDES_35 } from '@/lib/proGuides35';
 import { PRO_GUIDES_36 } from '@/lib/proGuides36';
 import { PRO_GUIDES_37 } from '@/lib/proGuides37';
 import { PRO_GUIDES_38 } from '@/lib/proGuides38';
+import { PRO_GUIDES_39 } from '@/lib/proGuides39';
+import { PRO_GUIDES_40 } from '@/lib/proGuides40';
 import { BUNDLES } from '@/lib/bundles';
 import { GUIDE_PROMO, discountedCents } from '@/lib/promo';
 import BundleBuyButton from '@/components/BundleBuyButton';
@@ -52,7 +54,7 @@ const EN_EXTRA = [
   { id: 'misogynoir-en', title: 'Misogynoir', blurb: 'Free yourself from the tropes, reclaim your full humanity.', theme: 'Identity & Resilience' },
   { id: 'black-tax-en', title: 'Black Tax', blurb: 'Supporting your people without losing yourself.', theme: 'Money' },
 ];
-const EN_THEME_ORDER = ['Wellbeing', 'Wellbeing & Self', 'Relationships', 'Love & Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career', 'Intimacy & Sexuality', 'Deconstruction & Allyship', 'Creator & Influence', 'Legacy & Transmission'];
+const EN_THEME_ORDER = ['Wellbeing', 'Wellbeing & Self', 'Relationships', 'Love & Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career', 'Intimacy & Sexuality', 'Deconstruction & Allyship', 'Creator & Influence', 'Legacy & Transmission', 'Emotions & Regulation'];
 
 const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
   theme,
@@ -92,6 +94,8 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_36.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_37.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_38.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_39.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_40.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

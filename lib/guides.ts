@@ -37,6 +37,8 @@ import { PRO_GUIDES_35 } from './proGuides35';
 import { PRO_GUIDES_36 } from './proGuides36';
 import { PRO_GUIDES_37 } from './proGuides37';
 import { PRO_GUIDES_38 } from './proGuides38';
+import { PRO_GUIDES_39 } from './proGuides39';
+import { PRO_GUIDES_40 } from './proGuides40';
 
 type GuideMeta = {
   id: string;
@@ -53,7 +55,7 @@ const _base = {
   'black-tax': {
     id: 'black-tax',
     name: 'Guide Black Tax — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/black-tax-4-approches.pdf',
     blurb:
@@ -69,7 +71,7 @@ const _base = {
   'identite-metisse': {
     id: 'identite-metisse',
     name: 'Guide Identité métisse — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/identite-metisse-4-approches.pdf',
     blurb:
@@ -85,7 +87,7 @@ const _base = {
   'couples-mixtes': {
     id: 'couples-mixtes',
     name: 'Guide Couples mixtes & interculturels — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/couples-mixtes-4-approches.pdf',
     blurb:
@@ -101,7 +103,7 @@ const _base = {
   'couple-noir': {
     id: 'couple-noir',
     name: 'Guide Couple noir face au monde — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/couple-noir-face-au-monde-4-approches.pdf',
     blurb:
@@ -117,7 +119,7 @@ const _base = {
   'se-reapproprier-sexualite': {
     id: 'se-reapproprier-sexualite',
     name: 'Guide Se réapproprier sa sexualité — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/se-reapproprier-sa-sexualite-4-approches.pdf',
     blurb:
@@ -133,7 +135,7 @@ const _base = {
   'desir-intimite': {
     id: 'desir-intimite',
     name: 'Guide Désir & intimité — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/desir-et-intimite-4-approches.pdf',
     blurb:
@@ -149,7 +151,7 @@ const _base = {
   'sexualite-image-corps': {
     id: 'sexualite-image-corps',
     name: 'Guide Sexualité & image du corps — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/sexualite-et-image-du-corps-4-approches.pdf',
     blurb:
@@ -165,7 +167,7 @@ const _base = {
   'sexualite-black': {
     id: 'sexualite-black',
     name: 'Guide Sexualité black — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/sexualite-black-4-approches.pdf',
     blurb:
@@ -181,7 +183,7 @@ const _base = {
   'anxiete-pensees-negatives': {
     id: 'anxiete-pensees-negatives',
     name: 'Guide Anxiété & pensées négatives — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/anxiete-et-pensees-negatives-4-approches.pdf',
     blurb:
@@ -197,7 +199,7 @@ const _base = {
   'gestion-solitude': {
     id: 'gestion-solitude',
     name: 'Guide Apprivoiser la solitude — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/gestion-solitude-4-approches.pdf',
     blurb:
@@ -213,7 +215,7 @@ const _base = {
   'gestion-celibat': {
     id: 'gestion-celibat',
     name: 'Guide Bien vivre son célibat — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/gestion-celibat-4-approches.pdf',
     blurb:
@@ -229,7 +231,7 @@ const _base = {
   'confiance-estime-de-soi': {
     id: 'confiance-estime-de-soi',
     name: 'Guide Confiance & estime de soi — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/confiance-estime-de-soi-4-approches.pdf',
     blurb:
@@ -245,7 +247,7 @@ const _base = {
   'styles-attachement': {
     id: 'styles-attachement',
     name: "Guide Styles d'attachement — 4 approches",
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/styles-attachement-4-approches.pdf',
     blurb:
@@ -261,7 +263,7 @@ const _base = {
   'guerir-rupture': {
     id: 'guerir-rupture',
     name: "Guide Guérir d'une rupture — 4 approches",
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/guerir-rupture-4-approches.pdf',
     blurb:
@@ -277,7 +279,7 @@ const _base = {
   'foi-identite-bien-etre': {
     id: 'foi-identite-bien-etre',
     name: 'Guide Foi, identité & bien-être — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/foi-identite-bien-etre-4-approches.pdf',
     blurb: "Ta foi a façonné qui tu es — ce guide t'accompagne à travers 4 regards TCC pour distinguer ce qui vient de toi, gérer la culpabilité religieuse et habiter une spiritualité qui te ressemble vraiment.",
@@ -292,7 +294,7 @@ const _base = {
   'misogynoir': {
     id: 'misogynoir',
     name: 'Guide Misogynoir — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/misogynoir-4-approches.pdf',
     blurb: "La misogynoir — cette violence croisée du racisme et du sexisme — laisse des traces profondes ; ce guide t'accompagne à travers 4 regards TCC pour les nommer, les déconstruire et affirmer ton droit d'être pleinement toi.",
@@ -307,7 +309,7 @@ const _base = {
   'charge-raciale': {
     id: 'charge-raciale',
     name: 'Guide La charge raciale — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/charge-raciale-4-approches.pdf',
     blurb: "Porter la charge raciale au quotidien épuise sans qu'on le nomme ; ce guide t'accompagne à travers 4 regards TCC pour reconnaître le poids invisible, te reposer sans culpabilité et alléger ce que tu portes seul·e.",
@@ -322,7 +324,7 @@ const _base = {
   'racisme-au-quotidien': {
     id: 'racisme-au-quotidien',
     name: 'Guide Racisme au quotidien — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/racisme-au-quotidien-4-approches.pdf',
     blurb: "Le racisme ordinaire s'accumule en silence et laisse des traces que tu ne vois pas toujours ; ce guide t'accompagne à travers 4 regards TCC pour gérer l'après, préserver ta joie et te protéger.",
@@ -337,7 +339,7 @@ const _base = {
   'colorisme': {
     id: 'colorisme',
     name: 'Guide Colorisme — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/colorisme-4-approches.pdf',
     blurb: "Les hiérarchies de teintes ont façonné ton rapport à ta peau sans que tu l'aies choisi ; ce guide t'accompagne à travers 4 regards TCC pour déconstruire ces messages et habiter ta beauté sans hiérarchie.",
@@ -352,7 +354,7 @@ const _base = {
   'dating-femme-noire': {
     id: 'dating-femme-noire',
     name: 'Guide Dating en tant que femme noire — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/dating-femme-noire-4-approches.pdf',
     blurb: "Le dating en tant que femme noire réveille des blessures d'identité et de désirabilité ; ce guide t'accompagne à travers 4 regards TCC pour te choisir d'abord, gérer les pensées saboteuses et protéger ton cœur.",
@@ -367,7 +369,7 @@ const _base = {
   'parentalite-noire': {
     id: 'parentalite-noire',
     name: 'Guide Parentalité noire — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/parentalite-noire-4-approches.pdf',
     blurb: "Être parent noir·e, c'est transmettre une fierté et préparer sans transmettre la peur ; ce guide t'accompagne à travers 4 regards TCC pour nourrir l'identité de ton enfant et construire un village autour de lui.",
@@ -382,7 +384,7 @@ const _base = {
   'syndrome-imposteur': {
     id: 'syndrome-imposteur',
     name: "Guide Syndrome de l'imposteur — 4 approches",
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/syndrome-imposteur-4-approches.pdf',
     blurb: "Le syndrome de l'imposteur touche particulièrement celles et ceux qui évoluent dans des espaces où ils ne se reconnaissent pas ; ce guide t'accompagne à travers 4 regards TCC pour démonter les pensées d'imposteur et t'autoriser ta place.",
@@ -397,7 +399,7 @@ const _base = {
   'croyances-argent': {
     id: 'croyances-argent',
     name: "Guide Croyances sur l'argent — 4 approches",
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/croyances-argent-4-approches.pdf',
     blurb: "Tes croyances sur l'argent ont été formées bien avant tes premiers euros ; ce guide t'accompagne à travers 4 regards TCC pour identifier les héritages limitants, les restructurer et construire un rapport sain à l'argent.",
@@ -412,7 +414,7 @@ const _base = {
   'mentalite-abondance': {
     id: 'mentalite-abondance',
     name: "Guide Mentalité d'abondance — 4 approches",
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/mentalite-abondance-4-approches.pdf',
     blurb: "La mentalité de rareté s'apprend — et peut se défaire ; ce guide t'accompagne à travers 4 regards TCC pour comprendre les racines du manque, cultiver l'abondance intérieure et modifier ton environnement.",
@@ -427,7 +429,7 @@ const _base = {
   'honte-de-classe': {
     id: 'honte-de-classe',
     name: 'Guide Honte de classe — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/honte-de-classe-4-approches.pdf',
     blurb: "La honte de ses origines sociales se loge profondément et silencieusement ; ce guide t'accompagne à travers 4 regards TCC pour la nommer, déconstruire les pensées dévalorisantes et naviguer entre les milieux sans te trahir.",
@@ -442,7 +444,7 @@ const _base = {
   'oser-ta-valeur-tarifs': {
     id: 'oser-ta-valeur-tarifs',
     name: 'Guide Oser ta valeur & tes tarifs — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/oser-ta-valeur-tarifs-4-approches.pdf',
     blurb: "Te sous-évaluer n'est pas de la modestie — c'est souvent de la peur héritée ; ce guide t'accompagne à travers 4 regards TCC pour comprendre pourquoi, restructurer tes croyances et oser un prix juste pour ce que tu apportes.",
@@ -457,7 +459,7 @@ const _base = {
   'anxiete-financiere': {
     id: 'anxiete-financiere',
     name: 'Guide Anxiété financière — 4 approches',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/anxiete-financiere-4-approches.pdf',
     blurb: "L'anxiété financière paralyse et épuise en silence ; ce guide t'accompagne à travers 4 regards TCC pour apaiser le mental d'argent, dissocier ta valeur de ton compte et reprendre pied concrètement.",
@@ -472,7 +474,7 @@ const _base = {
   'argent-couple': {
     id: 'argent-couple',
     name: "Guide L'argent dans le couple — 4 approches",
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur' as const,
     pdf: '/guides/argent-couple-4-approches.pdf',
     blurb: "L'argent est l'un des premiers terrains de conflit dans les couples car chacun arrive avec ses héritages ; ce guide t'accompagne à travers 4 regards TCC pour comprendre vos histoires respectives et construire un système équitable.",
@@ -505,7 +507,7 @@ const _extra: Record<string, GuideMeta> = {
   'misogynoir-en': {
     id: 'misogynoir-en',
     name: 'Misogynoir',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur',
     pdf: '/guides/misogynoir-4-approaches.pdf',
     blurb: 'Free yourself from the tropes, reclaim your full humanity.',
@@ -519,7 +521,7 @@ const _extra: Record<string, GuideMeta> = {
   'black-tax-en': {
     id: 'black-tax-en',
     name: 'Black Tax',
-    priceCents: 1900,
+    priceCents: 999,
     currency: 'eur',
     pdf: '/guides/black-tax-4-approaches.pdf',
     blurb: 'Supporting your people without losing yourself.',
@@ -1102,5 +1104,35 @@ const _pro38_mapped = Object.fromEntries(
     }])
 ) as Record<string, GuideMeta>;
 
-export const GUIDES: Record<string, GuideMeta> = { ..._base, ..._mapped, ..._extra, ..._new_mapped, ..._pro_mapped, ..._pro2_mapped, ..._pro3_mapped, ..._pro4_mapped, ..._pro5_mapped, ..._pro6_mapped, ..._pro7_mapped, ..._pro8_mapped, ..._pro9_mapped, ..._pro10_mapped, ..._pro11_mapped, ..._pro12_mapped, ..._pro13_mapped, ..._pro14_mapped, ..._pro15_mapped, ..._pro16_mapped, ..._pro17_mapped, ..._pro18_mapped, ..._pro19_mapped, ..._pro20_mapped, ..._pro21_mapped, ..._pro22_mapped, ..._pro23_mapped, ..._pro24_mapped, ..._pro25_mapped, ..._pro26_mapped, ..._pro27_mapped, ..._pro28_mapped, ..._pro29_mapped, ..._pro30_mapped, ..._pro32_mapped, ..._pro33_mapped, ..._pro34_mapped, ..._pro35_mapped, ..._pro36_mapped, ..._pro37_mapped, ..._pro38_mapped };
+const _pro39_mapped = Object.fromEntries(
+  PRO_GUIDES_39
+    .filter(g => !(g.id in _base) && !(g.id in _mapped) && !(g.id in _extra) && !(g.id in _new_mapped) && !(g.id in _pro_mapped) && !(g.id in _pro2_mapped) && !(g.id in _pro3_mapped) && !(g.id in _pro4_mapped) && !(g.id in _pro5_mapped) && !(g.id in _pro6_mapped) && !(g.id in _pro7_mapped) && !(g.id in _pro8_mapped) && !(g.id in _pro9_mapped) && !(g.id in _pro10_mapped) && !(g.id in _pro11_mapped) && !(g.id in _pro12_mapped) && !(g.id in _pro13_mapped) && !(g.id in _pro14_mapped) && !(g.id in _pro15_mapped) && !(g.id in _pro16_mapped) && !(g.id in _pro17_mapped) && !(g.id in _pro18_mapped) && !(g.id in _pro19_mapped) && !(g.id in _pro20_mapped) && !(g.id in _pro21_mapped) && !(g.id in _pro22_mapped) && !(g.id in _pro23_mapped) && !(g.id in _pro24_mapped) && !(g.id in _pro25_mapped) && !(g.id in _pro26_mapped) && !(g.id in _pro27_mapped) && !(g.id in _pro28_mapped) && !(g.id in _pro29_mapped) && !(g.id in _pro30_mapped) && !(g.id in _pro32_mapped) && !(g.id in _pro33_mapped) && !(g.id in _pro34_mapped) && !(g.id in _pro35_mapped) && !(g.id in _pro36_mapped) && !(g.id in _pro37_mapped) && !(g.id in _pro38_mapped))
+    .map(g => [g.id, {
+      id: g.id,
+      name: g.title,
+      priceCents: g.priceCents,
+      currency: 'eur' as const,
+      pdf: `/guides/${g.pdf}`,
+      blurb: g.blurb,
+      bullets: g.bullets,
+      lang: g.lang,
+    }])
+) as Record<string, GuideMeta>;
+
+const _pro40_mapped = Object.fromEntries(
+  PRO_GUIDES_40
+    .filter(g => !(g.id in _base) && !(g.id in _mapped) && !(g.id in _extra) && !(g.id in _new_mapped) && !(g.id in _pro_mapped) && !(g.id in _pro2_mapped) && !(g.id in _pro3_mapped) && !(g.id in _pro4_mapped) && !(g.id in _pro5_mapped) && !(g.id in _pro6_mapped) && !(g.id in _pro7_mapped) && !(g.id in _pro8_mapped) && !(g.id in _pro9_mapped) && !(g.id in _pro10_mapped) && !(g.id in _pro11_mapped) && !(g.id in _pro12_mapped) && !(g.id in _pro13_mapped) && !(g.id in _pro14_mapped) && !(g.id in _pro15_mapped) && !(g.id in _pro16_mapped) && !(g.id in _pro17_mapped) && !(g.id in _pro18_mapped) && !(g.id in _pro19_mapped) && !(g.id in _pro20_mapped) && !(g.id in _pro21_mapped) && !(g.id in _pro22_mapped) && !(g.id in _pro23_mapped) && !(g.id in _pro24_mapped) && !(g.id in _pro25_mapped) && !(g.id in _pro26_mapped) && !(g.id in _pro27_mapped) && !(g.id in _pro28_mapped) && !(g.id in _pro29_mapped) && !(g.id in _pro30_mapped) && !(g.id in _pro32_mapped) && !(g.id in _pro33_mapped) && !(g.id in _pro34_mapped) && !(g.id in _pro35_mapped) && !(g.id in _pro36_mapped) && !(g.id in _pro37_mapped) && !(g.id in _pro38_mapped) && !(g.id in _pro39_mapped))
+    .map(g => [g.id, {
+      id: g.id,
+      name: g.title,
+      priceCents: g.priceCents,
+      currency: 'eur' as const,
+      pdf: `/guides/${g.pdf}`,
+      blurb: g.blurb,
+      bullets: g.bullets,
+      lang: g.lang,
+    }])
+) as Record<string, GuideMeta>;
+
+export const GUIDES: Record<string, GuideMeta> = { ..._base, ..._mapped, ..._extra, ..._new_mapped, ..._pro_mapped, ..._pro2_mapped, ..._pro3_mapped, ..._pro4_mapped, ..._pro5_mapped, ..._pro6_mapped, ..._pro7_mapped, ..._pro8_mapped, ..._pro9_mapped, ..._pro10_mapped, ..._pro11_mapped, ..._pro12_mapped, ..._pro13_mapped, ..._pro14_mapped, ..._pro15_mapped, ..._pro16_mapped, ..._pro17_mapped, ..._pro18_mapped, ..._pro19_mapped, ..._pro20_mapped, ..._pro21_mapped, ..._pro22_mapped, ..._pro23_mapped, ..._pro24_mapped, ..._pro25_mapped, ..._pro26_mapped, ..._pro27_mapped, ..._pro28_mapped, ..._pro29_mapped, ..._pro30_mapped, ..._pro32_mapped, ..._pro33_mapped, ..._pro34_mapped, ..._pro35_mapped, ..._pro36_mapped, ..._pro37_mapped, ..._pro38_mapped, ..._pro39_mapped, ..._pro40_mapped };
 export type GuideId = string;

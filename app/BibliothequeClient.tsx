@@ -36,6 +36,8 @@ import { PRO_GUIDES_35 } from '@/lib/proGuides35';
 import { PRO_GUIDES_36 } from '@/lib/proGuides36';
 import { PRO_GUIDES_37 } from '@/lib/proGuides37';
 import { PRO_GUIDES_38 } from '@/lib/proGuides38';
+import { PRO_GUIDES_39 } from '@/lib/proGuides39';
+import { PRO_GUIDES_40 } from '@/lib/proGuides40';
 import { BUNDLES } from '@/lib/bundles';
 import { GUIDE_PROMO, discountedCents } from '@/lib/promo';
 import BundleBuyButton from '@/components/BundleBuyButton';
@@ -1113,6 +1115,21 @@ const SECTIONS = [
       { id: 'guerir-l-heritage', title: 'Guérir l\'héritage', desc: 'Te réapproprier ton histoire : devenir l\'auteur·e de ton récit.', href: '/guides/guerir-l-heritage' },
       { id: 'trauma-esclavage-colonisation', title: 'Le trauma de l\'esclavage et de la colonisation', desc: 'Un héritage collectif : honorer la force héritée, guérison collective.', href: '/guides/trauma-esclavage-colonisation' },
       { id: 'cycle-de-pauvrete-transgenerationnel', title: 'Briser le cycle transgénérationnel de pauvreté', desc: 'Quand le manque se transmet : sortir des croyances de pénurie, passer à la construction.', href: '/guides/cycle-de-pauvrete-transgenerationnel' },
+      { id: 'honte-transmise', title: 'La honte transmise', desc: 'Quand tu portes une honte qui n\'est pas la tienne : tu n\'es pas la honte que tu portes, sortir du silence.', href: '/guides/honte-transmise' },
+      { id: 'loyaute-familiale-invisible', title: 'La loyauté familiale invisible', desc: 'Ces fidélités inconscientes qui dirigent ta vie : aller bien ≠ trahir, te donner la permission d\'avancer.', href: '/guides/loyaute-familiale-invisible' },
+      { id: 'reussir-transfuge-de-classe', title: 'Réussir quand personne ne l\'a fait avant toi', desc: 'Le vertige du transfuge de classe : tu as gagné ta place, honorer tes origines ET ta nouvelle place.', href: '/guides/reussir-transfuge-de-classe' },
+    ],
+  },
+  {
+    id: 'emotions-regulation',
+    label: 'Émotions & Régulation',
+    guides: [
+      { id: 'accueillir-tes-emotions', title: 'Comprendre et accueillir tes émotions', desc: 'Tes émotions ne sont pas l\'ennemi : des messagères pas des ennemies, nommer/situer/écouter le besoin.', href: '/guides/accueillir-tes-emotions' },
+      { id: 'boite-a-outils-regulation', title: 'Réguler tes émotions : ta boîte à outils', desc: 'La fenêtre de tolérance et les techniques qui apaisent : respiration, ancrage, recadrage, mouvement, pause.', href: '/guides/boite-a-outils-regulation' },
+      { id: 'gerer-la-frustration', title: 'Gérer la frustration', desc: 'L\'écart entre ce que tu attends et ce qui est : assouplir les exigences rigides, muscler ta tolérance.', href: '/guides/gerer-la-frustration' },
+      { id: 'apaiser-la-colere', title: 'Apaiser la colère sans la refouler', desc: 'Une émotion valide à exprimer sans exploser ni imploser : ressentir, pauser, exprimer le besoin de façon affirmée.', href: '/guides/apaiser-la-colere' },
+      { id: 'calmer-anxiete-submersion', title: 'Calmer l\'anxiété et la submersion', desc: 'Quand la vague monte : l\'émotion est une vague, inconfortable ≠ dangereux, ancrage 5 sens et respiration.', href: '/guides/calmer-anxiete-submersion' },
+      { id: 'tolerer-l-inconfort', title: 'Tolérer l\'inconfort et différer', desc: 'Résister à l\'urgence de réagir : l\'envie est une vague, tu peux tenir l\'inconfort, différer selon tes valeurs.', href: '/guides/tolerer-l-inconfort' },
     ],
   },
 ];
@@ -1131,7 +1148,7 @@ const EN_EXTRA = [
   { id: 'misogynoir-en', title: 'Misogynoir', blurb: 'Free yourself from the tropes, reclaim your full humanity.', theme: 'Identity & Resilience' },
   { id: 'black-tax-en', title: 'Black Tax', blurb: 'Supporting your people without losing yourself.', theme: 'Money' },
 ];
-const EN_THEME_ORDER = ['Wellbeing', 'Wellbeing & Self', 'Relationships', 'Love & Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career', 'Intimacy & Sexuality', 'Deconstruction & Allyship', 'Creator & Influence', 'Legacy & Transmission'];
+const EN_THEME_ORDER = ['Wellbeing', 'Wellbeing & Self', 'Relationships', 'Love & Relationships', 'Identity & Resilience', 'Sexuality', 'Money', 'Career', 'Intimacy & Sexuality', 'Deconstruction & Allyship', 'Creator & Influence', 'Legacy & Transmission', 'Emotions & Regulation'];
 const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
   theme,
   guides: [
@@ -1170,6 +1187,8 @@ const EN_BY_THEME = EN_THEME_ORDER.map((theme) => ({
     ...PRO_GUIDES_36.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_37.filter((g) => g.lang === 'en' && g.theme === theme),
     ...PRO_GUIDES_38.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_39.filter((g) => g.lang === 'en' && g.theme === theme),
+    ...PRO_GUIDES_40.filter((g) => g.lang === 'en' && g.theme === theme),
     ...EN_EXTRA.filter((g) => g.theme === theme),
   ],
 })).filter((t) => t.guides.length > 0);

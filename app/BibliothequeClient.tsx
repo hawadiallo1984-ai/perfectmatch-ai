@@ -1291,7 +1291,7 @@ export default function BibliothequeClient() {
                   <div className={styles.offerCategory}>
                     {GUIDE_PROMO.active ? (
                       <>Guide PDF · <s style={{ opacity: 0.45 }}>19 €</s>{' '}<span style={{ color: '#C9A24B', fontWeight: 700, textTransform: 'none' as const }}>{(discountedCents(1900) / 100).toFixed(2).replace('.', ',')} €</span>{' '}<span style={{ background: 'rgba(201,162,75,0.18)', color: '#C9A24B', padding: '1px 4px', borderRadius: 2, fontWeight: 700, fontSize: '0.78em', textTransform: 'none' as const, letterSpacing: 0 }}>-30%</span></>
-                    ) : 'Guide PDF · 19 €'}
+                    ) : 'Guide PDF · 9,99 €'}
                   </div>
                   <h3 className={styles.offerName}>{guide.title}</h3>
                   <p className={styles.offerDesc}>{guide.desc}</p>
@@ -1414,7 +1414,7 @@ export default function BibliothequeClient() {
                     <div className={styles.offerCategory}>
                       {GUIDE_PROMO.active ? (
                         <>PDF Guide · <s style={{ opacity: 0.45 }}>€19</s>{' '}<span style={{ color: '#C9A24B', fontWeight: 700, textTransform: 'none' as const }}>€{(discountedCents(1900) / 100).toFixed(2)}</span>{' '}<span style={{ background: 'rgba(201,162,75,0.18)', color: '#C9A24B', padding: '1px 4px', borderRadius: 2, fontWeight: 700, fontSize: '0.78em', textTransform: 'none' as const, letterSpacing: 0 }}>-30%</span></>
-                      ) : 'PDF Guide · €19'}
+                      ) : 'PDF Guide · €9.99'}
                     </div>
                     <h3 className={styles.offerName}>{guide.title}</h3>
                     <p className={styles.offerDesc}>{guide.blurb}</p>

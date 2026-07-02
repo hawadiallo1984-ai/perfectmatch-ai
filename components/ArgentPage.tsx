@@ -98,7 +98,7 @@ export default function ArgentPage() {
         >
           {GUIDES.map((guide) => (
             <div key={guide.id} className={`${styles.offer} reveal`}>
-              <div className={styles.offerCategory}>Guide PDF · 19 €</div>
+              <div className={styles.offerCategory}>Guide PDF · 9,99 €</div>
               <h3 className={styles.offerName}>{guide.title}</h3>
               <p className={styles.offerDesc}>{guide.desc}</p>
               <div style={{ marginTop: 'auto' }}>
@@ -107,7 +107,7 @@ export default function ArgentPage() {
                   className={styles.offerCta}
                   style={{ display: 'block', textAlign: 'center', textDecoration: 'none' }}
                 >
-                  Acheter — 19€ →
+                  Acheter — 9,99 € →
                 </a>
               </div>
             </div>

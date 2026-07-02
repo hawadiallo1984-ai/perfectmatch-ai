@@ -31,7 +31,7 @@ export default function SeReapproprierSexualitePage() {
           </div>
           <BuyButton />
           <p style={{ marginTop: 14, fontSize: 12, opacity: 0.45, letterSpacing: '0.05em' }}>
-            Paiement sécurisé · PDF envoyé par email · 19,00 €
+            Paiement sécurisé · PDF envoyé par email · 9,99 €
           </p>
         </div>
       </section>
@@ -149,7 +149,7 @@ export default function SeReapproprierSexualitePage() {
         </p>
         <BuyButton />
         <p style={{ marginTop: 16, fontSize: 12, opacity: 0.4, letterSpacing: '0.04em' }}>
-          PDF livré par email · 19,00 € TTC · par EvaTalk
+          PDF livré par email · 9,99 € TTC · par EvaTalk
         </p>
       </section>
 

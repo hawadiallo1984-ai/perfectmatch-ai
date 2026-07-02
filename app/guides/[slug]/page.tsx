@@ -50,8 +50,8 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
           <p style={{ marginTop: 14, fontSize: 12, opacity: 0.45, letterSpacing: '0.05em' }}>
             Paiement sécurisé · PDF envoyé par email ·{' '}
             {GUIDE_PROMO.active ? (
-              <><s>19,00 €</s> <strong style={{ opacity: 1 }}>{(discountedCents(1900) / 100).toFixed(2).replace('.', ',')} €</strong> <span style={{ background: 'rgba(201,162,75,0.2)', color: '#C9A24B', padding: '1px 4px', borderRadius: 2, fontWeight: 700 }}>-30%</span></>
-            ) : '19,00 €'}
+              <><s>9,99 €</s> <strong style={{ opacity: 1 }}>{(discountedCents(1900) / 100).toFixed(2).replace('.', ',')} €</strong> <span style={{ background: 'rgba(201,162,75,0.2)', color: '#C9A24B', padding: '1px 4px', borderRadius: 2, fontWeight: 700 }}>-30%</span></>
+            ) : '9,99 €'}
           </p>
         </div>
       </section>
@@ -134,8 +134,8 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
         <p style={{ marginTop: 16, fontSize: 12, opacity: 0.4, letterSpacing: '0.04em' }}>
           PDF livré par email ·{' '}
             {GUIDE_PROMO.active ? (
-              <><s>19,00 €</s> <strong style={{ opacity: 1 }}>{(discountedCents(1900) / 100).toFixed(2).replace('.', ',')} € TTC</strong> <span style={{ background: 'rgba(201,162,75,0.2)', color: '#C9A24B', padding: '1px 4px', borderRadius: 2, fontWeight: 700 }}>-30%</span></>
-            ) : '19,00 € TTC'}{' '}
+              <><s>9,99 €</s> <strong style={{ opacity: 1 }}>{(discountedCents(1900) / 100).toFixed(2).replace('.', ',')} € TTC</strong> <span style={{ background: 'rgba(201,162,75,0.2)', color: '#C9A24B', padding: '1px 4px', borderRadius: 2, fontWeight: 700 }}>-30%</span></>
+            ) : '9,99 € TTC'}{' '}
             · par EvaTalk
         </p>
       </section>

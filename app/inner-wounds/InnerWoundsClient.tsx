@@ -409,7 +409,7 @@ export default function InnerWoundsClient() {
                   The guide made for your wound
                 </p>
                 <div style={{ padding: '28px', border: '1px solid rgba(201,162,75,0.55)', background: 'rgba(201,162,75,0.08)', display: 'flex', flexDirection: 'column', gap: 12 }}>
-                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>PDF Guide · €19</div>
+                  <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>PDF Guide · €9.99</div>
                   <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 'clamp(1.05rem,2.5vw,1.25rem)', lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>
                     {primaryGuide.name}
                   </h3>
@@ -437,7 +437,7 @@ export default function InnerWoundsClient() {
                   <div style={{ marginBottom: '1.25rem' }}>
                     <p style={{ fontSize: '.73rem', letterSpacing: '.1em', textTransform: 'uppercase', color: '#8E7AB5', marginBottom: '.6rem', fontWeight: 700 }}>Volume 2</p>
                     <div style={{ padding: '20px 22px', border: '1px solid rgba(142,122,181,0.35)', background: 'rgba(142,122,181,0.05)', display: 'flex', flexDirection: 'column', gap: 8 }}>
-                      <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#8E7AB5', opacity: 0.8 }}>PDF Guide · €19</div>
+                      <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#8E7AB5', opacity: 0.8 }}>PDF Guide · €9.99</div>
                       <h4 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: '1rem', lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{tome2Guide.name}</h4>
                       <p style={{ fontSize: '.83rem', opacity: 0.55, lineHeight: 1.6, margin: 0 }}>{tome2Guide.blurb}</p>
                       <GuideBuyButton guideId={tome2Guide.id} />
@@ -615,7 +615,7 @@ export default function InnerWoundsClient() {
             background: 'rgba(201,162,75,0.05)',
           }}>
             <p style={{ fontSize: '.82rem', letterSpacing: '.05em', color: '#C9A24B', fontWeight: 700, marginBottom: 8 }}>
-              Each guide · €19
+              Each guide · €9.99
             </p>
             <p style={{ fontSize: '.87rem', color: '#A9A3B8', lineHeight: 1.6 }}>
               4 psychology approaches + guided exercises + an 11-page workbook to fill in. Instant access, at your own pace.

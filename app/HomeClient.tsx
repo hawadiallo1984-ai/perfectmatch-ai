@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { HOME_COPY, Lang } from '@/lib/homeCopy';
 import { BUNDLES } from '@/lib/bundles';
 import BundleBuyButton from '@/components/BundleBuyButton';
@@ -17,6 +17,7 @@ type Props = { lang: Lang };
 export default function HomeClient({ lang }: Props) {
   const copy = HOME_COPY[lang];
   const testHref = lang === 'fr' ? '/blessures-interieures' : '/inner-wounds';
+  const [showSticky, setShowSticky] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -32,6 +33,12 @@ export default function HomeClient({ lang }: Props) {
     );
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => setShowSticky(window.scrollY > 260);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
@@ -60,6 +67,9 @@ export default function HomeClient({ lang }: Props) {
           <a href={testHref} className={styles.btnPrimary}>{copy.hero.ctaPrimary}</a>
           <a href={copy.hero.ctaSecondaryHref} className={styles.btnGhost}>{copy.hero.ctaSecondary}</a>
         </div>
+        <p style={{ marginTop: '.65rem', fontSize: '.75rem', opacity: .5, letterSpacing: '.04em' }}>
+          2 minutes · gratuit · sans inscription
+        </p>
         {lang === 'fr' && (
           <p style={{ marginTop: '1rem', fontSize: '.78rem', opacity: .55 }}>
             <a href="/rapport-au-desir" style={{ color: '#8E7AB5', textDecoration: 'none' }}>
@@ -146,6 +156,34 @@ export default function HomeClient({ lang }: Props) {
           ))}
         </div>
       </section>
+
+      {/* Rappel test gratuit */}
+      {lang === 'fr' && (
+        <div style={{
+          background: 'linear-gradient(135deg,rgba(201,162,75,0.10),rgba(142,122,181,0.07))',
+          borderTop: '1px solid rgba(201,162,75,0.2)',
+          borderBottom: '1px solid rgba(201,162,75,0.2)',
+          padding: '1.5rem 1.5rem',
+          textAlign: 'center',
+        }}>
+          <p style={{ fontSize: '.82rem', color: '#A9A3B8', marginBottom: '.75rem', letterSpacing: '.02em' }}>
+            Tu ne sais pas encore par où commencer ?
+          </p>
+          <a href="/blessures-interieures" style={{
+            display: 'inline-block',
+            background: 'linear-gradient(135deg,#C9A24B,#A87C2A)',
+            color: '#0B0A14',
+            fontWeight: 700,
+            fontSize: '.85rem',
+            padding: '11px 26px',
+            borderRadius: '4px',
+            textDecoration: 'none',
+            letterSpacing: '.04em',
+          }}>
+            Faire le test gratuit — 2 min →
+          </a>
+        </div>
+      )}
 
       {/* (c) Méthode */}
       <section className={styles.section}>
@@ -353,6 +391,17 @@ export default function HomeClient({ lang }: Props) {
       <div style={{ textAlign: 'center', padding: '0 24px 48px', maxWidth: 640, margin: '0 auto' }}>
         <p style={{ fontSize: '.78rem', color: '#A9A3B8', opacity: .55, lineHeight: 1.65 }}>{copy.careNote}</p>
       </div>
+
+      {/* Bouton sticky */}
+      {showSticky && (
+        <a
+          href={testHref}
+          className={styles.stickyBtn}
+          aria-label={lang === 'fr' ? 'Test gratuit — Blessures intérieures' : 'Free quiz — Inner Wounds'}
+        >
+          {lang === 'fr' ? '✦ Test gratuit' : '✦ Free quiz'}
+        </a>
+      )}
 
       <footer className={styles.footer}>
         <div className={styles.logo} style={{ justifyContent: 'center', marginBottom: 8 }}>

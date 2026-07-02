@@ -53,7 +53,7 @@ export default function GuideBuyButton({ guideId, label }: { guideId: string; la
           transition: 'all 0.25s',
         }}
       >
-        {loading ? 'Redirection…' : (label ?? `Acheter le guide — ${(discountedCents(1900) / 100).toFixed(2).replace('.', ',')} €`)}
+        {loading ? 'Redirection…' : (label ?? `Acheter le guide — 9,99 €`)}
       </button>
       {error && (
         <p style={{ fontSize: 13, color: 'var(--danger)', margin: 0 }}>{error}</p>

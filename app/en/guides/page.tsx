@@ -128,7 +128,7 @@ export default function EnGuidesPage() {
             Guides <em>in English</em>
           </h1>
           <p className={`${styles.sectionLead} reveal`} style={{ textAlign: 'center', margin: '0 auto 40px', maxWidth: 560 }}>
-            All guides available in English — same CBT framework, same 11-page workbook format. Instant PDF, €19 each.
+            All guides available in English — same CBT framework, same 11-page workbook format. Instant PDF, €9.99 each.
           </p>
           <div style={{ marginBottom: 16 }}>
             <a href="/inner-wounds" style={{
@@ -213,7 +213,7 @@ export default function EnGuidesPage() {
                   <div className={styles.offerCategory}>
                     {GUIDE_PROMO.active ? (
                       <>PDF Guide · <s style={{ opacity: 0.45 }}>€19</s>{' '}<span style={{ color: '#C9A24B', fontWeight: 700, textTransform: 'none' as const }}>€{(discountedCents(1900) / 100).toFixed(2)}</span>{' '}<span style={{ background: 'rgba(201,162,75,0.18)', color: '#C9A24B', padding: '1px 4px', borderRadius: 2, fontWeight: 700, fontSize: '0.78em', textTransform: 'none' as const, letterSpacing: 0 }}>-30%</span></>
-                    ) : 'PDF Guide · €19'}
+                    ) : 'PDF Guide · €9.99'}
                   </div>
                   <h3 className={styles.offerName}>{guide.title}</h3>
                   <p className={styles.offerDesc}>{guide.blurb}</p>

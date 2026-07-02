@@ -372,7 +372,7 @@ export default function BlessuresClient() {
                   <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#C9A24B', opacity: 0.7 }}>
                     {GUIDE_PROMO.active ? (
                       <>Guide PDF · <s style={{ opacity: 0.5 }}>19 €</s>{' '}<span style={{ fontWeight: 700 }}>{(discountedCents(1900) / 100).toFixed(2).replace('.', ',')} €</span>{' '}<span style={{ background: 'rgba(201,162,75,0.2)', padding: '1px 4px', borderRadius: 2, textTransform: 'none' as const, letterSpacing: 0 }}>-30%</span></>
-                    ) : 'Guide PDF · 19 €'}
+                    ) : 'Guide PDF · 9,99 €'}
                   </div>
                   <h3 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: 'clamp(1.05rem,2.5vw,1.25rem)', lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>
                     {primaryGuide.name}
@@ -404,7 +404,7 @@ export default function BlessuresClient() {
                       <div style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: '#8E7AB5', opacity: 0.8 }}>
                         {GUIDE_PROMO.active ? (
                           <>Guide PDF · <s style={{ opacity: 0.5 }}>19 €</s>{' '}<span style={{ fontWeight: 700, color: '#C9A24B' }}>{(discountedCents(1900) / 100).toFixed(2).replace('.', ',')} €</span>{' '}<span style={{ background: 'rgba(201,162,75,0.2)', color: '#C9A24B', padding: '1px 4px', borderRadius: 2, textTransform: 'none' as const, letterSpacing: 0 }}>-30%</span></>
-                        ) : 'Guide PDF · 19 €'}
+                        ) : 'Guide PDF · 9,99 €'}
                       </div>
                       <h4 style={{ fontFamily: 'Fraunces, serif', fontWeight: 400, fontSize: '1rem', lineHeight: 1.25, margin: 0, color: '#F5EFE3' }}>{tome2Guide.name}</h4>
                       <p style={{ fontSize: '.83rem', opacity: 0.55, lineHeight: 1.6, margin: 0 }}>{tome2Guide.blurb}</p>
@@ -461,7 +461,7 @@ export default function BlessuresClient() {
                           <span style={{ fontSize: '.75rem', color: '#8E7AB5', opacity: 0.8 }}>
                             {GUIDE_PROMO.active ? (
                               <><s style={{ opacity: 0.6 }}>19 €</s>{' '}<span style={{ color: '#C9A24B', fontWeight: 700 }}>{(discountedCents(1900) / 100).toFixed(2).replace('.', ',')} €</span>{' '}<span style={{ background: 'rgba(201,162,75,0.18)', color: '#C9A24B', padding: '1px 3px', borderRadius: 2, fontSize: '.85em', fontWeight: 700 }}>-30%</span>{' '}· Découvrir →</>
-                            ) : '19 € · Découvrir →'}
+                            ) : '9,99 € · Découvrir →'}
                           </span>
                         </a>
                       ))}
@@ -612,7 +612,7 @@ export default function BlessuresClient() {
             background: 'rgba(201,162,75,0.05)',
           }}>
             <p style={{ fontSize: '.82rem', letterSpacing: '.05em', color: '#C9A24B', fontWeight: 700, marginBottom: 8 }}>
-              Chaque guide · 19€
+              Chaque guide · 9,99 €
             </p>
             <p style={{ fontSize: '.87rem', color: '#A9A3B8', lineHeight: 1.6 }}>
               4 approches de la psychologie + des exercices guidés + un cahier de 11 pages à remplir. Résultat immédiat, à ton rythme.

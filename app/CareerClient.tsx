@@ -305,7 +305,7 @@ export default function CareerClient() {
         >
           {GUIDES.map((guide) => (
             <div key={guide.id} className={`${styles.offer} reveal`}>
-              <div className={styles.offerCategory}>PDF Guide · €19</div>
+              <div className={styles.offerCategory}>PDF Guide · €9.99</div>
               <h3 className={styles.offerName}>
                 {guide.title}{' '}<em>{guide.emphasis}</em>
               </h3>

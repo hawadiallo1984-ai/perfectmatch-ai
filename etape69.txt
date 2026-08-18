@@ -1,0 +1,17 @@
+Crée un fichier etape69.txt avec exactement ce contenu, puis exécute-le. N'applique AUCUN patch, modifie les fichiers directement, ne pushe pas.
+
+OBJECTIF : système d'avis clients façon Google, avec MODÉRATION, stocké dans Supabase. Les clients soumettent (prénom + note étoiles + commentaire) → l'avis est "pending" → la propriétaire valide via une page d'admin protégée → seuls les avis "approved" s'affichent partout.
+
+PRÉREQUIS dashboards : table Supabase "testimonials" (id, created_at, name, rating 1-5, comment, lang, status in pending/approved/rejected, RLS activé sans policy publique). Variables d'env : SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, ADMIN_SECRET. Resend déjà配 (guides@eva-talk-coach.com) + NOTIFY_EMAIL.
+
+1. Installe @supabase/supabase-js.
+2. lib/supabase.ts : client créé avec SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY, UNIQUEMENT côté serveur (jamais exposé au navigateur).
+3. app/api/testimonials/route.ts :
+   - POST { name, rating, comment, lang, website(honeypot) } → validation serveur (name 2-40, rating 1-5, comment 5-600, lang fr/en) ; si honeypot rempli → 200 sans insert ; insère status='pending' ; envoie un email de notif via Resend à NOTIFY_EMAIL ("Nouveau témoignage à valider" + contenu + lien /admin/temoignages), sans casser la réponse si l'email échoue.
+   - GET ?lang= → renvoie SEULEMENT les status='approved', triés récents, limités à 30. Jamais les pending.
+4. app/api/admin/testimonials/route.ts : protégé par ADMIN_SECRET (401 sinon). GET = liste les 'pending'. POST { id, action:'approve'|'reject' } = met à jour le status.
+5. app/admin/temoignages/page.tsx : page protégée (champ mot de passe = ADMIN_SECRET, envoyé aux API admin). Liste les 'pending' (prénom, note, commentaire, date) + boutons Approuver/Refuser. Rafraîchit après action.
+6. Composant ReviewForm (client) : prénom, note étoiles 1-5, commentaire, + champ honeypot "website" caché ; bouton doré .btn--primary "Envoyer mon avis" ; POST /api/testimonials ; succès → "Merci 🌸 Ton avis sera publié après validation." ; erreurs gérées ; langue = celle de la page.
+7. Composant Testimonials (crée-le S'IL N'EXISTE PAS) : lit les avis approuvés via GET /api/testimonials?lang=... ; s'il y en a → cartes (étoiles + citation + prénom) ; sinon → encart d'attente honnête (titre + invitation), SANS faux avis ; dans tous les cas un bouton "Laisser un avis" ouvre le ReviewForm (modal/section). Affiche PARTOUT : accueil, page test /blessures-interieures (en haut), pages guides, FR + EN. Source principale = Supabase.
+8. Ne jamais exposer SUPABASE_SERVICE_ROLE_KEY ni ADMIN_SECRET au client ; tout accès DB via routes serveur.
+9. npm run build. Si vert : git status + CONFIRME : (a) dépendance + lib/supabase.ts ; (b) API soumission + API admin protégée ; (c) page /admin/temoignages ; (d) ReviewForm + notif email ; (e) affichage des avis approuvés partout + bouton "Laisser un avis" + encart d'attente si vide ; (f) rien de secret exposé. Ne pushe pas.

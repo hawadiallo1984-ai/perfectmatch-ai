@@ -32,25 +32,7 @@ export default function BundleBuyButton({ bundleId, label }: { bundleId: string;
       <button
         onClick={handleClick}
         disabled={loading}
-        style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: 10,
-          padding: '14px 28px',
-          background: loading
-            ? 'rgba(201,162,75,0.5)'
-            : 'linear-gradient(135deg, var(--gold), var(--gold-soft))',
-          color: 'var(--ink)',
-          borderRadius: 100,
-          fontSize: 13,
-          letterSpacing: '0.1em',
-          textTransform: 'uppercase' as const,
-          fontWeight: 700,
-          border: 'none',
-          cursor: loading ? 'not-allowed' : 'pointer',
-          transition: 'all 0.25s',
-        }}
+        className="btn btn--primary"
       >
         {loading ? 'Redirection…' : label}
       </button>

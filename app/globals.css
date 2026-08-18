@@ -63,6 +63,110 @@ body::after {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ============================================
+   Shared button system
+   ============================================ */
+
+@keyframes pmring {
+  0%        { box-shadow: 0 0 0 0 rgba(201, 162, 75, 0.5); }
+  70%, 100% { box-shadow: 0 0 0 15px rgba(201, 162, 75, 0); }
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 15px 22px;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  border-radius: 12px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  min-height: 48px;
+  transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 100%);
+  color: var(--ink);
+}
+
+.btn--primary:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.08);
+}
+
+.btn--cta {
+  animation: pmring 2s ease-out infinite;
+}
+
+.btn--secondary {
+  background: transparent;
+  border-color: rgba(245, 239, 227, 0.35);
+  color: var(--cream);
+}
+
+.btn--secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold-soft);
+  transform: translateY(-2px);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: transparent;
+  color: rgba(245, 239, 227, 0.5);
+  font-size: 14px;
+  min-height: auto;
+  padding: 6px 4px;
+}
+
+.btn--ghost:hover {
+  color: var(--cream);
+}
+
+.btn--float {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-soft) 100%);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 13px 24px;
+  border-radius: 100px;
+  animation: pmring 2s ease-out infinite;
+  white-space: nowrap;
+}
+
+.btn--float:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+@media (max-width: 640px) {
+  .btn--primary { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn--cta,
+  .btn--float { animation: none; }
+  .btn { transition: none; }
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(40px);

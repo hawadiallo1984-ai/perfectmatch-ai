@@ -84,7 +84,7 @@ export default async function MerciPage({
               }
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 48 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 32 }}>
               {(bundleMeta.guideIds as readonly string[]).map((id) => {
                 const g = GUIDES[id as GuideId];
                 if (!g) return null;
@@ -92,7 +92,8 @@ export default async function MerciPage({
                   <a
                     key={id}
                     href={g.pdf}
-                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
@@ -115,8 +116,21 @@ export default async function MerciPage({
               })}
             </div>
 
+            <p style={{ fontSize: 15, lineHeight: 1.7, marginBottom: 12 }}>
+              {isEn
+                ? <>On vient aussi de t&apos;envoyer ton guide par email 📩 (check your spam folder)</>
+                : <>On vient aussi de t&apos;envoyer ton guide par email 📩 (vérifie tes spams)</>
+              }
+            </p>
+            <p style={{ fontSize: 13, opacity: 0.6, lineHeight: 1.7, marginBottom: 32 }}>
+              {isEn
+                ? 'Download issue? Open this page in Safari or Chrome (not in the TikTok/Instagram browser).'
+                : 'Souci de téléchargement ? Ouvre cette page dans Safari ou Chrome (pas dans le navigateur de TikTok/Insta).'
+              }
+            </p>
+
             <p style={{
-              marginTop: 16,
+              marginTop: 8,
               fontSize: 13,
               opacity: 0.45,
               fontFamily: 'Fraunces, serif',
@@ -167,7 +181,8 @@ export default async function MerciPage({
 
             <a
               href={guide.pdf}
-              download
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -186,8 +201,14 @@ export default async function MerciPage({
               Télécharger le guide PDF →
             </a>
 
+            <p style={{ fontSize: 15, lineHeight: 1.7, marginTop: 28, marginBottom: 10 }}>
+              On vient aussi de t&apos;envoyer ton guide par email 📩 (vérifie tes spams)
+            </p>
+            <p style={{ fontSize: 13, opacity: 0.6, lineHeight: 1.7, marginBottom: 40 }}>
+              Souci de téléchargement ? Ouvre cette page dans Safari ou Chrome (pas dans le navigateur de TikTok/Insta).
+            </p>
+
             <p style={{
-              marginTop: 48,
               fontSize: 13,
               opacity: 0.45,
               fontFamily: 'Fraunces, serif',

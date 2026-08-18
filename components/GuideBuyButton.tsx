@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { discountedCents } from '@/lib/promo';
 
 export default function GuideBuyButton({ guideId, label }: { guideId: string; label?: string }) {
   const [loading, setLoading] = useState(false);
@@ -34,24 +33,7 @@ export default function GuideBuyButton({ guideId, label }: { guideId: string; la
       <button
         onClick={handleClick}
         disabled={loading}
-        style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: 10,
-          padding: '16px 40px',
-          background: loading
-            ? 'rgba(201,162,75,0.5)'
-            : 'linear-gradient(135deg, var(--gold), var(--gold-soft))',
-          color: 'var(--ink)',
-          borderRadius: 100,
-          fontSize: 14,
-          letterSpacing: '0.12em',
-          textTransform: 'uppercase',
-          fontWeight: 700,
-          border: 'none',
-          cursor: loading ? 'not-allowed' : 'pointer',
-          transition: 'all 0.25s',
-        }}
+        className="btn btn--primary"
       >
         {loading ? 'Redirection…' : (label ?? `Acheter le guide — 9,99 €`)}
       </button>

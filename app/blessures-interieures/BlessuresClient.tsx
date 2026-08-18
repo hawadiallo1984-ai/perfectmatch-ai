@@ -9,6 +9,7 @@ import BundleBuyButton from '@/components/BundleBuyButton';
 import GuideBuyButton from '@/components/GuideBuyButton';
 import LeadMagnet from '@/components/LeadMagnet';
 import SiteNav from '@/components/SiteNav';
+import Testimonials from '@/components/Testimonials';
 import styles from '@/app/page.module.css';
 
 const WOUNDS = [
@@ -671,6 +672,8 @@ export default function BlessuresClient() {
           Si tu traverses une période difficile : Suisse 143 · France 3114 · Belgique 0800 32 123
         </p>
       </section>
+
+      <Testimonials lang="fr" />
 
       <footer className={styles.footer}>
         <div className={styles.logo} style={{ justifyContent: 'center', marginBottom: 8 }}>

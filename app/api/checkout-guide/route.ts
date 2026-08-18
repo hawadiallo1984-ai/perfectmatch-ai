@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
         ],
         success_url: `${origin}/merci?session_id={CHECKOUT_SESSION_ID}&bundle=${bundle.id}`,
         cancel_url: origin,
-        metadata: { bundleId: bundle.id },
+        metadata: { bundleId: bundle.id, lang: bundle.lang, title: bundle.title },
       });
       return NextResponse.json({ url: session.url });
     }
@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
       ],
       success_url: `${origin}/merci?session_id={CHECKOUT_SESSION_ID}&guide=${guide.id}`,
       cancel_url: origin,
-      metadata: { guideId: guide.id },
+      metadata: { guideId: guide.id, lang: guide.lang ?? 'fr', title: guide.name },
     });
     return NextResponse.json({ url: session.url });
   } catch (err: any) {

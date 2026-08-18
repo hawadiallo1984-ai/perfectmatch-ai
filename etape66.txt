@@ -1,0 +1,28 @@
+Crée un fichier etape66.txt avec exactement ce contenu, puis exécute-le. N'applique AUCUN patch, modifie les fichiers directement, ne pushe pas.
+
+CONTEXTE : une cliente a payé mais n'a pas pu télécharger le guide (probablement navigateur in-app TikTok/Insta qui bloque les téléchargements). OBJECTIF : livrer le guide automatiquement PAR EMAIL après paiement, + garder un téléchargement propre sur /merci.
+
+PARTIE A — AUDIT (rapporte, ne change rien encore) :
+1. Comment le guide est-il livré aujourd'hui après paiement ? (page /merci ? lien ? rien ?)
+2. Existe-t-il déjà un WEBHOOK Stripe (checkout.session.completed) ? Où ?
+3. Resend est-il installé (package resend + variable RESEND_API_KEY) ? Y a-t-il déjà du code d'email ? Un expéditeur vérifié ?
+4. Dans app/api/checkout-guide/route.ts : l'email de l'acheteur est-il collecté ? Le guideId (et la liste des guideIds pour un pack) est-il mis en metadata de la session ?
+Donne le rapport.
+
+PARTIE B — LIVRAISON PAR EMAIL (Resend) via WEBHOOK STRIPE :
+1. Assure-toi que le checkout met en metadata : guideId (ou liste des guideIds pour un pack), titre, langue (fr/en), et que Stripe collecte l'email.
+2. Crée (ou complète) app/api/stripe-webhook/route.ts :
+   - vérifie la signature avec STRIPE_WEBHOOK_SECRET ;
+   - sur checkout.session.completed : récupère l'email de l'acheteur + le(s) guideId(s) de la metadata ;
+   - pour chaque PDF : fais un fetch sur l'URL publique https://<domaine>/guides/<slug>.pdf, convertis en base64, attache-le à l'email Resend (pièce jointe) ; pour un pack, attache tous les PDF ;
+   - envoie l'email via Resend à l'acheteur : expéditeur = adresse/domaine VÉRIFIÉ dans Resend ; objet chaleureux (adapte en EN si langue 'en') ; corps façon EvaTalk avec un LIEN de téléchargement EN PLUS de la pièce jointe ;
+   - gère et loggue les erreurs sans casser la réponse 200 du webhook ;
+   - évite le double envoi si Stripe rejoue l'événement (garde une trace du session.id, ou note-le en commentaire).
+
+PARTIE C — /merci :
+- bouton de téléchargement clair (doré, style .btn--primary sans pulse), target="_blank" ;
+- texte : « On vient aussi de t'envoyer ton guide par email 📩 (vérifie tes spams) » ;
+- note : « Souci de téléchargement ? Ouvre cette page dans Safari ou Chrome (pas dans le navigateur de TikTok/Insta). »
+
+BUILD & CONFIRMATION :
+- npm run build. Si vert : git status + CONFIRME : (a) rapport d'audit ; (b) webhook qui envoie l'email avec PDF en pièce jointe + lien ; (c) /merci corrigée ; (d) la LISTE des variables d'env nécessaires (RESEND_API_KEY, STRIPE_WEBHOOK_SECRET, expéditeur vérifié, URL du site). Ne pushe pas.

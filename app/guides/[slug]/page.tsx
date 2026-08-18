@@ -4,6 +4,7 @@ import { GUIDE_PROMO, discountedCents } from '@/lib/promo';
 import styles from '@/app/page.module.css';
 import SiteNav from '@/components/SiteNav';
 import GuideBuyButton from '@/components/GuideBuyButton';
+import Testimonials from '@/components/Testimonials';
 
 export async function generateStaticParams() {
   return Object.keys(GUIDES).map((id) => ({ slug: id }));
@@ -139,6 +140,8 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
             · par EvaTalk
         </p>
       </section>
+
+      <Testimonials lang={(guide.lang ?? 'fr') as 'fr' | 'en'} />
 
       <footer className={styles.footer}>
         <div className={styles.logo} style={{ justifyContent: 'center', marginBottom: 8 }}>

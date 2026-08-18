@@ -64,15 +64,15 @@ export default function HomeClient({ lang }: Props) {
         <p className={styles.heroSub}>{copy.hero.sub}</p>
 
         <div className={styles.heroCtaGroup}>
-          <a href={testHref} className={styles.btnPrimary}>{copy.hero.ctaPrimary}</a>
-          <a href={copy.hero.ctaSecondaryHref} className={styles.btnGhost}>{copy.hero.ctaSecondary}</a>
+          <a href={testHref} className="btn btn--primary btn--cta">{copy.hero.ctaPrimary}</a>
+          <a href={copy.hero.ctaSecondaryHref} className="btn btn--secondary">{copy.hero.ctaSecondary}</a>
         </div>
         <p style={{ marginTop: '.65rem', fontSize: '.75rem', opacity: .5, letterSpacing: '.04em' }}>
-          2 minutes · gratuit · sans inscription
+          gratuit · sans inscription · 2 minutes
         </p>
         {lang === 'fr' && (
-          <p style={{ marginTop: '1rem', fontSize: '.78rem', opacity: .55 }}>
-            <a href="/rapport-au-desir" style={{ color: '#8E7AB5', textDecoration: 'none' }}>
+          <p style={{ marginTop: '.75rem' }}>
+            <a href="/rapport-au-desir" className="btn btn--ghost">
               Test désir &amp; intimité (18+) →
             </a>
           </p>
@@ -119,17 +119,7 @@ export default function HomeClient({ lang }: Props) {
             {copy.ebook.body}
           </p>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
-            <a href={testHref} style={{
-              display: 'inline-block',
-              background: 'linear-gradient(135deg,#C9A24B,#A87C2A)',
-              color: '#0B0A14',
-              fontWeight: 700,
-              fontSize: '.87rem',
-              padding: '12px 28px',
-              borderRadius: '4px',
-              textDecoration: 'none',
-              letterSpacing: '.04em',
-            }}>
+            <a href={testHref} className="btn btn--primary">
               {copy.ebook.cta}
             </a>
           </div>
@@ -169,17 +159,7 @@ export default function HomeClient({ lang }: Props) {
           <p style={{ fontSize: '.82rem', color: '#A9A3B8', marginBottom: '.75rem', letterSpacing: '.02em' }}>
             Tu ne sais pas encore par où commencer ?
           </p>
-          <a href="/blessures-interieures" style={{
-            display: 'inline-block',
-            background: 'linear-gradient(135deg,#C9A24B,#A87C2A)',
-            color: '#0B0A14',
-            fontWeight: 700,
-            fontSize: '.85rem',
-            padding: '11px 26px',
-            borderRadius: '4px',
-            textDecoration: 'none',
-            letterSpacing: '.04em',
-          }}>
+          <a href="/blessures-interieures" className="btn btn--primary">
             Faire le test gratuit — 2 min →
           </a>
         </div>
@@ -264,19 +244,7 @@ export default function HomeClient({ lang }: Props) {
             ))}
           </div>
           <div style={{ textAlign: 'center' }}>
-            <a
-              href="/bibliotheque"
-              style={{
-                display: 'inline-block',
-                border: '1px solid rgba(201,162,75,0.35)',
-                color: '#C9A24B',
-                fontSize: 13,
-                padding: '9px 22px',
-                borderRadius: '4px',
-                textDecoration: 'none',
-                letterSpacing: '.04em',
-              }}
-            >
+            <a href="/bibliotheque" className="btn btn--secondary" style={{ fontSize: 14 }}>
               Voir tous les packs →
             </a>
           </div>
@@ -303,17 +271,7 @@ export default function HomeClient({ lang }: Props) {
           </div>
           <h2 style={{ fontFamily: 'Fraunces, serif', fontSize: 'clamp(1.3rem,3vw,1.7rem)', fontWeight: 400, marginBottom: '.75rem' }}>{copy.profile.title}</h2>
           <p style={{ color: '#A9A3B8', fontSize: '.9rem', lineHeight: 1.65, marginBottom: '1.75rem' }}>{copy.profile.body}</p>
-          <a href="/questionnaire" style={{
-            display: 'inline-block',
-            background: 'linear-gradient(135deg,#C9A24B,#A87C2A)',
-            color: '#0B0A14',
-            fontWeight: 700,
-            fontSize: '.9rem',
-            padding: '13px 30px',
-            borderRadius: '4px',
-            textDecoration: 'none',
-            letterSpacing: '.04em',
-          }}>
+          <a href="/questionnaire" className="btn btn--primary">
             {copy.profile.cta}
           </a>
         </div>
@@ -348,17 +306,7 @@ export default function HomeClient({ lang }: Props) {
           </div>
           <h2 style={{ fontFamily: 'Fraunces, serif', fontSize: 'clamp(1.2rem,3vw,1.6rem)', fontWeight: 400, marginBottom: '.75rem' }}>{copy.coaching.title}</h2>
           <p style={{ color: '#A9A3B8', fontSize: '.9rem', lineHeight: 1.65, marginBottom: '1.75rem' }}>{copy.coaching.body}</p>
-          <a href={copy.coaching.ctaHref} style={{
-            display: 'inline-block',
-            border: '1px solid rgba(142,122,181,0.6)',
-            color: '#8E7AB5',
-            fontWeight: 600,
-            fontSize: '.88rem',
-            padding: '12px 28px',
-            borderRadius: '4px',
-            textDecoration: 'none',
-            letterSpacing: '.04em',
-          }}>
+          <a href={copy.coaching.ctaHref} className="btn btn--secondary">
             {copy.coaching.cta}
           </a>
         </div>
@@ -372,17 +320,7 @@ export default function HomeClient({ lang }: Props) {
         <p style={{ color: '#A9A3B8', fontSize: '.9rem', lineHeight: 1.65, marginBottom: '2rem', maxWidth: 440, margin: '0 auto 2rem' }}>
           {copy.closing.body}
         </p>
-        <a href={testHref} style={{
-          display: 'inline-block',
-          background: 'linear-gradient(135deg,#C9A24B,#A87C2A)',
-          color: '#0B0A14',
-          fontWeight: 700,
-          fontSize: '.9rem',
-          padding: '14px 32px',
-          borderRadius: '4px',
-          textDecoration: 'none',
-          letterSpacing: '.04em',
-        }}>
+        <a href={testHref} className="btn btn--primary">
           {copy.closing.cta}
         </a>
       </section>

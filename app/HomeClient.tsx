@@ -88,6 +88,8 @@ export default function HomeClient({ lang }: Props) {
         </div>
       </section>
 
+      <Testimonials lang={lang} />
+
       {/* Bandeau mini-guide (kept) */}
       <section style={{
         background: 'linear-gradient(135deg,rgba(201,162,75,0.08),rgba(142,122,181,0.06))',
@@ -199,8 +201,6 @@ export default function HomeClient({ lang }: Props) {
           </div>
         </div>
       </section>
-
-      <Testimonials lang={lang} />
 
       {/* Et aussi : packs */}
       <section style={{

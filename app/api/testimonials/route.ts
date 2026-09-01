@@ -65,6 +65,7 @@ export async function POST(req: NextRequest) {
   }
 
   // notif email à la vendeuse (sans casser la réponse si ça échoue)
+  let emailErrorDetail: string | undefined;
   try {
     const resend = new Resend(process.env.RESEND_API_KEY!);
     const notifyTo = process.env.NOTIFY_EMAIL;
@@ -92,7 +93,10 @@ export async function POST(req: NextRequest) {
     }
   } catch (emailErr) {
     console.error('[testimonials POST email]', emailErr);
+    emailErrorDetail = emailErr instanceof Error ? emailErr.message : String(emailErr);
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json(
+    emailErrorDetail ? { ok: true, detail: emailErrorDetail } : { ok: true }
+  );
 }

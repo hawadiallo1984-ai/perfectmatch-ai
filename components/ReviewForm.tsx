@@ -51,6 +51,7 @@ export default function ReviewForm({ lang = 'fr', onClose }: Props) {
       const data = await res.json();
       if (res.ok && data.ok) {
         setStatus('success');
+        setErrorDetail(data.detail ?? '');
       } else {
         setErrorMsg(data.error ?? copy.errorGeneric);
         setErrorDetail(data.detail ?? '');
@@ -72,6 +73,11 @@ export default function ReviewForm({ lang = 'fr', onClose }: Props) {
         textAlign: 'center',
       }}>
         <p style={{ fontSize: 18, lineHeight: 1.6, color: 'var(--gold-soft)' }}>{copy.success}</p>
+        {errorDetail && (
+          <p style={{ color: 'rgba(201,162,75,0.6)', fontSize: 11, marginTop: 12, fontFamily: 'monospace' }}>
+            {errorDetail}
+          </p>
+        )}
       </div>
     );
   }

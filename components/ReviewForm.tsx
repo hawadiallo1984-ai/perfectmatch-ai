@@ -34,11 +34,13 @@ export default function ReviewForm({ lang = 'fr', onClose }: Props) {
   const [website, setWebsite] = useState(''); // honeypot
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  const [errorDetail, setErrorDetail] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
     setErrorMsg('');
+    setErrorDetail('');
 
     try {
       const res = await fetch('/api/testimonials', {
@@ -51,6 +53,7 @@ export default function ReviewForm({ lang = 'fr', onClose }: Props) {
         setStatus('success');
       } else {
         setErrorMsg(data.error ?? copy.errorGeneric);
+        setErrorDetail(data.detail ?? '');
         setStatus('error');
       }
     } catch {
@@ -183,7 +186,12 @@ export default function ReviewForm({ lang = 'fr', onClose }: Props) {
       </div>
 
       {errorMsg && (
-        <p style={{ color: '#D99B9B', fontSize: 13, marginBottom: 16 }}>{errorMsg}</p>
+        <p style={{ color: '#D99B9B', fontSize: 13, marginBottom: errorDetail ? 4 : 16 }}>{errorMsg}</p>
+      )}
+      {errorDetail && (
+        <p style={{ color: 'rgba(217,155,155,0.7)', fontSize: 11, marginBottom: 16, fontFamily: 'monospace' }}>
+          {errorDetail}
+        </p>
       )}
 
       <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>

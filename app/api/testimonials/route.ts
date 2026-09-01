@@ -58,7 +58,10 @@ export async function POST(req: NextRequest) {
 
   if (insertError) {
     console.error('[testimonials POST insert]', insertError);
-    return NextResponse.json({ error: 'Erreur serveur.' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Erreur serveur.', detail: insertError.message },
+      { status: 500 }
+    );
   }
 
   // notif email à la vendeuse (sans casser la réponse si ça échoue)

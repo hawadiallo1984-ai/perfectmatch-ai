@@ -48,13 +48,23 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: errors.join(' ') }, { status: 422 });
   }
 
-  const { error: insertError } = await getSupabase().from('testimonials').insert({
-    name: name.trim(),
-    rating,
-    comment: comment.trim(),
-    lang,
-    status: 'pending',
-  });
+  let insertError: { message: string } | null = null;
+  try {
+    const { error } = await getSupabase().from('testimonials').insert({
+      name: name.trim(),
+      rating,
+      comment: comment.trim(),
+      lang,
+      status: 'pending',
+    });
+    insertError = error;
+  } catch (err) {
+    console.error('[testimonials POST insert]', err);
+    return NextResponse.json(
+      { error: 'Erreur serveur.', detail: err instanceof Error ? err.message : String(err) },
+      { status: 500 }
+    );
+  }
 
   if (insertError) {
     console.error('[testimonials POST insert]', insertError);

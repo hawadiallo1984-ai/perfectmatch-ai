@@ -14,6 +14,16 @@ type Testimonial = {
 
 type Props = { lang?: 'fr' | 'en' };
 
+// Témoignage statique — toujours affiché, indépendant de Supabase/API.
+const STATIC_TESTIMONIAL: Testimonial = {
+  id: 'static-hawa',
+  name: 'Hawa',
+  rating: 5,
+  comment:
+    "J'ai lu le guide et franchement il était très bien. Ça m'a fait prendre conscience de beaucoup de choses, et surtout faire un travail intérieur sur moi. Je vais même acheter le guide estime de soi !",
+  created_at: '',
+};
+
 const COPY = {
   fr: {
     label: 'Témoignages',
@@ -44,20 +54,16 @@ function Stars({ rating }: { rating: number }) {
 export default function Testimonials({ lang = 'fr' }: Props) {
   const copy = COPY[lang];
   const [items, setItems] = useState<Testimonial[]>([]);
-  const [loaded, setLoaded] = useState(false);
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     fetch(`/api/testimonials?lang=${lang}`)
       .then((r) => r.json())
-      .then((d) => {
-        setItems(d.testimonials ?? []);
-        setLoaded(true);
-      })
-      .catch(() => setLoaded(true));
+      .then((d) => setItems(d.testimonials ?? []))
+      .catch(() => {});
   }, [lang]);
 
-  if (!loaded) return null;
+  const allItems = [STATIC_TESTIMONIAL, ...items];
 
   return (
     <section style={{
@@ -72,70 +78,44 @@ export default function Testimonials({ lang = 'fr' }: Props) {
           <h2 className={styles.sectionTitle}>{copy.title}</h2>
         </div>
 
-        {items.length > 0 ? (
-          /* Grille d'avis */
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-            gap: 20,
-            marginBottom: 40,
-          }}>
-            {items.map((t) => (
-              <div key={t.id} style={{
-                background: 'rgba(28,24,51,0.55)',
-                border: '1px solid rgba(201,162,75,0.12)',
-                borderRadius: 16,
-                padding: '28px 24px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 12,
-              }}>
-                <Stars rating={t.rating} />
-                <p style={{
-                  fontSize: 15,
-                  lineHeight: 1.7,
-                  fontStyle: 'italic',
-                  opacity: 0.85,
-                  flexGrow: 1,
-                }}>
-                  &ldquo;{t.comment}&rdquo;
-                </p>
-                <p style={{
-                  fontSize: 13,
-                  fontWeight: 600,
-                  color: 'var(--gold-soft)',
-                  letterSpacing: '0.04em',
-                }}>
-                  — {t.name}
-                </p>
-              </div>
-            ))}
-          </div>
-        ) : (
-          /* Encart d'attente honnête — SANS faux avis */
-          <div style={{
-            background: 'rgba(201,162,75,0.05)',
-            border: '1px solid rgba(201,162,75,0.15)',
-            borderRadius: 16,
-            padding: '36px 32px',
-            textAlign: 'center',
-            maxWidth: 560,
-            margin: '0 auto 40px',
-          }}>
-            <p style={{
-              fontFamily: 'Fraunces, serif',
-              fontSize: 20,
-              fontWeight: 300,
-              marginBottom: 12,
-              color: 'var(--gold-soft)',
+        {/* Grille d'avis — toujours au moins le témoignage statique */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+          gap: 20,
+          marginBottom: 40,
+        }}>
+          {allItems.map((t) => (
+            <div key={t.id} style={{
+              background: 'rgba(28,24,51,0.55)',
+              border: '1px solid rgba(201,162,75,0.12)',
+              borderRadius: 16,
+              padding: '28px 24px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 12,
             }}>
-              {copy.waitingTitle}
-            </p>
-            <p style={{ fontSize: 15, lineHeight: 1.7, opacity: 0.65 }}>
-              {copy.waitingText}
-            </p>
-          </div>
-        )}
+              <Stars rating={t.rating} />
+              <p style={{
+                fontSize: 15,
+                lineHeight: 1.7,
+                fontStyle: 'italic',
+                opacity: 0.85,
+                flexGrow: 1,
+              }}>
+                &ldquo;{t.comment}&rdquo;
+              </p>
+              <p style={{
+                fontSize: 13,
+                fontWeight: 600,
+                color: 'var(--gold-soft)',
+                letterSpacing: '0.04em',
+              }}>
+                — {t.name}
+              </p>
+            </div>
+          ))}
+        </div>
 
         {/* Bouton "Laisser un avis" */}
         <div style={{ textAlign: 'center', marginBottom: showForm ? 32 : 0 }}>

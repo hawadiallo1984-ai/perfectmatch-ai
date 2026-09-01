@@ -6,10 +6,13 @@ let _client: SupabaseClient | null = null;
 
 export function getSupabase(): SupabaseClient {
   if (!_client) {
-    _client = createClient(
-      process.env.SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
-    );
+    const url = process.env.SUPABASE_URL;
+    const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+    if (!url) console.error('[supabase] variable d\'environnement manquante: SUPABASE_URL');
+    if (!serviceRoleKey) console.error('[supabase] variable d\'environnement manquante: SUPABASE_SERVICE_ROLE_KEY');
+
+    _client = createClient(url!, serviceRoleKey!);
   }
   return _client;
 }
